@@ -30,3 +30,5 @@ bin/**
 .settings/
 /bin/
 target/
+
+db.properties

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.bitcamp.dao.AdminDAO">
+   <parameterMap type="java.util.HashMap" id="hashMap"/>
+   <select id="adminmembergetCount" resultType="int" parameterMap="hashMap">
+      select count(*)
+      from UserTable
+       <where>
+         <if test="searchtxt!=null and searchtxt!='' ">
+            <choose>
+               <when test="search=='userid'">
+                  and userid like concat('%',#{searchtxt},'%')
+               </when>
+               <when test="search=='joindate'">
+                  and  DATE_FORMAT(joindate,'%y')=#{searchtxt}
+               </when>
+            </choose>
+         </if>
+      </where>
+   </select>
+   <select id="adminmemberlist" parameterMap="hashMap" resultType="com.bitcamp.dto.AdminMemberDTO">
+          select userid, useremail, phone, DATE_FORMAT(joindate,'%y-%m-%d') as joindate
+          from UserTable
+           <where>
+                      <if test="searchtxt!=null and searchtxt!=''">
+                         <choose>
+                            <when test="search=='userid'">
+                               and userid like concat('%',#{searchtxt},'%')
+                            </when>
+              				 <when test="search=='joindate'">
+               				   and  DATE_FORMAT(joindate,'%y')=#{searchtxt}
+               				</when>
+                         </choose>
+                      </if>
+          </where>
+          limit 0,10
+   </select>
+  </mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.bitcamp.mapper.MemberMapper">
+  
+  <resultMap type="com.bitcamp.security.Login__MemberVO" id="memberMap">
+   	<id property="userid" column="userid"/>
+  	<result property="userid" column="userid"/>
+  	<result property="password" column="password"/>
+  	<result property="username" column="username"/>
+  	<result property="useremail" column="useremail"/>
+  	<result property="phone" column="phone"/>
+  	<result property="joindate" column="joindate"/>
+  	<result property="address" column="address"/>
+  	<result property="address2" column="address2"/>
+  	<result property="address3" column="address3"/>
+  	<result property="userimg" column="userimg"/>
+  	
+  	
+  	<collection property="authList" resultMap="authMap">
+  	</collection>
+  </resultMap>
+  
+  <resultMap type="com.bitcamp.security.Login__AuthVO" id="authMap">
+  	<result property="userid" column="userid"/>
+  	<result property="auth" column="auth"/>
+  </resultMap>
+  
+  	<select id="read" parameterType="String" resultMap="memberMap">
+  		SELECT
+  			ut.userid, password, username, useremail, phone, joindate, address, address2, address3, userimg,  auth 
+  		FROM UserTable ut
+  		LEFT OUTER JOIN AuthoritiesTable at ON ut.userid = at.userid
+		WHERE ut.userid = #{userid}
+  		
+  	</select>
+  
+  </mapper>

@@ -1,0 +1,92 @@
+@charset "UTF-8";
+/* css 초기화 */
+*{
+   margin: 0 auto;
+    padding: 0;
+/*    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';*/
+}
+a{
+    color: #000;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+body{
+    background-color: #efefef;
+}
+/* header */
+.adminheader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 200px;
+    z-index: 1000;
+    display: block;
+    overflow: hidden;
+    height: auto;
+    background-color: #fff;
+    border-right: 1px solid #e8e8e8;
+}
+.adminlogo{
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+.logo_img{
+    width: 100%;
+}
+.adminnav{
+    height: 50px;
+    line-height: 50px;
+    padding-left: 35px;
+    font-size: 13px;
+    display: block;
+    cursor: pointer;
+}
+.adminnav:hover, .adginnav:focus{
+    transition: all 0.3s ease 0s;
+    background-color:  #e8e8e8;
+}
+.navselected{
+    background-color:  #e8e8e8;
+}
+.admincontents{
+    position: relative;
+    margin: 0px 0px 0px 200px;
+}
+.admincon{
+    width: 1024px;
+}
+
+/* admin userbox */
+.admin_userbox{
+    width: 1074px;
+    margin: 0;
+    text-align: right;
+    padding: 10px 0;
+    font-size: 12px;
+}
+.admin_logout{
+    font-size: 11px;
+    border: 1px solid #e8e8e8;
+    padding: 3px;
+    border-radius: 5px;
+    margin-left: 20px;
+    background-color: #fff;
+}
+.admin_sectionbox{
+    width: 1000px;
+    margin: 20px 0px 0px 30px;
+    background-color: #fff;
+    padding: 20px;
+}

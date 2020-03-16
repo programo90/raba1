@@ -1,4 +1,4 @@
-package com.bitcamp.tour;
+package com.bitcamp.dto;
 
 public class TourDTO {
 	private Integer hostno;

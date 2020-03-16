@@ -1,0 +1,158 @@
+/*info css*/
+#info_map{
+    width: 100%;
+    height: 500px;	
+    border: 1px solid black;
+}
+
+.enter_start{
+   margin: 20px 0;
+}
+
+.enter_start label{
+    font-weight: bold;
+    font-size: 19px;
+    margin-top: 
+}
+
+/* 맵 css */
+
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+#map {
+	width:100%;
+ 	height: 500px;
+ 	border : 1px solid black;
+}
+
+.controls {
+  margin-top: px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 32px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#origin-input,
+#destination-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 200px;
+}
+
+#origin-input:focus,
+#destination-input:focus {
+  border-color: #4d90fe;
+}
+
+#mode-selector {
+  color: #fff;
+  background-color: #4d90fe;
+  margin-left: 12px;
+  padding: 5px 11px 0px 11px;
+  display : none;
+}
+
+#mode-selector label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+#origin-input{
+	float :right;
+	width : 400px;
+	text-align : center;
+}
+
+
+/* 맵 css */
+
+
+
+
+
+
+/*공지 게시판 */
+.notice{
+    margin: 100px 0;
+}
+.notice label{
+    font-weight: bold;
+    font-size: 19px;
+    
+}
+.n_board{
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+.brd_head{
+    background-color: lightgrey;
+    border-bottom: 1px solid darkgrey;
+    font-weight: bold;
+    height: 30px;
+    padding-top: 10px;
+}
+.brd_list{
+    border-bottom: 1px solid #e8e8e8;
+    height: 30px;
+    padding-top: 10px;
+
+}
+.n_no,.n_title,.n_date{
+    display: inline-block;
+    width: 33%;
+    margin: 0 auto;
+}
+
+.n_content{
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid #e8e8e8;
+    margin-top: 10px;
+    text-align: center;
+}
+.c_detail{
+    padding:10px 0 20px 0;
+ 	width : 45%;
+ 	white-space:pre;
+}
+
+/*.info_notice{
+    margin: 100px 0;
+    
+}
+.info_notice label{
+    font-weight: bold;
+    font-size: 19px;
+}
+.info_notice table {
+    text-align: center;
+}
+.info_notice table thead th{
+    width: 400px;
+    height: 30px;
+    background-color: lightgrey;
+    padding-top: 10px;
+    font-weight: bold;
+    
+}*/
+/*공지 게시판 끝*/
+.info_contact{
+    width: 100%;
+    height: 200px;
+    
+}
+.info_contact h4{
+    font-weight: bold;
+    font-size: 19px;
+}

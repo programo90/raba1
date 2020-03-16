@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.bitcamp.mapper.NoticeMapper">
+  
+  	<resultMap type="com.bitcamp.dto.NoticeDTO" id="noticeMap">
+  		<result property="ntcno" column="nno"/>
+  		<result property="ntccontent" column="ncontent"/>
+  		<result property="ntctitle" column="ntitle"/>
+  		<result property="ntcdate" column="ndate"/>
+  	</resultMap>
+  
+  	<select id="getlist" resultMap="noticeMap">
+  		select nno, ncontent, ntitle, ndate
+  		from NoticeTable
+  	</select>
+  	
+  	<insert id="ins_ntc" parameterType="com.bitcamp.dto.NoticeDTO">
+  		insert into NoticeTable(nno,ncontent,ntitle,ndate)
+  		values(null,#{ntccontent},#{ntctitle},now())
+  	</insert>
+  	
+  	<select id="detail" parameterType="int" resultMap="noticeMap">
+  		select nno, ncontent, ntitle, ndate
+  		from NoticeTable
+  		where nno = #{ntcno}
+  	</select>
+  	
+  	<update id="update_ntc" parameterType="com.bitcamp.dto.NoticeDTO">
+  		update NoticeTable
+  		set
+  			ntitle=#{ntctitle}
+  			,ncontent=#{ntccontent}
+  			,ndate=now()
+  		where nno=#{ntcno}
+  	</update>
+  	
+  	<delete id="delete_ntc" parameterType="int">
+  		delete from NoticeTable
+  		where nno=#{ntcno}
+  	</delete>
+  	
+  </mapper>

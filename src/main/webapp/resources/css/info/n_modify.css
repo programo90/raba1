@@ -1,0 +1,28 @@
+.brd_form{
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+.brd_form ul label{
+    font-weight: bold;
+    font-size: 20px;
+}
+.brd_form ul li{
+    margin: 30px 0;
+}
+#n_title{
+    width: 300px;
+    height: 30px;
+    margin-right: 110px;
+}
+#n_content{
+    font-size: 15px;
+}
+.submit_btn{
+    font-weight: bold;
+    width: 100px;
+    height: 30px;
+    border-radius: 6px;
+    color: white;
+    background-color:deepskyblue;   
+}

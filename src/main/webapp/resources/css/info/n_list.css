@@ -1,0 +1,55 @@
+.n_board{
+    width: 100%;
+    
+    text-align: center;
+}
+.brd_head{
+    background-color: lightgrey;
+    border-bottom: 1px solid darkgrey;
+    font-weight: bold;
+    height: 30px;
+    padding-top: 10px;
+}
+.brd_body{
+    
+}
+.brd_list{
+    border-bottom: 1px solid darkgrey;
+    height: 30px;
+    padding-top: 10px;
+
+}
+.no,.title,.date,.list_btn{
+    display: inline-block;
+    width: 22%;
+    margin: 0 auto;
+}
+.mdf_list{
+    display: inline-block;
+    width: 50px;
+    color: white;
+    background-color: deepskyblue;
+    border-radius: 4px;
+}
+.del_list{
+    display: inline-block;
+    width: 50px;
+    color: white;
+    background-color: orangered;
+    border-radius: 4px;
+}
+.ins_brd{
+    text-align:center;
+    width: 100px;
+    height: 30px;
+    background-color:limegreen;
+    color: white;
+    padding-top: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    margin: 30px auto;
+}
+
+.n_ins_btn{
+	color:white;
+}

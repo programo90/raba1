@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
- <c:if test="${id eq null}">
+  <c:if test="${id eq null}">
         <a href="https://kauth.kakao.com/oauth/authorize?client_id=bffed4bc4d4a39e24324342a77147ade&redirect_uri=http://localhost:8080/login&response_type=code">
             <img src="resources/img/kakao_login_btn.png">
         </a>

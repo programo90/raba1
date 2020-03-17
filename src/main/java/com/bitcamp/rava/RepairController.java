@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class RepairController {
 	
-	@RequestMapping(value = "/cafe", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/cafe", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 	
 		return "cafe/cafe";
@@ -19,5 +19,5 @@ public class RepairController {
 	public String cafeadmin(Locale locale, Model model) {
 	
 		return "admin/cafeadmin";
-	}
+	}*/
 }

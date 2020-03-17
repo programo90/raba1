@@ -27,6 +27,11 @@
 .cafe_tab:last-child{
     margin-right: 0%;
 }
+.cafe_tab_select{
+    color: #fff;
+    font-weight:bold;
+    background-color:#3e5f40;
+}
 /* category */
 .cafe_category{
     padding: 30px 30px 0 30px;
@@ -110,21 +115,18 @@ input[class="cafe_checkbox"] {
 .cafe_product_img{
     width: 100%;
 }
-/*.cafe_product_img{
-transform: scale(1) !important;
-  -webkit-transform: scale(1) !important;
-  -moz-transform: scale(1) !important;
-  -ms-transform: scale(1) !important;
-  -o-transform: scale(1) !important;
-  transition: all 0.3s ease-in-out;
+
+.cafe_product_img:hover {
+    transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+    transition: transform .85s;
+    -o-transition: transform .85s;
+    -moz-transition: transform .85s;
+    -webkit-transition: transform .85s;
 }
-.cafe_product_inner:hover {
-    transform: scale(1.2);
-  -webkit-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  -o-transform: scale(1.2);
-}*/
 .cafe_product_title{
     text-align: center;
 }

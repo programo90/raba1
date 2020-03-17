@@ -1,0 +1,157 @@
+@charset "UTF-8";
+.cafe_tab{
+    display: inline-block;
+    width: 120px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 13px;
+    text-align: center;
+    cursor: pointer;
+}
+.cafe_tab:hover{
+    color: #3e5f40;
+    border-bottom: 2px solid #3e5f40;
+    box-sizing:border-box;
+}
+
+.cafe_topbox{
+    border-bottom: 1px solid #e8e8e8;
+    padding-left: 30px;
+    margin-top: 20px;
+}
+.cafe_tabelected{
+    color: #3e5f40;
+    border-bottom: 2px solid #3e5f40;
+    box-sizing:border-box;   
+}
+.admin_cafecon{
+    font-size: 12px;
+}
+.admin_cafe_basicsbox{
+    float: left;
+    width: 600px;
+}
+.admin_cafe_li{
+    height: 30px;
+    line-height: 30px;
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+}
+.admin_cafe_lispecil{
+	height: 135px;
+    line-height: 135px;
+}
+.admin_cafe_li.cafeliheight{
+    height: 63px;
+}
+.admin_cafelable{
+    width: 135px;
+    padding-left: 15px;
+    display: inline-block;
+}
+.admin_cafelablespecil{
+	float: left;
+}
+.admin_cafelable.cafelablefloat{
+    float: left;
+}
+.admin_cafe_select{
+    width: 430px;
+    height: 30px;
+    border: 1px solid #e8e8e8;
+    padding: 5px;
+    font-size: 11px;
+    cursor: pointer;
+}
+.admin_cafe_input{
+    width: 418px;
+    height: 18px;
+    border: 1px solid #e8e8e8;
+    padding: 5px;
+    font-size: 11px;
+    cursor: pointer;
+}
+.cafe_imgbox{
+    float: right;
+    width: 359px;
+    height: 214px;
+    padding: 20px;
+    border-left: 1px solid #e8e8e8;
+    border-top: 1px solid #e8e8e8;
+}
+.cafe_img{
+    width: 356px;
+    height: 190px;
+    border: 1px solid #e8e8e8;
+    text-align: center;
+}
+.cafe_img_addbox{
+	float:left;
+}
+.cafe_img_add{
+    width: 112px;
+    height: 115px;
+    border: 1px solid #e8e8e8;
+    text-align: center;
+    margin:0;
+}
+#img{
+	width: auto; height: auto;
+    max-width: 182px;
+    max-height: 192px;
+}
+#img2{
+	width: auto; height: auto;
+    max-width: 110px;
+    max-height: 115px;
+}
+.admin_cafe_textarea{
+    font-size: 11px;
+    padding: 5px;
+    border: 1px solid #e8e8e8;
+}
+.admin_cafe_addbox{
+    clear: both;
+}
+.admin_cafe_nutritionbox{
+    height: 246px;
+}
+.admin_cafe_nutrition{
+    font-size: 15px;
+    font-weight: bold;
+    padding: 20px 0px 10px 0;
+}
+.cafelileft{
+    float: left;
+    width: 500px;
+}
+.admin_cafe_inputS{
+    width: 218px;
+    height: 18px;
+    border: 1px solid #e8e8e8;
+    padding: 5px;
+    font-size: 11px;
+    cursor: pointer;
+}
+.admin_btnbox{
+    text-align: center;
+    margin: 10px 0px;
+    padding: 30px 0 0 0;
+    border-top: 1px solid #efefef;
+}
+.admin_btn{
+    background-color: #e8e8e8; 
+    border: none;
+    color: #000;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.subminbtn{
+    color: white;
+    background-color: #3e5f40; 
+}

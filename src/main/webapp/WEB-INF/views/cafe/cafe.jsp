@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
 <title>Insert title here</title>
     <link rel="stylesheet" href="/resources/css/cafe/cafe.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -16,7 +16,6 @@
     </div>
     <div class="contents">
         <h2 class="contents_title">CAFE</h2>
-        <!-- 여기 작성!!!! class =contents 는 수정하지마시고 이 안에서부터 div새로 만들어서 작업 ㄱㄱ -->
         <section class="cafe">
             <div class="cafe_tab_box">
                 <p class="cafe_tab">drink</p>
@@ -79,7 +78,7 @@
                     <div class="cafe_product_box">
                         <p class="cafe_product_inner">
                             <a href="#">
-                                <img src="../img/cafe/1-coldbrew01.jpg" alt="나이트로 쇼콜라 클라우드" class="cafe_product_img">
+                                <img src="/resources/img/cafe/1-coldbrew01.jpg" alt="나이트로 쇼콜라 클라우드" class="cafe_product_img">
                             </a>
                         </p>
                         <p class="cafe_product_title">나이트로 쇼콜라 클라우드</p>
@@ -99,7 +98,7 @@
                     <div class="cafe_product_box">
                         <p class="cafe_product_inner">
                             <a href="#">
-                                <img src="../img/cafe/1-coldbrew03.jpg" alt="돌체 콜드 브루" class="cafe_product_img">
+                                <img src="/resources/img/cafe/1-coldbrew03.jpg" alt="돌체 콜드 브루" class="cafe_product_img">
                             </a>
                         </p>
                         <p class="cafe_product_title">돌체 콜드 브루</p>

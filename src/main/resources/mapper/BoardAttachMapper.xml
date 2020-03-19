@@ -13,7 +13,7 @@
 		delete from into GoodsIamgeTable where uuid = #{uuid}
 	</delete>
 	
-	<select id="findByBno" resultType="bit.camp.domain.BoardAttachVO">
+	<select id="findByBno" resultType="bit.camp.dto.BoardAttachVO">
 		select * from into GoodsIamgeTable where bno = #{bno}
 	</select>
 	

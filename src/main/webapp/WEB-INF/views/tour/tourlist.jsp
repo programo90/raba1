@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@
         <!-- 각페이지 top banner -->
         <div class="banner_inner">
        	   <div id="tourlist_img_box">
-	            <img id="tourlist_img" alt="toulistimg" src="/resources/img/tour/tourlist.jpg">
+	            <!-- <img id="tourlist_img" alt="toulistimg" src="/resources/img/tour/tourlist.jpg"> -->
     		</div>
         </div>
     </div>
@@ -25,95 +26,66 @@
         <section class="cafe">
         	<div id="tourlist_content_wrap">
            <!--for문으로 아래 tourlist_content_box 반복 입력-->
-            <div class="tourlist_content_box">
-                <div class="tourlist_content_conbox">
-                   <a class="tourlist_content_box_link" href="#">
-                        <div class="tourlist_content_imgbox">
-                           <div class="tourlist_content_tag">
-                               <p class="tourlist_content_tag_app">모집</p>
-                           </div>
-                            <img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/tourlist.jpg">
-                        </div>
-                        <div class="tourlist_content_textbox">
-                            <h4>
-                            		    투어
-                            </h4>
-                            <p>
-                             		   출발지 BA  - 목적지 BA
-                            </p>
-                            <p>
-                                <span>모집인원</span>
-                                <span>3/15</span>
-                            </p>
-                        </div>
-                    </a>
-                </div>   
-            </div>
-             <div class="tourlist_content_box">
-                <div class="tourlist_content_conbox">
-                   <a class="tourlist_content_box_link" href="#">
-                        <div class="tourlist_content_imgbox">
-                           <div class="tourlist_content_tag">
-                               <p class="tourlist_content_tag_closed">마감</p>
-                           </div>
-                            <img class="tourlist_content_img" alt="img" src="/resources/img/tour/tourlist.jpg">
-                        </div>
-                        <div class="tourlist_content_textbox">
-                            <h4>
-                                투어
-                            </h4>
-                            <p>
-                                출발지 BA  - 목적지 BA
-                            </p>
-                            <p>
-                                <span>모집인원</span>
-                                <span>3/15</span>
-                            </p>
-                        </div>
-                    </a>
-                </div>   
-            </div>
-            <div class="tourlist_content_box">
-                <div class="tourlist_content_conbox">
-                   <a class="tourlist_content_box_link" href="#">
-                        <div class="tourlist_content_imgbox">
-                           <div class="tourlist_content_tag">
-                               <p class="tourlist_content_tag_ended">종료</p>
-                           </div>
-                            <img class="tourlist_content_img" alt="img" src="/resources/img/tour/tourlist.jpg">
-                        </div>
-                        <div class="tourlist_content_textbox">
-                            <h4>
-                                투어
-                            </h4>
-                            <p>
-                                출발지 BA  - 목적지 BA
-                            </p>
-                            <p>
-                                <span>모집인원</span>
-                                <span>3/15</span>
-                            </p>
-                        </div>
-                    </a>
-                </div>   
-            </div>
-            <!--이상 tourlist_content_box 반복 끝-->
+           <c:forEach items="${list}" var="seltour">
+           		<div class="tourlist_content_box">
+                	<div class="tourlist_content_conbox">
+	                   <a class="tourlist_content_box_link" href="tourdetail/${seltour.tourno}">
+    	                    <div class="tourlist_content_imgbox">
+    	                    	<div class="tourlist_content_tag">
+    	                    	<c:choose>
+    	                    		<c:when test="${seltour.tourstate==0}"><p class="tourlist_content_tag_app">모집</p></c:when>
+    	                    		<c:when test="${seltour.tourstate==1}"><p class="tourlist_content_tag_closed">마감</p></c:when>
+    	                    		<c:when test="${seltour.tourstate==2}"><p class="tourlist_content_tag_ended">종료</p></c:when>
+    	                    	</c:choose>
+    	                    	</div>
+    	                    	<c:choose>
+    	                    		<c:when test="${seltour.populartour==0}">
+    	                    			<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/tourlist.jpg">
+    	                    		</c:when>
+    	                    		<c:when test="${seltour.populartour==1}">
+    	                    			<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/tourlist.jpg">
+    	                    		</c:when>
+    	                    		<c:when test="${seltour.populartour==2}">
+    	                    			<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/tour1.jpg">
+    	                    		</c:when>
+    	                    		<c:when test="${seltour.populartour==3}"></c:when>
+    	                    		<c:when test="${seltour.populartour==4}"></c:when>
+    	                    	</c:choose>
+                        	</div>
+                        	<div class="tourlist_content_textbox">
+                            	<%-- <h4>${seltour.tourtitle}</h4> --%>
+                            	<p><span style="font-size: :15px; font-weight: 200;">FROM</span><span style="font-size:19px; font-weight: 400;"> ${seltour.startspot}</span></p>
+                            	<p><span style="font-size: 15px; font-weight: 200;">TO</span>  <span style="font-size:19px; font-weight: 400;"> ${seltour.endspot}</span></p>
+                    	        <p>${seltour.tourday}</p>
+    	                    </div>
+	                    </a>
+                	</div>   
+            	</div>
+           </c:forEach>
+           
             <!--이상 tourlist_content_box 반복 끝-->
         </div>
         <div id="tourlist_paging_block">
             <div id="tourlist_paging_box">
                <div id="tourlist_paging_pre">
-                   <a href="#">Prev</a>
+               		<c:if test="${page.prev}">
+               			<a href="tourlist?currPage=${startBlock-1}">Prev</a>
+               		</c:if>
                 </div>
                 <div id="tourlist_paging_num">
-                    <a href="#">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
+                	<c:forEach begin="${page.startBlock}" end="${page.endBlock}" var="index">
+                		<c:if test="${index == page.currPage }">
+                			${index}
+                		</c:if>
+                		<c:if test="${index != page.currPage }">
+                			<a href="tourlist?currPage=${index }">${index}</a>		
+                		</c:if>
+                	</c:forEach>
                 </div>
                 <div id="tourlist_paging_next">
-                    <a href="#">Next</a>
+                    <c:if test="${page.next}">
+                    	<a href="tourlist?currPage=${page.endBlock+1}">Next</a>
+                    </c:if>
                 </div>
             </div>
         </div>

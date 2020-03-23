@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.bitcamp.mapper.TourMapper">
+  
+  	<parameterMap type="java.util.HashMap" id="hashmap"></parameterMap>
+  
+ 	<select id="getTotalRow" resultType="int">
+ 		select count(*)
+ 		from TourTable
+ 	</select>
+ 
+ 	<select id="tourList" parameterType="int" resultType="com.bitcamp.dto.TourDTO">
+ 		select tourno, tourtitle, populartour, tourdate, startspot,endspot
+ 				,tourstyle,tourtype,totalcount, tourstate, tourday
+ 		from TourTable
+ 		order by tourno
+ 		limit #{startRow}, 9
+ 	</select>
+ 	<!-- tour입력 -->
+  	<insert id="insertTour" parameterType="com.bitcamp.dto.TourDTO">
+  		insert into TourTable(hostno, tourtitle,populartour,tourdate,startspot,endspot
+						,esttime,distance,tourstyle,tourtype,totalcount
+						,tourdetailcomm,tourlat,tourlng,tourday,tourtime)
+		values(#{hostno}, #{tourtitle},#{populartour},#{tourdate},#{startspot},#{endspot}
+				,#{esttime},#{distance},#{tourstyle},#{tourtype},#{totalcount}
+				,#{tourdetailcomm},#{tourlat},#{tourlng},#{tourday},#{tourtime});
+  		<selectKey keyProperty="tourno" resultType="int" order="AFTER">
+  			select LAST_INSERT_ID()
+  		</selectKey>
+  	</insert>
+  	
+  	
+  	<!-- spot 추가 -->
+  	<insert id="insertMarker" parameterType="com.bitcamp.dto.TourMarkerDTO">
+  		insert into SpotTable(tourno, spottitle, spotcontent, spotlat, spotlng)
+		values(#{tourno}, #{spottitle}, #{spotcontent}, #{spotlat}, #{spotlng});
+  	</insert>
+  	
+  	
+  	<!--  TourDetail, MarkerList, HostDetail-->
+  	<select id="tourDetail" parameterType="int" resultType="com.bitcamp.dto.TourDTO">
+  		select tourno, hostno, tourtitle, populartour, tourdate,startspot,endspot
+				,esttime,distance,tourstyle,tourtype,totalcount,cancount
+				,tourdetailcomm,tourlat,tourlng,tourday,tourtime,tourstate
+  		from TourTable
+  		where tourno = #{tourno}
+  	</select>
+  	<select id="markerList" parameterType="int" resultType="com.bitcamp.dto.TourMarkerDTO">
+  		select tourno, spottitle, spotcontent, spotlat, spotlng
+  		from SpotTable
+  		where tourno = #{tourno}
+  	</select>
+  	<select id="hostDetail" parameterType="int" resultType="com.bitcamp.dto.HostDTO">
+  		select hostno, leadcount, hostcomment, HostTable.userid, username, distance, userimg
+  		from HostTable inner join UserTable 
+        on HostTable.userid = UserTable.userid
+  		where HostTable.hostno = #{hostno}
+  	</select>
+  	
+  	<!--  투어 지원  -->
+  	<select id="tourApplySelect" parameterType="hashmap" resultType="com.bitcamp.dto.TourApplyDTO">
+  		select tourno, userid, applydate
+  		from ApplyTourTable
+  		where tourno = #{tourno} and userid = #{userid}
+  	</select>
+  	<insert id="insertApplyTour" parameterType="hashmap">
+  		insert into ApplyTourTable(tourno, userid)
+  		values( #{tourno}, #{userid} )
+  	</insert>
+  	<update id="increApplyCount" parameterType="int">
+  		update TourTable
+  		set cancount = cancount+1
+ 		where tourno = #{tourno}
+   	</update>
+  	
+  	
+  	<!-- 투어 수정 -->
+  	<update id="updateTour" parameterType="com.bitcamp.dto.TourDTO">
+  		update TourTable
+  		set
+  			tourtitle = #{tourtitle}
+  			,populartour = #{populartour}
+  			,tourdate = #{tourdate}
+  			,startspot = #{startspot}
+  			,endspot = #{endspot}
+  			,esttime = #{esttime}
+  			,distance = #{distance}
+  			,tourstyle = #{tourstyle}
+  			,tourtype = #{tourtype}
+  			,totalcount = #{totalcount}
+			,tourdetailcomm = #{tourdetailcomm}
+			,tourlat = #{tourlat}
+			,tourlng = #{tourlng}
+			,tourday = #{tourday}
+			,tourtime = #{tourtime}
+  		where tourno = #{tourno}
+  	</update>
+  	<delete id="deleteMarker" parameterType="int">
+  		delete from SpotTable
+  		where tourno = #{tourno}
+  	</delete>
+  	
+  	<!-- 투어 삭제 -->
+  	<delete id="deleteTour" parameterType="int">
+  		delete from TourTable
+  		where tourno = #{tourno}
+  	</delete>
+  	
+  </mapper>

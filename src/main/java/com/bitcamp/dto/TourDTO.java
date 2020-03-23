@@ -1,20 +1,27 @@
 package com.bitcamp.dto;
 
 public class TourDTO {
+	private Integer tourno;
 	private Integer hostno;
 	private String tourtitle;
 	private Integer populartour;
 	private String tourdate;
+	private String tourday;
+	private String tourtime;
 	private String startspot;
 	private String endspot;
 	private String esttime;
-	private String distance;
+	private Integer distance;
 	private String tourstyle;
 	private String tourtype;
 	private Integer totalcount;
 	private String tourdetailcomm;
-	private String[] tourlat;
-	private String[] tourlng;
+	private String[] tourlatlist;
+	private String[] tourlnglist;
+	private String tourlat;
+	private String tourlng;
+	private Integer tourstate;
+	private Integer cancount;
 	
 	
 	private Integer[] spotListNo;
@@ -25,6 +32,36 @@ public class TourDTO {
 	
 	
 	
+	public Integer getCancount() {
+		return cancount;
+	}
+	public void setCancount(Integer cancount) {
+		this.cancount = cancount;
+	}
+	public String getTourday() {
+		return tourday;
+	}
+	public void setTourday(String tourday) {
+		this.tourday = tourday;
+	}
+	public String getTourtime() {
+		return tourtime;
+	}
+	public void setTourtime(String tourtime) {
+		this.tourtime = tourtime;
+	}
+	public Integer getTourstate() {
+		return tourstate;
+	}
+	public void setTourstate(Integer tourstate) {
+		this.tourstate = tourstate;
+	}
+	public Integer getTourno() {
+		return tourno;
+	}
+	public void setTourno(Integer tourno) {
+		this.tourno = tourno;
+	}
 	public Integer getHostno() {
 		return hostno;
 	}
@@ -67,10 +104,10 @@ public class TourDTO {
 	public void setEsttime(String esttime) {
 		this.esttime = esttime;
 	}
-	public String getDistance() {
+	public Integer getDistance() {
 		return distance;
 	}
-	public void setDistance(String distance) {
+	public void setDistance(Integer distance) {
 		this.distance = distance;
 	}
 	public String getTourstyle() {
@@ -96,18 +133,6 @@ public class TourDTO {
 	}
 	public void setTourdetailcomm(String tourdetailcomm) {
 		this.tourdetailcomm = tourdetailcomm;
-	}
-	public String[] getTourlat() {
-		return tourlat;
-	}
-	public void setTourlat(String[] tourlat) {
-		this.tourlat = tourlat;
-	}
-	public String[] getTourlng() {
-		return tourlng;
-	}
-	public void setTourlng(String[] tourlng) {
-		this.tourlng = tourlng;
 	}
 	public Integer[] getSpotListNo() {
 		return spotListNo;
@@ -139,7 +164,32 @@ public class TourDTO {
 	public void setSpotListLng(String[] spotListLng) {
 		this.spotListLng = spotListLng;
 	}
+	public String[] getTourlatlist() {
+		return tourlatlist;
+	}
+	public void setTourlatlist(String[] tourlatlist) {
+		this.tourlatlist = tourlatlist;
+	}
+	public String[] getTourlnglist() {
+		return tourlnglist;
+	}
+	public void setTourlnglist(String[] tourlnglist) {
+		this.tourlnglist = tourlnglist;
+	}
+	public String getTourlat() {
+		return tourlat;
+	}
+	public void setTourlat(String tourlat) {
+		this.tourlat = tourlat;
+	}
+	public String getTourlng() {
+		return tourlng;
+	}
+	public void setTourlng(String tourlng) {
+		this.tourlng = tourlng;
+	}
 	
 
+	
 		
 }

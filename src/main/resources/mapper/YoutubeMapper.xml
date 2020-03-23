@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.bitcamp.mapper.YoutubeMapper">
+    
+    <select id="adminlistData" resultType="com.bitcamp.dto.YoutubeDTO">
+    	select youtubeno, youtubetitle, youtubeurl, date_format(youtubedate, '%y-%m-%d') as youtubedate
+		from YoutubeTable
+		order by youtubeno desc
+    </select>
+    <select id="listData" resultType="com.bitcamp.dto.YoutubeDTO">
+    	select youtubeno, youtubetitle, youtubeurl, date_format(youtubedate, '%y-%m-%d') as youtubedate
+		from YoutubeTable
+		order by youtubeno desc
+    </select>
+	<insert id="insertData" parameterType="com.bitcamp.dto.YoutubeDTO">
+		insert into YoutubeTable (youtubeno, youtubetitle, youtubeurl, youtubedate) 
+		values(0, #{youtubetitle}, #{youtubeurl}, now())
+	</insert> 
+	<delete id="deleteData">
+		delete from YoutubeTable
+		where youtubeno=#{youtubeno}
+	</delete>
+	<update id="modifyData" parameterType="com.bitcamp.dto.YoutubeDTO">
+		update YoutubeTable set youtubetitle=#{youtubetitle}, youtubeurl=#{youtubeurl}
+		where youtubeno=#{youtubeno}
+	</update> 
+    </mapper>

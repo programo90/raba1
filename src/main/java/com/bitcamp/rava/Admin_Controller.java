@@ -55,4 +55,39 @@ public class Admin_Controller {
 		
 		return "admin/memberadmin";
 	}
+	
+	@RequestMapping("/admingoods")
+	public String admingoods(/*@RequestParam(required=false,defaultValue="1") int currPage,@RequestParam(required=false,defaultValue="") String search,@RequestParam(required=false,defaultValue="") String searchtxt, Model model*/)
+	{	
+/*		Pattern d=Pattern.compile("(\\d{2}$)");
+		if(search=="joindate" || "joindate".equals(search))
+		{
+			Matcher m=d.matcher(searchtxt);
+			if(!m.find())
+			{
+				searchtxt="";
+				model.addAttribute("searchtxt", "");
+			}
+			else
+			{
+				model.addAttribute("searchtxt", searchtxt);
+			}
+		}
+		
+		int totalCount = Service.totalCount(search,searchtxt);
+		
+		int pageSize=10;
+		int blockSize=5;
+		
+		AdminMakepage page=new AdminMakepage(currPage, totalCount, pageSize, blockSize);
+		
+		List<AdminMemberDTO> list=Service.admingoodslist(search,searchtxt,page.getStartRow(),page.getEndRow());
+		
+		model.addAttribute("list", list);
+		model.addAttribute("page", page);
+		model.addAttribute("search", search);
+		model.addAttribute("searchtxt", searchtxt);*/
+		
+		return "admin/goodsadmin";
+	}
 }

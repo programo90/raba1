@@ -1,0 +1,59 @@
+.admingoods{width: 100%; height: auto;}
+
+.admingoodssearch{width: 100%; height: 32px; line-height: 32px; margin-bottom: 1%;}
+
+.admgoodssearch{width: 100px; height: 27px; border-radius: 4px; float: right; line-height: 27px;}
+
+.admgoodssearchtext{width: 150px; height: 25px;float: right; }
+
+.admingoodssearchbtn{padding: 0px 10px; border: 1px solid silver; float: right; border-radius: 5px;}
+
+.admingoodscolumn{width: 100%; height: 45px;border-top: 1px solid silver;  border-bottom: 1px solid silver;font-weight: 600;}
+
+.admingoodsnum{width: 5%; height: 45px; float: left; text-align: center; line-height: 45px; }
+
+.admingoodsimg{width: 16%; height: 45px; float: left; text-align: center;line-height: 45px;}
+
+.admingoodsname{width: 35%; height: 45px; float: left; text-align: center;line-height: 45px;}
+
+.admingoodssize{width: 6.1%; height: 45px; float: left; text-align: center;line-height: 45px;}
+
+.admingoodsstock{width: 8.6%; height: 45px; float: left; text-align: center;line-height: 45px;}
+
+.admingoodsprice{width: 10%; height: 45px; float: left; text-align: center;line-height: 45px;}
+
+.admingoodssituation{width: 7%; height: 45px; float: left; text-align: center;line-height: 45px;}
+
+.admingoodscolumn2{width: 100%; height: 85px;  border-bottom: 1px solid silver;line-height: 85px;}
+
+.admingoodsnum2{width: 5%; height: 85px; float: left; text-align: center; line-height: 85px; }
+
+.admingoodsimg2{width: 16%; height: 85px; float: left; text-align: center;line-height: 85px;}
+
+.admingoodsname2{width: 35%; height: 85px; float: left; text-align: center;line-height: 85px;}
+
+.admingoodsname2 input{height: 20px;}
+
+.admingoodssize2{width: 6.1%; height: 85px; float: left; text-align: center;line-height: 82px;}
+
+.admingoodssize2 input{text-align: center; height: 20px;}
+
+.admingoodsstock2{width: 8.6%; height: 85px; float: left; text-align: center;line-height: 82px;}
+
+.admingoodsstock2 input{text-align: right; height: 20px;}
+
+.admingoodsprice2{width:10%; height: 85px; float: left; text-align: center;line-height: 82px;}
+
+.admingoodsprice2 input{text-align: right; height: 20px;}
+
+.admingoodssituation2{width: 7.1%; height: 85px; float: left; text-align: center;line-height: 85px;}
+
+.admingoodssituation2 select{width: 100%; height: 25px;  text-align: center;line-height: 20px;}
+
+.admingoodsbtn1{width: 6.1%; height: 85px; float: left; text-align: center; line-height: 85px;}
+
+.admingoodsbtn2{width: 6.1%; height: 85px; float: left; text-align: center; line-height: 85px;}
+
+.admingoodsbtnline{width: 100%; margin-top: 10px;}
+
+.admingoodsbtn3{padding: 0.4%; margin-top: 5%; border: 1px solid silver; border-radius: 5px;}

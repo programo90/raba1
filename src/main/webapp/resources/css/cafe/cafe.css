@@ -12,7 +12,7 @@
     margin-bottom: 10px;
 }
 .cafe_tab{
-    width: 49.3%;
+    width: 32.5%;
     height: 40px;
     line-height: 40px;
     font-size: 14px;
@@ -231,4 +231,249 @@ input[class="cafe_checkbox"] {
     margin-bottom: 23px;
     line-height: 1.6;
 
+}
+/* cafe_nutrition */
+.nutrtion_subtitle{
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.info_p{
+    font-size: 11px;
+    padding: 20px 0px;
+}
+.info_lileft{
+    float: left; 
+    width: 50%;
+    padding-bottom: 15px;
+}
+.infor_clear{
+    clear: both;
+}
+.active_box{
+    clear: both;
+    border-top: 1px solid #e8e8e8;
+}
+.info_label{
+   width: 75px;
+    display: inline-block;
+}
+.nutrition_inputS{
+    width: 218px;
+    height: 18px;
+    border: 1px solid #e8e8e8;
+    padding: 5px;
+    font-size: 11px;
+    cursor: pointer;
+}
+.active_p{
+    font-weight: bold;
+    padding: 20px 0 10px 0;
+}
+.active_span{
+    font-size:11px;
+    color: #9a9a9a;
+}
+.active_li{
+    padding: 5px 0px;
+}
+.active_btn_box{
+    text-align: center;
+    margin: 20px 0px;
+}
+.admin_btn{
+    background-color: #e8e8e8; 
+    border: none;
+    color: #000;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.admin_btnS{
+    background-color: #e8e8e8; 
+    border: none;
+    color: #000;
+    padding: 5px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.subminbtn{
+    color: white;
+    background-color: #3e5f40; 
+}
+/*box - 2*/
+.menu_search_box{
+    margin-bottom: 10px;
+}
+.nutrition_inputL{
+    width: 83%;
+    height: 20px;
+    border: 1px solid #e8e8e8;
+    padding: 5px;
+    font-size: 11px;
+    cursor: pointer;
+}
+.inputright{
+    float: right;
+}
+.menu_title_p{
+    width: 150px;
+    float: left;
+    text-align: center;
+}
+.menu_title_pbig{
+    width: 678px;
+}
+.menu_title{
+    clear: both;
+    height: 30px;
+    line-height: 30px;
+    padding: 5px;
+    background-color: #F6F6F6;
+    border-bottom: 1px solid #D7D7D7;
+    border-top: 1px solid #3e5f40;
+}
+.menu_list_box{
+    margin-bottom: 20px;
+    border-bottom: 1px solid #D7D7D7;
+}
+
+.menu_list_li{
+    height: 35px;
+    line-height: 35px;
+}
+
+.menu_list_lip{
+    float: left;
+    width: 150px;
+    text-align: center;
+}
+.menu_list_lipbig{
+    width: 638px;
+    text-align: left;
+    padding-left: 40px;
+}
+
+.kacl_box{
+    float: left;
+    width: 50%;
+    margin: 0px 0 2px 0;
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+}
+.goal_kacl{
+   float: left;
+    width: 30%;
+   height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background-color: #e8e8e8;
+}
+.goal_kacl_num{
+    float: left;
+    height: 50px;
+    padding-left: 25px;
+    line-height: 50px;
+    color: #0060b3;
+    font-size: 25px;
+}
+.nutrtion_info{
+    float: left;
+    width: 10%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+.nutrtion_box{
+    clear: both;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+}
+.nutrtion_info:nth-child(odd) {
+    width: 15%;
+  background-color: #e8e8e8;
+}
+.menu_title_pd{
+    float: left;
+    width: 110px;
+    text-align: center;
+}
+.menu_title_pdsmall{
+    width: 42px;
+}
+.menu_title_pdbig{
+    width: 468px;
+}
+
+.menu_list_lipd{
+    float: left;
+    width: 110px;
+    text-align: center;
+}
+.menu_list_lipdsmall{
+    width: 42px;
+}
+.menu_list_lipdbig{
+    width: 428px;
+    text-align: left;
+    padding-left: 40px;
+}
+.box-radio-input input[type="radio"]{
+    display:none;
+}
+
+.box-radio-input input[type="radio"] + span{
+    display:inline-block;
+    background:none;
+    border:1px solid #dfdfdf;    
+    padding:0px 10px;
+    text-align:center;
+    height:35px;
+    line-height:33px;
+    font-weight:500;
+    cursor:pointer;
+}
+.box-radio-input input[type="radio"]:checked + span{
+    border:1px solid #3e5f40;
+    background:#3e5f40;
+    color:#fff;
+}
+.menusearch{
+	width: 6%;
+    height: 32px;
+    float: left;
+    font-size: 11px;
+    padding: 0 5px;
+    margin-right: 10px;
+    border: 1px solid #e8e8e8;
+}
+.pageing_box{
+	text-align: center;
+	margin: 0 0 25px 0;
+}
+.goal_kacl_numinput{
+	border: none;
+    font-size: 28px;
+    line-height: 50px;
+    color: #b30000;
+}
+.nutrtion_infoinput{
+	border: none;
+    width: 60px;
+    line-height: 40px;
+}
+.menuaddCheckbox{
+	height: 34px;
+    cursor: pointer;
 }

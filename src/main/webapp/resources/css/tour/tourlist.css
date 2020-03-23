@@ -8,6 +8,15 @@
 div{
 /*    border: 1px solid silver;*/
 }
+
+.banner_inner{
+    height: 450px;
+    background-image:url(/resources/img/bg%20ba1.jpg);
+    /*background-position: center -55px; */
+    background-repeat: no-repeat; 
+    background-size: cover;
+}  
+
 #tourlist_wrap{
     margin: 0 auto;
     width: 1200px;

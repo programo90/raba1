@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
     <link rel="stylesheet" href="/resources/css/common.css">
     <link rel="stylesheet" href="/resources/css/tour/tourinsert.css">
@@ -11,7 +12,7 @@
 <body>
     <div id="tourinsert_wrap">
         <div id="tourinsert_contentblock">
-           <form action="tourinsertresult" id="tourinsertform" method="post">
+           <form action="${pageContext.request.contextPath}/tourupdateresult" id="tourinsertform" method="post">
             <div id="tourinsert_mapblock">
                 <div id="tourinsert_spotlistbox">
                    <div class="tourdetail_spotinfo1">
@@ -47,14 +48,14 @@
                                    <label for="tourdate">투어 제목</label>
                                </div>
                                <div class="tourinsert_insertcontent">
-                                    <input type="text" name="tourtitle" id="tourtitle" size="50">
+                                    <input type="text" name="tourtitle" id="tourtitle" size="50" value="${dto.tourtitle }">
                                </div>
                                <div class="tourinsert_inserttitle">
                                      <label for="favorit_tour">대표경로 선택</label>
                                 </div>
                                 <div class="tourinsert_insertcontent">
                                   <select name="populartour" id="favorit_tour" onchange="selectFavoritTour()">
-                                     <option value="0" selected>선택안함</option>
+                                      <option value="0" selected>선택안함</option>
                                       <option value="1">첫번째 경로</option>
                                       <option value="2">두번째 경로</option>
                                       <option value="3">세번째 경로</option>
@@ -66,19 +67,19 @@
                                    <label for="tourdate">출발시각</label>
                                </div>
                                <div class="tourinsert_insertcontent">
-                                    <input type="datetime-local" name="tourdate" id="tourdate">
+                                    <input type="datetime-local" name="tourdate" id="tourdate" value="${dto.tourdate }">
                                </div>
                                 <div class="tourinsert_inserttitle">
                                     <label for="startspot">출발위치</label>
                                 </div>
                                 <div class="tourinsert_insertcontent">
-                                    <input type="text" name="startspot" id="startspot" size="50">
+                                    <input type="text" name="startspot" id="startspot" size="50" value="${dto.startspot }">
                                 </div>
                                 <div class="tourinsert_inserttitle">
                                    <label for="endspot">도착지점(반환지점)</label>
                                 </div>
                                 <div class="tourinsert_insertcontent">
-                                    <input type="text" name="endspot" id="endspot" size="50">
+                                    <input type="text" name="endspot" id="endspot" size="50" value="${dto.endspot }">
                                 </div>
                                <div class="tourinsert_inserttitle">
                                     <label for="esttime">예상 소요시간</label>
@@ -96,30 +97,50 @@
                                     <label for="">투어컨셉</label><br>
                                 </div>
                                 <div class="tourinsert_insertcontent">
-                                    <label for="">샤방</label>
-                                    <input type="radio" name="tourstyle" id="tourstyle_easy" value="easy" onclick="selectTourStyle()">
-                                    <label for="">전투</label>
-                                    <input type="radio" name="tourstyle" id="tourstyle_hard" value="hard" onclick="selectTourStyle()">
+                                	<c:choose>
+                    					<c:when test="${dto.tourstyle == 'easy' }">
+                    						<label for="">샤방</label>
+                                    		<input type="radio" name="tourstyle" id="tourstyle_easy" value="easy" onclick="selectTourStyle()" checked="checked">
+                                    		<label for="">전투</label>
+                                    		<input type="radio" name="tourstyle" id="tourstyle_hard" value="hard" onclick="selectTourStyle()">
+                    					</c:when>
+                    					<c:when test="${dto.tourstyle == 'hard' }">
+                    						<label for="">샤방</label>
+                                    		<input type="radio" name="tourstyle" id="tourstyle_easy" value="easy" onclick="selectTourStyle()">
+                                    		<label for="">전투</label>
+                                    		<input type="radio" name="tourstyle" id="tourstyle_hard" value="hard" onclick="selectTourStyle()" checked="checked">
+                    					</c:when>
+                    				</c:choose>
                                 </div>
                                <div class="tourinsert_inserttitle">
                                     <label for="">투어타입</label><br>
                                 </div>
                                 <div class="tourinsert_insertcontent">
-                                    <label for="tour_lightning">번개</label>
-                                    <input type="radio" value="lightning" name="tourtype" id="tour_lightning">
-                                    <label for="tour_planed">투어</label>
-                                    <input type="radio" value="planed" name="tourtype" id="tour_planed">
+                                	<c:choose>
+            			        		<c:when test="${dto.tourtype == 'lightning' }">
+            			        			<label for="tour_lightning">번개</label>
+                                    		<input type="radio" value="lightning" name="tourtype" id="tour_lightning" checked="checked">
+                                    		<label for="tour_planed">투어</label>
+                                    		<input type="radio" value="planed" name="tourtype" id="tour_planed">
+            			        		</c:when>
+			                    		<c:when test="${dto.tourtype == 'planed' }">
+			                    			<label for="tour_lightning">번개</label>
+                                    		<input type="radio" value="lightning" name="tourtype" id="tour_lightning">
+                                    		<label for="tour_planed">투어</label>
+                                    		<input type="radio" value="planed" name="tourtype" id="tour_planed"  checked="checked">
+			                    		</c:when>
+                    				</c:choose>
                                 </div>
                                 <div class="tourinsert_inserttitle">
                                     <label for="totalcount">최대참여인원</label><br>
                                 </div>
                                 <div class="tourinsert_insertcontent">
-                                    <input type="number" max="20" min="1" name="totalcount" id="totalcount" onchange="checkmaxmin(this)">
+                                    <input type="number" max="20" min="1" name="totalcount" id="totalcount" onchange="checkmaxmin(this)" value="${dto.totalcount }">
                                 </div>
                             <div id="tourinsert_detailbox2">
                               <div>
                                   <label for="">상세내용</label><br>
-                                  <textarea name="tourdetailcomm" id="tourdetailcomm" cols="120" rows="15"></textarea>
+                                  <textarea name="tourdetailcomm" id="tourdetailcomm" cols="120" rows="15">${dto.tourdetailcomm }</textarea>
                               </div>
                                <div>
                                    <input type="button" value="저장" onclick="insertTour()">
@@ -127,6 +148,7 @@
                             </div>
                     </div>
                     <div>
+                    	<input type="hidden" name="tourno" value="${dto.tourno }">
                     	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </div>
                     <div id="tour_latlng">
@@ -138,15 +160,31 @@
             </form>
         </div>
     </div>
-    <form action="">
-    	<input type="hidden" id="updateflag" value="0">
+    <!-- -------------------------  이하 hidden info -------------------------- -->
+    <form>
+    	<input type="hidden" id="updateflag" value="1">
+    	<input type="hidden" id="selected_populartour" value="${dto.populartour }">
+    	<c:forEach items="${dto.tourlatlist }" var="selLat">
+			<input type="hidden" class="tourlatlist" value="${selLat}">
+        </c:forEach>
+        <c:forEach items="${dto.tourlnglist }" var="selLng">
+        	<input type="hidden" class="tourlnglist" value="${selLng}">
+        </c:forEach>
+        <c:forEach items="${markerlist}" var="selmarker" varStatus="state">
+        	<input type="hidden" class="markertitlelist" value="${selmarker.spottitle}">
+        	<input type="hidden" class="markercommlist" value="${selmarker.spotcontent}">
+            <input type="hidden" class="markerlatlist" value="${selmarker.spotlat}">
+            <input type="hidden" class="markerlnglist" value="${selmarker.spotlng}">
+        </c:forEach>
     </form>
     
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c228a6aa0b58c3275c3454e6b1a73c09"></script>
 <script>
+var centerlat = document.getElementsByClassName('tourlatlist')[0].value;
+var centerlng = document.getElementsByClassName('tourlnglist')[0].value;
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
-        center: new kakao.maps.LatLng(37.556431, 126.871739), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(centerlat, centerlng), // 지도의 중심좌표
         level: 5 // 지도의 확대 레벨
     };
 
@@ -164,9 +202,33 @@ var infowinlist = [];
 var spotlist = [];
 var spotNum = 0;
 var bycicleSpeed = 334;
-    
-    
-    
+
+update_init();
+
+function update_init() {
+	var selected_pop = document.getElementById('selected_populartour').value;
+	document.getElementById('favorit_tour').options[selected_pop].selected = true;
+
+	selectFavoritTour();
+	
+	var markerLatList = document.getElementsByClassName('markerlatlist');
+	var markerLngList = document.getElementsByClassName('markerlnglist');
+	var markerTitleList = document.getElementsByClassName('markertitlelist');
+	var markerCommList = document.getElementsByClassName('markercommlist');
+
+	for(var i=0; i<markerLatList.length; i++) {
+		var spotPosition = new kakao.maps.LatLng(markerLatList[i].value, markerLngList[i].value);
+		addMarker(spotPosition);
+		addSpotList(spotPosition);
+		
+		var temptitlename = 'spotListTitle'+i;
+		var tempcommentname = 'spotListCon' + i; 
+		document.getElementById(temptitlename).value = markerTitleList[i].value;
+		document.getElementById(tempcommentname).innerText = markerCommList[i].value;
+	}
+}
+
+
 // 지도에 클릭 이벤트를 등록합니다
 // 지도를 클릭하면 선 그리기가 시작됩니다 그려진 선이 있으면 지우고 다시 그립니다
 kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
@@ -289,7 +351,7 @@ function addSpotList(position){
         spotCon1 += '<div><input type="hidden" name="spotListNo" value="' + spotNum + '">';
         spotCon1 += '<input type="text" name="spotListTitle" id="spotListTitle' + spotNum + '" size="15" placeholder="지점 이름" onchange="updateInfoWin(' + spotNum + ')">';
         spotCon1 += '<button class="spotdelete_btn" onclick="spotDeleteBtn(' + spotNum + ')" type="button">x</button></div>';
-
+        
     spotNumList[spotNum].innerHTML = spotCon1;
     
     var spotDetailList = document.getElementsByClassName('tourdetail_spotdetail');
@@ -560,8 +622,7 @@ function getTimeHTML(distance) {
     }
 }
     
-</script>
-<script>
+
 //즐겨찾는 일정 선택, 선택시 자동으로 해당 경로를 ajax로 불러와서 화면에 보여주고, 스크립트상 저장한다.
 function selectFavoritTour(){
     var selectedFavoritTour = document.getElementById('favorit_tour');
@@ -582,6 +643,7 @@ function selectFavoritTour(){
     	lngList = document.getElementsByClassName('tourlnglist');
     	document.getElementById('updateflag').value = 0;
     }
+    
     
     
     if(latList[0] != null) {
@@ -633,11 +695,10 @@ function selectFavoritTour(){
     	}
         
         drawingFlag = false;	
-    }    
-    
+    } 
+ 
 }    
-</script>
-<script>
+
     //그린 경로의 좌표값을 lat, lng 으로 저장해서 배열로 만들고, 그 외에 입력한 값들과 함께 submit.
 function insertTour(){
 	if(dots[0] != null) {
@@ -661,8 +722,7 @@ function insertTour(){
 		alert("경로는 반듯이 입력해야 합니다.");
 	}
 }
-</script>
-<script>
+
     //투어 스타일에 따라 자전거 평균 속도를 변경, 예상 소요시간을 다시 계산한다.
     //다시 계산한 값을 맵에도 새롭게 표시해주고, 입력창 예산 소요시간도 갱신해준다.
     function selectTourStyle(){
@@ -695,8 +755,7 @@ function insertTour(){
         }
     }
     }
-</script>
-<script>
+
     //spotList, marker 삭제 버튼
     //spotList에서 제거시 마커가 자동으로 제거되고, list와 marker, marker infowindow 모두 갱신됩니다.
     function spotDeleteBtn(sno){
@@ -759,9 +818,8 @@ function insertTour(){
 
         spotNum = spotNum-1;    
     }
-</script>
 
-<script>
+    
     //spot 정보창에 제목이 변경되면, marker에 info window의 이름도 자동으로 변경시켜준다.
 function updateInfoWin(sno) {
     var tempData1 = 'spotListTitle'+sno;
@@ -769,9 +827,9 @@ function updateInfoWin(sno) {
     var iwContent = '<div id="markerwin'+ (sno+1) +'" style="padding:5px;">P' + (sno+1) + ' ' + tempSpotTitle + '</div>';
     infowinlist[sno].setContent(iwContent);  
 }    
-</script>
 
-<script>
+    
+    
     //참여인원 최대, 최소수 체크
 function checkmaxmin(inputtotalcount) {
     var inputcount = inputtotalcount.value;

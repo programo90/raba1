@@ -18,11 +18,13 @@
         <h2 class="contents_title">CAFE</h2>
         <section class="cafe">
             <div class="cafe_tab_box">
-                <p class="cafe_tab">drink</p>
-                <p class="cafe_tab">bakery</p>
+                <p class="cafe_tab"><a href="javascript:menuClick('/cafe_nutrtion.jsp');">Drink</a></p>
+                <p class="cafe_tab" onclick="tapClick(bakery)">Bakery</p>
+                <p class="cafe_tab" >My Nutrition</p>
             </div>
             <!-- 분류보기 start -->
-            <div class="cafe_category">
+            <div id="temp">
+            <div class="cafe_category" id="cafePage">
                 <p class="cafe_category_tit">분류 보기</p>
                 <div class="product_kind_btn">
                     <img src="../img/cafe/list_down_btn.png" alt="분류보기 메뉴 펼치기">
@@ -162,6 +164,7 @@
                 <!-- product end -->
             </div>
             <!-- 카테고리 end -->
+            </div>
         </section>
     </div>
 </body>

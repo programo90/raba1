@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.bitcamp.mapper.CafeMapper">
+    	<!-- <select id="nutritionlistData" resultType="com.bitcamp.dto.CafeNutrtionDTO">
+    		SELECT * FROM CafenutritionTable limit 5;
+    	</select> -->
+    	<parameterMap type="java.util.HashMap" id="hashMap"/>
+    	<select id="nutritionlistData" parameterMap="hashMap" resultType="com.bitcamp.dto.CafeNutrtionDTO">
+	   		select MEAL_NO, MEAL_NAME, MEAL_AMOUNT, MEAL_UNIT, MEAL_KCAL, MEAL_PROTEIN, MEAL_FAT, MEAL_CARB, MEAL_SODIUM
+		  	from CafenutritionTable 
+	    	<where>
+	    		<if test="searchtxt!=null and searchtxt!=''">
+	    			<choose>
+	    				<when test="search=='MEAL_NAME'">
+	    					and MEAL_NAME like CONCAT('%',#{searchtxt},'%')
+	    				</when>
+	    				<when test="search=='MEAL_KCAL'">
+	    					and MEAL_KCAL=#{searchtxt}
+	    				</when>
+	    			</choose>
+	    		</if>
+	    	</where>
+	    	limit #{startRow},#{pageSize}
+    	</select>
+    	<select id="getCount" resultType="int" parameterMap="hashMap">
+			select count(*)
+			from CafenutritionTable
+			<where>
+				<if test="searchtxt!=null and searchtxt!='' ">
+					<choose>
+						<when test="search=='MEAL_NAME'">
+							and MEAL_NAME like CONCAT('%',#{searchtxt},'%')
+						</when>
+						<when test="search=='MEAL_KCAL'">
+	    					and MEAL_KCAL=#{searchtxt}
+	    				</when>
+					</choose>
+				</if>
+			</where>
+		</select>
+		<insert id="insertData" parameterType="com.bitcamp.dto.CafeDTO">			
+			insert into CafeTable (cafeproduct, cafecategory, menu, menueng, allergy, menuexplain) 
+			values(#{cafeproduct}, #{cafecategory}, #{menu}, #{menueng}, #{allergy}, #{menuexplain})
+			<selectKey resultType="int" keyProperty="cafeno" order="AFTER">
+				select LAST_INSERT_ID()
+			</selectKey>
+		</insert>
+		<insert id="fileinsertData" parameterType="com.bitcamp.dto.CafeFileDTO">
+			insert into CafeFileTable (cafeno, cafeFileurl, fileoriginalname, filesystemname) 
+			values(#{cafeno}, #{cafeFileurl}, #{fileoriginalname}, #{filesystemname})
+		</insert>
+    </mapper>

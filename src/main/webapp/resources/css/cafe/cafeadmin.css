@@ -155,3 +155,7 @@
     color: white;
     background-color: #3e5f40; 
 }
+/* list */
+.cafeadmin_list{
+	display:inline-block;
+}

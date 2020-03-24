@@ -1,0 +1,175 @@
+@charset "UTF-8";
+	/*전체 틀*/
+.img_wrap{
+    width: 800px;
+    margin: 0 auto;
+}
+/*상품 사진*/
+.img_wrap span{
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 50px;
+}
+/*업로드 틀*/
+.upload_div{
+    text-align: center;   
+}
+/*업로드 안쪽 틀*/
+.upload_inner_div{
+    width: 600px;
+    height: 200px;
+    border: 1px solid lightgray;
+    margin: 0 auto;
+}
+
+/*상품명, 상품 가격*/
+.p_np{
+    /*border: 1px solid black;*/
+    width: 500px;
+    height: 100px;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 50px;
+}
+.p_np input{
+    width: 300px;
+    height: 30px;
+    margin: 10px;
+}
+#p_name{
+    position: relative;
+    left: 113px;
+}
+#p_price{
+    position: relative;
+    left: 93px;
+}
+
+/*사이즈 및 재고*/
+.p_ss{
+    /*border: 1px solid black;*/
+    width: 190px;
+    margin: 0 50px;
+    position: relative;
+    left: 220px;
+    bottom: 25px;
+    text-align:right;
+}
+.p_ss li{
+    margin-bottom: 20px;
+    
+}
+.p_ss li input{
+    width : 50px;
+ 
+}
+.p_ss label{
+    font-size: 20px;
+}
+
+/*상태*/
+#state{
+    width: 150px;
+    height: 30px;
+    font-weight: bold;
+    margin-left: 220px;
+}
+
+/*등록*/
+.p_submit{
+    width: 100%;
+    text-align: center;
+    margin-top: 80px;
+}
+.p_submit input{
+    width: 80px;
+    height: 30px;
+    color: white;
+    background-color: limegreen;
+    border-radius: 8px;
+}
+
+.p_submit button{
+    width: 80px;
+    height: 30px;
+    color: white;
+    background-color: limegreen;
+    border-radius: 8px;
+}
+
+/* modify css */
+.p_submit_modify{
+    width: 100%;
+    text-align: center;
+    margin-top: 80px;
+}
+.p_submit_modify input{
+    width: 80px;
+    height: 30px;
+    color: white;
+    background-color: lightblue;
+    border-radius: 8px;
+}
+
+/*업로드 css*/
+
+	.uploadDiv{
+		margin : 20px;
+	}
+    .uploadDiv input{
+        margin: 10px;
+        position: relative;
+        right: 170px;
+    }
+
+	.uploadResult{
+		width : 100%;
+		background-color : gray;
+	}
+	
+	.uploadResult ul{
+		display : flex;
+		flex-flow : row;
+		justify-content : center;
+		align-items : center;
+	}
+	
+	.uploadResult ul li{
+		list-style : none;
+		padding : 10px;	
+		align-content : center;
+		text-align : center; 
+	}
+	
+	.uploadResult ul li img{
+		width : 100px;
+	}
+	
+	.uploadResult ul li span{
+		color : white;
+	}
+	
+	.bigPictureWrapper{
+		position : absolute;
+		display : none;
+		justify-content : center;
+		align-items : center;
+		top : 0%;
+		width : 100%;
+		height : 100%;
+		background-color : gray;
+		z-index : 100;
+		background : rgba(255,255,255,0.5);
+	}
+	
+	.bigPicture{
+		position : relative;
+		display : flex;
+		justify-content : center;
+		align-items : center;
+	}
+	
+	.bigPicture img{
+		width : 600px;
+	}
+

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.bitcamp.mapper.GoodsMapper">
+  
+  	<resultMap type="com.bitcamp.dto.GoodsDTO" id="goods_table">
+  		<result property="p_no" column="pno"/>
+  		<result property="p_name" column="pname"/>
+  		<result property="p_price" column="price"/>
+  		<result property="p_size" column="psize"/>
+  		<result property="p_amount" column="pamount"/>
+  		<result property="p_state" column="pstate"/>
+  	</resultMap>
+  
+  	<insert id="insert" parameterType="com.bitcamp.dto.GoodsDTO" >
+  		
+  		insert into GoodsTable(pno, pname, price, psize, pamount, pstate)
+  		values (null, #{p_name},#{p_price},#{p_size},#{p_amount},#{p_state})
+  		
+  	</insert>
+  	
+  	<select id="list" resultMap="goods_table">
+  		select pno, pname, price, psize, pamount, pstate
+  		from GoodsTable
+  	</select>
+  
+  	<delete id="delete" parameterType="int">
+  		delete from GoodsTable 
+  		where pno = #{p_no}
+  	</delete>
+  	
+  	<select id="detail" parameterType="int" resultMap="goods_table">
+  		select pno, pname, price, psize, pamount, pstate
+  		from GoodsTable
+  		where pno = #{p_no}
+  	</select>
+  	
+  	<update id="modify" parameterType="com.bitcamp.dto.GoodsDTO">
+  		update GoodsTable
+  		set 
+  			pname = #{p_name}
+  			,price = #{p_price}
+  			,pamount = #{p_amount}
+  			,psize = #{p_size}
+  			,pstate = #{p_state}
+  		where pno = #{p_no}
+  	</update>
+  	
+  </mapper>

@@ -21,10 +21,10 @@ public class GoodsController {
 	@Autowired
 	private GoodsService goodsservice;
 	
-	@RequestMapping(value="/ins_goods")
+	@RequestMapping(value="/goods_insert")
 	public String insertgoods() {
 		
-		return "admin/ins_goods";
+		return "admin/goods_insert";
 	}
 	
 	@RequestMapping(value="/ins_goods_result")

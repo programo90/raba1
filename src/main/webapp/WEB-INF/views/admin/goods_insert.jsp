@@ -10,7 +10,7 @@
 <sec:csrfMetaTags />
 <link rel="stylesheet" href="/resources/css/goods/ins_goods.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<!-- <script src="/resources/js/goods/ins_goods.js"></script> -->
+<script src="/resources/js/goods/ins_goods.js"></script>
 </head>
 <body>
 	<div class="adminwrap">

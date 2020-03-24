@@ -15,7 +15,7 @@ import com.bitcamp.service.GoodsService;
 import lombok.extern.log4j.Log4j;
 
 @Controller
-@Log4j
+/*@Log4j*/
 public class GoodsController {
 
 	@Autowired
@@ -30,9 +30,9 @@ public class GoodsController {
 	@RequestMapping(value="/ins_goods_result")
 	public String insertgoods_result(GoodsDTO dto,GoodsSizeDTO sizedto) {
 		
-		log.info(dto);
+		/*log.info(dto);
 		
-		log.info(sizedto);
+		log.info(sizedto);*/
 		
 		int result = goodsservice.insertvalue(dto, sizedto);
 		
@@ -72,9 +72,9 @@ public class GoodsController {
 	@RequestMapping(value="/modify_goods_result")
 	public String modify_result(GoodsDTO dto,GoodsSizeDTO sizedto) {
 		
-		log.info(dto);
+		/*log.info(dto);
 		
-		log.info(sizedto);
+		log.info(sizedto);*/
 		
 		int result = goodsservice.modifygoods(dto,sizedto);
 		

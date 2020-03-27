@@ -38,8 +38,8 @@
                             <li>
                                 <label for="">Amount</label>
                                 <input type="number" value="1" name="p_amount" id="p_amount" min="1" >
-                                <input type="hidden" id="pno" name="p_no">
-                                <input type="hidden" id="target" name="usercode" value="${userid }">
+                                <input type="hidden" id="pno" name="p_no" >
+                                <input type="hidden" id="target" name="usercode" value="1297586532">
                             </li>
                             <li><input type="submit" value="BUY NOW" class="buynow"></li>
                             <li><div class="addcart">ADD CART</div></li>

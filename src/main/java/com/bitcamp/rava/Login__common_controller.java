@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class Login__common_controller {
+public class Login__common_controller { 
 	
 	@GetMapping("/accessError")
 	public String accessDenied(Authentication auth, Model model) {
@@ -29,11 +29,13 @@ public class Login__common_controller {
 		}
 		return "/login/customLogin";
 	}
+	
 	@GetMapping("/customLogout")
 	public String logoutGET() {
 		System.out.println("custom logout");
 		return "/login/customLogout";
 	}
+	
 	@GetMapping("/intro")
 	public String goIntro() {
 		System.out.println("go logout");

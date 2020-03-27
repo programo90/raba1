@@ -147,4 +147,25 @@ public class GoodsServiceImple implements GoodsService {
 		return 0;
 	}
 
+	
+	/* 사용자단  goods list */
+	@Override
+	public List<GoodsDTO> goodsnamelist() {
+		// TODO Auto-generated method stub
+			
+		List<GoodsDTO> list = mapper.namelist();
+		
+		return list;
+	}
+
+	@Override
+	public List<GoodsDTO> goodsnamedetail(String p_name) {
+		// TODO Auto-generated method stub
+		
+		List<GoodsDTO> list = mapper.goodsnamedetail(p_name);
+		
+		return list;
+	}
+
+	
 }

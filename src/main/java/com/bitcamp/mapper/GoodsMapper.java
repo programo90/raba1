@@ -19,4 +19,8 @@ public interface GoodsMapper {
 
 	int modify(GoodsDTO dto);
 
+	List<GoodsDTO> namelist();
+
+	List<GoodsDTO> goodsnamedetail(String p_name);
+
 }

@@ -75,6 +75,7 @@
 									<select name="p_state" id="state">
 											<option value="0">판매</option>
 											<option value="1">일시 중지</option>
+											<option value="2">품절</option>
 									</select>
 								</li>
 								<li>

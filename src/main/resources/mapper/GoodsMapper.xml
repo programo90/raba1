@@ -47,4 +47,17 @@
   		where pno = #{p_no}
   	</update>
   	
+  	<select id="namelist" resultMap="goods_table">
+  		select pno, pname, price, pstate
+  		from GoodsTable
+  		group by pname
+  		order by pno
+  	</select>
+  	
+  	<select id="goodsnamedetail" parameterType="String" resultMap="goods_table">
+  		select pno, pname, price, psize, pamount, pstate
+  		from GoodsTable
+  		where pname = #{p_name}
+  	</select>
+  	
   </mapper>

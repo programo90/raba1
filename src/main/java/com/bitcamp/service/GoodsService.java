@@ -17,4 +17,8 @@ public interface GoodsService {
 
 	int modifygoods(GoodsDTO dto,GoodsSizeDTO sizedto);
 
+	List<GoodsDTO> goodsnamelist();
+
+	List<GoodsDTO> goodsnamedetail(String p_name);
+
 }

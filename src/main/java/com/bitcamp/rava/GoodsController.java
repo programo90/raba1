@@ -21,6 +21,30 @@ public class GoodsController {
 	@Autowired
 	private GoodsService goodsservice;
 	
+	
+	/* 사용자  GOODS list PAGE*/
+	@RequestMapping(value="/goods_list")
+	public String goodslist(Model model) {
+		
+		List<GoodsDTO> list = goodsservice.goodsnamelist();
+		
+		model.addAttribute("list", list);
+		
+		return "goods/goods_list";
+	}
+	
+	/* 사용자 Goods detail page */
+	@RequestMapping(value="/goods_detail/{p_name}")
+	public String goodsdetail(@PathVariable String p_name, Model model) {
+		
+		List<GoodsDTO> list = goodsservice.goodsnamedetail(p_name);
+		
+		model.addAttribute("list", list);
+		
+		return "goods/goods_detail";
+	}
+	
+	
 	@RequestMapping(value="/goods_insert")
 	public String insertgoods() {
 		
@@ -36,27 +60,16 @@ public class GoodsController {
 		
 		int result = goodsservice.insertvalue(dto, sizedto);
 		
-		return "redirect:/goods_list";
+		return "redirect:/admin_goods_list";
 	}
 
-	/* goods list page */
-	@RequestMapping(value="/goods_list")
-	public String goods_list(Model model) {
-		
-		List<GoodsDTO> list = goodsservice.goodslist();
-		
-		model.addAttribute("list", list);
-		
-		return "admin/goods_list";
-	}
-	
 	/* goods delete goods */
 	@RequestMapping(value="/deletegoods/{p_no}")
 	public String goods_delete(@PathVariable int p_no) {
 		
 		int result = goodsservice.deletegoods(p_no);
 		
-		return "redirect:/goods_list";
+		return "redirect:/admin_goods_list";
 	}
 	
 	@RequestMapping(value="/modifygoods/{p_no}")
@@ -78,8 +91,18 @@ public class GoodsController {
 		
 		int result = goodsservice.modifygoods(dto,sizedto);
 		
-		return "redirect:/goods_list";
+		return "redirect:/admin_goods_list";
 	}
 	
+	/* made by taekwan */
+	@RequestMapping(value="/admin_goods_list")
+	public String goodsadmin(Model model) {
+	
+		List<GoodsDTO> list = goodsservice.goodslist(); 
+		
+		model.addAttribute("list", list);
+		
+		return "admin/goodsadmin";
+	}
 	
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,19 +21,18 @@
 			</div>
 			<section class="admin_sectionbox">
 				<c:forEach var="Goodslist" items="${list }">
-				<ul>
-					<li>
-						<c:out value="${Goodslist.p_no }"></c:out>
-						<c:out value="${Goodslist.p_name }"></c:out>
-						<c:out value="${Goodslist.p_price }"></c:out>
-						<c:out value="${Goodslist.p_size }"></c:out>
-						<c:out value="${Goodslist.p_amount }"></c:out>
-						<c:out value="${Goodslist.p_state}"></c:out>
-						
-						<a href="/modifygoods/${Goodslist.p_no}">수정</a>
-						<a href="/deletegoods/${Goodslist.p_no}">삭제</a>
-					</li>
-				</ul>
+					<ul>
+						<li>
+							<c:out value="${Goodslist.p_no }"></c:out> 
+							<c:out value="${Goodslist.p_name }"></c:out> 
+							<c:out value="${Goodslist.p_price }"></c:out> 
+							<c:out value="${Goodslist.p_size }"></c:out> 
+							<c:out value="${Goodslist.p_amount }"></c:out> 
+							<c:out value="${Goodslist.p_state}"></c:out> 
+							<a href="/modifygoods/${Goodslist.p_no}">수정</a> 
+							<a href="/deletegoods/${Goodslist.p_no}">삭제</a>
+						</li>
+					</ul>
 				</c:forEach>
 			</section>
 		</div>

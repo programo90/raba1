@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/resources/css/common.css">
     <link rel="stylesheet" href="/resources/css/tour/tourlist.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <!-- <script src="/resources/js/cafe/cafe.js"></script> -->
+    <script src="/resources/js/tour/tourlist.js"></script>
 </head>
 <body>
  <div class="banner">
@@ -32,25 +32,30 @@
 	                   <a class="tourlist_content_box_link" href="tourdetail/${seltour.tourno}">
     	                    <div class="tourlist_content_imgbox">
     	                    	<div class="tourlist_content_tag">
-    	                    	<c:choose>
+    	                    		<input type="hidden" value="${seltour.tourstate}"></input>
+    	                    		<p></p>
+    	                    	<%-- <c:choose>
     	                    		<c:when test="${seltour.tourstate==0}"><p class="tourlist_content_tag_app">모집</p></c:when>
     	                    		<c:when test="${seltour.tourstate==1}"><p class="tourlist_content_tag_closed">마감</p></c:when>
     	                    		<c:when test="${seltour.tourstate==2}"><p class="tourlist_content_tag_ended">종료</p></c:when>
-    	                    	</c:choose>
+    	                    	</c:choose> --%>
     	                    	</div>
-    	                    	<c:choose>
-    	                    		<c:when test="${seltour.populartour==0}">
-    	                    			<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/tourlist.jpg">
-    	                    		</c:when>
-    	                    		<c:when test="${seltour.populartour==1}">
-    	                    			<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/tourlist.jpg">
-    	                    		</c:when>
-    	                    		<c:when test="${seltour.populartour==2}">
-    	                    			<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/tour1.jpg">
-    	                    		</c:when>
-    	                    		<c:when test="${seltour.populartour==3}"></c:when>
-    	                    		<c:when test="${seltour.populartour==4}"></c:when>
-    	                    	</c:choose>
+    	                    	<input type="hidden" value="${seltour.populartour}"></input>
+    	                    	<div style="width:100%; height:100%;">
+    	                    		<%-- <c:choose>
+    	                    			<c:when test="${seltour.populartour==0}">
+    	                    				<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/tourlist.jpg">
+    	                    			</c:when>
+    	                    			<c:when test="${seltour.populartour==1}">
+    	                	    			<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/tourlist.jpg">
+    	            	        		</c:when>
+    	        	            		<c:when test="${seltour.populartour==2}">
+    	    	                			<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/tour1.jpg">
+    		                    		</c:when>
+    		                    		<c:when test="${seltour.populartour==3}"></c:when>
+	    	                    		<c:when test="${seltour.populartour==4}"></c:when>
+    	                    		</c:choose> --%>
+    	                    	</div>
                         	</div>
                         	<div class="tourlist_content_textbox">
                             	<%-- <h4>${seltour.tourtitle}</h4> --%>

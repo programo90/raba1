@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +41,9 @@
                 </div>
             </div>
             <!--이하 입력창-->
-            <input type="hidden" name="hostno" id="hostno" value="1">
+            
+            <sec:authentication property='principal.username' var="loginid"/>
+			<input type="hidden" name="userid" id="userid" value="${loginid }">
             <div id="tourinsert_detailblock">
                     <div id="tourinsert_detaillbox1">
                     			<div class="tourinsert_inserttitle">
@@ -96,9 +99,9 @@
                                     <label for="">투어컨셉</label><br>
                                 </div>
                                 <div class="tourinsert_insertcontent">
-                                    <label for="">샤방</label>
+                                    <label for="tourstyle_easy">샤방</label>
                                     <input type="radio" name="tourstyle" id="tourstyle_easy" value="easy" onclick="selectTourStyle()">
-                                    <label for="">전투</label>
+                                    <label for="tourstyle_hard">전투</label>
                                     <input type="radio" name="tourstyle" id="tourstyle_hard" value="hard" onclick="selectTourStyle()">
                                 </div>
                                <div class="tourinsert_inserttitle">
@@ -140,6 +143,12 @@
     </div>
     <form action="">
     	<input type="hidden" id="updateflag" value="0">
+    	<%-- <c:forEach items="${dto.tourlatlist }" var="selLat">
+        	<input type="hidden" class="tourlatlist" value="${selLat}">
+        </c:forEach>
+     	<c:forEach items="${dto.tourlnglist }" var="selLng">
+			<input type="hidden" class="tourlnglist" value="${selLng}">
+		</c:forEach> --%>
     </form>
     
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c228a6aa0b58c3275c3454e6b1a73c09"></script>
@@ -171,6 +180,7 @@ var bycicleSpeed = 334;
 // 지도를 클릭하면 선 그리기가 시작됩니다 그려진 선이 있으면 지우고 다시 그립니다
 kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 
+	
     // 마우스로 클릭한 위치입니다 
     var clickPosition = mouseEvent.latLng;
 
@@ -574,6 +584,21 @@ function selectFavoritTour(){
     if(updateorinsert==0) {
     	//선택한 경로를 selectedFavoritTourValue 값으로 파악하고 해당 경로 lat, lng 값을 ajax로 받아온다.	
     	// 받아온 lat, lng list를 class="tourlatlist", class="tourlnglist" 로 넣어준다.
+    	//var tempdata = {"tourno":selectedFavoritTourValue}
+/*     	$.ajax({
+			url: '/tourgetfavorit'
+			,data : tempdata
+			,dataType : 'json'
+			,contentType: "application/json;charset=utf-8"
+			,success : function(data) {
+				html();
+			}
+		 	,error : function(data) {
+		 		alert("에러 : 관리자에게 문의하세요");
+		 	}
+		 });	  */
+    	
+    	
     	latList = document.getElementsByClassName('tourlatlist');
     	lngList = document.getElementsByClassName('tourlnglist');
 
@@ -654,6 +679,8 @@ function insertTour(){
 	        content += '<input type="hidden" name="tourlnglist" value="' + pathLng + '">';
 	    }
 	    
+	    var templevel = map.getLevel();
+	    content += '<input type="hidden" name="tourmaplevel" value="' + templevel + '">';
 	    input_latlng.innerHTML = content;
 	    
 	    document.getElementById('tourinsertform').submit();	

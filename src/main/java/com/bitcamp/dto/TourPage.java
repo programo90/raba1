@@ -26,8 +26,8 @@ public class TourPage {
 	}
 	
 	private void calPage() {
-		startRow = (currPage-1)*pageSize +1;
-		endRow = startRow + pageSize -1;
+		startRow = (currPage-1)*pageSize;
+		endRow = startRow + pageSize;
 		if(endRow>totalRow) {
 			endRow = totalRow;
 		}

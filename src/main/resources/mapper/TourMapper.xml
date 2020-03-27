@@ -11,21 +11,22 @@
  		from TourTable
  	</select>
  
- 	<select id="tourList" parameterType="int" resultType="com.bitcamp.dto.TourDTO">
+ 	<select id="tourList" parameterType="hashmap" resultType="com.bitcamp.dto.TourDTO">
  		select tourno, tourtitle, populartour, tourdate, startspot,endspot
- 				,tourstyle,tourtype,totalcount, tourstate, tourday
- 		from TourTable
- 		order by tourno
- 		limit #{startRow}, 9
+ 				,tourstyle,tourtype,totalcount, tourstate, tourday, tourtime, cancount, userid
+ 		from TourTable inner join HostTable
+        on TourTable.hostno = HostTable.hostno
+ 		order by tourstate, tourno desc
+ 		limit #{startRow}, #{pageSize}
  	</select>
  	<!-- tour입력 -->
   	<insert id="insertTour" parameterType="com.bitcamp.dto.TourDTO">
   		insert into TourTable(hostno, tourtitle,populartour,tourdate,startspot,endspot
 						,esttime,distance,tourstyle,tourtype,totalcount
-						,tourdetailcomm,tourlat,tourlng,tourday,tourtime)
+						,tourdetailcomm,tourlat,tourlng,tourday,tourtime,tourmaplevel)
 		values(#{hostno}, #{tourtitle},#{populartour},#{tourdate},#{startspot},#{endspot}
 				,#{esttime},#{distance},#{tourstyle},#{tourtype},#{totalcount}
-				,#{tourdetailcomm},#{tourlat},#{tourlng},#{tourday},#{tourtime});
+				,#{tourdetailcomm},#{tourlat},#{tourlng},#{tourday},#{tourtime},#{tourmaplevel});
   		<selectKey keyProperty="tourno" resultType="int" order="AFTER">
   			select LAST_INSERT_ID()
   		</selectKey>
@@ -43,7 +44,7 @@
   	<select id="tourDetail" parameterType="int" resultType="com.bitcamp.dto.TourDTO">
   		select tourno, hostno, tourtitle, populartour, tourdate,startspot,endspot
 				,esttime,distance,tourstyle,tourtype,totalcount,cancount
-				,tourdetailcomm,tourlat,tourlng,tourday,tourtime,tourstate
+				,tourdetailcomm,tourlat,tourlng,tourday,tourtime,tourstate,tourmaplevel
   		from TourTable
   		where tourno = #{tourno}
   	</select>
@@ -57,6 +58,12 @@
   		from HostTable inner join UserTable 
         on HostTable.userid = UserTable.userid
   		where HostTable.hostno = #{hostno}
+  	</select>
+  	<select id="hostDetailById" parameterType="String" resultType="com.bitcamp.dto.HostDTO">
+  		select hostno, leadcount, hostcomment, HostTable.userid, username, distance, userimg
+  		from HostTable inner join UserTable 
+        on HostTable.userid = UserTable.userid
+  		where HostTable.userid = #{userid}
   	</select>
   	
   	<!--  투어 지원  -->
@@ -73,6 +80,11 @@
   		update TourTable
   		set cancount = cancount+1
  		where tourno = #{tourno}
+   	</update>
+   	<update id="increUserDistance" parameterType="hashmap">
+   		update UserTable
+   		set distance = distance+#{distance}
+   		where useid = #{userid}
    	</update>
   	
   	
@@ -108,4 +120,38 @@
   		where tourno = #{tourno}
   	</delete>
   	
+  	<!-- 투어 리플 리스트 -->
+  	<select id="replyList" parameterType="int" resultType="com.bitcamp.dto.TourReplyDTO">
+  		select tourno, userid, recontent ,reorder, relevel
+  		from TourReplyTable
+  		where tourno = #{tourno} 
+  		order by reorder
+  	</select>
+  	
+  	<!-- 투어 리플 insert -->
+  	<insert id="replyInsert" parameterType="com.bitcamp.dto.TourReplyDTO">
+  		<selectKey keyProperty="reorder" order="BEFORE" resultType="int">
+  			select max(reorder)+1 as reorder
+  			from TourReplyTable
+  			where tourno = #{tourno}
+  		</selectKey>
+  		insert into TourReplyTable(tourno, reorder, userid, recontent, relevel)
+  		values(#{tourno}, #{reorder}, #{userid}, #{recontent}, #{relevel})
+  	</insert>
+  	<insert id="rereplyInsert" parameterType="com.bitcamp.dto.TourReplyDTO">
+  		<selectKey keyProperty="relevel" order="BEFORE" resultType="int">
+  			select max(relevel)+1 as relevel
+			from TourReplyTable
+			where tourno = #{tourno} and reorder = #{reorder};
+  		</selectKey>
+  		insert into TourReplyTable(tourno, reorder, userid, recontent, relevel)
+  		values(#{tourno}, #{reorder}, #{userid}, #{recontent}, #{relevel})
+  	</insert>
+  	
+  	<!-- tour 상태 변경 -->
+  	<update id="updateState" parameterType="hashmap">
+  		update TourTable
+  		set tourstate = #{tourstate}
+  		where tourno = #{tourno}
+  	</update>
   </mapper>

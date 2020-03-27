@@ -5,6 +5,7 @@ import java.util.List;
 import com.bitcamp.dto.HostDTO;
 import com.bitcamp.dto.TourDTO;
 import com.bitcamp.dto.TourMarkerDTO;
+import com.bitcamp.dto.TourReplyDTO;
 
 public interface TourService {
 
@@ -27,4 +28,10 @@ public interface TourService {
 	public int deleteTour(int tourno);
 
 	public int updateTour(TourDTO dto);
+
+	public List<TourReplyDTO> replyList(int tourno);
+
+	public List<TourReplyDTO> replyInsert(TourReplyDTO redto);
+
+	public int updateState(int tourno, int tourstate);
 }

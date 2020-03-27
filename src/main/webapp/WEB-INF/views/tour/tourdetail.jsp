@@ -1,16 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>라이딩 상세정보</title>
     <link rel="stylesheet" href="/resources/css/common.css">
     <link rel="stylesheet" href="/resources/css/tour/tourdetail.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/resources/js/tour/tourdetail.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c228a6aa0b58c3275c3454e6b1a73c09"></script>
 </head>
 <body>
+
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
+		<!-- <div> 조건부 실행문 넣기 </div> -->
+	</sec:authorize>
+	<!--  이하 페이지 로딩 초기값  -->
+	<sec:authentication property='principal.username' var="loginid"/>
+	<input type="hidden" id="tourno" value="${dto.tourno}">
+	<input type="hidden" id="userid" value="${loginid }">
+	<input type="hidden" id="hostid" value="${hostdto.userid }">
+	<input type="hidden" id="distance" value="${dto.distance }">
+	<input type="hidden" id="maplevel" value="${dto.tourmaplevel }">
+	
+	
+	<div class="contents">
 	    <div id="tourdetail_wrap">
         <div id="tourdetail_hostblock">
             <div id="tourdetail_hostimgblock">
@@ -38,8 +55,8 @@
                 </div>
                 <div id="apply_btn_box">
                 	<form id="applyfrm" name="applyfrm" method="POST" action="/tourapply">
-                		<input type="hidden" id="tourno" value="${dto.tourno}">
-                		<input type="hidden" id="userid" value="member"> <!-- 로그인상태시 userid를 넣도록 -->
+                		<%-- <input type="hidden" id="tourno" value="${dto.tourno}">
+                		<input type="hidden" id="userid" value="${loginid }"> --%>
                 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 	</form>
                 	<c:choose>
@@ -64,7 +81,7 @@
                 		<c:forEach items="${markerlist}" var="selmarker" varStatus="state">
                 			<div class="tourdetail_spotinfo1">
     	                    	<div class="tourdetail_spotno">
-	                            	<div> P ${state.count } </div>
+	                            	<div> P${state.count } </div>
 	                    	        <div class="markertitlelist" id="${spotListTitle+state.index}"> ${selmarker.spottitle } </div>
     	        	            </div>
         		                <div class="tourdetail_spotdetail">
@@ -136,57 +153,45 @@
                           <li class="tourreple_list">
                               	글번호 작성자 내용
                           </li>
-<%--                           <c:forEach items="" var="">
-                          	<li class="tourreple_list">
-                               <div>1 작성자 내용1</div>
-                            </li>
-                          	 <c:if test="">
-                          	 	<li class="tourreple_relist">
-                               		<div>1 작성자 답변1</div>
-                           		</li>
-                          	 </c:if>
-                          </c:forEach> --%>
+                          <c:forEach items="${redtolist}" var="redto" varStatus="stat">
+                          	<c:choose>
+                          		<c:when test="${redto.relevel ==0}">
+                          			<li class="tourreple_list" onclick="rereinsert(this, ${redto.reorder})">
+                               			<div>${stat.count} ${redto.userid} ${redto.recontent}</div>
+                            		</li>
+                          		</c:when>
+                          		<c:when test="${redto.relevel !=0}">
+                          			<li class="tourreple_relist">
+	                               		<div>${stat.count} ${redto.userid} ${redto.recontent}</div>
+                           			</li>
+                          		</c:when>
+                          	</c:choose>
+                          </c:forEach>
 
                        </ul>
                    </div>
-                   
-                    <div id="tourdetail_paging_num">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
-                    </div>
-                </div>
-                <div id="tourdetail_repleinsertbox">
-                   <div>
-                    <form action="">
-                       <input type="hidden" name="userno" id="">
-                       <input type="hidden" id="tour_reple_title" name="tour_reple_title" readonly value="userno">
-                       <!-- login 상태면 리플 입력창 출력, 로그인 상태가 아니라면 로그인 후 입력이 가능하다 출력 --> 
-                       <%-- <c:if test="">
-                       
-                       </c:if> --%>
-                       <textarea name="" id="" cols="100" rows="5" placeholder="내용을 입력하세요."></textarea>
-                       <input type="submit" value="저장" id="rep_subbtn">
-                    </form>
-                    </div>
-                </div>
+	             </div>
+   	           	<div id="tourdetail_repleinsertbox">
+   	            	<div>
+               	    	<form>
+       	    	           <textarea id="recontent" cols="110" rows="4" placeholder="내용을 입력하세요."></textarea>
+	   	                   <button type="button" onclick="reinsert(-1)">저장</button>
+           	        	</form>
+                   	</div>
+               	</div>
             </div>
-            
-            
         </div>
     </div>
-    
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c228a6aa0b58c3275c3454e6b1a73c09"></script>
+  </div>
 <script>
 var centerlat = document.getElementsByClassName('tourlatlist')[0].value;
 var centerlng = document.getElementsByClassName('tourlnglist')[0].value;
-
+var maplevel = document.getElementById('maplevel').value;
+console.log(maplevel);
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
         center: new kakao.maps.LatLng(centerlat, centerlng), // 지도의 중심좌표
-        level: 5 // 지도의 확대 레벨
+        level: maplevel // 지도의 확대 레벨
     };
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -273,78 +278,6 @@ for(var i=0; i<markerLatList.length; i++) {
 	addMarker(spotPosition,i);
 }
 
-    
-// 지도에 클릭 이벤트를 등록합니다
-// 지도를 클릭하면 선 그리기가 시작됩니다 그려진 선이 있으면 지우고 다시 그립니다
-/* kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
-
-    // 마우스로 클릭한 위치입니다 
-    var clickPosition = mouseEvent.latLng;
-
-    if(markerMode){
-        if(spotNum>=4){
-            alert("중간 지점은 최대 4개까지 입력 가능합니다.");
-        } else {
-            addMarker(clickPosition);
-            addSpotList(clickPosition);
-        }
-        
-    } else {
-        // 지도 클릭이벤트가 발생했는데 선을 그리고있는 상태가 아니면
-        if (!drawingFlag) {
-
-        // 상태를 true로, 선이 그리고있는 상태로 변경합니다
-        drawingFlag = true;
-        
-        // 지도 위에 선이 표시되고 있다면 지도에서 제거합니다
-        deleteClickLine();
-        
-        // 지도 위에 커스텀오버레이가 표시되고 있다면 지도에서 제거합니다
-        deleteDistnce();
-
-        // 지도 위에 선을 그리기 위해 클릭한 지점과 해당 지점의 거리정보가 표시되고 있다면 지도에서 제거합니다
-        deleteCircleDot();
-    
-        // 클릭한 위치를 기준으로 선을 생성하고 지도위에 표시합니다
-        clickLine = new kakao.maps.Polyline({
-            map: map, // 선을 표시할 지도입니다 
-            path: [clickPosition], // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
-            strokeWeight: 3, // 선의 두께입니다 
-            strokeColor: '#111111', // 선의 색깔입니다
-            strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
-            strokeStyle: 'solid' // 선의 스타일입니다
-        });
-        
-        // 선이 그려지고 있을 때 마우스 움직임에 따라 선이 그려질 위치를 표시할 선을 생성합니다
-        moveLine = new kakao.maps.Polyline({
-            strokeWeight: 3, // 선의 두께입니다 
-            strokeColor: '#111111', // 선의 색깔입니다
-            strokeOpacity: 0.5, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
-            strokeStyle: 'solid' // 선의 스타일입니다    
-        });
-    
-        // 클릭한 지점에 대한 정보를 지도에 표시합니다
-            displayCircleDot(clickPosition, 0);
-
-            
-        } else { // 선이 그려지고 있는 상태이면
-
-        // 그려지고 있는 선의 좌표 배열을 얻어옵니다
-        var path = clickLine.getPath();
-
-        // 좌표 배열에 클릭한 위치를 추가합니다
-        path.push(clickPosition);
-        
-        // 다시 선에 좌표 배열을 설정하여 클릭 위치까지 선을 그리도록 설정합니다
-        clickLine.setPath(path);
-
-        var distance = Math.round(clickLine.getLength());
-        displayCircleDot(clickPosition, distance);
-        }    
-    }
-    
-}); */
-
 function addMarker(position,index){
 	
     var marker = new kakao.maps.Marker({
@@ -375,21 +308,6 @@ function addMarker(position,index){
 }
 
 function addSpotList(position){
-/*    var spotboxlist = document.getElementsByClassName('tourinsert_spotbox');
-    
-    var spotCon = '<div class="tourdetail_spotno"> P';
-        spotCon += (spotNum +1);
-        spotCon += '</div>';
-        spotCon += '<div class="tourdetail_spotdetail">';
-        spotCon = ' <input type="hidden" value="' + spotNum + '">';
-        spotCon += '<input type="text" size="15" placeholder="지점 이름">';
-        spotCon += '<input type="text" size="15" placeholder="설명">';
-        spotCon += '<input type="hidden" value="'
-        spotCon += position;
-        spotCon += '">';        
-        spotCon += '</div>';
-    
-    spotboxlist[spotNum].insertAdjacentHTML('afterbegin',spotCon);*/
                         
     var spotNumList = document.getElementsByClassName('tourdetail_spotno');
     var spotCon1 = '<div>P';
@@ -433,84 +351,6 @@ function deleteSpotList() {
     }
     spotNum = 0;
 }
-
-
-// 지도에 마우스무브 이벤트를 등록합니다
-// 선을 그리고있는 상태에서 마우스무브 이벤트가 발생하면 그려질 선의 위치를 동적으로 보여주도록 합니다
-/* kakao.maps.event.addListener(map, 'mousemove', function (mouseEvent) {
-
-    // 지도 마우스무브 이벤트가 발생했는데 선을 그리고있는 상태이면
-    if (drawingFlag){
-        
-        // 마우스 커서의 현재 위치를 얻어옵니다 
-        var mousePosition = mouseEvent.latLng; 
-
-        // 마우스 클릭으로 그려진 선의 좌표 배열을 얻어옵니다
-        var path = clickLine.getPath();
-        
-        // 마우스 클릭으로 그려진 마지막 좌표와 마우스 커서 위치의 좌표로 선을 표시합니다
-        var movepath = [path[path.length-1], mousePosition];
-        moveLine.setPath(movepath);    
-        moveLine.setMap(map);
-        
-        var distance = Math.round(clickLine.getLength() + moveLine.getLength()), // 선의 총 거리를 계산합니다
-            content = '<div class="dotOverlay distanceInfo">총거리 <span class="number">' + distance + '</span>m</div>'; // 커스텀오버레이에 추가될 내용입니다
-        
-        // 거리정보를 지도에 표시합니다
-        showDistance(content, mousePosition);   
-    }             
-}); */                 
-
-// 지도에 마우스 오른쪽 클릭 이벤트를 등록합니다
-// 선을 그리고있는 상태에서 마우스 오른쪽 클릭 이벤트가 발생하면 선 그리기를 종료합니다
-/* kakao.maps.event.addListener(map, 'rightclick', function (mouseEvent) {
-
-    if(markerMode) {
-        deleteMarkers();
-        deleteSpotList();
-    } else {
-     // 지도 오른쪽 클릭 이벤트가 발생했는데 선을 그리고있는 상태이면
-    if (drawingFlag) {
-        
-        // 마우스무브로 그려진 선은 지도에서 제거합니다
-        moveLine.setMap(null);
-        moveLine = null;  
-        
-        // 마우스 클릭으로 그린 선의 좌표 배열을 얻어옵니다
-        var path = clickLine.getPath();
-    
-        // 선을 구성하는 좌표의 개수가 2개 이상이면
-        if (path.length > 1) {
-
-            // 마지막 클릭 지점에 대한 거리 정보 커스텀 오버레이를 지웁니다
-            if (dots[dots.length-1].distance) {
-                dots[dots.length-1].distance.setMap(null);
-                dots[dots.length-1].distance = null;    
-            }
-
-            var distance = Math.round(clickLine.getLength()), // 선의 총 거리를 계산합니다
-                content = getTimeHTML(distance); // 커스텀오버레이에 추가될 내용입니다
-                
-            // 그려진 선의 거리정보를 지도에 표시합니다
-            showDistance(content, path[path.length-1]);
-             
-        } else {
-
-            // 선을 구성하는 좌표의 개수가 1개 이하이면 
-            // 지도에 표시되고 있는 선과 정보들을 지도에서 제거합니다.
-            deleteClickLine();
-            deleteCircleDot(); 
-            deleteDistnce();
-            document.getElementById('distance').value = '';
-            document.getElementById('esttime').value = '';
-
-        }
-        
-        // 상태를 false로, 그리지 않고 있는 상태로 변경합니다
-        drawingFlag = false;          
-    }    
-    } 
-});     */
 
 // 클릭으로 그려진 선을 지도에서 제거하는 함수입니다
 function deleteClickLine() {
@@ -665,10 +505,9 @@ function getTimeHTML(distance) {
     }
 }
     
-</script>
-<script>
+
     //그린 경로의 좌표값을 lat, lng 으로 저장해서 배열로 만들고, 그 외에 입력한 값들과 함께 submit.
-function insertTour(){
+/* function insertTour(){
     var selectedPath = clickLine.getPath();
     var input_latlng = document.getElementById('tour_latlng');
     var content ='';
@@ -684,23 +523,9 @@ function insertTour(){
     
     input_latlng.innerHTML = content;
     
-/*     var markercontent = '';
-    for(var j=0; j<markers.length; j++) {
-        var tempMarkerPosition = markers[j].getPosition();
-        var markerLat = tempMarkerPosition.getLat();
-        var markerLng = tempMarkerPosition.getLng();
-        
-        markercontent += '<input type="hidden" name="markerlat" value="' + markerLat + '">';
-        markercontent += '<input type="hidden" name="markerlng" value="' + markerLng + '">';
-    }
-    
-    var input_markers_latlng = document.getElementById('tour_markerdata');
-    input_markers_latlng.innerHTML = markercontent; */
-    
     document.getElementById('tourinsertform').submit();
-}
-</script>
-<script>
+} */
+
     //투어 스타일에 따라 자전거 평균 속도를 변경, 예상 소요시간을 다시 계산한다.
     //다시 계산한 값을 맵에도 새롭게 표시해주고, 입력창 예산 소요시간도 갱신해준다.
     function selectTourStyle(){
@@ -733,11 +558,10 @@ function insertTour(){
         }
     }
     }
-</script>
-<script>
+
     //spotList, marker 삭제 버튼
     //spotList에서 제거시 마커가 자동으로 제거되고, list와 marker, marker infowindow 모두 갱신됩니다.
-    function spotDeleteBtn(sno){
+   /*  function spotDeleteBtn(sno){
         markers[sno].setMap(null);
         var markers2 = [];
         var infowinlist2 = [];
@@ -782,9 +606,9 @@ function insertTour(){
                 
                 var tempData2 = 'spotListCon';
                     tempData2 += (j+1);
-                /*console.log(tempData2);*/
+                
                 var tempSoptContent = document.getElementById(tempData2).value;
-                /*console.log(tempSoptContent);*/
+                
                 var tempSpotLat = document.getElementById('spotListLat'+(j+1)).value;
                 var tempSpotLng = document.getElementById('spotListLng'+(j+1)).value;
                 var tempSoptCon2 = '<textarea name="spotListCon" id="spotListCon' + j + '" cols="23" rows="9" placeholder="내용 입력">' + tempSoptContent + '</textarea>';
@@ -796,10 +620,8 @@ function insertTour(){
         }
 
         spotNum = spotNum-1;    
-    }
-</script>
+    } */
 
-<script>
     //spot 정보창에 제목이 변경되면, marker에 info window의 이름도 자동으로 변경시켜준다.
 function updateInfoWin(sno) {
     var tempData1 = 'spotListTitle'+sno;
@@ -807,10 +629,8 @@ function updateInfoWin(sno) {
     var iwContent = '<div id="markerwin'+ (sno+1) +'" style="padding:5px;">P' + (sno+1) + ' ' + tempSpotTitle + '</div>';
     infowinlist[sno].setContent(iwContent);  
 }    
-</script>
 
-<script>
-    //참여인원 최대, 최소수 체크
+/*     //참여인원 최대, 최소수 체크
 function checkmaxmin(inputtotalcount) {
     var inputcount = inputtotalcount.value;
     if(inputcount>20) {
@@ -822,45 +642,29 @@ function checkmaxmin(inputtotalcount) {
     }
 }
 
-$.fn.serializeObject = function() {
-    var o = {};
-    var a = this.serializeArray();
-    $.each(a, function() {
-        if (o[this.name]) {
-            if (!o[this.name].push) {
-                o[this.name] = [o[this.name]];
-            }
-            o[this.name].push(this.value || '');
-        } else {
-            o[this.name] = this.value || '';
-        }
-    });
-    return o;
-};
 
  function applyTour(applystate) {
-	 var tempcon = $('#applyfrm').serializeObject();
-	 
 	 if(applystate==0){
-		//1. 로그인 상태 확인후 로그인이 안되어 있으면 로그인창 띄우기
-		 
-		 
-		 //2. 로그인 상태로 지원시 ajax 로 신청자 userid와 신청한 tourno 를 넘기고 해당 유저가 신청했는지, 안했다면 현재인원/최대인원 체크후 신청 성공 or 인원초과 or 중복지원 여부 리턴
+         var temptourno = document.getElementById('tourno').value;
+         var tempuserid = document.getElementById('userid').value;
+         var tempdata = {"tourno":temptourno,"userid":tempuserid};
+         
+		 //지원시 ajax 로 신청자 userid와 신청한 tourno 를 넘기고 해당 유저가 신청했는지, 안했다면 현재인원/최대인원 체크후 신청 성공 or 인원초과 or 중복지원 여부 리턴
 		 $.ajax({
 			url: '/tourapply'
-			,data : JSON.stringify(tempcon)
+			,data : tempdata
 			,dataType : 'json'
-			,method : 'post'
-			,contentType: 'application/json'
+			,contentType: "application/json;charset=utf-8"
 			,success : function(data) {
-				if(data.result==0) {
+				if(data==0) {
 					alert("지원 완료.");
+					location.href="/tourdetail/"+temptourno;
 					//page 리로드
-				} else if(data.result==1) {
+				} else if(data==1) {
 					alert("이미 지원한 투어입니다.");
-				} else if(data.result==2) {
+				} else if(data==2) {
 					alert("최대 지원자 수를 초고하였습니다.");
-				} else if(data.result==3) {
+				} else if(data==3) {
 					alert("종료된 투어입니다.");
 				}
 			}
@@ -874,6 +678,61 @@ $.fn.serializeObject = function() {
 		 alert("종료된 일정입니다."); 
 	 }
  }
+ 
+function reinsert(order) {
+	 var temptourno = document.getElementById('tourno').value;
+     var tempuserid = document.getElementById('userid').value;
+     var recontent = document.getElementById('recontent').value;
+	 
+     var tempdata = {"tourno":temptourno,"userid":tempuserid, "recontent":recontent,"reorder":order};
+
+	 
+	 $.ajax({
+		 url: '/tourreinsert'
+		,data : tempdata
+		,dataType : 'json'
+		,contentType: "application/json;charset=utf-8"
+		,success : function(data) {
+			let result ='<li class="tourreple_list">';
+				result += '글번호 작성자 내용 </li>';
+				result += '';
+				
+			$.each(data,function(index,item){
+				if(item.relevel==0) {
+					result += '<li class="tourreple_list" onclick="rereinsert(this,' + item.reorder + ')">';
+					result += '<div>';
+					result += (index+1) + ' ' + item.userid + ' ' +item.recontent+'</div>';
+					result += '</li>';
+				} else if(item.relevel==1) {
+					result += '<li class="tourreple_relist">';
+					result += '<div>';
+					result +=  (index+1) + ' ' + item.userid + ' ' +item.recontent+'</div>';
+					result += '</li>';
+				}
+			});
+			$('#replylist').html(result);
+			$('#recontent').text('');
+		}
+		,error : function(data) {
+			 console.log('reple insert error');
+		}
+		 
+	 });
+ }
+ function rereinsert(obj,order) {
+	 //if() 호스트
+	 var hostid = document.getElementById('userid').value
+	 var userid = document.getElementById('hostid').value
+	 if(hostid==userid) {
+		 $('#re_rebox').remove();
+		 	var result ='<li id="re_rebox" class="tourreple_list" style="padding: 30px"><form>';
+		 		result += '<textarea id="recontent" cols="110" rows="4" placeholder="내용을 입력하세요."></textarea>';
+		 		result += '<button type="button" onclick="reinsert(' + order + ')">저장</button>';
+		 		result += '</form></li>';
+		 	$(obj).after(result); 
+	 }
+	 //else if() 멤버
+ } */
 </script>
 </body>
 </html>

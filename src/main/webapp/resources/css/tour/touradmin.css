@@ -1,0 +1,49 @@
+@charset "utf-8";
+
+#tourlistblock {
+	
+}
+.tourlistbox {
+	border-bottom: 1px solid silver;
+	padding : 20px 20px;
+	
+}
+#tourlisttitle p {
+	font-weight: bold;
+}
+.tourlistbox p {
+	display: inline-block;
+	text-align: center;
+	overflow: hidden;
+	font-size: 13px;
+}
+.tourlistno{
+	width: 40px;
+}
+.tourlisthostid{
+	width: 70px;
+}
+.tourlisttitle{
+	width:150px;
+}
+.tourliststart{
+	width:150px;
+}
+.tourlistend{
+	width:150px;
+}
+.tourlisttourday{
+	width:150px;
+}
+
+.tourlistcount{
+	width:70px;
+}
+.tourliststate{
+	width : 100px;
+}
+
+#touradmin_paging_block{
+	height: 100px;
+	width : 100%;
+}

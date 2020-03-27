@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,6 +11,8 @@
     <link rel="stylesheet" href="/resources/css/tour/tourinsert.css">
 </head>
 <body>
+	<input type="hidden" id="maplevel" value="${dto.tourmaplevel }">
+	
     <div id="tourinsert_wrap">
         <div id="tourinsert_contentblock">
            <form action="${pageContext.request.contextPath}/tourupdateresult" id="tourinsertform" method="post">
@@ -41,7 +44,9 @@
                 </div>
             </div>
             <!--이하 입력창-->
-            <input type="hidden" name="hostno" id="hostno" value="1">
+            <sec:authentication property='principal.username' var="loginid"/>
+			<input type="hidden" name="userid" id="userid" value="${loginid }">
+			
             <div id="tourinsert_detailblock">
                     <div id="tourinsert_detaillbox1">
                     			<div class="tourinsert_inserttitle">
@@ -182,10 +187,12 @@
 <script>
 var centerlat = document.getElementsByClassName('tourlatlist')[0].value;
 var centerlng = document.getElementsByClassName('tourlnglist')[0].value;
+var maplevel = document.getElementById('maplevel').value;
+
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
         center: new kakao.maps.LatLng(centerlat, centerlng), // 지도의 중심좌표
-        level: 5 // 지도의 확대 레벨
+        level: maplevel // 지도의 확대 레벨
     };
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -714,6 +721,9 @@ function insertTour(){
 	        content += '<input type="hidden" name="tourlatlist" value="' + pathLat + '">';
 	        content += '<input type="hidden" name="tourlnglist" value="' + pathLng + '">';
 	    }
+	    
+	    var templevel = map.getLevel();
+	    content += '<input type="hidden" name="tourmaplevel" value="' + templevel + '">';
 	    
 	    input_latlng.innerHTML = content;
 	    

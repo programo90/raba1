@@ -6,7 +6,7 @@ div {
 }
 #tourdetail_wrap{
     width: 1200px;
-    height: 2000px;
+    /* height: 2000px; */
     /*border: 1px solid silver;*/
 }
 #tourdetail_wrap div{
@@ -135,7 +135,6 @@ div {
     margin: 10px 0;
 }
 #tourdetail_replyblock{
-    height: 400px;
     width: 100%;
 }
 #tourdetail_replelistbox{
@@ -155,10 +154,17 @@ div {
     height: 30%;
     width: 100%;
 }
-#tourdetail_repleinsertbox>div{
-    position: relative;
+#tourdetail_repleinsertbox>div {
+	width : 80%;
+	display: inline-block;
+	position: relative;
     left: 50%;
     transform: translateX(-50%);
+}
+#tourdetail_repleinsertbox button{
+	float:right;
+	width:100px;
+	height:60px;
 }
 #tourdetail_paging_num{
     padding: 20px 0;
@@ -193,6 +199,11 @@ div {
 }
 .tourreple_relist>div{
     padding-left: 20px;
+}
+.tourreple_list button {
+	float:right;
+	width:100px;
+	height:60px;
 }
 #rep_subbtn{
     float: right;

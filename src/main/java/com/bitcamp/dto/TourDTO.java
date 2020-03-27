@@ -3,6 +3,7 @@ package com.bitcamp.dto;
 public class TourDTO {
 	private Integer tourno;
 	private Integer hostno;
+	private String userid;
 	private String tourtitle;
 	private Integer populartour;
 	private String tourdate;
@@ -22,6 +23,7 @@ public class TourDTO {
 	private String tourlng;
 	private Integer tourstate;
 	private Integer cancount;
+	private Integer tourmaplevel;
 	
 	
 	private Integer[] spotListNo;
@@ -32,6 +34,19 @@ public class TourDTO {
 	
 	
 	
+	
+	public Integer getTourmaplevel() {
+		return tourmaplevel;
+	}
+	public void setTourmaplevel(Integer tourmaplevel) {
+		this.tourmaplevel = tourmaplevel;
+	}
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 	public Integer getCancount() {
 		return cancount;
 	}

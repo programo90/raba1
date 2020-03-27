@@ -15,6 +15,7 @@ import com.bitcamp.dto.HostDTO;
 import com.bitcamp.dto.TourApplyDTO;
 import com.bitcamp.dto.TourDTO;
 import com.bitcamp.dto.TourMarkerDTO;
+import com.bitcamp.dto.TourReplyDTO;
 import com.bitcamp.mapper.TourMapper;
 
 @Service(value="tourService")
@@ -28,18 +29,17 @@ public class TourServiceImple implements TourService{
 	public void insertTour(TourDTO dto) {
 		//프로시져로 먼저 투어정보를 db에 저장하고, 투어 정보를 외래키로 갖는 marker정보를 db에 저장한다.
 		//실패시 롤백
+		System.out.println("userid : " + dto.getUserid());
 		
+		HostDTO hostdto = tourMapper.hostDetailById(dto.getUserid());
+		System.out.println(hostdto.getHostno());
+		
+		dto.setHostno(hostdto.getHostno());
 		
 		//투어 정보를 가지고 db에 저장.
 		String[] tourLatList = dto.getTourlatlist();
 		String[] tourLngList = dto.getTourlnglist();
-	
-		//1. Arrays.toString 사용
-		//primitive type의 경우 Arrays.toString() 대신 Array.deepToString() 을 사용
-		//Arrays.toString(tourLatList);	//[lat1, lat2, lat3, ... ]
-		//Arrays.toString(tourLngList);	//[lng1, lng2, lng3, ... ]
-		
-		
+
 		//2. StringBuilder 사용
 		StringBuilder tourlat = new StringBuilder("");
 		StringBuilder tourlng = new StringBuilder("");
@@ -97,7 +97,11 @@ public class TourServiceImple implements TourService{
 	@Override
 	public List<TourDTO> tourList(int startRow, int pageSize) {
 		// TODO Auto-generated method stub
-		return tourMapper.tourList(startRow);
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("startRow", startRow);
+		map.put("pageSize", pageSize);
+		
+		return tourMapper.tourList(map);
 	}
 
 	@Override
@@ -145,9 +149,6 @@ public class TourServiceImple implements TourService{
 	@Override
 	public int applyTour(String userid, int tourno) {
 		// TODO Auto-generated method stub
-		
-		
-		
 		//0. 지원완료
 		//1. 이미 지원
 		//2. 지원수 초과
@@ -165,6 +166,7 @@ public class TourServiceImple implements TourService{
 			HashMap<String, Object> map = new HashMap<>();
 			map.put("tourno", tourno);
 			map.put("userid", userid);
+			map.put("distance", dto.getDistance());
 			TourApplyDTO adto = tourMapper.tourApplySelect(map);
 			
 			if(adto!=null) {
@@ -173,6 +175,7 @@ public class TourServiceImple implements TourService{
 			} else {
 				tourMapper.insertApplyTour(map);
 				tourMapper.increApplyCount(tourno);
+				tourMapper.increUserDistance(map);
 				
 				//투어 지원 성공시 모집 최대인원과 지원 인원이 같아지면
 				//trigger로 tourstate를 1(마감) 상태로 바꿔준다.
@@ -264,6 +267,33 @@ public class TourServiceImple implements TourService{
 				//투어 타입에 따라 tourlist.jsp에서 표현해줄 마우스오버 효과 지정
 				
 		return result;
+	}
+
+	@Override
+	public List<TourReplyDTO> replyList(int tourno) {
+		// TODO Auto-generated method stub
+		return tourMapper.replyList(tourno);
+	}
+
+	@Override
+	public List<TourReplyDTO> replyInsert(TourReplyDTO redto) {
+		// TODO Auto-generated method stub
+		if(redto.getReorder()<0) {
+			tourMapper.replyInsert(redto);
+		} else {
+			tourMapper.rereplyInsert(redto);
+		}
+		
+		return tourMapper.replyList(redto.getTourno());
+	}
+
+	@Override
+	public int updateState(int tourno, int tourstate) {
+		// TODO Auto-generated method stub
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("tourno", tourno);
+		map.put("tourstate", tourstate);
+		return tourMapper.updateState(map);
 	}
 	
 }

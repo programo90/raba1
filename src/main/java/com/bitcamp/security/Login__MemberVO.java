@@ -16,7 +16,6 @@ private String address;
 private String address2;
 private String address3;
 private String userimg;
-
 private List<Login__AuthVO> authList;
 
 public String getUserid() {

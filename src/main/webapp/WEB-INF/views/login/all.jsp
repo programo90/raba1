@@ -13,7 +13,7 @@
 <sec:authorize access="isAnonymous()">
 	<a href="/customLogin">로그인</a>	
 </sec:authorize>
-
+<sec:authentication property="principal.username"/>
 <sec:authorize access="isAuthenticated()">
 <a href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a>
 <form id="logout-form" action=/customLogout method="post">

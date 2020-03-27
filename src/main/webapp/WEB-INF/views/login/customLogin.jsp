@@ -16,10 +16,10 @@
 	
 	<form method="post" action="/login">
 		<div class="custom__login-username">
-			<input type="text" name="username" value="admin">
+			<input type="text" name="username" value="${id}">
 		</div>
 		<div class="custom__login-pwd">
-			<input type="text" name="password" value="admin">
+			<input type="text" name="password" value="host">
 		</div>
 		<div class="custom__login-submit">
 			<input type="submit">

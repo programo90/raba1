@@ -1,11 +1,19 @@
 package com.bitcamp.security;
 
-import lombok.Data;
-
-
 public class Login__AuthVO {
 private String userid;
 private String auth;
+
+
+
+public Login__AuthVO(String userid, String auth) {
+	super();
+	this.userid = userid;
+	this.auth = auth;
+}
+public Login__AuthVO() {
+	super();
+}
 public String getUserid() {
 	return userid;
 }

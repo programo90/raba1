@@ -18,6 +18,6 @@
 
 <p>사용자 아이디 : <sec:authentication property="principal.username"/></p>
 <p>사용자 권한 리스트 : <sec:authentication property="principal.member"/></p>
-
+${id }
 </body>
 </html>

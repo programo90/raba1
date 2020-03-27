@@ -33,7 +33,26 @@
   		FROM UserTable ut
   		LEFT OUTER JOIN AuthoritiesTable at ON ut.userid = at.userid
 		WHERE ut.userid = #{userid}
-  		
   	</select>
+    <select id="idCheck" parameterType="com.bitcamp.security.Login__MemberVO" resultType="Integer">
+         select count(*) 
+         from UserTable
+         where userid = #{userid}
+    </select>
+  
+  	<insert id="insertData" parameterType="com.bitcamp.security.Login__MemberVO">
+  		INSERT INTO UserTable(userid, password, username, joindate)
+  		VALUES (#{userid},#{password},#{username},now())
+  	</insert>
+  	
+    <insert id="insertAuth" parameterType="com.bitcamp.security.Login__MemberVO">
+		insert into AuthoritiesTable(userid, auth)
+	   	values
+		<foreach collection="authList" item="item" separator=", ">
+			         (#{item.userid}
+			         , #{item.auth})
+		</foreach> 
+		
+	</insert>
   
   </mapper>

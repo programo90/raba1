@@ -22,7 +22,7 @@ public class InfoController {
 	@Autowired
 	private NoticeService noticeservice;
 	
-	//info â�� ���� ������ �ҵ�
+	//info 사용자 list
 	@RequestMapping(value="/info")
 	public String info(Model model){
 		
@@ -34,7 +34,8 @@ public class InfoController {
 		return "info/info";
 	}
 	
-	@RequestMapping(value="/n_list") 
+	/* 관리자 notice list */
+	@RequestMapping(value="/notice_list") 
 	public String n_list(Model model) {
 		
 		List<NoticeDTO> list = noticeservice.getlist();
@@ -42,13 +43,13 @@ public class InfoController {
 		
 		model.addAttribute("list", list);
 		
-		return "admin/n_list";
+		return "admin/notice_list";
 	}
 	
 	@RequestMapping(value="/n_insert")
 	public String n_insert() {
 		
-		return "admin/n_insert";
+		return "admin/notice_insert";
 	}
 	
 	@RequestMapping(value="/ins_ntc")
@@ -56,7 +57,7 @@ public class InfoController {
 		
 		int result = noticeservice.ins_ntc(dto);
 		
-		return "redirect:/login/admin/n_list";
+		return "redirect:/login/admin/notice_list";
 	}
 	
 	@RequestMapping(value="/n_modify/{ntcno}")
@@ -67,22 +68,22 @@ public class InfoController {
 		
 		model.addAttribute("dto",dto);
 		
-		return "admin/mdf_ntc";
+		return "admin/notice_modify";
 	}
 	
-	@RequestMapping(value="/mdf_ntc")
-	public String mdf_ntc(NoticeDTO dto) {
+	@RequestMapping(value="/notice_modify")
+	public String notice_modify(NoticeDTO dto) {
 		
 		int result = noticeservice.update_ntc(dto);
 		
-		return "redirect:/login/admin/n_list";
+		return "redirect:/login/admin/notice_list";
 	}
 	
 	@RequestMapping("/n_delete/{ntcno}")
-	public String delete(@PathVariable int ntcno) {
+	public String n_delete(@PathVariable int ntcno) {
 		
 		int result = noticeservice.delete_ntc(ntcno);
 		
-		return "redirect:/login/admin/n_list";
+		return "redirect:/login/admin/notice_list";
 	}
 }

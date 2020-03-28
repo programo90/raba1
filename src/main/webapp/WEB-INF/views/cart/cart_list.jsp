@@ -3,14 +3,14 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset=UTF-8>
 <title>Insert title here</title>
-	<link rel="stylesheet" href="/resources/css/goods/goodsdetail.css">
+	<link rel="stylesheet" href="/resources/css/cart/cart_list.css">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script type="text/javascript" src="/resources/js/goods/goodsdetail.js"></script>
+	<script type="text/javascript" src="/resources/js/cart/cart_list.js"></script>
 </head>
 <body>
 	<div class="contents">
@@ -24,8 +24,8 @@
 
 			<!--장바구니 상품 정보 윗부분-->
 			<div class="cartname">
-				<div class="cartch">
-					<input type="checkbox">
+				<div class="cartch1">
+					<input type="checkbox" id="main_checkbox" onClick="checkAll()">
 				</div>
 				<div class="cartimg">
 					<span>이미지</span>
@@ -50,27 +50,28 @@
 			<!--장바구니 상품 정보 아랫부분-->
 			<c:forEach var="Cartlist" items="${list }">
 			<div class="cartlist">
-				<div class="cartch">
-					<input type="checkbox">
+				<div class="cartch2">
+					<input type="checkbox" class="list_checkbox" onclick="plusPrice()" checked>
 				</div>
 				<div class="cartimg">
 					<span>이미지</span>
 				</div>
 				<div class="cartgoods">
-					<span><c:out value="${Cartlist.p_name }"></c:out></span>
+					<span><c:out value="${Cartlist.p_name }"/></span>
 				</div>
 				<div class="cartpri">
-					<span><c:out value="${Cartlist.p_price }"></c:out></span>
+					<span><c:out value="${Cartlist.p_price }"/>원</span>
 				</div>
 				
 				<div class="cartamount">
-					<span><c:out value="${Cartlist.p_amount }"></c:out></span>
+					<span><c:out value="${Cartlist.p_amount }"/>개</span>
 				</div>
 				<div class="cartdelivery">
-					<span>배송비</span>
+					<span>0</span>
 				</div>
 				<div class="cartpritotal">
-					<span>합계</span>
+					<span><c:out value="${Cartlist.p_price * Cartlist.p_amount }"/>원</span>
+					<input type="hidden" value="<c:out value="${Cartlist.p_price * Cartlist.p_amount }"/>" class="price">
 				</div>
 			</div>
 			</c:forEach>
@@ -113,25 +114,22 @@
 			<!--결제 금액 안내 아랫부분-->
 			<div class="goodscartname2">
 				<div class="goodstotalprice2_1">
-					<span>150,000원</span>
+					<span id="price_text"></span>
 				</div>
 				<div class="goodstotalprice2_1">
-					<span>+ 0원</span>
+					<span id="delivery_price_text"></span>
 				</div>
 				<div class="goodstotalprice2_2">
-					<span>= 150,000원</span>
+					<span id="total_price_text"></span>
+					<input type="hidden" name="cnolist" id="total_price">
 				</div>
 			</div>
 		</div>
 
 		<!--상품 결제페이지 이동 버튼-->
 		<div class="chartpay">
-			<a href="" class="cartpaybtn">상품 주문</a>
+			<input type=submit value="상품 주문 " class="cartpaybtn">
 		</div>
-
-
-
-
 	</div>
 </body>
 </html>

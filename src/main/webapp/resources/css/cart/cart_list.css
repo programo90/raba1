@@ -1,0 +1,67 @@
+@charset "UTF-8";
+/*장바구니 상품 정보*/
+.cart{width: 100%; height: auto; margin-top: 5%; border-bottom: 1px solid silver; border-top: 1px solid silver;}
+
+.cartname{width: 100%; height:40px; border-bottom: 1px solid silver; line-height: 40px;}
+
+.cartlist{width: 100%; height: 126px; border-bottom: 1px solid silver;  line-height:126px;}
+
+.cartsal{width: 100%;height: 32px; }
+
+.cartsalprice{float: right; width: auto; height: 32px;   text-align: center; line-height: 32px;}
+
+.cartsalprice span{font-size: 14px;  color: gray;}
+
+.cartch1{width: 8%; height:100%;   float: left;  text-align: center; }
+
+.cartch1 input{margin-top: 15px;}
+
+.cartch2{width: 8%; height:100%;   float: left;  text-align: center; }
+
+.cartch2 input{margin-top: 60%;}
+
+.cartimg{width: 18%; height:100%;   float: left; text-align: center;  }
+
+.cartgoods{width: 18%; height:100%;   float: left; text-align: center; }
+
+.cartpri{width: 15%; height:100%;   float: left; text-align: center; }
+
+.cartamount{width: 10%; height:100%;   float: left; text-align: center}
+
+.cartdelivery{width: 15%; height:100%;   float: left; text-align: center}
+
+.cartpritotal{width: 16%; height:100%;   float: left; text-align: center}
+
+
+/*할인 적용 코멘트*/
+.goodscartco{width: 100%;height: 32px;  border-bottom: 1px solid silver; border-top: 1px solid silver; line-height: 32px; margin-top:6%; font-size: 14px; color: gray; padding-left: 1%;}
+
+/*장바구니 상품 삭제 장바구니 비우기 버튼*/
+.goodscartbtn{width: 100%;height: 32px;  line-height: 32px; margin-top:4%;}
+
+/*결제 금액 안내*/
+.cartdelete{padding: 5px 8px; text-align: center; background-color: white; color: currentColor;  border: 1px solid silver; font-size: 14px;}
+
+.cartalldelete{padding: 0px 8px; text-align: center; background-color: white; color: currentColor;  border: 1px solid silver; float: right; font-size: 14px;}
+
+/*결제 금액 안내*/
+.goodstotalprice{width: 100%;  border-bottom: 1px solid black; border-top: 1px solid black; line-height: 32px; margin-top:4%;   margin-bottom: 5%;}
+
+.goodscartname1{width: 100%;height: 65px;  border-bottom: 1px solid black;  line-height: 32px; font-size: 14px; color: currentColor;}
+
+.goodscartname2{width: 100%;height: 104px; line-height: 32px; font-size: 26px; color: currentColor; font-weight: 900;}
+
+.goodstotalprice_1{width: 25%;height: 65px; line-height: 65px; float: left;text-align: center;}
+
+.goodstotalprice_2{width: 49.5%;height: 65px;   line-height: 65px; float: left;text-align: center;}
+
+.goodstotalprice2_1{width: 25%;height: 104px;  line-height: 102px; float: left;text-align: center;}
+
+.goodstotalprice2_2{width: 49.5%;height: 104px;  line-height: 102px; float: left;text-align: center;}
+
+/*상품주문 버튼*/
+.chartpay{width: 100%;height: 32px;  line-height: 32px; margin-top:4%; text-align: center; margin-bottom: 5%;}
+
+.cartpaybtn{padding:10px 50px; text-align: center; background-color: white; color: currentColor;  border: 1px solid black;  font-size: 14px;}
+
+.cartpaybtn:hover{background-color: black; color: white}

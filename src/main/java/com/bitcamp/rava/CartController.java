@@ -14,7 +14,7 @@ import com.bitcamp.service.CartService;
 import lombok.extern.log4j.Log4j;
 
 @Controller
-/*@Log4j*/
+@Log4j
 public class CartController {
 
 	@Autowired
@@ -24,31 +24,27 @@ public class CartController {
 	@RequestMapping(value="/cart_insert")
 	public String cart_insert(CartDTO dto,Model model) {
 		
+		log.info(dto);
 		
-		/*log.info(dto);*/
-		
-		
-		return "";
-		
-		/*int result = service.insert(dto);
+		int result = service.insert(dto);
 		
 		int usercode = dto.getUsercode();
 		
 		log.info("usercode 1 : " + usercode );
 		
-		return "redirect:/cart_list/"+ usercode;*/
+		return "redirect:/cart_list/"+ usercode;
 	}
 	
 	@RequestMapping(value="/cart_list/{usercode}")
 	public String cart_list(@PathVariable int usercode, Model model) {
 		
-		/*log.info("usercode 2 : " + usercode );
-		*/
+		log.info("usercode 2 : " + usercode );
+		
 		/* cno list를 받아온 상태 */
 		List<CartDTO> list = service.list(usercode);
 		
 		model.addAttribute("list", list);
 		
-		return "cart_list";
+		return "cart/cart_list";
 	}
 }

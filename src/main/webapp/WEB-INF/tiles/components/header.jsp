@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,6 +14,12 @@
 <script src="/resources/js/header.js"></script>
 </head>
 <body>
+
+	<sec:authorize access="isAuthenticated()">
+      <sec:authentication property='principal.username' var="userid"/>
+      <input type="text" id="userid" value="${userid}">      
+   	</sec:authorize>
+   	
 	<header class="header">
         <div class="header_inner">
             <div class="topmenu">
@@ -21,7 +28,7 @@
                         <a href="#"><i class="fa fa-search"></i></a>
                     </li>
                     <li class="topmenuli">
-                        <a href="#"><i class="fa fa-user"></i></a>
+                        <a href="/mypage/${userid}"><i class="fa fa-user"></i></a>
                     </li>
                     <li class="topmenuli">
                         <a href="#"><i class="fa fa-shopping-basket"></i></a>
@@ -31,6 +38,7 @@
             <div class="logo"><a href="#"><img src="/resources/img/ba_logo.png" alt="BALOGO" class="logo_img"></a></div>
             <nav class="navbox">
                 <ul class="navul">
+                	
                     <li class="navli"><a href="#">Story</a></li>
                     <li class="navli"><a href="#">Cafe</a></li>
                     <li class="navli"><a href="#">Repair</a></li>

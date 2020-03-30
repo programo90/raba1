@@ -17,6 +17,15 @@
 	</listener>
 	
 
+	
+	<!-- 로그인 유지시간 60분으로 설정 -->
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
+	<!-- 로그인 유지시간 60분으로 설정 -->
+
+
+
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>

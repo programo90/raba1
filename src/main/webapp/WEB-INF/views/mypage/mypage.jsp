@@ -1,19 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
     <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./resources/css/mypage/style.css">
-       
-    <title>Insert title here</title>
+     <link rel="stylesheet" href="/resources/css/mypage/style.css">
+<!-- <link rel="stylesheet" href="./resources/css/common.css"> -->
+
+<!-- 
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    
+<script src="/resources/js/cafe/cafe.js"></script> -->
+<title>Insert title here</title>
     </head>
     <body class="block">
+    
+    
+    <!-- security session에서 userid를 불러옵니다. -->
+    <sec:authorize access="isAuthenticated()">
+      <sec:authentication property='principal.username' var="userid"/>
+      <input type="text" id="userid" value="${userid}">      
+   	</sec:authorize>
+   	<!-- security session에서 userid를 불러옵니다. -->
+   	
+   		
         <div class="mt-2">
             <div class="bg-gray-50">
                 <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
                   <h2 class="text-4xl leading-9 font-extrabold text-gray-900 sm:text-5xl sm:leading-none">
-                   회원님 안녕하세요! 
+                		${username}님 안녕하세요! 
                     <br />
                     <span class="text-indigo-600">BREAK AWAY</span>
                   </h2>
@@ -40,7 +55,7 @@
                         <a href="/mypage" class="block p-4 text-gray-800 font-bold hover:text-purple-600 hover:font-bold ">주문 내역</a>
                     </li>
                     <li class="inline-block mr-10  ">
-                        <a href="/wishlist" class="block p-4 text-gray-800 font-normal hover:text-purple-600 hover:font-bold">위시 리스트</a>
+                        <a href="/wishlist/${userid}" class="block p-4 text-gray-800 font-normal hover:text-purple-600 hover:font-bold">위시 리스트</a>
                     </li>
                     <li class="inline-block mr-10 ">
                         <a href="#" class="block p-4 text-gray-800 font-normal hover:text-purple-600 hover:font-bold">주행 거리</a>

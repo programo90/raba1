@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="./resources/css/mypage/style.css">
+<link rel="stylesheet" href="/resources/css/mypage/style.css">
 <!-- <link rel="stylesheet" href="./resources/css/common.css"> -->
 
 <!-- 

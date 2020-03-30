@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bitcamp.dto.CartDTO;
+import com.bitcamp.dto.CartListDTO;
 import com.bitcamp.service.CartService;
 
 import lombok.extern.log4j.Log4j;
 
 @Controller
-/*@Log4j*/
+@Log4j
 public class CartController {
 
 	@Autowired
@@ -43,8 +44,13 @@ public class CartController {
 		/* cno list를 받아온 상태 */
 		List<CartDTO> list = service.list(usercode);
 		
+		List<CartDTO> cnolist = service.cnolist(usercode);
+		
 		model.addAttribute("list", list);
+		
+		model.addAttribute("cnolist", cnolist);
 		
 		return "cart/cart_list";
 	}
+	
 }

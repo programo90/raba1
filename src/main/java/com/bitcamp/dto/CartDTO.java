@@ -7,6 +7,8 @@ public class CartDTO {
 	private int p_no;
 	private int p_amount;
 	
+	
+	
 	public int getCno() {
 		return cno;
 	}

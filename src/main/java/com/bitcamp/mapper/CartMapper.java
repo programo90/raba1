@@ -13,4 +13,6 @@ public interface CartMapper {
 
 	List<CartDTO> list(int usercode);
 
+	List<CartDTO> cnolist(int usercode);
+
 }

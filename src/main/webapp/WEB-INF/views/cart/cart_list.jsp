@@ -14,7 +14,8 @@
 </head>
 <body>
 	<div class="contents">
-		<sec:authorize access="hasRole('isAuthenticated()')">
+	
+		<sec:authorize access="isAuthenticated()">
 			<sec:authentication property='principal.username' var="userid" />
 			<input type="hidden" id="userid" value="${userid}">
 		</sec:authorize>
@@ -48,11 +49,16 @@
 			</div>
 
 			<!--장바구니 상품 정보 아랫부분-->
+			<c:forEach var="listcno" items="${cnolist}">
+				<input type="hidden" value="${listcno.cno }" class="cnolist">
+			</c:forEach>
 			<c:forEach var="Cartlist" items="${list }">
+			<!-- cno값을 따로 가져왓는데 한꺼번에 가져오는 방식을 찾아서 수정할 예정  -->
 			<div class="cartlist">
 				<div class="cartch2">
-					<input type="checkbox" class="list_checkbox" onclick="plusPrice()" checked>
+					<input type="checkbox" class="list_checkbox" onclick="plusPrice()" checked >
 				</div>
+				
 				<div class="cartimg">
 					<span>이미지</span>
 				</div>
@@ -74,6 +80,7 @@
 					<input type="hidden" value="<c:out value="${Cartlist.p_price * Cartlist.p_amount }"/>" class="price">
 				</div>
 			</div>
+			
 			</c:forEach>
 			
 			<!--장바구니 상품정보 가격 합계-->
@@ -91,8 +98,8 @@
 
 		<!--장바구니 상품 삭제 장바구니 비우기 버튼 -->
 		<div class="goodscartbtn">
-			<span>선택상품</span> <a href="" class="cartdelete">삭제</a><a href=""
-				class="cartalldelete">장바구니 비우기</a>
+			<span>선택상품</span> <a href="" class="cartdelete">삭제</a>
+			<a href="" class="cartalldelete">장바구니 비우기</a>
 		</div>
 
 		<!--결제 금액 안내-->
@@ -121,14 +128,32 @@
 				</div>
 				<div class="goodstotalprice2_2">
 					<span id="total_price_text"></span>
-					<input type="hidden" name="cnolist" id="total_price">
 				</div>
 			</div>
 		</div>
+		
+		<!-- 넘겨 주어야할 값  -->
+		
+		<!-- hidden으로 숨겨 놓은 배열로 이루어진 cno값들   -->
+		
+		
+		
+
+
+
 
 		<!--상품 결제페이지 이동 버튼-->
-		<div class="chartpay">
-			<input type=submit value="상품 주문 " class="cartpaybtn">
+		<div class="chartpay" >
+			<form action="/pay" method="post">
+				
+				<div id="orderdata"></div>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				<input type="hidden" name="totalprice" id="total_price">
+				<input type="hidden" name="usercode" value="${userid }">
+				<input type=submit value="상품 주문 " class="cartpaybtn">
+				
+			</form>
+			
 		</div>
 	</div>
 </body>

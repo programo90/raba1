@@ -26,10 +26,17 @@
   </insert>
   
   <select id="list" parameterType="int" resultMap="cartlist">
-  	select GoodsTable.pno, GoodsTable.pname, GoodsTable.psize, GoodsTable.price, CartTable.camount
+  	select GoodsTable.pno, GoodsTable.pname, GoodsTable.psize, GoodsTable.price, CartTable.camount, CartTable.cno
   	from GoodsTable join CartTable
   	on GoodsTable.pno = CartTable.pno
   	where userno = #{usercode}
   </select>
+
+	<select id="cnolist" parameterType="int" resultMap="cartmap">
+		select cno
+		from CartTable
+		where userno = #{usercode}
+	</select>
+
   
   </mapper>

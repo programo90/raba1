@@ -31,4 +31,13 @@ public class CartServiceImple implements CartService {
 		
 		return list;
 	}
+
+	@Override
+	public List<CartDTO> cnolist(int usercode) {
+		// TODO Auto-generated method stub
+		
+		List<CartDTO> cnolist = mapper.cnolist(usercode);		
+		
+		return cnolist;
+	}
 }

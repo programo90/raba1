@@ -17,4 +17,6 @@ public interface CartService {
 
 	List<CartDTO> list(int usercode);
 
+	List<CartDTO> cnolist(int usercode);
+
 }

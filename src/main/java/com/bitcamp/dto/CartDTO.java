@@ -3,7 +3,7 @@ package com.bitcamp.dto;
 public class CartDTO {
 
 	private int cno;
-	private int usercode;
+	private String usercode;
 	private int p_no;
 	private int p_amount;
 	
@@ -15,10 +15,11 @@ public class CartDTO {
 	public void setCno(int cno) {
 		this.cno = cno;
 	}
-	public int getUsercode() {
+	
+	public String getUsercode() {
 		return usercode;
 	}
-	public void setUsercode(int usercode) {
+	public void setUsercode(String usercode) {
 		this.usercode = usercode;
 	}
 	public int getP_no() {

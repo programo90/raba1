@@ -14,11 +14,13 @@
 </head>
 <body>
 <div class="contents">
-	<sec:authorize access="hasRole('isAuthenticated()')">
+	<sec:authorize access="isAuthenticated()">
       <sec:authentication property='principal.username' var="userid"/>
-      <input type="hidden" id="userid" value="${userid}">      
+      <input type="hidden" id="userid" value="${userid}">
    </sec:authorize>
-	
+	<%-- <sec:authorize access="isAnonymous()">
+		<c:set var="userid" value="aaa"/>
+	</sec:authorize> --%>
 	 <div class="detail_wrap">
             <div class="detail_img"><img src="" alt="detail_img"></div>
           
@@ -39,7 +41,7 @@
                                 <label for="">Amount</label>
                                 <input type="number" value="1" name="p_amount" id="p_amount" min="1" >
                                 <input type="hidden" id="pno" name="p_no" >
-                                <input type="hidden" id="target" name="usercode" value="1297586532">
+                                <input type="hidden" id="target" name="usercode" value=${userid } >
                             </li>
                             <li><input type="submit" value="BUY NOW" class="buynow"></li>
                             <li><div class="addcart">ADD CART</div></li>

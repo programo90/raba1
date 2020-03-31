@@ -80,11 +80,11 @@ document.addEventListener("DOMContentLoaded",function(){
 		
 		document.getElementById("p_amount").max = limitamount ;
 		
-		document.getElementById("pno").value = selectedno;
+		document.getElementById("pno").value = selectedno*1;
 		
 		
 		/* userid가 null인데 그이유는 login을 하지 않은 상태로 접근을 하기 때문이다.*/
-		console.log(document.getElementById("usercode").value);
+		/*console.log(document.getElementById("target").value);*/
 		
 	});
 	

@@ -24,7 +24,7 @@ public class CartServiceImple implements CartService {
 	}
 
 	@Override
-	public List<CartDTO> list(int usercode) {
+	public List<CartDTO> list(String usercode) {
 		// TODO Auto-generated method stub
 		
 		List<CartDTO> list = mapper.list(usercode);
@@ -33,7 +33,7 @@ public class CartServiceImple implements CartService {
 	}
 
 	@Override
-	public List<CartDTO> cnolist(int usercode) {
+	public List<CartDTO> cnolist(String usercode) {
 		// TODO Auto-generated method stub
 		
 		List<CartDTO> cnolist = mapper.cnolist(usercode);		

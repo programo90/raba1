@@ -6,7 +6,7 @@
   
   <resultMap type="com.bitcamp.dto.CartDTO" id="cartmap">
   	<result property="cno" column="cno"/>
-  	<result property="userid" column="userno"/>
+  	<result property="usercode" column="userid"/>
   	<result property="p_no" column="pno"/>
   	<result property="p_amount" column="camount"/>
   </resultMap>
@@ -21,21 +21,21 @@
   
   
   <insert id="insert" parameterType="com.bitcamp.dto.CartDTO">
-  	insert into CartTable(cno, userno, pno, camount)
+  	insert into CartTable(cno, userid, pno, camount)
   	values (null, #{usercode}, #{p_no}, #{p_amount})
   </insert>
   
-  <select id="list" parameterType="int" resultMap="cartlist">
+  <select id="list" parameterType="String" resultMap="cartlist">
   	select GoodsTable.pno, GoodsTable.pname, GoodsTable.psize, GoodsTable.price, CartTable.camount, CartTable.cno
   	from GoodsTable join CartTable
   	on GoodsTable.pno = CartTable.pno
-  	where userno = #{usercode}
+  	where userid = #{usercode}
   </select>
 
-	<select id="cnolist" parameterType="int" resultMap="cartmap">
+	<select id="cnolist" parameterType="String" resultMap="cartmap">
 		select cno
 		from CartTable
-		where userno = #{usercode}
+		where userid = #{usercode}
 	</select>
 
   

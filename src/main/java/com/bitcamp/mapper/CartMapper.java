@@ -11,8 +11,8 @@ public interface CartMapper {
 
 	int insert(CartDTO dto);
 
-	List<CartDTO> list(int usercode);
+	List<CartDTO> list(String usercode);
 
-	List<CartDTO> cnolist(int usercode);
+	List<CartDTO> cnolist(String usercode);
 
 }

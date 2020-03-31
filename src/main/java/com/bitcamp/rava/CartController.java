@@ -29,7 +29,7 @@ public class CartController {
 		
 		int result = service.insert(dto);
 		
-		int usercode = dto.getUsercode();
+		String usercode = dto.getUsercode();
 		
 		/*log.info("usercode 1 : " + usercode );*/
 		
@@ -37,7 +37,7 @@ public class CartController {
 	}
 	
 	@RequestMapping(value="/cart_list/{usercode}")
-	public String cart_list(@PathVariable int usercode, Model model) {
+	public String cart_list(@PathVariable String usercode, Model model) {
 		
 		/*log.info("usercode 2 : " + usercode );*/
 		

@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<sec:authorize access="hasRole('isAuthenticated()')">
+	<sec:authorize access="isAuthenticated()">
       <sec:authentication property='principal.username' var="userid"/>
       <input type="hidden" id="userid" value="${userid}">      
    </sec:authorize>

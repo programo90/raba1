@@ -102,7 +102,7 @@ public class GoodsController {
 		
 		model.addAttribute("list", list);
 		
-		return "admin/goodsadmin";
+		return "admin/admin_goods_list";
 	}
 	
 }

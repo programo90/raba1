@@ -11,15 +11,6 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 			
-			// 업로드 이후 초기화를 위한 클론 생성
-			var cloneObj = $(".uploadDiv").clone();
-			
-			$("#uploadBtn").on("click",function(e){
-				
-				var forData = new FormData();
-				
-			});
-			
 			$(document).ready(function(){
 				
 				/* start 파일의 확장자와 크기를 설정하고 이를 검사  */
@@ -45,6 +36,9 @@
 				}
 				
 				/* end 파일의 확장자와 크기를 설정하고 이를 검사  */
+				
+				// 업로드 이후 초기화를 위한 클론 생성
+				var cloneObj = $(".uploadDiv").clone();
 				
 				$("#uploadBtn").on("click",function(e){
 					
@@ -83,12 +77,30 @@
 							
 							console.log(result);
 							
+							showUploadedFile(result);
+							
 							// 업로드 이후 초기화 (미리 만들어 놓은 클론)
 							$(".uploadDiv").html(cloneObj.html());
 							
 						}
 						
 					}); //ajax
+					
+					
+					var uploadResult = $(".uploadResult ul");
+					//json data를 받아서 해당파일의 이름을 추가하는 기능
+					function showUploadedFile(uploadResultArr) {
+						
+						var str = "";
+						
+						$(uploadResultArr).each(function(i,obj){
+							
+							str += "<li>" + obj.fileName + "</li>";
+						});
+						
+						uploadResult.append(str);
+					}
+					
 					
 				});
 			});
@@ -99,6 +111,13 @@
 	
 	<div class="uploadDiv">
 		<input type="file" name="uploadFile" multiple>
+	</div>
+	
+	<!-- 업로드할 썸내일 출력 -->
+	<div class="uploadResult">
+		<ul>
+		
+		</ul>
 	</div>
 	
 	<button id="uploadBtn">upload</button>

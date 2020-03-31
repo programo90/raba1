@@ -82,7 +82,7 @@ public class UploadController {
 		String uploadFolderPath = getFolder(); //업로드되는 폴더의 경로??
 		//make folder-----------------
 		File uploadPath = new File(uploadFolder, getFolder()); //getFolder는 오늘 날찌의 경로를 문자열로 생성
-		/*log.info("uploadpath" + uploadpath);*/
+		/*log.info("uploadpath : " + uploadpath);*/
 		
 		if(uploadPath.exists() == false) {
 			

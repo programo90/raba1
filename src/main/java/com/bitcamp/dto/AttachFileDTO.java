@@ -1,11 +1,13 @@
 package com.bitcamp.dto;
 
 public class AttachFileDTO {
-
-	private String fileName;
-	private String uploadPath;
-	private String uuid;
-	private boolean image;
+	
+	/* 첨부파일의 정보들을 저장 */
+			
+	private String fileName;	//원본 파일의 이름
+	private String uploadPath;	//업로드 경로
+	private String uuid;		//uudi 값
+	private boolean image;		//이미지 여부
 	
 	
 	public String getFileName() {
@@ -31,6 +33,12 @@ public class AttachFileDTO {
 	}
 	public void setImage(boolean image) {
 		this.image = image;
+	}
+	
+	@Override
+	public String toString() {
+		return "AttachFileDTO [fileName=" + fileName + ", uploadPath=" + uploadPath + ", uuid=" + uuid + ", image="
+				+ image + "]";
 	}
 	
 	

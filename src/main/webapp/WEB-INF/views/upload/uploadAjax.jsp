@@ -11,7 +11,14 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 			
+			// 업로드 이후 초기화를 위한 클론 생성
+			var cloneObj = $(".uploadDiv").clone();
 			
+			$("#uploadBtn").on("click",function(e){
+				
+				var forData = new FormData();
+				
+			});
 			
 			$(document).ready(function(){
 				
@@ -67,13 +74,17 @@
 						contentType : false,
 						data : formData,
 						type : 'POST',
+						dataType : 'json',
 						beforeSend : function(xhr)
 	                      {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
 	                          xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
 	                     	},
 						success : function(result){
 							
-							alert("Uploaded!!!");
+							console.log(result);
+							
+							// 업로드 이후 초기화 (미리 만들어 놓은 클론)
+							$(".uploadDiv").html(cloneObj.html());
 							
 						}
 						

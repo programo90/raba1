@@ -1,19 +1,20 @@
 package com.bitcamp.dto;
 
-import java.util.Arrays;
-
 public class OrderDTO {
 	
 	private int oderno;
-	private Integer[] ordercpno;
+	private String[] ordercpnolist;
 	private String salesdate;
 	private int waybillno;
 	private String ordermg;
 	private int totalprice;
 	private String userid;
 	private String deltype;
-	private Integer[] ordercprice;
-	private Integer[] ordercamount;
+	private String[] ordercpricelist;
+	private String[] ordercamountlist;
+	private String ordercpno;
+	private String ordercprice;
+	private String ordercamount;
 	private String orderuname;
 	private int orderuaddr1;
 	private String orderuaddr2;
@@ -22,6 +23,25 @@ public class OrderDTO {
 	private String orderuemail;
 	private String orderstatus;
 	private String payuname;
+	
+	public String getOrdercpno() {
+		return ordercpno;
+	}
+	public void setOrdercpno(String ordercpno) {
+		this.ordercpno = ordercpno;
+	}
+	public String getOrdercprice() {
+		return ordercprice;
+	}
+	public void setOrdercprice(String ordercprice) {
+		this.ordercprice = ordercprice;
+	}
+	public String getOrdercamount() {
+		return ordercamount;
+	}
+	public void setOrdercamount(String ordercamount) {
+		this.ordercamount = ordercamount;
+	}
 	
 	public String getDeltype() {
 		return deltype;
@@ -120,33 +140,23 @@ public class OrderDTO {
 	public void setPayuname(String payuname) {
 		this.payuname = payuname;
 	}
-
-	public Integer[] getOrdercprice() {
-		return ordercprice;
+	public String[] getOrdercpnolist() {
+		return ordercpnolist;
 	}
-	public void setOrdercprice(Integer[] ordercprice) {
-		this.ordercprice = ordercprice;
+	public void setOrdercpnolist(String[] ordercpnolist) {
+		this.ordercpnolist = ordercpnolist;
 	}
-	public Integer[] getOrdercamount() {
-		return ordercamount;
+	public String[] getOrdercpricelist() {
+		return ordercpricelist;
 	}
-	public void setOrdercamount(Integer[] ordercamount) {
-		this.ordercamount = ordercamount;
+	public void setOrdercpricelist(String[] ordercpricelist) {
+		this.ordercpricelist = ordercpricelist;
 	}
-	public Integer[] getOrdercpno() {
-		return ordercpno;
+	public String[] getOrdercamountlist() {
+		return ordercamountlist;
 	}
-	public void setOrdercpno(Integer[] ordercpno) {
-		this.ordercpno = ordercpno;
-	}
-	@Override
-	public String toString() {
-		return "OrderDTO [oderno=" + oderno + ", ordercpno=" + Arrays.toString(ordercpno) + ", salesdate=" + salesdate
-				+ ", waybillno=" + waybillno + ", ordermg=" + ordermg + ", totalprice=" + totalprice + ", userid="
-				+ userid + ", deltype=" + deltype + ", ordercprice=" + Arrays.toString(ordercprice) + ", ordercamount="
-				+ Arrays.toString(ordercamount) + ", orderuname=" + orderuname + ", orderuaddr1=" + orderuaddr1
-				+ ", orderuaddr2=" + orderuaddr2 + ", orderuaddr3=" + orderuaddr3 + ", orderuphone=" + orderuphone
-				+ ", orderuemail=" + orderuemail + ", orderstatus=" + orderstatus + ", payuname=" + payuname + "]";
+	public void setOrdercamountlist(String[] ordercamountlist) {
+		this.ordercamountlist = ordercamountlist;
 	}
 
 

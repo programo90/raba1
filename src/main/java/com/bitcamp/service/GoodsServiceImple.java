@@ -15,7 +15,7 @@ import com.bitcamp.mapper.GoodsMapper;
 
 import lombok.extern.log4j.Log4j;
 
-@Log4j
+/*@Log4j*/
 @Service
 public class GoodsServiceImple implements GoodsService {
 
@@ -30,7 +30,7 @@ public class GoodsServiceImple implements GoodsService {
 	public void insertvalue(GoodsDTO dto, GoodsSizeDTO sizedto) {
 		// TODO Auto-generated method stub
 		
-		log.info("register : "+ dto);
+		/*log.info("register : "+ dto);*/
 		
 		
 		if(sizedto.getFree() != null) {
@@ -117,9 +117,14 @@ public class GoodsServiceImple implements GoodsService {
 		return list;
 	}
 
+	@Transactional
 	@Override
 	public int deletegoods(int p_no) {
 		// TODO Auto-generated method stub
+		
+		/*log.info("remove.....");*/
+		
+		
 		
 		mapper.delete(p_no);
 		
@@ -211,7 +216,7 @@ public class GoodsServiceImple implements GoodsService {
 	public List<BoardAttachVO> getAttachList(int pno) {
 		// TODO Auto-generated method stub
 		
-		log.info("get Attach list by pno " +pno);
+		/*log.info("get Attach list by pno " +pno);*/
 		
 		return attach_mapper.findByPno(pno);
 	}

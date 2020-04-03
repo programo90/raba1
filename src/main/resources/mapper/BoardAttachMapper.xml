@@ -19,4 +19,7 @@
 		where pno = #{pno}
 	</select>
 	
+	<delete id="deleteAll" parameterType="int">
+		delete GoodsImageTable where pno = #{p_no}
+	</delete>
 </mapper>

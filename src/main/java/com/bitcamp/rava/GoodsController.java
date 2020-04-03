@@ -120,6 +120,7 @@ public class GoodsController {
 		return "admin/admin_goods_list";
 	}
 	
+	/* 사진 첨부 */
 	
 	@GetMapping(value="/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody

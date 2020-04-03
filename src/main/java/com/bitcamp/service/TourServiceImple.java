@@ -29,12 +29,6 @@ public class TourServiceImple implements TourService{
 	public void insertTour(TourDTO dto) {
 		//프로시져로 먼저 투어정보를 db에 저장하고, 투어 정보를 외래키로 갖는 marker정보를 db에 저장한다.
 		//실패시 롤백
-		System.out.println("userid : " + dto.getUserid());
-		
-		HostDTO hostdto = tourMapper.hostDetailById(dto.getUserid());
-		System.out.println(hostdto.getHostno());
-		
-		dto.setHostno(hostdto.getHostno());
 		
 		//투어 정보를 가지고 db에 저장.
 		String[] tourLatList = dto.getTourlatlist();
@@ -54,9 +48,19 @@ public class TourServiceImple implements TourService{
 		
 		dto.setTourlat(tourlat.toString());
 		dto.setTourlng(tourlng.toString());
+		
+		//즐겨차기 루트 수정, 루트 수정할땐 mode = 1로
+		int mode = 0;
+		if(mode == 0) {
+			
 		dto.setTourday(dto.getTourdate().substring(0, 10));
 		dto.setTourtime(dto.getTourdate().substring(11));
+			
+		HostDTO hostdto = tourMapper.hostDetailById(dto.getUserid());
+		tourMapper.increaLeadCount(hostdto.getHostno());
 		
+		dto.setHostno(hostdto.getHostno());
+			
 		tourMapper.insertTour(dto);
 		int tourno = dto.getTourno();
 		
@@ -91,7 +95,9 @@ public class TourServiceImple implements TourService{
 				
 		//투어 타입에 따라 tourlist.jsp에서 표현해줄 마우스오버 효과 지정
 				
-		
+		} else {
+			tourMapper.insertFavTour(dto);
+		}
 	}
 
 	@Override
@@ -199,6 +205,8 @@ public class TourServiceImple implements TourService{
 		//spot과 applylist는 cascade로 자동 삭제된다.
 		/*tourMapper.deleteApplyList(tourno);
 		tourMapper.deleteMarker(tourno);*/
+		TourDTO dto = tourMapper.tourDetail(tourno);
+		tourMapper.decreaLeadCount(dto.getHostno());
 		
 		return tourMapper.deleteTour(tourno);
 	}
@@ -294,6 +302,89 @@ public class TourServiceImple implements TourService{
 		map.put("tourno", tourno);
 		map.put("tourstate", tourstate);
 		return tourMapper.updateState(map);
+	}
+
+	@Override
+	public List<TourDTO> tourUserList(String userid) {
+		// TODO Auto-generated method stub
+		return tourMapper.tourUserList(userid);
+	}
+
+	@Override
+	public int cancelApplyTour(String userid, int tourno) {
+		// TODO Auto-generated method stub
+		tourMapper.decreaCancount(tourno);
+		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("userid", userid);
+		map.put("tourno", tourno);
+		
+		return tourMapper.cancelApplyTour(map);
+	}
+
+	@Override
+	public HostDTO hostDetailById(String userid) {
+		// TODO Auto-generated method stub
+		
+		return tourMapper.hostDetailById(userid);
+	}
+
+	@Override
+	public List<TourDTO> tourHostList(Integer hostno) {
+		// TODO Auto-generated method stub
+		return tourMapper.tourHostList(hostno);
+	}
+
+	@Override
+	public List<TourApplyDTO> tourApplyList(int tourno) {
+		// TODO Auto-generated method stub
+		return tourMapper.tourApplyList(tourno);
+	}
+
+	@Override
+	public TourDTO tourFavDetail(int tourno) {
+		// TODO Auto-generated method stub
+		TourDTO dto = tourMapper.tourFavDetail(tourno);
+		
+		String lat = dto.getTourlat();
+		String lng = dto.getTourlng();
+	
+		StringTokenizer stLat = new StringTokenizer(lat,",");
+		String[] latList = new String[stLat.countTokens()];
+		StringTokenizer stLng = new StringTokenizer(lng,",");
+		String[] lngList = new String[stLng.countTokens()];
+		for(int i=0; i<latList.length; i++) {
+			latList[i] = stLat.nextToken();
+			lngList[i] = stLng.nextToken();
+		}
+		
+		dto.setTourlatlist(latList);
+		dto.setTourlnglist(lngList);
+		
+		return dto;
+	}
+
+	@Override
+	public List<TourReplyDTO> deleteTourRe(int tourno, int tourreno) {
+		// TODO Auto-generated method stub
+		tourMapper.deleteTourRe(tourreno);
+		return tourMapper.replyList(tourno);
+	}
+
+	@Override
+	public List<TourReplyDTO> updateTourRe(int tourno, int tourreno, String recontent) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("tourreno", tourreno);
+		map.put("recontent", recontent);
+		tourMapper.updateTourRe(map);
+		return tourMapper.replyList(tourno);
+	}
+
+	@Override
+	public List<TourReplyDTO> listTourRe(int tourno) {
+		// TODO Auto-generated method stub
+		return tourMapper.replyList(tourno);
 	}
 	
 }

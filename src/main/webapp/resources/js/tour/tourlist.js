@@ -16,19 +16,16 @@ window.onload = function() {
 		
 		var temppop = temptagbox[i].nextElementSibling;
 		if(temppop.value==0) {
-			temppop.nextElementSibling.innerHTML = '<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/tourlist.jpg">';
+			temppop.nextElementSibling.innerHTML = '<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/custom-1.png">';
 		} else if(temppop.value == 1) {
-			temppop.nextElementSibling.innerHTML = '<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/tourlist.jpg">';
+			temppop.nextElementSibling.innerHTML = '<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/course-1-1.png">';
 		} else if(temppop.value == 2) {
-			temppop.nextElementSibling.innerHTML = '<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/tourlist.jpg">';
+			temppop.nextElementSibling.innerHTML = '<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/course-2-1.png">';
 		} else if(temppop.value == 3) {
-			temppop.nextElementSibling.innerHTML = '<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/tourlist.jpg">';
+			temppop.nextElementSibling.innerHTML = '<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/course-3-1.png">';
 		} else if(temppop.value == 4) {
-			temppop.nextElementSibling.innerHTML = '<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/tourlist.jpg">';
-		} else if(temppop.value == 5) {
-			temppop.nextElementSibling.innerHTML = '<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/tourlist.jpg">';
-		}
-		
+			temppop.nextElementSibling.innerHTML = '<img style="width:100%" class="tourlist_content_img" alt="img" src="/resources/img/tour/course-4-1.png">';
+		} 
 	}
 	
 	

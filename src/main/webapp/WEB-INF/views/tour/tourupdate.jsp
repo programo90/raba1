@@ -44,8 +44,10 @@
                 </div>
             </div>
             <!--이하 입력창-->
-            <sec:authentication property='principal.username' var="loginid"/>
-			<input type="hidden" name="userid" id="userid" value="${loginid }">
+				<sec:authorize access="isAuthenticated()">
+					<sec:authentication property='principal.username' var="loginid"/>
+					<input type="hidden" id="userid" value="${loginid }">
+				</sec:authorize>
 			
             <div id="tourinsert_detailblock">
                     <div id="tourinsert_detaillbox1">
@@ -169,12 +171,14 @@
     <form>
     	<input type="hidden" id="updateflag" value="1">
     	<input type="hidden" id="selected_populartour" value="${dto.populartour }">
-    	<c:forEach items="${dto.tourlatlist }" var="selLat">
-			<input type="hidden" class="tourlatlist" value="${selLat}">
-        </c:forEach>
-        <c:forEach items="${dto.tourlnglist }" var="selLng">
-        	<input type="hidden" class="tourlnglist" value="${selLng}">
-        </c:forEach>
+    	<div id="hiddenform">
+    		<c:forEach items="${dto.tourlatlist }" var="selLat">
+				<input type="hidden" class="tourlatlist" value="${selLat}">
+        	</c:forEach>
+        	<c:forEach items="${dto.tourlnglist }" var="selLng">
+        		<input type="hidden" class="tourlnglist" value="${selLng}">
+        	</c:forEach>
+    	</div>
         <c:forEach items="${markerlist}" var="selmarker" varStatus="state">
         	<input type="hidden" class="markertitlelist" value="${selmarker.spottitle}">
         	<input type="hidden" class="markercommlist" value="${selmarker.spotcontent}">
@@ -631,29 +635,65 @@ function getTimeHTML(distance) {
     
 
 //즐겨찾는 일정 선택, 선택시 자동으로 해당 경로를 ajax로 불러와서 화면에 보여주고, 스크립트상 저장한다.
+var latList = [];
+var lngList = [];
+    
 function selectFavoritTour(){
     var selectedFavoritTour = document.getElementById('favorit_tour');
     var selectedFavoritTourValue = selectedFavoritTour.options[selectedFavoritTour.selectedIndex].value;
     
     var updateorinsert = document.getElementById('updateflag').value;
-    var latList = [];
-    var lngList = [];
 	//update 페이지 첫 로드 상태가 아니라면 저장되어 있는 자주이용 경로의 lat, lng 을 불러옴
     if(updateorinsert==0) {
     	//선택한 경로를 selectedFavoritTourValue 값으로 파악하고 해당 경로 lat, lng 값을 ajax로 받아온다.	
     	// 받아온 lat, lng list를 class="tourlatlist", class="tourlnglist" 로 넣어준다.
-    	latList = document.getElementsByClassName('tourlatlist');
-    	lngList = document.getElementsByClassName('tourlnglist');
-
+    	var tempdata = {"tourno":selectedFavoritTourValue};
+    	if(selectedFavoritTourValue!=0) {
+    		$.ajax({
+    			url: '/tourgetfavorit'
+    			,data : tempdata
+    			,dataType : 'json'
+    			,contentType: "application/json;charset=utf-8"
+    			,success : function(data) {
+    				var result = '';
+    				if(data.tourno == selectedFavoritTourValue) {
+    					//back에서 tourdto하나에 tourlatlist, tourlnglist 로 배열을 보내고
+    					$.each(data.tourlatlist, function(index, item){
+    							result += '<input type="hidden" class="tourlatlist" value="' + item + '">';
+    					})
+    					$.each(data.tourlnglist, function(index, item){
+    							result += '<input type="hidden" class="tourlnglist" value="' + item + '">';
+    					})	
+    				}
+    	        	
+    				$('#hiddenform').html(result);
+    				
+    		    	latList = document.getElementsByClassName('tourlatlist');
+    		    	lngList = document.getElementsByClassName('tourlnglist');		
+    		    	
+    		    	drawSelectedRoute();
+    			}
+    		 	,error : function(data) {
+    		 		alert("에러 : 관리자에게 문의하세요");
+    		 	}
+    		 });	
+    	}
+     	
     } else {
     	latList = document.getElementsByClassName('tourlatlist');
     	lngList = document.getElementsByClassName('tourlnglist');
+    	
+    	drawSelectedRoute();
+    	
     	document.getElementById('updateflag').value = 0;
+    	
     }
     
-    
-    
-    if(latList[0] != null) {
+}   
+
+function drawSelectedRoute() {
+	
+	if(latList[0] != null) {
     	drawingFlag = true;
         deleteClickLine();
         deleteDistnce();
@@ -702,9 +742,8 @@ function selectFavoritTour(){
     	}
         
         drawingFlag = false;	
-    } 
- 
-}    
+    }
+}
 
     //그린 경로의 좌표값을 lat, lng 으로 저장해서 배열로 만들고, 그 외에 입력한 값들과 함께 submit.
 function insertTour(){

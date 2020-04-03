@@ -40,6 +40,17 @@ public interface TourMapper {
 	public int updateState(HashMap<String, Object> map);
 	public int increUserDistance(HashMap<String, Object> map);
 	public HostDTO hostDetailById(String userid);
+	public List<TourDTO> tourUserList(String userid);
+	public int decreaCancount(int tourno);
+	public int cancelApplyTour(HashMap<String, Object> map);
+	public List<TourDTO> tourHostList(Integer hostno);
+	public int increaLeadCount(Integer hostno);
+	public int decreaLeadCount(Integer hostno);
+	public List<TourApplyDTO> tourApplyList(int tourno);
+	public int insertFavTour(TourDTO dto);
+	public TourDTO tourFavDetail(int tourno);
+	public int deleteTourRe(int tourreno);
+	public int updateTourRe(HashMap<String, Object> map);
 	
 	
 	

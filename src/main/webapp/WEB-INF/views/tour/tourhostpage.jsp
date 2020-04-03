@@ -11,14 +11,9 @@
 <link rel="stylesheet" href="/resources/css/common.css">
 <link rel="stylesheet" href="./resources/css/mypage/style.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="/resources/js/tour/tourmypage.js"></script>
+<script type="text/javascript" src="/resources/js/tour/tourhost.js"></script>
 </head>
 <body class="block">
-	<sec:authorize access="isAuthenticated()">
-		<sec:authentication property='principal.username' var="loginid"/>
-		<input type="hidden" id="userid" value="${loginid }">
-	</sec:authorize>
-	
 	<div class="mt-2">
 		<div class="bg-gray-50">
 			<div
@@ -64,19 +59,11 @@
 			<div class="w-full lg:w-10/12 min-h-screen antialiased bg-white">
 				<div>
 					<h2 class="text-gray-800 text-2xl font-semibold leading-tight">
-						투어 참여 내역<span style="display: inline-block; float: right;">
-						총 거리 : 
-						<c:choose>
-							<c:when test="${totaldistance lt 1000 }">
-								${totaldistance} m
-							</c:when>
-							<c:when test="${totaldistance ge 1000 }">
-								${totaldistance/1000} km
-							</c:when>
-						</c:choose>
-						</span>
+						투어 모집 내역<span style="display: inline-block; float: right;">모집 횟수 : ${hostdto.leadcount}회</span>
 					</h2>
+
 				</div>
+
 				<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
 					<div
 						class="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -87,11 +74,11 @@
 										class="w-5/12 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
 										Tour info</th>
 									<th
-										class="hidden md:table-cell w-3/12 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-										Distance</th>
-									<th
 										class="hidden md:table-cell w-2/12 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
 										Tour date</th>
+									<th
+										class="hidden md:table-cell w-3/12 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+										Application State
 									<th
 										class="w-2/12 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
 										Status</th>
@@ -106,61 +93,52 @@
 									<td class=" flex items-center px-5 py-5 bg-white text-sm">
 										<img src="./resources/img/mypage/product.png" alt="product"
 										class="m-3 my-auto h-12 w-12 flex-shrink-0">
-										<div
-											class="px-3 py-2 w-full flex items-center justify-between leading-none">
+										<a href="/tourdetail/${dto.tourno }">
+										<div class="px-3 py-2 w-full flex items-center justify-between leading-none">
 											<div class="truncate">
-												<a href="/tourdetail/${dto.tourno}">
-													<div>
-														출발지 : ${dto.startspot}<br>도착지 : ${dto.endspot}
+													<div style="text-align: center;">
+														<h2 style="margin-bottom:10px; font-size:20px;">${dto.tourtitle}</h2> <p>From ${dto.startspot}<br>To ${dto.endspot}</p>
 													</div>
-												</a>
 											</div>
 										</div>
-									</td>
-									<td
-										class="hidden md:table-cell px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
-										<span class="text-gray-900 text-sm">
-											<c:choose>
-												<c:when test="${dto.distance lt 1000 }">
-													${dto.distance} m 
-												</c:when>
-												<c:when test="${dto.distance ge 1000 }">
-													${dto.distance/1000 } km
-												</c:when>
-											</c:choose>
-										
-										</span>
+										</a>
 									</td>
 									<td
 										class="hidden md:table-cell  px-5 py-5 border-b border-gray-200 bg-white text-sm">
 										<p class="text-gray-900 whitespace-no-wrap">${dto.tourday } ${dto.tourtime }</p>
 									</td>
+									<td
+										class="hidden md:table-cell px-5 py-5 border-b border-gray-200 bg-white text-sm text-center"
+										onclick="detailinfo(this)" data-tourno="${dto.tourno }" data-openwin="0">
+										<span class="text-gray-900 text-sm">${dto.cancount } / ${dto.totalcount }</span><br>
+										<input type="button" value="명단 보기">
+									</td>
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 										<div class="text-gray-500">
-											<c:choose>
-												<c:when test="${dto.tourstate == 0 }">모집중</c:when>
-												<c:when test="${dto.tourstate == 1 }">마감</c:when>
-												<c:when test="${dto.tourstate == 2 }">종료</c:when>
-											</c:choose>
+											<select class="tourstatesel" id="tourstatesel${dto.tourno}">
+	    	            						<option value="0">모집중</option>
+		                						<option value="1">마감</option>
+		                						<option value="2">종료</option>
+	                						</select>
+	                						<input type="hidden" value="${dto.tourstate}">
+											<input type="button" value="상태변경" onclick="changeState(${dto.tourno})">											
 										</div>
 									</td>
 									<td>
-										<form action="tourcancel" style="position:relative; right:50%;">
+										<form action="tourcancel">
 										<c:choose>
 												<c:when test="${(dto.tourstate==0) || (dto.tourstate == 1)}">
-													<input type="button" onclick="cancelApplyTour(${dto.tourno})" value="지원취소">
+													<a href="/tourupdate/${dto.tourno }">편집</a>
 													<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 												</c:when>
 												<c:when test="${dto.tourstate == 2 }">
-													<input type="button" onclick="cancelApplyTour(${dto.tourno},${loginid})" value="모집종료">
+													<input type="button" onclick="cancelApplyTour(${dto.tourno},${loginid})" value="종료">
 												</c:when>
 										</c:choose>
 										</form>
 									</td>
 								</tr>
 							 	</c:forEach>
-								
-
 							</tbody>
 						</table>
 						<div

@@ -4,7 +4,15 @@ public class TourApplyDTO {
 	private String userid;
 	private Integer tourno;
 	private String applydate;
+	private String username;
 	
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public String getUserid() {
 		return userid;
 	}

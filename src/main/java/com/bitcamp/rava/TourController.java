@@ -1,5 +1,6 @@
 package com.bitcamp.rava;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.Locale;
 
@@ -101,8 +102,6 @@ public class TourController {
 	public int tourapply(@RequestParam String userid, @RequestParam int tourno) {
 		//결과값을 구하는 기능 구현
 		int result = tourService.applyTour(userid, tourno);
-
-		System.out.println(result);
 		
 		return result;
 	}
@@ -143,6 +142,29 @@ public class TourController {
 		
 	}
 	
+	@RequestMapping("/tourredelete")
+	@ResponseBody
+	public List<TourReplyDTO> tourredelete(@RequestParam int tourno, @RequestParam int tourreno) {
+		
+		return tourService.deleteTourRe(tourno,tourreno);
+	}
+	
+	@RequestMapping("/tourrelist")
+	@ResponseBody
+	public List<TourReplyDTO> tourrelist(@RequestParam int tourno) {
+		
+		return tourService.listTourRe(tourno);
+	}
+	
+	@RequestMapping("/tourreupdate")
+	@ResponseBody
+	public List<TourReplyDTO> tourreupdate(@RequestParam int tourreno, @RequestParam int tourno, @RequestParam String recontent) {
+		//결과값을 구하는 기능 구현
+		
+		return tourService.updateTourRe(tourno, tourreno, recontent);
+	}
+	
+	
 	@RequestMapping("/tourupdatestate")
 	@ResponseBody
 	public int tourupdatestate(@RequestParam int tourno, @RequestParam int tourstate) {
@@ -151,6 +173,58 @@ public class TourController {
 		System.out.println(result);
 		return result;
 	}
+	
+	@RequestMapping("/tourmypage")
+	public String tourmypage(Model model) {
+		String userid = "host";
+		
+		List<TourDTO> list = tourService.tourUserList(userid);
+		model.addAttribute("list", list);
+		
+		int totaldistance = 0;
+		for(TourDTO dto : list) {
+			totaldistance += dto.getDistance();
+		}
+		model.addAttribute("totaldistance", totaldistance);
+		
+		return "tour/tourmypage";
+	}
+	
+	@RequestMapping("/tourhostpage")
+	public String tourhostpage(Model model) {
+		String userid = "host";
+		HostDTO hostdto = tourService.hostDetailById(userid);
+		List<TourDTO> list = tourService.tourHostList(hostdto.getHostno());
+		
+		model.addAttribute("list", list);
+		model.addAttribute("hostdto", hostdto);
+		
+		return "tour/tourhostpage";
+	}
+	
+	@RequestMapping(value="/tourcancel")
+	@ResponseBody
+	public int tourcancel(@RequestParam String userid, @RequestParam int tourno) {
+		//결과값을 구하는 기능 구현
+		int result = tourService.cancelApplyTour(userid, tourno);
+		
+		return result;
+	}
+	
+	@RequestMapping("/tourapplist")
+	@ResponseBody
+	public List<TourApplyDTO> tourapplist(@RequestParam int tourno) {
+		
+		return tourService.tourApplyList(tourno);
+	}
+	
+	@RequestMapping("/tourgetfavorit")
+	@ResponseBody
+	public TourDTO tourgetfavorit(@RequestParam int tourno) {
+		
+		return tourService.tourFavDetail(tourno);
+	}
+	
 }
 
 

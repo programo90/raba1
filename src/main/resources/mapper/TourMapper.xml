@@ -19,6 +19,7 @@
  		order by tourstate, tourno desc
  		limit #{startRow}, #{pageSize}
  	</select>
+ 	
  	<!-- tour입력 -->
   	<insert id="insertTour" parameterType="com.bitcamp.dto.TourDTO">
   		insert into TourTable(hostno, tourtitle,populartour,tourdate,startspot,endspot
@@ -26,18 +27,26 @@
 						,tourdetailcomm,tourlat,tourlng,tourday,tourtime,tourmaplevel)
 		values(#{hostno}, #{tourtitle},#{populartour},#{tourdate},#{startspot},#{endspot}
 				,#{esttime},#{distance},#{tourstyle},#{tourtype},#{totalcount}
-				,#{tourdetailcomm},#{tourlat},#{tourlng},#{tourday},#{tourtime},#{tourmaplevel});
+				,#{tourdetailcomm},#{tourlat},#{tourlng},#{tourday},#{tourtime},#{tourmaplevel})
   		<selectKey keyProperty="tourno" resultType="int" order="AFTER">
   			select LAST_INSERT_ID()
   		</selectKey>
   	</insert>
-  	
-  	
+  	<insert id="insertFavTour" parameterType="com.bitcamp.dto.TourDTO">
+  		insert into TourFavTable(tourlat, tourlng)
+  		values(#{tourlat}, #{tourlng})
+  	</insert>
   	<!-- spot 추가 -->
   	<insert id="insertMarker" parameterType="com.bitcamp.dto.TourMarkerDTO">
   		insert into SpotTable(tourno, spottitle, spotcontent, spotlat, spotlng)
 		values(#{tourno}, #{spottitle}, #{spotcontent}, #{spotlat}, #{spotlng});
   	</insert>
+  	<!-- lead count 증가 -->
+  	<update id="increaLeadCount" parameterType="int">
+  		update HostTable
+  		set leadcount = leadcount+1
+  		where hostno = #{hostno}
+  	</update>
   	
   	
   	<!--  TourDetail, MarkerList, HostDetail-->
@@ -46,6 +55,11 @@
 				,esttime,distance,tourstyle,tourtype,totalcount,cancount
 				,tourdetailcomm,tourlat,tourlng,tourday,tourtime,tourstate,tourmaplevel
   		from TourTable
+  		where tourno = #{tourno}
+  	</select>
+  	<select id="tourFavDetail" parameterType="int" resultType="com.bitcamp.dto.TourDTO">
+  		select tourno, tourlat, tourlng
+  		from TourFavTable
   		where tourno = #{tourno}
   	</select>
   	<select id="markerList" parameterType="int" resultType="com.bitcamp.dto.TourMarkerDTO">
@@ -84,8 +98,14 @@
    	<update id="increUserDistance" parameterType="hashmap">
    		update UserTable
    		set distance = distance+#{distance}
-   		where useid = #{userid}
+   		where userid = #{userid}
    	</update>
+   	<select id="tourApplyList" parameterType="int" resultType="com.bitcamp.dto.TourApplyDTO">
+   		select username
+		from UserTable inner join ApplyTourTable
+		on UserTable.userid = ApplyTourTable.userid
+		where tourno = #{tourno};
+   	</select>
   	
   	
   	<!-- 투어 수정 -->
@@ -119,10 +139,15 @@
   		delete from TourTable
   		where tourno = #{tourno}
   	</delete>
+  	<update id="decreaLeadCount" parameterType="int">
+  		update HostTable
+  		set leadcount = leadcount-1
+  		where hostno = #{hostno}
+  	</update>
   	
   	<!-- 투어 리플 리스트 -->
   	<select id="replyList" parameterType="int" resultType="com.bitcamp.dto.TourReplyDTO">
-  		select tourno, userid, recontent ,reorder, relevel
+  		select tourreno, tourno, userid, recontent ,reorder, relevel
   		from TourReplyTable
   		where tourno = #{tourno} 
   		order by reorder
@@ -147,6 +172,15 @@
   		insert into TourReplyTable(tourno, reorder, userid, recontent, relevel)
   		values(#{tourno}, #{reorder}, #{userid}, #{recontent}, #{relevel})
   	</insert>
+  	<delete id="deleteTourRe" parameterType="int">
+  		delete from TourReplyTable
+  		where tourreno = #{tourreno}
+  	</delete>
+  	<update id="updateTourRe" parameterType="hashmap">
+  		update TourReplyTable
+  		set recontent = #{recontent}
+  		where tourreno = #{tourreno}
+  	</update>
   	
   	<!-- tour 상태 변경 -->
   	<update id="updateState" parameterType="hashmap">
@@ -154,4 +188,34 @@
   		set tourstate = #{tourstate}
   		where tourno = #{tourno}
   	</update>
+  	
+  	<select id="tourUserList" parameterType="String" resultType="com.bitcamp.dto.TourDTO">
+  		select TourTable.tourno, tourtitle, populartour, tourdate, startspot,endspot
+ 				,tourstate, tourday, tourtime, userid, distance
+  		from TourTable inner join ApplyTourTable
+  		on TourTable.tourno = ApplyTourTable.tourno
+  		where userid = #{userid}
+  	</select>
+  	
+  	
+  	<!-- tour 지원 취소 -->
+  	<update id="decreaCancount" parameterType="int">
+  		update TourTable
+  		set cancount = cancount-1
+  		where tourno = #{tourno}
+  	</update>
+  	<update id="cancelApplyTour" parameterType="hashmap">
+  		delete from ApplyTourTable
+  		where userid=#{userid} and tourno = #{tourno}
+  	</update>
+  	
+  	<!-- HostPage에서 List 출력 -->
+  	<select id="tourHostList" parameterType="int" resultType="com.bitcamp.dto.TourDTO">
+  		select tourno, tourtitle, populartour, tourdate, startspot, endspot
+ 				,tourstate, tourday, tourtime, cancount, totalcount
+  		from TourTable
+  		where hostno = #{hostno}
+  		order by tourstate, tourno desc
+  	</select>
+  	
   </mapper>

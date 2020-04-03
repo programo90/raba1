@@ -19,9 +19,13 @@
 		<!-- <div> 조건부 실행문 넣기 </div> -->
 	</sec:authorize>
 	<!--  이하 페이지 로딩 초기값  -->
-	<sec:authentication property='principal.username' var="loginid"/>
+	<sec:authorize access="isAuthenticated()">
+		<sec:authentication property='principal.username' var="loginid"/>
+		<input type="hidden" id="userid" value="${loginid }">
+	</sec:authorize>
+	<input type="hidden" id="userid" value="host">
+	
 	<input type="hidden" id="tourno" value="${dto.tourno}">
-	<input type="hidden" id="userid" value="${loginid }">
 	<input type="hidden" id="hostid" value="${hostdto.userid }">
 	<input type="hidden" id="distance" value="${dto.distance }">
 	<input type="hidden" id="maplevel" value="${dto.tourmaplevel }">
@@ -32,7 +36,7 @@
         <div id="tourdetail_hostblock">
             <div id="tourdetail_hostimgblock">
                 <div id="tourdetail_hostimgbox">
-                    <img id="tourdetail_hostimg" src="${hostdto.userimg }" alt="hostimg">
+                    <img id="tourdetail_hostimg" src="/resources/img/tour/custom-1.png" alt="hostimg">
                 </div>
             </div>
             <div id="tourdetail_hostinfoblock">
@@ -156,18 +160,35 @@
                           <c:forEach items="${redtolist}" var="redto" varStatus="stat">
                           	<c:choose>
                           		<c:when test="${redto.relevel ==0}">
-                          			<li class="tourreple_list" onclick="rereinsert(this, ${redto.reorder})">
-                               			<div>${stat.count} ${redto.userid} ${redto.recontent}</div>
+                          			<li class="tourreple_list">
+                               			<div onclick="rereinsert(this,${redto.reorder})"> 
+                               				<div>${stat.count}</div>
+                               				<div>${redto.userid}</div>
+                               				<div> ${redto.recontent}</div>
+                               			</div>
+                               			<%-- <c:if test="${redto.userid == loginid}">
+                               				<div style="float:right;">수정</div>
+                               			</c:if> --%>
+                               			<div onclick="updateReply(this,${redto.tourreno})">수정</div>
+                               			<div onclick="deleteReply(this,${redto.tourreno})">삭제</div>
                             		</li>
                           		</c:when>
                           		<c:when test="${redto.relevel !=0}">
                           			<li class="tourreple_relist">
-	                               		<div>${stat.count} ${redto.userid} ${redto.recontent}</div>
+	                               		<div>
+	                               			<div>${stat.count}</div>
+                               				<div>${redto.userid}</div>
+                               				<div> ${redto.recontent}</div>
+	                               		</div>
+	                               		<%-- <c:if test="${redto.userid == loginid }">
+	                               			
+	                               		</c:if> --%>
+	                               		<div onclick="updateReply(this,${redto.tourreno})">수정</div>
+	                               		<div onclick="deleteReply(this,${redto.tourreno})">삭제</div>
                            			</li>
                           		</c:when>
                           	</c:choose>
                           </c:forEach>
-
                        </ul>
                    </div>
 	             </div>

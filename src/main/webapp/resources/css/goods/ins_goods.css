@@ -146,7 +146,8 @@
 	}
 	
 	.uploadResult ul li span{
-		color : white;
+		color : blue;
+		font-size: 20px;
 	}
 	
 	.bigPictureWrapper{

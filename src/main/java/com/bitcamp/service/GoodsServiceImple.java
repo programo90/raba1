@@ -2,22 +2,36 @@ package com.bitcamp.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.bitcamp.dto.BoardAttachVO;
 import com.bitcamp.dto.GoodsDTO;
 import com.bitcamp.dto.GoodsSizeDTO;
+import com.bitcamp.mapper.BoardAttachMapper;
 import com.bitcamp.mapper.GoodsMapper;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Service
 public class GoodsServiceImple implements GoodsService {
 
 	@Autowired
+	private BoardAttachMapper attach_mapper;
+	
+	@Autowired
 	private GoodsMapper mapper;
 	
+	@Transactional
 	@Override
-	public int insertvalue(GoodsDTO dto, GoodsSizeDTO sizedto) {
+	public void insertvalue(GoodsDTO dto, GoodsSizeDTO sizedto) {
 		// TODO Auto-generated method stub
+		
+		log.info("register : "+ dto);
+		
 		
 		if(sizedto.getFree() != null) {
 			
@@ -62,9 +76,35 @@ public class GoodsServiceImple implements GoodsService {
 			
 			mapper.insert(dto);
 			
+			
+			
 		}
 		
-		return 0;
+		
+		/* 사진 등록 */
+		if(dto.getAttachList() == null || dto.getAttachList().size() <= 0) {
+			
+			return;
+			
+		}
+		
+		 List<GoodsDTO> pno_dto = mapper.select_pno(dto.getP_name());
+		
+		 for(int i=0 ; i < dto.getAttachList().size(); i++) {
+			 
+			 dto.getAttachList().get(i).setPno(pno_dto.get(0).getP_no());
+			 
+			 attach_mapper.insert(dto.getAttachList().get(i));
+			 
+		 }
+		
+		/*dto.getAttachList().forEach(attach -> {
+		
+			attach.setPno(dto.getP_no());
+			attach_mapper.insert(attach);
+			
+		});
+		*/
 	}
 
 	/* goods list */
@@ -165,6 +205,15 @@ public class GoodsServiceImple implements GoodsService {
 		List<GoodsDTO> list = mapper.goodsnamedetail(p_name);
 		
 		return list;
+	}
+
+	@Override
+	public List<BoardAttachVO> getAttachList(int pno) {
+		// TODO Auto-generated method stub
+		
+		log.info("get Attach list by pno " +pno);
+		
+		return attach_mapper.findByPno(pno);
 	}
 
 	

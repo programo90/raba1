@@ -60,4 +60,10 @@
   		where pname = #{p_name}
   	</select>
   	
+  	<select id="select_pno" parameterType="String" resultMap="goods_table">
+  		select pno
+  		from GoodsTable
+  		where pname = #{p_name}
+  	</select>
+  	
   </mapper>

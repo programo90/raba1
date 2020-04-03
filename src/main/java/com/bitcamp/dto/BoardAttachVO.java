@@ -7,12 +7,15 @@ public class BoardAttachVO {
 	private String fileName;
 	private boolean fileType;
 	
-	private Long bno;
+	private int pno;
 
 	
-	
-	
-	
+	@Override
+	public String toString() {
+		return "BoardAttachVO [uuid=" + uuid + ", uploadPath=" + uploadPath + ", fileName=" + fileName + ", fileType="
+				+ fileType + ", pno=" + pno + "]";
+	}
+
 	public String getUuid() {
 		return uuid;
 	}
@@ -45,13 +48,14 @@ public class BoardAttachVO {
 		this.fileType = fileType;
 	}
 
-	public Long getBno() {
-		return bno;
+	public int getPno() {
+		return pno;
 	}
 
-	public void setBno(Long bno) {
-		this.bno = bno;
+	public void setPno(int pno) {
+		this.pno = pno;
 	}
+
 	
 	
 }

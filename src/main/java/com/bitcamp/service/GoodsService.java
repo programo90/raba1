@@ -2,12 +2,13 @@ package com.bitcamp.service;
 
 import java.util.List;
 
+import com.bitcamp.dto.BoardAttachVO;
 import com.bitcamp.dto.GoodsDTO;
 import com.bitcamp.dto.GoodsSizeDTO;
 
 public interface GoodsService {
 
-	int insertvalue(GoodsDTO dto, GoodsSizeDTO sizedto);
+	void insertvalue(GoodsDTO dto, GoodsSizeDTO sizedto);
 
 	List<GoodsDTO> goodslist();
 
@@ -20,5 +21,7 @@ public interface GoodsService {
 	List<GoodsDTO> goodsnamelist();
 
 	List<GoodsDTO> goodsnamedetail(String p_name);
+	
+	List<BoardAttachVO> getAttachList(int pno);
 
 }

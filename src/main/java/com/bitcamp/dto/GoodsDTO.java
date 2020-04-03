@@ -1,5 +1,7 @@
 package com.bitcamp.dto;
 
+import java.util.List;
+
 public class GoodsDTO {
 
 	private int p_no;
@@ -10,6 +12,18 @@ public class GoodsDTO {
 	private int p_state;
 	private String p_img;
 	
+
+	private List<BoardAttachVO> attachList;
+	
+	
+	
+	
+	public String getP_img() {
+		return p_img;
+	}
+	public void setP_img(String p_img) {
+		this.p_img = p_img;
+	}
 	public int getP_no() {
 		return p_no;
 	}
@@ -46,19 +60,19 @@ public class GoodsDTO {
 	public void setP_state(int p_state) {
 		this.p_state = p_state;
 	}
-	public String getP_img() {
-		return p_img;
+	public List<BoardAttachVO> getAttachList() {
+		return attachList;
 	}
-	public void setP_img(String p_img) {
-		this.p_img = p_img;
+	public void setAttachList(List<BoardAttachVO> attachList) {
+		this.attachList = attachList;
 	}
 	
 	@Override
 	public String toString() {
 		return "GoodsDTO [p_no=" + p_no + ", p_name=" + p_name + ", p_price=" + p_price + ", p_size=" + p_size
-				+ ", p_amount=" + p_amount + ", p_state=" + p_state + ", p_img=" + p_img + "]";
+				+ ", p_amount=" + p_amount + ", p_state=" + p_state + ", attachList=" + attachList + "]";
 	}
-
+	
 	
 	
 }

@@ -12,6 +12,95 @@
 <link rel="stylesheet" href="/resources/css/goods/ins_goods.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="/resources/js/goods/modify_goods.js"></script>
+<script>
+	$(document).ready(function(){
+		
+		(function(){
+			
+			var pno = '<c:out value="${dto.p_no}"/>';
+			
+			$.getJSON("/getAttachList", {pno : pno*1}, function(arr){
+				
+				console.log(arr);
+				
+				var str ="";
+				
+				$(arr).each(function(i,attach){
+					
+					//imagetype
+					if(attach.fileType){
+						var fileCallPath = encodeURIComponent(attach.uploadPath + "/s_" + attach.uuid + "_" +attach.fileName);
+						
+						str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+						
+						str += "<img src='/display?fileName="+fileCallPath+"'>";
+						str += "</div>";
+						str += "</li>";
+						
+					}else{
+						
+						str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-fileName='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+						
+						str += "<span>"+ attach.fileName+"</span><br>"; //지울 예정
+						str += "<img src='/resources/img/goods/attach.png'>";
+						str += "</div>";
+						str += "</li>";
+					}
+					
+				});
+				
+				$(".uploadResult ul").html(str);
+				
+			});// end getjson
+			
+		})(); //end function
+		
+		$(".uploadResult").on("click","li",function(e){
+			
+			console.log("view image");
+			
+			var liObj = $(this);
+			
+			var path = encodeURIComponent(liObj.data("path")+"/"+liObj.data("uuid")+"_"+liObj.data("filename"));
+			
+			console.log(liObj.data("path"));
+			console.log(liObj.data("uuid"));
+			console.log(liObj.data("filename"));
+			console.log(liObj.data("type"));
+			
+			 if(liObj.data("type")){
+				
+				showImage(path.replace(new RegExp(/\\/g),"/"));
+				
+			}else{
+				//download 여기는 수정하는 곳이라 다운로드가 필요하지는 않지만 구현은 해보았다
+				self.location = "/download?fileName="+path;
+			} 
+			
+		});
+		
+		function showImage(fileCallPath){
+			
+			alert(fileCallPath);
+			
+			$(".bigPictureWrapper").css("display","flex").show();
+			
+			$(".bigPicture").html("<img src='/display?fileName="+fileCallPath+"'>").animate({width:'100%', height:'100%'},1000);
+			
+		}
+		
+		$(".bigPictureWrapper").on("click",function(e){
+			
+			$(".bigPicture").animate({width:'0%', height: '0%'},1000);
+			setTimeout(function(){
+				$('.bigPictureWrapper').hide();
+				
+			},1000);
+		});
+		
+		
+	});
+</script>
 <!-- <script src="/resources/js/goods/ins_goods.js"></script> -->
 </head>
 <body>
@@ -30,7 +119,7 @@
 						<span>상품 사진</span>
 						<div class="upload_div">
 							<div class="uploadDiv">
-								<!-- <input type="file" name="uploadFile" multiple> -->
+								<input type="file" name="uploadFile" multiple>
 							</div>
 							<div class="upload_inner_div">
 								<div class="uploadResult">
@@ -43,7 +132,7 @@
 									<div class="bigPicture"></div>
 								</div>
 							</div>
-							<button id="uploadBtn">Upload</button>
+							<!-- <button id="uploadBtn">Upload</button> -->
 							<!-- 등록 버튼과 병합할 여지가 있음-->
 						</div>
 							<div class="p_np">

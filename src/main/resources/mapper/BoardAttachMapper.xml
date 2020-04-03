@@ -5,16 +5,18 @@
 <mapper namespace="com.bitcamp.mapper.BoardAttachMapper">
 	
 	<insert id="insert">
-		insert into GoodsIamgeTable (uuid, uploadpath, filename, filetype, bno)
-		values (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{bno})
+		insert into GoodsImageTable(uuid, uploadpath, filename, filetype, pno)
+		values (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{pno})
 	</insert>
 	
 	<delete id="delete">
-		delete from into GoodsIamgeTable where uuid = #{uuid}
+		delete from into GoodsImageTable where uuid = #{uuid}
 	</delete>
 	
-	<select id="findByBno" resultType="com.bitcamp.dto.BoardAttachVO">
-		select * from into GoodsIamgeTable where bno = #{bno}
+	<select id="findByPno" resultType="com.bitcamp.dto.BoardAttachVO">
+		select *
+		from GoodsImageTable
+		where pno = #{pno}
 	</select>
 	
 </mapper>

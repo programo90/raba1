@@ -10,6 +10,23 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/css/goods/goodsdetail.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+	$(document).ready(function(){
+		
+		(function(){
+			
+			var pno = '<c:out value="${list[0].p_no}"/>';
+			
+			$.getJSON("/getAttachList", {pno : pno*1}, function(arr){
+				
+				console.log(arr);
+				
+			});// end getjson
+			
+		})(); //end function
+		
+	});
+</script>
 <script type="text/javascript" src="/resources/js/goods/goodsdetail.js"></script>
 </head>
 <body>

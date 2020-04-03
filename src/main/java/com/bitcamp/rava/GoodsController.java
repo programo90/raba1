@@ -3,11 +3,17 @@ package com.bitcamp.rava;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bitcamp.dto.BoardAttachVO;
 import com.bitcamp.dto.GoodsDTO;
 import com.bitcamp.dto.GoodsSizeDTO;
 import com.bitcamp.service.GoodsService;
@@ -20,6 +26,7 @@ public class GoodsController {
 
 	@Autowired
 	private GoodsService goodsservice;
+	
 	
 	
 	/* 사용자  GOODS list PAGE*/
@@ -58,7 +65,15 @@ public class GoodsController {
 		
 		log.info(sizedto);*/
 		
-		int result = goodsservice.insertvalue(dto, sizedto);
+		
+		/*log.info("register :" + dto);*/
+		
+		if(dto.getAttachList() !=null) {
+			
+			/*dto.getAttachList().forEach(attach -> log.info(attach));*/
+		}
+		
+		goodsservice.insertvalue(dto, sizedto);
 		
 		return "redirect:/admin_goods_list";
 	}
@@ -103,6 +118,16 @@ public class GoodsController {
 		model.addAttribute("list", list);
 		
 		return "admin/admin_goods_list";
+	}
+	
+	
+	@GetMapping(value="/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<BoardAttachVO>> getAttachList(int pno){
+		
+		/*log.info("getAttachList : " + pno);*/
+		
+		return new ResponseEntity<>(goodsservice.getAttachList(pno), HttpStatus.OK);
 	}
 	
 }

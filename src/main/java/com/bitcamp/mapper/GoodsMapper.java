@@ -23,4 +23,6 @@ public interface GoodsMapper {
 
 	List<GoodsDTO> goodsnamedetail(String p_name);
 
+	List<GoodsDTO> select_pno(String p_name);
+
 }

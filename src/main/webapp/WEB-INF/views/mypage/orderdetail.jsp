@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,7 +61,7 @@
                     <div class="w-100% m-5 bg-white shadow overflow-hidden sm:rounded-lg">
                         <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
                             <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                주문 정보 <span class="text-blue-600 ">3582365935</span>
+                                주문 정보 ${userinfo.username } <span class="text-blue-600 ">3582365935</span>
                             </h3>
                             <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
                                 order date 2020-03-12

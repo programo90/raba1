@@ -28,7 +28,8 @@
 		<!-- <security:intercept-url pattern="/login/member2" access="hasRole('ROLE_MEMBER')" 
 			/> -->
 		<security:intercept-url pattern="/login/admin*" access="hasRole('ROLE_ADMIN')" />
-		<security:intercept-url pattern="/login/cart*" access="hasRole('ROLE_MEMBER')" />
+		<security:intercept-url pattern="/mypage/**" access="hasRole('ROLE_MEMBER')" />
+		
 
 	
 

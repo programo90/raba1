@@ -244,6 +244,13 @@
 		    <version>2.10.3</version>
 		</dependency>
 		
+		<!-- 여기 내가 추가한것 -->
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20180813</version>
+		</dependency>
 		<!-- **************************************** aop **************************************** -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
 		<dependency>

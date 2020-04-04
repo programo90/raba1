@@ -19,7 +19,8 @@
 	<context:component-scan
 		base-package="com.bitcamp.security" />
 	
-	
+	<!-- ajax get방식이라  security 일부분 해제 -->
+	<security:http pattern="/asdf" security="none"/>
 	
 	<security:http auto-config="true" use-expressions="true">
 		<security:intercept-url pattern="/login/all" access="permitAll" />

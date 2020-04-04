@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.bitcamp.mapper.RepairMapper">
+    	<insert id="calinsertData">
+    		insert into CalendarTable(calno, title, start, end)
+    		values(0, #{title}, #{start}, #{end})
+    	</insert>
+    	<select id="calselectData" resultType="com.bitcamp.dto.CalendarDTO">
+    		select calno, title, start, end
+    		from CalendarTable
+    	</select>
+    	<update id="calmodifyData" parameterType="com.bitcamp.dto.CalendarDTO">
+    		update CalendarTable set start=#{start}, end=#{end}
+    		where calno=#{calno}
+    	</update>
+    	<delete id="caldelete">
+    		delete from CalendarTable
+    		where calno=#{calno}
+    	</delete>
+<!--     	<insert id="reservationinsert">
+    		insert into ReserveTable(reservno, userid, reservtxt,reservorder, reservwritedate, caldata)
+    		values(0, )
+    	</insert> -->
+    	<!-- 예약댓글 리스트 -->
+    	<select id="replyselectData" resultType="com.bitcamp.dto.RepairDTO">
+    		select reservno, userid, reservtxt, reservlevel, reservorder, reservwritedate, caldate 
+    		from ReserveTable 
+    		order by reservwritedate desc, reservorder desc
+    	</select>
+    	
+    	<insert id="reinsertData" parameterType="com.bitcamp.dto.RepairDTO">
+    		<selectKey keyProperty="reservorder" order="BEFORE" resultType="int">
+    			select max(reservorder)+1 as reservorder
+    			from ReserveTable
+    		</selectKey>
+    		insert into ReserveTable(reservno, userid, reservtxt, reservlevel, reservorder, reservwritedate, caldate)
+    		values(0,#{userid}, #{reservtxt}, #{reservlevel}, #{reservorder}, now(), #{caldate})
+    	</insert>
+    	<insert id="rereinsertData" parameterType="com.bitcamp.dto.RepairDTO">
+    		<selectKey keyProperty="reservlevel" order="BEFORE" resultType="int">
+    			select max(reservlevel)+1 as reservlevel
+    			from ReserveTable
+    			where reservorder =#{reservorder}
+    		</selectKey>
+    		insert into ReserveTable(reservno, userid, reservtxt, reservlevel, reservorder, reservwritedate, caldate)
+    		values(0,#{userid}, #{reservtxt}, #{reservlevel}, #{reservorder}, now(), #{caldate})
+    	</insert>
+    </mapper>

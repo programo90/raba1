@@ -1,0 +1,168 @@
+@charset "UTF-8";
+.banner_inner{
+    height: 450px;
+    background-image:url(/resources/img/bg%20ba1.jpg);
+    /*background-position: center -55px; */
+    background-repeat: no-repeat; 
+    background-size: cover;
+}
+.reservation_info{
+    font-size: 12px;
+    margin: 20px 0 10px 0px;
+}
+.reservation_info:before{
+    content: ' \203B';  
+}
+.reservation_label{
+    display: none;
+}
+.repair_inquirybox{
+    width: 100%;
+    height: 56px;
+}
+.repair_li{
+    float: left;
+}
+.repair_li:last-child{
+    margin-left: 10px;
+}
+.repair_text{
+    padding: 5px;
+}
+.admin_btn{
+    background-color: #e8e8e8; 
+    border: none;
+    color: #000;
+    padding: 17px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.subminbtn{
+    color: white;
+    background-color: #3e5f40; 
+}
+.repair_inquirylist_box{
+    clear: both;
+    margin-top: 20px;
+}
+.repair_inquirylist{
+    height: 66px;
+    border-top: 1px solid #e8e8e8;
+    padding: 20px;
+}
+.repair_inquirylist_txt{
+    width: 91.8%;
+    float: left;
+}
+.repair_inquirylist_btn{
+    width: 8.2%;
+    float: right;
+    margin-top: 5px;
+}
+.repair_inquiry_user{
+    color: #3e5f40;
+    font-weight: bold;
+}
+.repair_inquiry_date{
+    font-size: 11px;
+    margin: 5px 0px;
+}
+.repair_inquiry_txt{
+    font-size: 14px;
+}
+.repair_inquiry_cal{
+    color: #ff5722;
+}
+/*댓글부분*/
+.reply_box{
+	padding: 0px 20px 20px 40px;
+}
+.reply{
+	border-top: 1px dotted #e8e8e8;
+    padding-top: 10px;
+}
+.rereply_admin{
+	font-size: 13px;
+    color: #888;
+}
+.rereply_admin:before{
+	content: '\21B3';
+	padding-right: 10px;
+    color: #888;
+}
+.rereply_admintxt{
+	color:#888;
+}
+/*calendar*/
+.fc-sun{
+	color: #ff4242;
+	background-color: #fffafa;
+}
+.fc-sat{
+	color: #0072ff;
+	background-color: #f0f8ff;
+}
+/**************** 관리자 calendar */
+.calendar_box{
+	max-width:900px; 
+}
+.addschedulbox{
+    text-align: right;
+    margin: 0 50px 10px 0;
+}
+.addscheduelbtn{
+	padding: 10px;
+}
+/*스케줄등록 팝업부분*/
+.addpop_box{
+	width:100%;
+	height:30px;
+	margin-bottom: 10px;
+}
+.addpop_tit_box{
+	width:15%;
+	float:left;
+	padding-left:20px
+}
+.addpop_input_box{
+	width: 75%;
+    float: right;
+    margin-left: 20px;
+}
+.addpop_input{
+	width:80px;
+}
+.addpop_btn{
+	width: 100%;
+    text-align: center;
+    height: 55px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.calpopbox{
+	width:500px; 
+	display:none; 
+	background-color: white;
+	border-readius:5px;
+}
+.calpoptitle{
+	font-size: 15px;
+    font-weight: bold;
+    padding: 20px;
+    border-bottom: 1px solid #e8e8e8;
+}
+.calpopdetail{
+	font-size: 13px;
+    padding-top: 20px;
+}
+.calendar_input{
+	height: 18px;
+    border: 1px solid #e8e8e8;
+    padding: 5px;
+    font-size: 11px;
+    cursor: pointer;
+}

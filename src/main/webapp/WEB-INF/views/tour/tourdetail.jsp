@@ -40,14 +40,14 @@
                 </div>
             </div>
             <div id="tourdetail_hostinfoblock">
-                <div>
-                    <h3>리더 이름 : <span>${hostdto.username }</span></h3>
+                <div id="tourdetail_hostinfobox1">
+                    <h3><span>${hostdto.username }</span></h3>
                 </div>
-                <div id="tourdetail_hostinfobox">
+                <div id="tourdetail_hostinfobox2">
                     <p>${hostdto.hostcomment }</p>
                 </div>
-                <div>
-                    <p>Lead Count<span>${hostdto.leadcount }</span></p>
+                <div id="tourdetail_hostinfobox3">
+                    <p>Lead Count<span> ${hostdto.leadcount }</span></p>
                 </div>
             </div>
             <div id="tourdetail_applyblock">
@@ -79,7 +79,7 @@
         </div>
         <div id="tourdetail_contentblock">
             <div id="tourdetail_mapblock">
-                <div id="tourdetail_spotlistbox">
+                <div id="tourdetail_spotlistbox" style="position:absolute">
                 	
                 		<!-- 이하 for문으로 marker를 추가하고 marker list를 추가 -->
                 		<c:forEach items="${markerlist}" var="selmarker" varStatus="state">
@@ -115,6 +115,7 @@
             </div>
             <div id="tourdetail_tourdetailblock">
                 <div id="tourdetail_detailbox1">
+                	<h3 style="margin-bottom:15px;">Information</h3>
                     <div class="tourdetail_detailtitle">출발시각</div>
                     <div class="tourdetail_detailcon">${dto.tourday}  ${dto.tourtime }</div>
                     <div class="tourdetail_detailtitle">출발위치</div>
@@ -141,7 +142,7 @@
                     </div>
                 </div>
                 <div id="tourdetail_detailbox2">
-                    <div><h3>상세내용</h3></div>
+                    <div><h3>Detail</h3></div>
                     <div>
                         ${dto.tourdetailcomm }
                     </div>

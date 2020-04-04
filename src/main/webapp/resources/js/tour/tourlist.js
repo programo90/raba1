@@ -5,13 +5,13 @@ window.onload = function() {
 		var tempstate = temptagbox[i].children[0].value;
 		if(tempstate == 0) {
 			temptagbox[i].children[1].classList.add('tourlist_content_tag_app');
-			temptagbox[i].children[1].innerText = '모집중';
+			temptagbox[i].children[1].innerHTML = '모' +'<br>' + '집';
 		} else if(tempstate == 1) {
 			temptagbox[i].children[1].classList.add('tourlist_content_tag_closed');
-			temptagbox[i].children[1].innerText = '마감';
+			temptagbox[i].children[1].innerHTML = '마' +'<br>' + '감';
 		} else if(tempstate == 2) {
 			temptagbox[i].children[1].classList.add('tourlist_content_tag_ended');
-			temptagbox[i].children[1].innerText = '종료';
+			temptagbox[i].children[1].innerHTML = '종' +'<br>' + '료';
 		}
 		
 		var temppop = temptagbox[i].nextElementSibling;

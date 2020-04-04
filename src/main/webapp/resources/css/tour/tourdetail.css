@@ -14,22 +14,25 @@ div {
     position: relative;
 }
 #tourdetail_hostblock{
-    width: 80%;
-    height: 300px;
+    width: 70%;
+    height: 160px;
     left: 50%;
     transform: translateX(-50%);
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 #tourdetail_hostblock>div{
     float: left;
 }
 #tourdetail_hostimgblock{
-    width: 25%;
+    width: 20%;
     height: 100%;
 }
 #tourdetail_hostimgbox{
     position: relative;
-    width: 70%;
-    height: 70%;
+    width: 100%;
+    height: 100%;
     top: 50%;
     left: 50%;
     transform: translate(-50% ,-50%);
@@ -37,33 +40,39 @@ div {
 #tourdetail_hostimg{
     position: relative;
     background-color: darkgray;
-    border-radius: 50%;
-    width: 60%;
-    height: 50%;
-    top: 50%;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    /* top: 50%;
     left: 50%;
-    transform: translate(-50% ,-50%);
+    transform: translate(-50% ,-50%); */
 }
 #tourdetail_hostinfoblock{
-    padding-top: 70px;
-    width: 40%;
+    width: 54%;
     height: 100%;
+    padding-left: 25px;
 }
 #tourdetail_hostinfoblock>div{
-    width: 90%;
-    padding: 10px;
+    width: 100%;
 }
-#tourdetail_hostinfobox{
-    height: 100px;
+#tourdetail_hostinfobox1 {
+	padding: 10px 0;
+}
+#tourdetail_hostinfobox2{
+    height: 67px;
+}
+#tourdetail_hostinfobox3 {
+	font-size:12px;
+	color : #a2a2a2;
 }
 #tourdetail_applyblock{
-    padding-top: 80px;
+    padding-top: 20px;
     width: 25%;
     height: 100%;
 }
 #tourdetail_contentblock{
     width: 100%;
-    height: 1700px;
+    /* height: 1700px; */
 }
 #tourdetail_mapblock{
     width: 100%;
@@ -74,7 +83,14 @@ div {
 }
 #tourdetail_spotlistbox{
     width: 20%;
-    height: 100%;
+    height: 98%;
+    top: 1%;
+    left: 1%;
+    position: absolute;
+    opacity: 0.9;
+    z-index: 2;
+    background-color: white;
+    border-radius: 5px;
 }
 #tourdetail_spotlistbox>div{
     position: relative;
@@ -87,7 +103,7 @@ div {
 #map_wrap{
     float: left;
     position: relative;
-    width: 80%;
+    width: 100%;
     height: 100%;
 }
 #map{
@@ -97,33 +113,33 @@ div {
     overflow: hidden;
 }
 #tourdetail_tourdetailblock{
-    height: 500px;
+    height: 800px;
     width: 100%;
 }
 #tourdetail_detailbox1{
-    height: 280px;
+    height: 500px;
     width: 100%;
     padding: 40px 100px 20px 100px;
 }
 .tourdetail_detailtitle{
-    width: 15%;
-    height: 10%;
+    width: 20%;
+    height: 9%;
     line-height: 10%;
-    border-bottom: 1px solid silver;
+    border-bottom: 1px solid #e8e8e8;
     padding: 5px 0;
     
 }
 .tourdetail_detailcon{
     width: 80%;
-    height: 10%;
+    height: 9%;
     line-height: 10%;
-    border-bottom: 1px solid silver;
+    border-bottom: 1px solid #e8e8e8;
     padding: 5px 0;
     
 }
 #tourdetail_detailbox1>div{
     float: left;
-    margin: 5px 0;
+    margin: 10px 0;
 }
 #tourdetail_detailbox2{
     height: 220px;
@@ -136,6 +152,7 @@ div {
 }
 #tourdetail_replyblock{
     width: 100%;
+    margin-bottom: 50px;
 }
 #tourdetail_replelistbox{
     position: relative;
@@ -173,13 +190,14 @@ div {
 }
 .apply_btn{
     background-color: #3e5f40;
+    border: 1px solid #3e5f40;
     border-radius: 5px;
     width: 80%;
     height: 40px;
-    margin-top: 20px;
     font-size: 15px;
     font-weight: 600;
     color: white;
+    cursor: pointer;
 }
 #tourdetail_applyblock>div{
     margin: 10px 10px;
@@ -217,7 +235,7 @@ div {
 .tourdetail_spotinfo1{
     /*border: 10px solid lightgrey;
     background-color: lightgrey;*/
-    border-top: 1px solid silver;
+    /* border-top: 1px solid silver; */
     border-bottom: 1px solid silver;
 }
 .tourdetail_spotinfo2{
@@ -228,17 +246,20 @@ div {
     position: relative;
 }
 .tourdetail_spotno{
-    float: left;
+	float: left;
     width: 100%;
     height: 20%;
-    font-size: 1.4em;
+    font-size: 1.2em;
     padding: 5px 20px;
+    background-color: #455c72;
+    color: white;
 }
 .tourdetail_spotdetail{
     float: left;
     width: 100%;
     height: 80%;
     padding: 5px 20px;
+    font-size: 15px;
 }
 
 .dot {overflow:hidden;float:left;width:24px;height:24px;background: url('../../img/tour/iconmonstr-bicycle-1-24.png');}    

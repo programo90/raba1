@@ -59,9 +59,9 @@
                         	</div>
                         	<div class="tourlist_content_textbox">
                             	<%-- <h4>${seltour.tourtitle}</h4> --%>
-                            	<p><span style="font-size: :15px; font-weight: 200;">FROM</span><span style="font-size:19px; font-weight: 400;"> ${seltour.startspot}</span></p>
-                            	<p><span style="font-size: 15px; font-weight: 200;">TO</span>  <span style="font-size:19px; font-weight: 400;"> ${seltour.endspot}</span></p>
-                    	        <p>${seltour.tourday}</p>
+                            	<p><span style="font-size: 14px; font-weight: 200;">FROM</span><span style="font-size:15px; font-weight: 400;"> ${seltour.startspot}</span></p>
+                            	<p><span style="font-size: 14px; font-weight: 200;">TO</span>  <span style="font-size:15px; font-weight: 400;"> ${seltour.endspot}</span></p>
+                    	        <p style="font-size:13px">${seltour.tourday}</p>
     	                    </div>
 	                    </a>
                 	</div>   

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="/resources/css/youtube/youtube.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
@@ -30,23 +31,16 @@
 	                     <p class="youtube_title">${list.youtubetitle}</p>
                     </div>
                  </c:forEach>
-                   <!--  <div class="youtubebox">
-                   	<iframe width="380" height="240"
-                     src="https://www.youtube.com/embed/78zkMiKW9GI" frameborder="0"
-                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                     allowfullscreen></iframe>
-                    </div>
-                    <div class="youtubebox"></div> -->
                 </div>
             </div>
-            <div class="youtube_boxinner">
+            <!-- <div class="youtube_boxinner">
                 <h3 class="youtube_subtit">추천 동영상</h3>
                 <div class="youtube_inner">
                     <div class="youtubebox"></div>
                     <div class="youtubebox"></div>
                     <div class="youtubebox"></div>
                 </div>
-            </div>
+            </div> -->
         </section>
     </div>
     <!-- contents 끝 -->

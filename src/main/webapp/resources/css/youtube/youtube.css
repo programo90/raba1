@@ -163,6 +163,19 @@
     cursor: pointer;
 }
 
+/* mediaquerie */
+@media screen and (max-width: 414px) { 
+	.youtubebox {
+	    width: 100%;
+	}
+	.banner {
+    height: 250px !important;
+	}
+	.banner_inner {
+	    height: 250px;
+	    background-position: center center;
+	}
+}
 
 
 

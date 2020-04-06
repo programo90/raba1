@@ -1,5 +1,7 @@
 .admingoods{width: 100%; height: auto;}
 
+
+
 .admingoodssearch{width: 100%; height: 32px; line-height: 32px; margin-bottom: 1%;}
 
 .admgoodssearch{width: 100px; height: 27px; border-radius: 4px; float: right; line-height: 27px;}
@@ -28,33 +30,27 @@
 
 .admingoodsnum2{width: 5%; height: 85px; float: left; text-align: center; line-height: 85px; }
 
-.admingoodsimg2{width: 16%; height: 85px; float: left; text-align: center;line-height: 85px;}
+.admingoodsimg2 img{ width : 100%; }
 
-.admingoodsimg2 img{
-	
-	width : 100%;
-	
-	}
-	
 .admingoodsname2{width: 35%; height: 85px; float: left; text-align: center;line-height: 85px;}
 
-.admingoodsname2 input{height: 20px;}
+.admingoodsname2 input{height: 20px; margin-top: 32px;}
 
 .admingoodssize2{width: 6.1%; height: 85px; float: left; text-align: center;line-height: 82px;}
 
-.admingoodssize2 input{text-align: center; height: 20px;}
+.admingoodssize2 input{text-align: center; height: 20px; margin-top: 32px;}
 
 .admingoodsstock2{width: 8.6%; height: 85px; float: left; text-align: center;line-height: 82px;}
 
-.admingoodsstock2 input{text-align: right; height: 20px;}
+.admingoodsstock2 input{text-align: right; height: 20px; margin-top: 32px;}
 
 .admingoodsprice2{width:9%; height: 85px; float: left; text-align: center;line-height: 82px;}
 
-.admingoodsprice2 input{text-align: right; height: 20px;}
+.admingoodsprice2 input{text-align: right; height: 20px; margin-top: 32px;}
 
 .admingoodssituation2{width: 8.1%; height: 85px; float: left; text-align: center;line-height: 85px;}
 
-.admingoodssituation2 select{width: 100%; height: 25px;  text-align: center;line-height: 20px;}
+.admingoodssituation2 select{width: 100%; height: 25px;  text-align: center;line-height: 20px; margin-top: 32px;}
 
 .admingoodsbtn1{width: 6.1%; height: 85px; float: left; text-align: center; line-height: 85px;}
 

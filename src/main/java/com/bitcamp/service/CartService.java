@@ -19,4 +19,6 @@ public interface CartService {
 
 	List<CartDTO> cnolist(String usercode);
 
+	String getName(int p_no);
+
 }

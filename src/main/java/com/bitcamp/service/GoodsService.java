@@ -12,7 +12,7 @@ public interface GoodsService {
 
 	List<GoodsDTO> goodslist();
 
-	int deletegoods(int p_no);
+	boolean deletegoods(int p_no);
 
 	GoodsDTO detailgoods(int p_no);
 
@@ -23,5 +23,9 @@ public interface GoodsService {
 	List<GoodsDTO> goodsnamedetail(String p_name);
 	
 	List<BoardAttachVO> getAttachList(int pno);
+
+	BoardAttachVO getimg(int p_no);
+
+	
 
 }

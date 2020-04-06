@@ -26,7 +26,7 @@
 			<!--장바구니 상품 정보 윗부분-->
 			<div class="cartname">
 				<div class="cartch1">
-					<input type="checkbox" id="main_checkbox" onClick="checkAll()">
+					<input type="checkbox" id="main_checkbox" onClick="checkAll(), plusPrice()" >
 				</div>
 				<div class="cartimg">
 					<span>이미지</span>
@@ -56,7 +56,7 @@
 			<!-- cno값을 따로 가져왓는데 한꺼번에 가져오는 방식을 찾아서 수정할 예정  -->
 			<div class="cartlist">
 				<div class="cartch2">
-					<input type="checkbox" class="list_checkbox" onclick="plusPrice()" checked >
+					<input type="checkbox" class="list_checkbox" onclick="plusPrice()" >
 				</div>
 				
 				<div class="cartimg">
@@ -98,7 +98,8 @@
 
 		<!--장바구니 상품 삭제 장바구니 비우기 버튼 -->
 		<div class="goodscartbtn">
-			<span>선택상품</span> <a href="" class="cartdelete">삭제</a>
+			<span>선택상품</span> <a href="" class="cartdelete">삭제</a> 
+			<button type="button" onClick="delete_cno()">삭제</button>
 			<a href="" class="cartalldelete">장바구니 비우기</a>
 		</div>
 

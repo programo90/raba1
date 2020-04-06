@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bitcamp.dto.CartDTO;
 import com.bitcamp.dto.CartListDTO;
@@ -51,6 +52,29 @@ public class CartController {
 		model.addAttribute("cnolist", cnolist);
 		
 		return "cart/cart_list";
+	}
+	
+
+	@RequestMapping(value="/addcart")
+	@ResponseBody
+	public String addcart(CartDTO dto) {
+		
+		service.insert(dto);
+		
+		int p_no = dto.getP_no();
+		
+		String p_name = service.getName(p_no);
+		
+		
+		return "redirect:/goods_detail/"+p_name;
+	}
+	
+	
+	@RequestMapping(value="/deleteCno")
+	@ResponseBody
+	public void deleteCno() {
+		
+		
 	}
 	
 }

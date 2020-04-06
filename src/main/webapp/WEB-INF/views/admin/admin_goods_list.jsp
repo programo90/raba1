@@ -7,6 +7,42 @@
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <title>Insert title here</title>
  <link rel="stylesheet" href="/resources/css/admin/admingoods.css">
+ <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+	$(document).ready(function(){
+		
+		(function(){
+			
+			var pno = document.getElementsByClassName("img_select");
+			var admingoodsimg2 = document.getElementsByClassName("admingoodsimg2");
+			
+				for(var i =0 ; i < pno.length; i++){
+					
+					$.getJSON("/getAttachList", {pno : pno[i].val()*1}, function(arr){
+						
+						console.log(arr);
+						
+						var str ="";
+						
+						var attach = $(arr).get(0);
+							
+							var fileCallPath = encodeURIComponent(attach.uploadPath +"/s_"+attach.uuid+"_"+attach.fileName);
+							
+							str += "<div data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' >";
+							str += "<img src='/display?fileName="+fileCallPath+"' alt='"+attach.fileName+"'>";
+							str += "</div>";
+							
+						admingoodsimg2[i].html(str);
+						
+					});// end getjson	
+					
+				} // end for
+		})(); //end function
+	
+		
+		
+	});
+</script>
  <script src="/resources/js/goods/list_goods.js"></script>
  </head>
  <body>
@@ -39,7 +75,7 @@
 	                    <c:forEach var="Goodslist" items="${list}">
 	                    <div class="admingoodscolumn2">
 	                        <div class="admingoodsnum2"><span><c:out value="${Goodslist.p_no }"/></span></div>
-	                        <div class="admingoodsimg2"><span>이미지</span></div>
+	                        <div class="admingoodsimg2"><div class="list_img"><input class="img_select" type="hidden" value="<c:out value="${Goodslist.p_no }"/>"></div></div>
 	                        <div class="admingoodsname2"><input type="text" value="<c:out value="${Goodslist.p_name }"/>" size="45"></div>
 	                        <div class="admingoodssize2"><input type="text" value="<c:out value="${Goodslist.p_size }"/>" size="3"></div>
 	                        <div class="admingoodsstock2"><input type="text" value="<c:out value="${Goodslist.p_amount }"/>" size="3"></div>

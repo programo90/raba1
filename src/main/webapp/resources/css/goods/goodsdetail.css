@@ -7,12 +7,13 @@
 }
 .detail_img{
     width: 50%;
-    height: 100%;
-    /*border: 1px solid black;*/
+    height: 50%;
+    /* border: 1px solid black; */
     display: inline-block;
 }
 .detail_img img{
-    width: 100%;
+    
+    margin-top : ;
 }
 .detail_info{
     border: 1px solid black;
@@ -59,7 +60,7 @@
 .addcart{
     display: inline-block;
     width: 200px;
-    height: 30px;
+    height: 40px;
     background-color: #e0e0e0;
     color: #404040;
     border-radius: 6px;
@@ -80,4 +81,14 @@ input[type="submit"] {
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
+}
+
+input[type="button"] {
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+	font-weight : bold;
+	font_size : 12px;
 }

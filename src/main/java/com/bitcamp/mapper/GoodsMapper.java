@@ -13,7 +13,7 @@ public interface GoodsMapper {
 
 	List<GoodsDTO> list();
 
-	void delete(int p_no);
+	boolean delete(int p_no);
 
 	GoodsDTO detail(int p_no);
 
@@ -24,5 +24,9 @@ public interface GoodsMapper {
 	List<GoodsDTO> goodsnamedetail(String p_name);
 
 	List<GoodsDTO> select_pno(String p_name);
+
+	String find_pname(int p_no);
+	
+	int count_pno(String pname);
 
 }

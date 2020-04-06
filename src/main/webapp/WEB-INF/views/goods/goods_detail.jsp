@@ -6,8 +6,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset=UTF-8>
 <title>Insert title here</title>
+<sec:csrfMetaTags />
 <link rel="stylesheet" href="/resources/css/goods/goodsdetail.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
@@ -21,10 +22,22 @@
 				
 				console.log(arr);
 				
+				var str ="";
+				
+				var attach = $(arr).get(0);
+					
+					var fileCallPath = encodeURIComponent(attach.uploadPath +"/"+attach.uuid+"_"+attach.fileName);
+					
+					str += "<div data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' >";
+					str += "<img src='/display?fileName="+fileCallPath+"' alt='"+attach.fileName+"'>";
+					str += "</div>";
+					
+				$('.detail_img').html(str);
+				
 			});// end getjson
 			
 		})(); //end function
-		
+	
 	});
 </script>
 <script type="text/javascript" src="/resources/js/goods/goodsdetail.js"></script>
@@ -39,11 +52,15 @@
 		<c:set var="userid" value="aaa"/>
 	</sec:authorize> --%>
 	 <div class="detail_wrap">
-            <div class="detail_img"><img src="" alt="detail_img"></div>
+            <div class="detail_img">
+	            
+	        </div>
+	            
+            
           
          
             <div class="detail_info">
-                   <form action="/cart_insert" method="post">
+                   <form action="/cart_insert" method="post" id="addcartform">
                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                        <ul>
                             <li><c:out value="${list[0].p_name }"></c:out></li>
@@ -61,7 +78,7 @@
                                 <input type="hidden" id="target" name="usercode" value=${userid } >
                             </li>
                             <li><input type="submit" value="BUY NOW" class="buynow"></li>
-                            <li><div class="addcart">ADD CART</div></li>
+                            <li><input type="button" value="ADD CART" class="addcart"></li>
                             <!-- ajax로 값만 넘긴다.  -->
                        </ul>
                    </form>

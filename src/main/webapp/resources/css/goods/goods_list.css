@@ -1,0 +1,27 @@
+@charset "UTF-8";
+.page_title{
+    text-align: center;
+    font-size: 20px;
+    margin: 20px;
+}
+.goods_list{
+    /*border: 2px solid yellow;*/
+    text-align: center;
+}
+.goods_img_wrap{
+/*    border: 1px solid black;*/
+    width: 300px;
+    height: 400px;
+    display: inline-block;
+    margin: 20px 3%;
+}
+.goods_img{
+    width: 300px;
+    height: 300px;
+}
+.goods_img img{
+    width: 300px;
+}
+.goods_price,.goods_title{
+ margin: 0;
+}

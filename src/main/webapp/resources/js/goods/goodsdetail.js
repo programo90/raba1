@@ -88,7 +88,38 @@ document.addEventListener("DOMContentLoaded",function(){
 		
 	});
 	
-	
+	$("input[type='button']").on('click',function(e){
+		
+		
+		var formData = $("#addcartform").serialize();
+		
+		
+		$.ajax({
+			
+			cache :false,
+			type: 'POST',
+			url: '/addcart',
+			data : formData,
+			dataType : 'json',
+			beforeSend : function(xhr)
+            {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+           	},
+           	success : function(json){
+				
+				alert("장바구니에 상품이 담겼습니다.");
+			},
+			error : function(xhr,status, error){
+				
+				alert(error);
+			}
+			
+			
+			
+		});// end ajax
+		
+		
+	});
 	
 	
 });

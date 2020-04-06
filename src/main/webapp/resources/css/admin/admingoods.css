@@ -30,6 +30,12 @@
 
 .admingoodsimg2{width: 16%; height: 85px; float: left; text-align: center;line-height: 85px;}
 
+.admingoodsimg2 img{
+	
+	width : 100%;
+	
+	}
+	
 .admingoodsname2{width: 35%; height: 85px; float: left; text-align: center;line-height: 85px;}
 
 .admingoodsname2 input{height: 20px;}

@@ -10,7 +10,8 @@
 	</insert>
 	
 	<delete id="delete">
-		delete from into GoodsImageTable where uuid = #{uuid}
+		delete from into GoodsImageTable
+		where uuid = #{uuid}
 	</delete>
 	
 	<select id="findByPno" resultType="com.bitcamp.dto.BoardAttachVO">
@@ -20,6 +21,21 @@
 	</select>
 	
 	<delete id="deleteAll" parameterType="int">
-		delete GoodsImageTable where pno = #{p_no}
+		delete from GoodsImageTable
+		where pno = #{p_no}
 	</delete>
+	
+	<update id="updatePno" parameterType="com.bitcamp.dto.ChangeDTO">
+		update GoodsImageTable
+		set
+			pno = #{new_pno}
+		where pno = #{last_pno}
+	</update>
+	
+	<select id="pno_image" parameterType="int" resultType="com.bitcamp.dto.BoardAttachVO">
+		select *
+		from GoodsImageTable
+		where pno = #{p_no}
+	</select>
+	
 </mapper>

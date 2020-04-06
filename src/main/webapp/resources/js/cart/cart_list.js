@@ -95,10 +95,39 @@
 		
 		document.getElementById("delivery_price_text").innerText = deliveryprice + "원";
 		
-		document.getElementById("total_price_text").innerText =" = " + plusprice + deliveryprice + "원" ;
+		document.getElementById("total_price_text").innerText =plusprice + deliveryprice + "원" ;
 	
 		document.getElementById("total_price").value =  plusprice + deliveryprice;
 	}
 	
-	
+	function delete_cno(){
+		
+		alert("delete!!");
+		
+		var list_checkbox = document.getElementsByClassName("list_checkbox");
+		
+		var cnolist = document.getElementsByClassName("cnolist");
+		
+		var arrCno = new Array();
+		
+		for(var i = 0 ; i < list_checkbox.length; i++){
+			
+			if(list_checkbox[i].checked == true){
+				
+				arrCno.push(cnolist[i].value);
+				
+			}
+		}
+		
+		$.ajax({
+			
+			url : "/deleteCno" ,
+			data : arrCno,
+			type : 'post',
+			
+			
+			
+		});
+		
+	}
 

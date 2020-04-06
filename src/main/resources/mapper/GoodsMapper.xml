@@ -66,4 +66,16 @@
   		where pname = #{p_name}
   	</select>
   	
+  	<select id="find_pname" parameterType="int" resultType="String">
+  		select pname
+  		from GoodsTable
+  		where pno = #{p_no}
+  	</select>
+  	
+  	<select id="count_pno" parameterType="String" resultType="int" >
+  		select count(*)
+  		from GoodsTable
+  		where pname = #{pname}
+  	</select>
+  	
   </mapper>

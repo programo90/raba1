@@ -5,9 +5,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bitcamp.dto.BoardAttachVO;
+import com.bitcamp.dto.ChangeDTO;
 import com.bitcamp.dto.GoodsDTO;
 import com.bitcamp.dto.GoodsSizeDTO;
 import com.bitcamp.mapper.BoardAttachMapper;
@@ -15,7 +18,7 @@ import com.bitcamp.mapper.GoodsMapper;
 
 import lombok.extern.log4j.Log4j;
 
-/*@Log4j*/
+@Log4j
 @Service
 public class GoodsServiceImple implements GoodsService {
 
@@ -117,20 +120,57 @@ public class GoodsServiceImple implements GoodsService {
 		return list;
 	}
 
-	@Transactional
+	@Transactional(rollbackFor= {Exception.class}, propagation=Propagation.REQUIRED, isolation=Isolation.DEFAULT)
 	@Override
-	public int deletegoods(int p_no) {
+	public boolean deletegoods(int p_no) {
 		// TODO Auto-generated method stub
 		
-		/*log.info("remove.....");*/
+		log.info("remove.....");
 		
+		String pname = mapper.find_pname(p_no);
 		
+		/* 등록된 제품의 사이즈에 따른 가짓수를 확인한다. */
+		/* 2개 이상의 상품이 있다. */
+		if(mapper.count_pno(pname) == 1) {
+			
+			log.info("물건 하나남았다!!!!");
+			
+			attach_mapper.deleteAll(p_no);
+			
+			mapper.delete(p_no);
+			
+			return true;
+			
 		
-		mapper.delete(p_no);
+		}else{
 		
-		return 0;
+			log.info("물건 여러개가 남았다!!!");
+			
+			/* 삭제하려는 pno가 사진 테이블의 pno와 같은지 여부  */
+			if(attach_mapper.findByPno(p_no) != null) {
+				
+				List<GoodsDTO> pno_dto = mapper.select_pno(pname);
+				
+				int last_pno = pno_dto.get(0).getP_no();
+				int new_pno = pno_dto.get(1).getP_no();
+				
+				ChangeDTO changedto = new ChangeDTO();
+				
+				changedto.setLast_pno(last_pno);
+				changedto.setNew_pno(new_pno);
+				
+				/* 삭제하려는 pno가 goodsimagetable에 저장된 pno라면 남아있는 다른 pno로 업데이트 한다. */
+				attach_mapper.updatePno(changedto);
+				
+			} // 삭제하려는 pno가 goodsimagetable에 등록되어 있는 pno이기 때문에 pno업데이트가 필요하다.
+			
+			mapper.delete(p_no);
+			
+			return false;
+		}
+	
 	}
-
+	
 	@Override
 	public GoodsDTO detailgoods(int p_no) {
 		// TODO Auto-generated method stub
@@ -200,6 +240,7 @@ public class GoodsServiceImple implements GoodsService {
 			
 		List<GoodsDTO> list = mapper.namelist();
 		
+		
 		return list;
 	}
 
@@ -212,6 +253,8 @@ public class GoodsServiceImple implements GoodsService {
 		return list;
 	}
 
+	
+	
 	@Override
 	public List<BoardAttachVO> getAttachList(int pno) {
 		// TODO Auto-generated method stub
@@ -219,6 +262,13 @@ public class GoodsServiceImple implements GoodsService {
 		/*log.info("get Attach list by pno " +pno);*/
 		
 		return attach_mapper.findByPno(pno);
+	}
+
+	@Override
+	public BoardAttachVO getimg(int p_no) {
+		// TODO Auto-generated method stub
+		
+		return attach_mapper.pno_image(p_no);
 	}
 
 	

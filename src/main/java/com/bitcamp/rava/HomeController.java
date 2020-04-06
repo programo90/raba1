@@ -75,7 +75,7 @@ public class HomeController {
         	   //약관 동의창으로 넘겨서 transaction을 적용해줍니다. 
            }
         }
-		return "login/customLogin";
+		return "intro/customLogin";
         
     }
 	

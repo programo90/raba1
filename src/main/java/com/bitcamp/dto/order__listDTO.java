@@ -3,8 +3,15 @@ package com.bitcamp.dto;
 public class order__listDTO {
 
 	private int p_no;
+	private String p_num;
+	public String getP_num() {
+		return p_num;
+	}
+	public void setP_num(String p_num) {
+		this.p_num = p_num;
+	}
 	private String p_name;
-	private int p_price;
+	private String p_price;
 	private String p_size;
 	private int p_amount;
 	private int p_state;
@@ -39,10 +46,10 @@ public class order__listDTO {
 	public void setP_name(String p_name) {
 		this.p_name = p_name;
 	}
-	public int getP_price() {
+	public String getP_price() {
 		return p_price;
 	}
-	public void setP_price(int p_price) {
+	public void setP_price(String p_price) {
 		this.p_price = p_price;
 	}
 	public String getP_size() {

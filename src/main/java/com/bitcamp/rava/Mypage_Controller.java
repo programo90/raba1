@@ -38,11 +38,12 @@ public class Mypage_Controller {
 	
 	@RequestMapping(value="/orderdetail/{userid}/{orderno}")
 	public String doOrderDetail(Model model, @PathVariable String userid, @PathVariable int orderno) {
-		
-		//orderno를 통해서 userid를 받아오는게 맞는건가? 아니면 
 		Login__MemberVO vo = service.userinfo(userid);
 		model.addAttribute("userinfo", vo);
-		
+		List<order__listDTO> list =service.detail_orderlist(orderno);
+		model.addAttribute("goodslist", list);
+		OrderDTO dto = service.orderdetail(orderno);
+		model.addAttribute("orderinfo", dto);
 		return "mypage/orderdetail";
 	}
 	

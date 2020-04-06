@@ -20,4 +20,10 @@ public interface MypageMapper {
 	
 	List<GoodsDTO> goods_info(String pno);
 	
+	GoodsDTO goods_info2(String pno);
+
+	List<OrderDTO> detailorderlist(int orderno);
+
+	OrderDTO order__detail(int orderno);
+	
 }

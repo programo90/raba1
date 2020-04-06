@@ -13,6 +13,7 @@
   	<result property="p_state" column="pstate"/>
   	<result property="wno" column="wno"/>
   </resultMap>
+
   
   <resultMap type="com.bitcamp.security.Login__MemberVO" id="MemberVO">
   	<result property="username" column="username"/>
@@ -32,6 +33,12 @@
   	<result property="p_img" column="uploadPath"/>
   </resultMap>
   
+  <resultMap type="com.bitcamp.dto.GoodsDTO" id="detail_goodsDTO">
+  	<result property="p_no" column="pno"/>
+  	<result property="p_name" column="pname"/>
+  	<result property="p_price" column="price"/>
+  	<result property="p_img" column="uploadPath"/>
+  </resultMap>
   
   
   <select id="userinfo" resultMap="MemberVO">
@@ -48,8 +55,17 @@
   	where userid = #{userid}
 </select>
   
-  
-  
+<select id="detailorderlist" resultType="com.bitcamp.dto.OrderDTO">
+  	SELECT
+		orderstatus, ordercpno, ordercprice
+	FROM
+		orderTable
+	WHERE
+		oderno = #{oderno}
+</select>  
+
+
+
   <select id="wishlist" resultMap="goods_table">
   	select g.pno, pname, price, psize, pamount, pstate, wno 
   	from GoodsTable g left join WishTable w
@@ -59,8 +75,9 @@
 
 
 <select id="order_list" resultType="com.bitcamp.dto.OrderDTO">
-  	select oderno, DATE_FORMAT(salesdate, '%Y-%m-%d') AS salesdate, waybillno, ordermg, totalprice, userid, deltype,ordercprice,ordercamount, orderuname, orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail, orderstatus, payuname, ordercpno
-  	from orderTable 
+  	select oderno, DATE_FORMAT(salesdate, '%Y-%m-%d') AS salesdate, ordermg, totalprice, userid, deltype,ordercprice,ordercamount, orderuname, orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail, orderstatus, payuname, ordercpno
+  	from orderTable
+  	where userid = #{userid} 
 </select>
 
 
@@ -68,6 +85,20 @@
   	SELECT pname, price, uploadPath, gt.pno
 	FROM GoodsTable gt LEFT JOIN GoodsImageTable git ON gt.pno = git.pno
 	WHERE gt.pno = #{pno}
+</select>
+
+
+<select id="goods_info2" resultMap="detail_goodsDTO">
+  	SELECT pname, price, uploadPath, gt.pno
+	FROM GoodsTable gt LEFT JOIN GoodsImageTable git ON gt.pno = git.pno
+	WHERE gt.pno = #{pno}
+</select>
+
+
+<select id="order__detail" resultType="com.bitcamp.dto.OrderDTO">
+  	select oderno, DATE_FORMAT(salesdate, '%Y-%m-%d') AS salesdate, ordermg, totalprice, userid, deltype,ordercprice,ordercamount, orderuname, orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail, orderstatus, payuname, ordercpno
+  	from orderTable 
+  	where oderno= #{orderno}
 </select>
 
 

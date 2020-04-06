@@ -27,7 +27,7 @@
 	    <!-- security session에서 userid를 불러옵니다. -->
 	    <sec:authorize access="isAuthenticated()">
 	      	<sec:authentication property='principal.username' var="userid"/>
-	      	<input type="text" id="userid" value="${userid}">      
+	      	<input type="hidden" id="userid" value="${userid}">      
 	   	</sec:authorize>
 	   	<!-- security session에서 userid를 불러옵니다. -->
    	
@@ -123,7 +123,7 @@
 				                                   <div class="truncate m-0">
 				                                       <a href="#"> ${orderlist.p_name }</a> <br>
 				                                     <span class="text-gray-400 text-sm">${orderlist.p_price }원 / 1ea</span> <br>
-				                                       <a href="/orderdetail/${userid}/${orderlist.p_no}"
+				                                       <a href="/orderdetail/${userid}/${orderlist.oderno}"
 				                                           class="mt-1 bg-gray-400 hover:bg-gray-500 text-white px-1 py-1 rounded-lg text-xs focus:outline-none focus:shadow-outline">
 				                                           주문서 보기
 				                                       </a>

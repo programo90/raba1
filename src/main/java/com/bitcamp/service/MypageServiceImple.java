@@ -38,7 +38,6 @@ public class MypageServiceImple implements MypageService {
 
 	@Override
 	public int updateInfo(Login__MemberVO vo) {
-		System.out.println(vo+"11");
 		mapper.updateInfo(vo);
 		return 2;
 	}
@@ -48,38 +47,95 @@ public class MypageServiceImple implements MypageService {
 		List<order__listDTO> list0 = new ArrayList<>();
 		List<OrderDTO> list = mapper.order_list(userid);
 		
+		
 		for(int i = 0; i<list.size(); i++) {
-			int waybillno = list.get(i).getWaybillno();
+			int orderno = list.get(i).getOderno();
 			String salesdate = list.get(i).getSalesdate();
 			String orderstatus = list.get(i).getOrderstatus();
 			String cpno = list.get(i).getOrdercpno();
-			StringTokenizer stLng = new StringTokenizer(cpno,",");
+			String ordercprice = list.get(i).getOrdercprice();
+
+			StringTokenizer stPrice = new StringTokenizer(ordercprice, ",");
+			StringTokenizer stLng = new StringTokenizer(cpno, ",");
 			String[] lngList = new String[stLng.countTokens()];
 			
 			for(int j =0; j<lngList.length; j++) {
-				String pno = stLng.nextToken();;
+				String pno = stLng.nextToken();
+				String price = stPrice.nextToken();
 				List<GoodsDTO> list2 = mapper.goods_info(pno);
+				
 				
 				for(int t =0; t<list2.size(); t++) {
 					int p_no = list2.get(t).getP_no();
 					String p_img = list2.get(t).getP_img();  //path정보를담아오는지 확인이 필요합니다. 
 					String p_name = list2.get(t).getP_name();
-					int p_price = list2.get(t).getP_price();
 					
 					order__listDTO dto = new order__listDTO();
 					dto.setP_no(p_no);
 					dto.setP_img(p_img);
 					dto.setP_name(p_name);
-					dto.setP_price(p_price);
-					dto.setWaybillno(waybillno);
+					dto.setP_price(price);
 					dto.setSalesdate(salesdate);
 					dto.setOrderstatus(orderstatus);
+					dto.setOderno(orderno);
+					
 					
 					list0.add(dto);
 				}
 			}
 		}
+		System.out.println("test 1 : " + list0.size());
 		return list0;
+	}
+
+
+
+	@Override
+	public List<order__listDTO> detail_orderlist(int orderno) {
+		List<order__listDTO> list0 = new ArrayList<order__listDTO>();
+		
+		List<OrderDTO> list1 = mapper.detailorderlist(orderno);
+		
+		for(int i =0; i<list1.size(); i++) {
+			String orderstatus = list1.get(i).getOrderstatus();
+			
+			
+			String ordercprice = list1.get(i).getOrdercprice();
+			StringTokenizer stPrice = new StringTokenizer(ordercprice,",");
+			String[] priceList = new String[stPrice.countTokens()];
+			
+			String cpno = list1.get(i).getOrdercpno();
+			StringTokenizer stLng = new StringTokenizer(cpno, ",");
+			String[] lngList = new String[stLng.countTokens()];
+			for(int j = 0; j<lngList.length; j++) {
+				String pno = stLng.nextToken();
+				String p_price = stPrice.nextToken();
+				GoodsDTO dto = mapper.goods_info2(pno);
+				String p_img = dto.getP_img();
+				String p_name = dto.getP_name();
+				
+				order__listDTO dto0 = new order__listDTO();
+				dto0.setP_price(p_price);
+				dto0.setP_img(p_img);
+				dto0.setP_name(p_name);
+				dto0.setOrderstatus(orderstatus);
+				dto0.setP_num(pno); //pno를 넣어주고서 링크로 연결이 필요하다. (jsp에서 구현시 )
+				
+				
+				list0.add(dto0);
+			}
+		}
+		
+		return list0;
+	}
+
+
+
+	@Override
+	public OrderDTO orderdetail(int orderno) {
+		OrderDTO dto = mapper.order__detail(orderno);
+		
+		return dto;
 	}
 
 

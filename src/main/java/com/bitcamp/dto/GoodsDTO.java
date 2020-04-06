@@ -11,7 +11,15 @@ public class GoodsDTO {
 	private int p_amount;
 	private int p_state;
 	private String p_img;
+	private int wno;
 	
+
+	public int getWno() {
+		return wno;
+	}
+	public void setWno(int wno) {
+		this.wno = wno;
+	}
 
 	private List<BoardAttachVO> attachList;
 	

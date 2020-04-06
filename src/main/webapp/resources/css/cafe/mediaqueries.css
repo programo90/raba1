@@ -1,0 +1,160 @@
+@charset "UTF-8";
+@media screen and (max-width: 414px) { 
+
+.banner {
+    height: 250px !important;
+}
+.banner_inner {
+    height: 250px;
+    background-position: center center;
+}		
+.cafe{
+	padding: 10px;
+}	
+/*cafe*/
+.cafe_tab {
+    width: 31.5%;
+}
+.cafe_category_tit {
+    padding-bottom: 10px;
+}
+.cafe_category_checkbox {
+    padding-top: 10px;
+}
+.cafe_category_txtspan {
+    font-size: 10px;
+    padding-left: 8px;
+}
+.cafe_product_inner {
+    width: 194px;
+    height: 205px;
+}
+.cafe_product_box {
+    width: 194px;
+}
+
+
+/*cafe-detail*/	
+.cafe_detail_img {
+    width: 100%;
+    height: 430px;
+}
+.cafe_detail {
+    height: 890px;
+}
+.cafe_detail_imgbox {
+    width: 394px;
+    height: 429px;
+}
+.cafe_detail_infobox {
+    width: 100%;
+    margin-top:20px;
+}
+.product_info_contentul {
+    width: 100%;
+}
+.product_info_contentul:last-child {
+    width: 100%;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+/* cafe_nutrition*/
+.info_p {
+    padding: 10px 0px 20px 0px;
+}
+.info_lileft {
+    width: 100%;
+}
+.kacl_box {
+    width: 100%;
+}
+.goal_kacl {
+    width: 56%;
+}
+.goal_kacl_numinput {
+    width: 120px;
+}
+.nutrtion_info:nth-child(odd) {
+    width: 28%;
+}
+.nutrtion_box {
+    margin-bottom: 0px; 
+}
+.nutrtion_info {
+    width: 15%;
+    height: 41px;
+    padding-left: 10px;
+}
+.nutrtion_subtitle {
+    margin-top: 64px;
+}
+.menusearch {
+    width: 25%;
+}
+.nutrition_inputL {
+    width: 49%;
+}
+.admin_btnS {
+    padding: 5px 14px;
+}
+.menu_title{
+	font-size: 13px;
+}
+.menu_title_p:first-child {
+    width: 113px;
+}
+.menu_title_p {
+    width: 87px;
+}
+.menu_title_p:last-child{
+	width: 35px;
+}
+.menu_list_lipbig {
+    width: 113px;
+    padding-left: 0px; 
+}
+.menu_list_li {
+    font-size: 11px;
+}
+.menu_list_lip {
+   width: 99px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.menu_list_lip:last-child {
+	width: 35px;
+}
+.menu_list_box {
+    margin-bottom: 5px;
+}
+.menu_title_pdbig {
+    width: 87px;
+}
+.menu_title_pd:first-child{
+	width:100%;
+}
+.menu_title_pd {
+    width: 102px;
+}
+.addmenu_title{
+	height:90px;
+}
+.menu_list_lipdbig {
+    width: 332px;
+    text-align: center;
+    padding-left: 0px;
+}
+.addli{
+	height:105px;
+}
+#modal .modal_content {
+    left: -40px;
+}
+
+
+
+
+
+
+}
+

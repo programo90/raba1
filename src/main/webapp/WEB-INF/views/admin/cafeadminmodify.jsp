@@ -1,0 +1,111 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<link rel="stylesheet" href="/resources/css/cafe/cafeadmin.css">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/resources/js/cafe/cafeadminmodify.js"></script>
+</head>
+<body>
+	<div class="admincontents">
+            <div class="admin_userbox">
+                관리자님 환영합니다! <span class="admin_logout"><a href="#">로그아웃</a></span>
+            </div>
+            <div class="cafe_topbox">
+                <p class="cafe_tab" id="cafeadmin">카페상품 수정/삭제</p>
+                <p class="cafe_tab" id="cafeinsert">카페상품 등록</p>
+               
+            </div>
+            <section class="admin_sectionbox">
+                <!-- 여기서 div만들고 시작하세요 -->
+                <div class="admin_cafebox" >
+                    <div class="admin_cafecon">
+                    <input type="hidden" value="${dto.cafeproduct}" id="seletedpro">  <!-- tabChange() script상에서 selected = ture  -->
+                      <input type="hidden" value="${dto.cafecategory}" id="selcategory"> 
+                        <form method="post" action="/cafemodifyresult" enctype="multipart/form-data" >
+                        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        	<input type="hidden" value="${dto.cafeno}" id="cafeno" name="cafeno">
+                            <div class="admin_cafe_basicsbox">
+                                <ul>
+                                    <li class="admin_cafe_li">
+                                        <label for="cafeTab" class="admin_cafelable">카페상품</label>
+                                        <select id="cafeTab" name="cafeproduct" class="admin_cafe_select" value="${dto.cafeproduct }" onchange="tabChange(this)" required>
+                                            <option>DRINK 및 BAKERY를 선택해주세요</option>
+                                            <option value="DRINK">DRINK</option>
+                                            <option value="BAKERY">BAKERY</option>
+                                        </select>
+                                    </li>
+                                    <li class="admin_cafe_li">
+                                        <label for="cafeCategory" class="admin_cafelable">분류</label>
+                                        <select id="cafeCategory" name="cafecategory" class="admin_cafe_select" required>
+                                        </select>
+                                    </li>
+                                    <li class="admin_cafe_li">
+                                        <label for="cafeMenu" class="admin_cafelable">메뉴명</label>
+                                        <input type="text" name="menu" id="cafeMenu" class="admin_cafe_input" value="${dto.menu}" placeholder="메뉴명을 작성하세요" required>
+                                    </li>
+                                    <li class="admin_cafe_li">
+                                        <label for="cafeMenuEng" class="admin_cafelable">영문메뉴명</label>
+                                        <input type="text" name="menueng" id="cafeMenuEng" class="admin_cafe_input" value="${dto.menueng}" placeholder="영문메뉴명을 작성하세요" required>
+                                    </li>
+                                    <li class="admin_cafe_li">
+                                    <label for="cafeDetail" class="admin_cafelable">알레르기 유발요인</label>
+                                    <input type="text" name="allergy" id="cafeDetail" class="admin_cafe_input"  value="${dto.allergy}" placeholder="알레르기 유발요인을 작성하세요">
+                                </li>
+                                </ul>
+                            </div>
+                            <div class="cafe_imgbox">
+                                <div class="cafe_imgboxinner">
+                                	<div class="cafe_img">
+							           <img style="height:100%" alt="imgurl" src="/downloadFile/${dto.cafeno}">
+							       </div>
+                                   <input type="file" id="file1" name="file1">
+                                   <!-- <button type="button" id="img1Btn" name="img1Btn">이미지 등록</button> -->
+                                </div>
+                          	</div>
+                            <ul class="admin_cafe_addbox">
+                                <li class="admin_cafe_li cafeliheight">
+                                    <label for="cafeDetail" class="admin_cafelable cafelablefloat">설명</label>  
+                                    <textarea rows="4" cols="134" name="menuexplain" id="cafeDetail" class="admin_cafe_textarea" required>${dto.menuexplain}</textarea>
+                                </li>
+								<!-- 
+                                <li class="admin_cafe_li admin_cafe_lispecil">
+                                    <label for="" class="admin_cafelable admin_cafelablespecil">추가 이미지</label>
+                                    <div class="cafe_img_addbox">
+                                    	<div class="cafe_img_add">
+								           <img id="img2" /> 
+								        </div>
+                                    	<input type="file" id="file2" name="file2" class="admin_file_btn">
+                                    </div>
+                                    <div class="cafe_img_addbox">
+                                    	<div class="cafe_img_add">
+								           <img id="img3" /> 
+								        </div>
+                                    	<input type="file" id="file3" name="file3" class="admin_file_btn">
+                                    </div>
+                                    <div class="cafe_img_addbox">
+                                    	<div class="cafe_img_add">
+								           <img id="img4" /> 
+								        </div>
+                                    	<input type="file" id="file4" name="file4" class="admin_file_btn">
+                                    </div>
+                                </li>
+                                -->
+                            </ul> 
+                            <div class="admin_btnbox">
+                                <input type="submit" value="수정" class="admin_btn subminbtn">
+                                <input type="button" value="삭제" class="admin_btn" id="delbtn">
+                                <input type="button" value="취소" class="admin_btn" id="backbtn">
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </section>
+        </div>
+</body>
+</html>

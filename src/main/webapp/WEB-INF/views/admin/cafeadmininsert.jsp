@@ -16,11 +16,11 @@
             </div>
             <div class="cafe_topbox">
                 <p class="cafe_tab" id="cafeadmin">카페상품 수정/삭제</p>
-                <p class="cafe_tab" id="cafeinsert">카페상품 등록</p>
+                <p class="cafe_tab cafe_tabelected" id="cafeinsert">카페상품 등록</p>
             </div>
             <section class="admin_sectionbox">
                 <!-- 여기서 div만들고 시작하세요 -->
-                <div class="admin_cafebox" id="cafeadminPage">
+                <div class="admin_cafebox" >
                     <div class="admin_cafecon">
                         <form method="post" action="cafeinsertresult" enctype="multipart/form-data" >
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -70,12 +70,12 @@
                                    <!-- <button type="button" id="img1Btn" name="img1Btn">이미지 등록</button> -->
                                 </div>
                           	</div>
-                            <ul class="admin_cafe_addbox">
+                             <ul class="admin_cafe_addbox">
                                 <li class="admin_cafe_li cafeliheight">
                                     <label for="cafeDetail" class="admin_cafelable cafelablefloat">설명</label>  
                                     <textarea rows="4" cols="134" name="menuexplain" id="cafeDetail" class="admin_cafe_textarea" placeholder="메뉴의 설명을 작성하세요" required></textarea>
                                 </li>
-                                
+                                <!--
                                 <li class="admin_cafe_li admin_cafe_lispecil">
                                     <label for="" class="admin_cafelable admin_cafelablespecil">추가 이미지</label>
                                     <div class="cafe_img_addbox">
@@ -96,14 +96,14 @@
 								        </div>
                                     	<input type="file" id="file4" name="file4" class="admin_file_btn">
                                     </div>
-                                    <!-- <button type="button">이미지1</button>
+                                    <button type="button">이미지1</button>
                                     <button type="button">이미지2</button>
-                                    <button type="button">이미지3</button> -->
-                                </li>
+                                    <button type="button">이미지3</button>
+                                </li> -->
                             </ul>
                             <div class="admin_btnbox">
                                 <input type="submit" value="등록" class="admin_btn subminbtn">
-                                <input type="reset" value="취소" class="admin_btn">
+                                <input type="reset" value="취소" class="admin_btn" id="backbtn">
                             </div>
                         </form>
                     </div>

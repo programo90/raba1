@@ -81,8 +81,7 @@
 }
 .cafe_img{
     width: 356px;
-    height: 190px;
-    border: 1px solid #e8e8e8;
+    height: 202px;
     text-align: center;
 }
 .cafe_img_addbox{
@@ -148,8 +147,8 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
     cursor: pointer;
+    border-radius:5px;
 }
 .subminbtn{
     color: white;
@@ -157,5 +156,67 @@
 }
 /* list */
 .cafeadmin_list{
-	display:inline-block;
+	float: left;
+	margin-right: 20px;
+}
+.admin_cafelist_li{
+	height: 40px;
+    line-height: 40px;
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+}
+.admin_searchBox{
+	margin-bottom:10px;
+}
+.admin_inputL{
+	width: 80%;
+    height: 20px;
+    border: 1px solid #e8e8e8;
+    padding: 5px;
+    font-size: 11px;
+    cursor: pointer;
+}
+.inputright{
+	padding: 10px 33px;
+}
+.menusearch{
+	width: 8%;
+    height: 32px;
+    font-size: 11px;
+    padding: 0 5px;
+    border: 1px solid #e8e8e8;
+  }
+  .pageing_box{
+  	text-align: center;
+    font-size: 14px;
+    border-top: 1px solid #e8e8e8;
+    padding-top: 20px;
+  }
+.listImg{
+	width: 50px;
+    height: 40px;
+}
+.listMenu{
+	width:604px;
+}
+.listcategory{
+	width: 110px;
+}
+.listproduct{
+	width: 60px;
+}
+.listbtn{
+	margin-right: 0px;
+	margin-top: 3px;
+}
+.smallbtn{
+	padding: 7px 32px;
+    margin: 0px;
+    font-size: 12px;
+    background-color: #ffffff;
+    border: 1px solid #3e5f40;
+}
+.smallbtn:hover, .smallbtn:focus {
+	color:#fff;
+	background-color: #3e5f40;
 }

@@ -8,7 +8,8 @@ public class CafeDTO {
 	private String menueng;
 	private String allergy;
 	private String menuexplain;
-	
+	private String fileoriginalname;
+	private String filesystemname;
 	
 	public int getCafeno() {
 		return cafeno;
@@ -52,12 +53,26 @@ public class CafeDTO {
 	public void setMenuexplain(String menuexplain) {
 		this.menuexplain = menuexplain;
 	}
+	
+	public String getFileoriginalname() {
+		return fileoriginalname;
+	}
+	public void setFileoriginalname(String fileoriginalname) {
+		this.fileoriginalname = fileoriginalname;
+	}
+	public String getFilesystemname() {
+		return filesystemname;
+	}
+	public void setFilesystemname(String filesystemname) {
+		this.filesystemname = filesystemname;
+	}
 	@Override
 	public String toString() {
 		return "CafeDTO [cafeno=" + cafeno + ", cafeproduct=" + cafeproduct + ", cafecategory=" + cafecategory
 				+ ", menu=" + menu + ", menueng=" + menueng + ", allergy=" + allergy + ", menuexplain=" + menuexplain
-				+ "]";
+				+ ", fileoriginalname=" + fileoriginalname + ", filesystemname=" + filesystemname + "]";
 	}
+	
 	
 	
 }

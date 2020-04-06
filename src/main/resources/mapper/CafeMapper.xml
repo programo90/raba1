@@ -51,4 +51,86 @@
 			insert into CafeFileTable (cafeno, cafeFileurl, fileoriginalname, filesystemname) 
 			values(#{cafeno}, #{cafeFileurl}, #{fileoriginalname}, #{filesystemname})
 		</insert>
+		<select id="adminlistData" resultType="com.bitcamp.dto.CafeDTO">
+			select cafe.cafeno, cafeproduct, cafecategory, menu, menueng, allergy, menuexplain, fileoriginalname, filesystemname
+			from CafeTable as cafe join CafeFileTable as cafefile
+			on cafe.cafeno = cafefile.cafeno
+			<where>
+	    		<if test="searchtxt!=null and searchtxt!=''">
+	    			<choose>
+						<when test="search=='menu'">
+							and menu like CONCAT('%',#{searchtxt},'%')
+						</when>
+						<when test="search=='cafeproduct'">
+	    					and cafeproduct like CONCAT('%',#{searchtxt},'%')
+	    				</when>
+	    				<when test="search=='cafecategory'">
+	    					and cafecategory like CONCAT('%',#{searchtxt},'%')
+	    				</when>
+					</choose>
+	    		</if>
+	    	</where>
+	    	limit #{startRow},#{pageSize}
+			<!-- order by cafe.cafeno asc -->
+		</select>
+		<select id="modifyData" parameterType="int" resultType="com.bitcamp.dto.CafeDTO">
+			select cafe.cafeno, cafeproduct, cafecategory, menu, menueng, allergy, menuexplain, fileoriginalname, filesystemname
+			from CafeTable as cafe join CafeFileTable as cafefile
+			on cafe.cafeno = cafefile.cafeno
+			where cafe.cafeno=#{cafeno}
+		</select>
+		<select id="admingetCount" resultType="int" parameterMap="hashMap">
+			select count(*)
+			from CafeTable
+			<where>
+				<if test="searchtxt!=null and searchtxt!='' ">
+					<choose>
+						<when test="search=='menu'">
+							and menu like CONCAT('%',#{searchtxt},'%')
+						</when>
+						<when test="search=='cafeproduct'">
+	    					and cafeproduct like CONCAT('%',#{searchtxt},'%')
+	    				</when>
+	    				<when test="search=='cafecategory'">
+	    					and cafecategory like CONCAT('%',#{searchtxt},'%')
+	    				</when>
+					</choose>
+				</if>
+			</where>
+		</select>
+		<update id="modifyResultData" parameterType="com.bitcamp.dto.CafeDTO">
+			update CafeTable cafe join CafeFileTable cafefile
+			on cafe.cafeno = cafefile.cafeno
+			set cafeproduct=#{cafeproduct}, cafecategory=#{cafecategory}, menu=#{menu}, menueng=#{menueng}, allergy=#{allergy}, menuexplain=#{menuexplain}
+			where cafe.cafeno=#{cafeno}
+		</update>
+		<delete id="deleteData" parameterType="int">
+			delete from CafeTable
+			where cafeno=#{cafeno}
+		</delete>
+		<delete id="filedeleteData" parameterType="int">
+			delete from CafeFileTable
+			where cafeno=#{cafeno}
+		</delete>
+		<select id="fileselectDate" parameterType="int" resultType="com.bitcamp.dto.CafeFileDTO">
+			select cafeFileno, cafeno, cafeFileurl, fileoriginalname, filesystemname
+			from CafeFileTable
+			where cafeno=#{cafeno}
+		</select>
+		<select id="selectcafeData" resultType="com.bitcamp.dto.CafeDTO">
+			select cafe.cafeno, cafeproduct, cafecategory, menu, menueng, allergy, menuexplain, fileoriginalname, filesystemname
+			from CafeTable as cafe join CafeFileTable as cafefile
+			on cafe.cafeno = cafefile.cafeno
+		</select>
+		<select id="cafedetailData" resultType="com.bitcamp.dto.CafeDTO">
+			select cafe.cafeno, cafeproduct, cafecategory, menu, menueng, allergy, menuexplain, cafeFileurl, fileoriginalname, filesystemname
+			from CafeTable as cafe join CafeFileTable as cafefile
+			on cafe.cafeno = cafefile.cafeno
+			where cafe.cafeno=#{cafeno}
+		</select>
+		<select id="detailnutriData" resultType="com.bitcamp.dto.CafeNutrtionDTO">
+			select *
+			from CafenutritionTable
+			where cafeno=#{cafeno}
+		</select>
     </mapper>

@@ -10,13 +10,12 @@ public class CafeNutrtionDTO {
 	private double MEAL_FAT;
 	private double MEAL_CARB;
 	private double MEAL_SODIUM;
-	
+	private int CAFENO;
 	public CafeNutrtionDTO() {
 		super();
 	}
-	
 	public CafeNutrtionDTO(int mEAL_NO, String mEAL_NAME, int mEAL_AMOUNT, String mEAL_UNIT, double mEAL_KCAL,
-			double mEAL_PROTEIN, double mEAL_FAT, double mEAL_CARB, double mEAL_SODIUM) {
+			double mEAL_PROTEIN, double mEAL_FAT, double mEAL_CARB, double mEAL_SODIUM, int cAFENO) {
 		super();
 		MEAL_NO = mEAL_NO;
 		MEAL_NAME = mEAL_NAME;
@@ -27,13 +26,23 @@ public class CafeNutrtionDTO {
 		MEAL_FAT = mEAL_FAT;
 		MEAL_CARB = mEAL_CARB;
 		MEAL_SODIUM = mEAL_SODIUM;
+		CAFENO = cAFENO;
 	}
+
+
 
 	public int getMEAL_NO() {
 		return MEAL_NO;
 	}
 	public void setMEAL_NO(int mEAL_NO) {
 		MEAL_NO = mEAL_NO;
+	}
+	
+	public int getCAFENO() {
+		return CAFENO;
+	}
+	public void setCAFENO(int cAFENO) {
+		CAFENO = cAFENO;
 	}
 	public String getMEAL_NAME() {
 		return MEAL_NAME;
@@ -87,6 +96,8 @@ public class CafeNutrtionDTO {
 	public String toString() {
 		return "CafeNutrtionDTO [MEAL_NO=" + MEAL_NO + ", MEAL_NAME=" + MEAL_NAME + ", MEAL_AMOUNT=" + MEAL_AMOUNT
 				+ ", MEAL_UNIT=" + MEAL_UNIT + ", MEAL_KCAL=" + MEAL_KCAL + ", MEAL_PROTEIN=" + MEAL_PROTEIN
-				+ ", MEAL_FAT=" + MEAL_FAT + ", MEAL_CARB=" + MEAL_CARB + ", MEAL_SODIUM=" + MEAL_SODIUM + "]";
+				+ ", MEAL_FAT=" + MEAL_FAT + ", MEAL_CARB=" + MEAL_CARB + ", MEAL_SODIUM=" + MEAL_SODIUM + ", CAFENO="
+				+ CAFENO + "]";
 	}
+	
 }

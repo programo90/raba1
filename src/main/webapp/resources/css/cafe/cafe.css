@@ -19,9 +19,9 @@
     display: inline-block;
     text-align: center;
     cursor: pointer;
-    background-color: #f4f4f2;
+    background-color: #fff;
     border-radius: 5px;
-    border: 1px solid #eaeaea;
+    border: 1px solid #3e5f40;
     margin-right: 0.5%;
 }
 .cafe_tab:last-child{
@@ -31,6 +31,7 @@
     color: #fff;
     font-weight:bold;
     background-color:#3e5f40;
+    border: 1px solid #3e5f40;
 }
 /* category */
 .cafe_category{
@@ -100,9 +101,8 @@ input[class="cafe_checkbox"] {
     margin: 20px 0px;
 }
 .cafe_product_box{
-    width: 265px;
+    width: 295px;
     display: inline-block;
-    margin-right: 41px;
 }
 .cafe_product_box:last-child{
     margin-right:0px;
@@ -114,6 +114,7 @@ input[class="cafe_checkbox"] {
 }
 .cafe_product_img{
     width: 100%;
+    cursor: pointer;
 }
 
 .cafe_product_img:hover {
@@ -176,6 +177,7 @@ input[class="cafe_checkbox"] {
     font-family: "Arial";
     font-weight: normal;
     color: #666;
+    padding: 2px 0 0 5px;
 }
 .cafe_detail_pro{
     font-size: 16px;
@@ -186,6 +188,7 @@ input[class="cafe_checkbox"] {
 }
 .cafe_detail_infop{
     height: 59px;
+    font-weight: 600;
     line-height: 59px;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -193,7 +196,8 @@ input[class="cafe_checkbox"] {
 .cafe_detail_infospan{
     width: 150px;
     float: right;
-    font-size: 13px
+    font-size: 13px;
+    font-weight:400;
 }
 .product_info_content{
     margin: 20px 0;
@@ -476,4 +480,60 @@ input[class="cafe_checkbox"] {
 .menuaddCheckbox{
 	height: 34px;
     cursor: pointer;
+}
+/*모달css*/
+#modal_opne_btn{
+    background-color: #3e5f40;
+    border: none;
+    color:#fff;
+    padding: 10px 31px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#modal {
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+#modal button {
+    display: inline-block;
+    width: 100px;
+    margin-left: calc(100% - 100px - 10px);
+    cursor: pointer;
+}
+
+#modal .modal_content {
+   position: absolute;
+   top: -720px;
+   left: 101px;
+   width: 914px;
+   margin: 100px auto;
+   padding: 20px 10px;
+   background: #fff;
+   border-radius: 5px;
+}
+
+#modal .modal_layer {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.5);
+   z-index: -1;
+   }
+#modal_close_btn{
+    background-color: #3e5f40;
+    border: none;
+    color:#fff;
+    padding: 10px 10px;
+    border-radius: 5px;
 }

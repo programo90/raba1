@@ -23,6 +23,26 @@ public interface CafeMapper {
 
 	int fileinsertData(CafeFileDTO cafefiledto);
 
+	List<CafeDTO> adminlistData(HashMap<String, Object> hm);
+
+	CafeDTO modifyData(int cafemodifyno);
+
+	int admingetCount(HashMap<String, Object> hm);
+
+	int modifyResultData(CafeDTO cafedto);
+
+	int deleteData(int cafeno);
+
+	int filedeleteData(int cafeno);
+
+	CafeFileDTO fileselectDate(int cafeno);
+
+	List<CafeDTO> selectcafeData();
+
+	CafeDTO cafedetailData(int cafeno);
+
+	CafeNutrtionDTO detailnutriData(int cafeno);
+
 
 
 }

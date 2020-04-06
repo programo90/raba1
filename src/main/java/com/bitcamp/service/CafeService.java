@@ -20,5 +20,27 @@ public interface CafeService {
 
 	int cafefileInsert(CafeFileDTO cafefiledto);
 
+	List<CafeDTO> selectAdminList(String search, String searchtxt, int startRow, int pageSize);
+
+	CafeDTO modifyData(int cafemodifyno);
+
+	int admincafeCount(String search, String searchtxt);
+
+	int modifyResult(CafeDTO cafedto);
+
+	int deleteData(int cafeno);
+
+	int filedeleteData(int cafeno);
+
+	CafeFileDTO getcafefile(int cafeno);
+
+	List<CafeDTO> selectcafelist();
+
+	CafeDTO cafedetailData(int cafeno);
+
+	CafeNutrtionDTO detailnutriData(int cafeno);
+
+
+
 
 }

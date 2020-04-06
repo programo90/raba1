@@ -14,16 +14,13 @@
 .header {
     height: 68px !important;
 }
-.logo_img {
-    width: 11% !important;
-}
 .phonenavbox{
 	display: block !important;
     background-color: rgba( 255, 255, 255, 0.95 );
     position: fixed;
     top: 0px;
     left: 0;
-    width: 100%;
+    width: 96%;
     height: 48px;
     padding: 10px;
 }
@@ -42,14 +39,23 @@
 .phone_menuIcon{
 	font-size:25px;
 	cursor:pointer;
+	float:left;
+	width:22px;
+	height: 30px;
+	margin-top: 5px;
 }
 .phonelogo{
-	margin: 0px 148px;
 	cursor:pointer;
+	float: left;
+    width: 50px;
+    margin-left: 37%;
 }
 .phoneuser{
 	font-size:25px;
 	cursor:pointer;
+	float: left;
+    width: 20px;
+    margin-top: 12px;
 }
 .phoneusericon{
 	color:#5a5a5a;

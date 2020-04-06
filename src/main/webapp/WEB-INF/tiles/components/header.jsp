@@ -55,13 +55,13 @@
             </nav>
         </div>
         <div class="phonenavbox">
-        	<span class="phone_menuIcon" onclick="openNav()">&#9776;</span>
-        	<span class="phonelogo">
+        	<p class="phone_menuIcon" onclick="openNav()">&#9776;</p>
+        	<p class="phonelogo">
         		<a href="#"><img src="/resources/img/ba_logo.png" alt="BALOGO" class="logo_img"></a>
-        	</span>
-        	<span class="phoneuser">
+        	</p>
+        	<p class="phoneuser">
         		<a href="/mypage/${userid}" class="phoneusericon"><i class="fa fa-user"></i>
-        	</span>
+        	</p>
         </div>
         <div id="myNav" class="overlay">
 		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>

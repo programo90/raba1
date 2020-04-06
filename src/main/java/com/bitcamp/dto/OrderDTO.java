@@ -23,7 +23,14 @@ public class OrderDTO {
 	private String orderuemail;
 	private String orderstatus;
 	private String payuname;
+	private String postno;
 	
+	public String getPostno() {
+		return postno;
+	}
+	public void setPostno(String postno) {
+		this.postno = postno;
+	}
 	public String getOrdercpno() {
 		return ordercpno;
 	}

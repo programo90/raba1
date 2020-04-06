@@ -17,34 +17,28 @@
             <nav>
                 <ul>
                     <li class="adminnav">
-                        <a href="#"> 통계 관리</a>
+                        <a href="/admin">통계 관리</a>
                     </li>
                     <li class="adminnav">
-                        <a href="#">카페상품 관리</a>
+                        <a href="/cafeadmin">카페상품 관리</a>
                     </li>
                     <li class="adminnav">
-                        <a href="#">YOUTUBE 관리</a>
+                        <a href="/youtubeadmin">YOUTUBE 관리</a>
                     </li>
                     <li class="adminnav">
-                        <a href="#">정비 관리</a>
+                        <a href="/repairadmin">정비 관리</a>
                     </li>
                     <li class="adminnav">
-                        <a href="#">상품 관리</a>
+                        <a href="/admin_goods_list">상품 관리</a>
                     </li>
                     <li class="adminnav">
-                        <a href="#">상품문의 관리</a>
+                        <a href="/adminoder">주문 관리</a>
                     </li>
                     <li class="adminnav">
-                        <a href="#">재고 관리</a>
+                        <a href="/touradmin">투어 관리</a>
                     </li>
                     <li class="adminnav">
-                        <a href="#">주문 관리</a>
-                    </li>
-                    <li class="adminnav">
-                        <a href="#">투어 관리</a>
-                    </li>
-                    <li class="adminnav">
-                        <a href="#">회원관리 관리</a>
+                        <a href="/adminmember">회원 관리</a>
                     </li>
                 </ul>
             </nav>

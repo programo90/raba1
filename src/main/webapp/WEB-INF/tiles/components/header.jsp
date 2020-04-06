@@ -6,6 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<link rel="stylesheet" href="/resources/css/commMedia.css">
 <link rel="stylesheet" href="/resources/css/common.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
@@ -14,43 +16,66 @@
 <script src="/resources/js/header.js"></script>
 </head>
 <body>
-
-	<sec:authorize access="isAuthenticated()">
-      <sec:authentication property='principal.username' var="userid"/>
-      <input type="text" id="userid" value="${userid}">      
-   	</sec:authorize>
    	
 	<header class="header">
         <div class="header_inner">
             <div class="topmenu">
                 <ul>
                     <li class="topmenuli">
-                        <a href="#"><i class="fa fa-search"></i></a>
-                    </li>
-                    <li class="topmenuli">
                         <a href="/mypage/${userid}"><i class="fa fa-user"></i></a>
                     </li>
                     <li class="topmenuli">
                         <a href="#"><i class="fa fa-shopping-basket"></i></a>
                     </li>
+                    <sec:authorize access="isAnonymous()">
+						<a href="/login" onclick="openModal()" class="headeloginbtn">로그인</a>	
+					</sec:authorize>
+					
+					<sec:authorize access="isAuthenticated()">
+					<a href="#" onclick="document.getElementById('logout-form').submit();" class="headeloginbtn">로그아웃</a>
+					<form id="logout-form" action=/customLogout method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					</form>
+					</sec:authorize>
                 </ul>
             </div>
             <div class="logo"><a href="#"><img src="/resources/img/ba_logo.png" alt="BALOGO" class="logo_img"></a></div>
             <nav class="navbox">
                 <ul class="navul">
-                	
-                    <li class="navli"><a href="#">Story</a></li>
-                    <li class="navli"><a href="#">Cafe</a></li>
-                    <li class="navli"><a href="#">Repair</a></li>
-                    <li class="navli"><a href="#">Goods</a></li>
-                    <li class="navli"><a href="#">Story</a></li>
-                    <li class="navli"><a href="#">Tour</a></li>
-                    <li class="navli"><a href="#">Gallery</a></li>
-                    <li class="navli"><a href="#">Info</a></li>
+                    <li class="navli"><a href="/story">Story</a></li>
+                    <li class="navli"><a href="/cafe">Cafe</a></li>
+                    <li class="navli"><a href="/youtube">Contents</a></li>
+                    <li class="navli"><a href="/repair">Repair</a></li>
+                    <li class="navli"><a href="/goods_list">Goods</a></li>
+                    <li class="navli"><a href="/tourlist">Tour</a></li>
+                    <li class="navli"><a href="/gallery">Gallery</a></li>
+                    <li class="navli"><a href="/info">Info</a></li>
 
                 </ul>
             </nav>
         </div>
+        <div class="phonenavbox">
+        	<span class="phone_menuIcon" onclick="openNav()">&#9776;</span>
+        	<span class="phonelogo">
+        		<a href="#"><img src="/resources/img/ba_logo.png" alt="BALOGO" class="logo_img"></a>
+        	</span>
+        	<span class="phoneuser">
+        		<a href="/mypage/${userid}" class="phoneusericon"><i class="fa fa-user"></i>
+        	</span>
+        </div>
+        <div id="myNav" class="overlay">
+		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		  <div class="overlay-content">
+		    <a href="/story">Story</a>
+		    <a href="/cafe">Cafe</a>
+		    <a href="/youtube">Contents</a>
+		    <a href="/repair">Repair</a>
+		    <a href="/goods_list">Goods</a>
+		    <a href="/tourlist">Tour</a>
+		    <a href="/gallery">Gallery</a>
+		    <a href="/info">Info</a>
+		  </div>
+		</div>
     </header>
 </body>
 </html>

@@ -119,14 +119,16 @@
 			                     		<tr class=" border-b border-gray-200 ">	
 			                          		<td class=" flex items-center px-5 py-5 bg-white text-sm">
 			                               		<img src="/resources/img/mypage/product.png" alt="product" class="m-3 my-auto h-12 w-12 flex-shrink-0">
-				                               	<div class="px-3 py-2 w-full flex items-center justify-between leading-none">
-				                                   <div class="truncate m-0">
+				                               	<div class="px-3 py-2 h-auto w-full flex items-center justify-between leading-none">
+				                                   <div class="truncate m-0 h-12">
 				                                       <a href="#"> ${orderlist.p_name }</a> <br>
-				                                     <span class="text-gray-400 text-sm">${orderlist.p_price }원 / 1ea</span> <br>
+				                                     <div class="text-gray-400 text-sm">${orderlist.p_price }원 / 1ea</div>
+				                                     <div class="mt-1">
 				                                       <a href="/orderdetail/${userid}/${orderlist.oderno}"
-				                                           class="mt-1 bg-gray-400 hover:bg-gray-500 text-white px-1 py-1 rounded-lg text-xs focus:outline-none focus:shadow-outline">
+				                                           class="mt-1 h-16 bg-gray-400 hover:bg-gray-500 text-white px-1 rounded-lg text-xs focus:outline-none focus:shadow-outline">
 				                                           주문서 보기
 				                                       </a>
+				                                     </div>
 				                                   </div>
 				                               </div>
 			                                </td>

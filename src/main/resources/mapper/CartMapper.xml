@@ -38,5 +38,16 @@
 		where userid = #{usercode}
 	</select>
 
+	<delete id="deleteAll" parameterType="String">
+		delete
+		from CartTable
+		where userid = #{userid}
+	</delete>
+	
+	<delete id="deleteCno" parameterType="String">
+		delete
+		from CartTable
+		where cno = #{cno}
+	</delete>
   
   </mapper>

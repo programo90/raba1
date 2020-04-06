@@ -14,8 +14,6 @@ import com.bitcamp.service.NoticeService;
 import lombok.AllArgsConstructor;
 
 @Controller
-
-@RequestMapping("login/admin/*")
 @AllArgsConstructor
 public class InfoController {
 
@@ -57,7 +55,7 @@ public class InfoController {
 		
 		int result = noticeservice.ins_ntc(dto);
 		
-		return "redirect:/login/admin/notice_list";
+		return "redirect:/notice_list";
 	}
 	
 	@RequestMapping(value="/n_modify/{ntcno}")
@@ -76,7 +74,7 @@ public class InfoController {
 		
 		int result = noticeservice.update_ntc(dto);
 		
-		return "redirect:/login/admin/notice_list";
+		return "redirect:/notice_list";
 	}
 	
 	@RequestMapping("/n_delete/{ntcno}")
@@ -84,6 +82,6 @@ public class InfoController {
 		
 		int result = noticeservice.delete_ntc(ntcno);
 		
-		return "redirect:/login/admin/notice_list";
+		return "redirect:/notice_list";
 	}
 }

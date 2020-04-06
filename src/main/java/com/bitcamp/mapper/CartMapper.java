@@ -15,5 +15,9 @@ public interface CartMapper {
 
 	List<CartDTO> cnolist(String usercode);
 
+	void deleteAll(String userid);
+
+	void deleteCno(String cno);
+
 	
 }

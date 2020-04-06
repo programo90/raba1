@@ -21,4 +21,8 @@ public interface CartService {
 
 	String getName(int p_no);
 
+	void deleteAll(String userid);
+
+	void deleteCno(String[] arr);
+
 }

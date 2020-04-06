@@ -1,5 +1,6 @@
 package com.bitcamp.rava;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bitcamp.dto.CartDTO;
@@ -57,23 +59,42 @@ public class CartController {
 
 	@RequestMapping(value="/addcart")
 	@ResponseBody
-	public String addcart(CartDTO dto) {
+	public CartDTO addcart(@RequestParam String userid, @RequestParam int pno, @RequestParam int pamount, @RequestParam String pname) {
+		
+		CartDTO dto = new CartDTO();
+		
+		dto.setUsercode(userid);
+		dto.setP_no(pno);
+		dto.setP_amount(pamount);
 		
 		service.insert(dto);
-		
-		int p_no = dto.getP_no();
-		
-		String p_name = service.getName(p_no);
-		
-		
-		return "redirect:/goods_detail/"+p_name;
+
+		return dto;
+
 	}
 	
 	
 	@RequestMapping(value="/deleteCno")
 	@ResponseBody
-	public void deleteCno() {
+	public String deleteCno(@RequestParam String[] arr, @RequestParam String userid) {
 		
+		
+		service.deleteCno(arr);
+		
+		
+		return userid;
+		
+	}
+	
+	@RequestMapping(value="/deleteAll")
+	@ResponseBody
+	public String deleteAll(@RequestParam String userid) {
+		
+		/*log.info(userid);*/
+		
+		service.deleteAll(userid);
+		
+		return userid;
 		
 	}
 	

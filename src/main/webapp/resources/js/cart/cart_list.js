@@ -100,34 +100,74 @@
 		document.getElementById("total_price").value =  plusprice + deliveryprice;
 	}
 	
+	
+	 /* 부분 선택 삭제 구현 중 배열로 ajax값을 날리는데 문제가 있음 */
 	function delete_cno(){
 		
-		alert("delete!!");
+		var userid = document.getElementById('userid');
 		
 		var list_checkbox = document.getElementsByClassName("list_checkbox");
 		
 		var cnolist = document.getElementsByClassName("cnolist");
 		
-		var arrCno = new Array();
+		var arrCno = [];
 		
 		for(var i = 0 ; i < list_checkbox.length; i++){
 			
 			if(list_checkbox[i].checked == true){
-				
+				console.log(cnolist[i].value);
+				/*arrCno.push(cnolist[i].value);*/
 				arrCno.push(cnolist[i].value);
 				
 			}
 		}
+		var tempdata = {"arr":arrCno, "userid":userid.value};
+		console.log(tempdata);
+		jQuery.ajaxSettings.traditional = true;
 		
 		$.ajax({
 			
 			url : "/deleteCno" ,
-			data : arrCno,
-			type : 'post',
+			data : tempdata,
+			dataType : 'json',
+			contentType: "application/json;charset=utf-8",
+			success : function(result){
+				
+				alert("삭제되었습니다.");
+				window.location.href  = '/cart_list/'+result;
+				
+			},error : function(error){
+				
+				alert("error");
+			}
 			
-			
+		}); // end ajax
+		
+	}
+	
+	function delete_ALL(){
+		
+		var userid = document.getElementById('userid');
+		
+		var temp = {"userid":userid.value};
+		
+		$.ajax({
+			url : '/deleteAll',
+			data : temp ,
+			dataType : 'json',
+			contentType: "application/json;charset=utf-8",
+			success : function(result){
+				
+					alert("장바구니를 비웠습니다.");
+					window.location.href  = '/cart_list/'+result;
+				
+			},error : function(data) {
+				
+		 		alert("에러 : 관리자에게 문의하세요");
+		 	}
 			
 		});
 		
 	}
+	
 

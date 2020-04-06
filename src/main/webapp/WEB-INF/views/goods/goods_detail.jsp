@@ -56,9 +56,6 @@
 	            
 	        </div>
 	            
-            
-          
-         
             <div class="detail_info">
                    <form action="/cart_insert" method="post" id="addcartform">
                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -76,9 +73,10 @@
                                 <input type="number" value="1" name="p_amount" id="p_amount" min="1" >
                                 <input type="hidden" id="pno" name="p_no" >
                                 <input type="hidden" id="target" name="usercode" value=${userid } >
+                                <input type="hidden" id="pname" value="${list[0].p_name }">
                             </li>
                             <li><input type="submit" value="BUY NOW" class="buynow"></li>
-                            <li><input type="button" value="ADD CART" class="addcart"></li>
+                            <li><input type="button" value="ADD CART" class="addcart" onClick="addCart()"></li>
                             <!-- ajax로 값만 넘긴다.  -->
                        </ul>
                    </form>

@@ -88,38 +88,42 @@ document.addEventListener("DOMContentLoaded",function(){
 		
 	});
 	
-	$("input[type='button']").on('click',function(e){
-		
-		
-		var formData = $("#addcartform").serialize();
-		
-		
-		$.ajax({
-			
-			cache :false,
-			type: 'POST',
-			url: '/addcart',
-			data : formData,
-			dataType : 'json',
-			beforeSend : function(xhr)
-            {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
-                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-           	},
-           	success : function(json){
-				
-				alert("장바구니에 상품이 담겼습니다.");
-			},
-			error : function(xhr,status, error){
-				
-				alert(error);
-			}
-			
-			
-			
-		});// end ajax
-		
-		
-	});
-	
-	
 });
+
+function addCart( ){
+	
+	console.log("add cart!!");
+	
+	var userid = document.getElementById('userid');
+	
+	var pno = document.getElementById('pno');
+	
+	var pamount = document.getElementById('p_amount');
+	
+	var pname = document.getElementById('pname');
+	
+	var tempData = {"userid":userid.value, "pno":pno.value,	 "pamount":pamount.value,"pname":pname.value};
+	
+	console.log(userid.value+pno.value+pamount.value+pname.value);
+	$.ajax({
+		url: '/addcart',
+		data : tempData,
+		dataType : 'json',
+		contentType: "application/json;charset=utf-8",
+       	success : function(result){
+			
+			alert("장바구니에 상품을 담았습니다.");
+			
+			/*window.location.href  = '/goods_detail/'+result;*/
+		},
+		error : function(data){
+			
+			alert("에러 : 관리자에게 문의하세요");
+		}
+		
+		
+		
+	});// end ajax
+	
+	
+}// end addcart function

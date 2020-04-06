@@ -8,13 +8,19 @@
 <head>
 <meta charset=UTF-8>
 <title>Insert title here</title>
+<sec:csrfMetaTags />
 	<link rel="stylesheet" href="/resources/css/cart/cart_list.css">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="/resources/js/cart/cart_list.js"></script>
+	<script>
+		
+	
+	</script>
 </head>
 <body>
 	<div class="contents">
-	
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		
 		<sec:authorize access="isAuthenticated()">
 			<sec:authentication property='principal.username' var="userid" />
 			<input type="hidden" id="userid" value="${userid}">
@@ -98,9 +104,9 @@
 
 		<!--장바구니 상품 삭제 장바구니 비우기 버튼 -->
 		<div class="goodscartbtn">
-			<span>선택상품</span> <a href="" class="cartdelete">삭제</a> 
+			<span>선택상품</span>
 			<button type="button" onClick="delete_cno()">삭제</button>
-			<a href="" class="cartalldelete">장바구니 비우기</a>
+			<button type="button" class="cartalldelete" onClick="delete_ALL()">장바구니 비우기</button>
 		</div>
 
 		<!--결제 금액 안내-->

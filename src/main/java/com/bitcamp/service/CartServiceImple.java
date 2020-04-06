@@ -51,4 +51,25 @@ public class CartServiceImple implements CartService {
 		
 		return goods_mapper.find_pname(p_no);
 	}
+
+	@Override
+	public void deleteAll(String userid) {
+		// TODO Auto-generated method stub
+		
+		mapper.deleteAll(userid);
+		
+	}
+
+	@Override
+	public void deleteCno(String[] arr) {
+		// TODO Auto-generated method stub
+		
+		for(int i =0; i < arr.length; i++) {
+			
+			String cno = arr[i];
+			
+			mapper.deleteCno(cno);
+		}
+		
+	}
 }

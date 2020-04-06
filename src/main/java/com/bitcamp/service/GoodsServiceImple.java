@@ -18,7 +18,7 @@ import com.bitcamp.mapper.GoodsMapper;
 
 import lombok.extern.log4j.Log4j;
 
-@Log4j
+/*@Log4j*/
 @Service
 public class GoodsServiceImple implements GoodsService {
 
@@ -125,7 +125,7 @@ public class GoodsServiceImple implements GoodsService {
 	public boolean deletegoods(int p_no) {
 		// TODO Auto-generated method stub
 		
-		log.info("remove.....");
+		/*log.info("remove.....");*/
 		
 		String pname = mapper.find_pname(p_no);
 		
@@ -133,7 +133,7 @@ public class GoodsServiceImple implements GoodsService {
 		/* 2개 이상의 상품이 있다. */
 		if(mapper.count_pno(pname) == 1) {
 			
-			log.info("물건 하나남았다!!!!");
+			/*log.info("물건 하나남았다!!!!");*/
 			
 			attach_mapper.deleteAll(p_no);
 			
@@ -144,7 +144,7 @@ public class GoodsServiceImple implements GoodsService {
 		
 		}else{
 		
-			log.info("물건 여러개가 남았다!!!");
+			/*log.info("물건 여러개가 남았다!!!");*/
 			
 			/* 삭제하려는 pno가 사진 테이블의 pno와 같은지 여부  */
 			if(attach_mapper.findByPno(p_no) != null) {

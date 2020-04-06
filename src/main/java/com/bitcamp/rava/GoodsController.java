@@ -28,7 +28,7 @@ import com.bitcamp.service.GoodsService;
 import lombok.extern.log4j.Log4j;
 
 @Controller
-@Log4j
+/*@Log4j*/
 public class GoodsController {
 
 	private String path="\\resources\\img\\uploadimg";
@@ -44,8 +44,8 @@ public class GoodsController {
 			return;
 		}
 		
-		log.info("delete attach files..........");
-		log.info(attachList);
+		/*log.info("delete attach files..........");
+		log.info(attachList);*/
 		
 		attachList.forEach(attach-> {
 		
@@ -62,7 +62,7 @@ public class GoodsController {
 			
 			}catch(Exception e) {
 				
-				log.error("delete file error" + e.getMessage());
+				/*log.error("delete file error" + e.getMessage());*/
 			}//end catch
 		});// end foreach
 	
@@ -124,7 +124,7 @@ public class GoodsController {
 		
 		if(dto.getAttachList() !=null) {
 			
-			dto.getAttachList().forEach(attach -> log.info(attach));
+			/*dto.getAttachList().forEach(attach -> log.info(attach));*/
 		}
 		
 		goodsservice.insertvalue(dto, sizedto);
@@ -142,7 +142,7 @@ public class GoodsController {
 		
 		/* pname을 통한 pno을 갯수가 1나일때 삭제 되면 모두 삭제 그러지 않으면 그 해당 p_no만 삭제  */
 		
-		log.info("삭제를 시작");
+		/*log.info("삭제를 시작");*/
 		
 		
 		/*boolean 처리롤 인해 오류의 여지가 있음*/
@@ -152,7 +152,7 @@ public class GoodsController {
 			
 		}
 		
-		log.info("삭제 끝");
+		/*log.info("삭제 끝");*/
 		
 		return "redirect:/admin_goods_list";
 	}

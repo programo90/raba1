@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bitcamp.dto.GoodsDTO;
 import com.bitcamp.dto.OrderDTO;
+import com.bitcamp.dto.order__listDTO;
 import com.bitcamp.security.Login__MemberVO;
 
 public interface MypageMapper {
@@ -25,5 +26,7 @@ public interface MypageMapper {
 	List<OrderDTO> detailorderlist(int orderno);
 
 	OrderDTO order__detail(int orderno);
+
+	void updateCashReceipts(order__listDTO dto);
 	
 }

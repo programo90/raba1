@@ -34,6 +34,14 @@ public class order__listDTO {
 	private String orderuemail;
 	private String orderstatus;
 	private String payuname;
+	private String cashreceipts;
+	
+	public String getCashreceipts() {
+		return cashreceipts;
+	}
+	public void setCashreceipts(String cashreceipts2) {
+		this.cashreceipts = cashreceipts2;
+	}
 	public int getP_no() {
 		return p_no;
 	}

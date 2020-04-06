@@ -24,7 +24,15 @@ public class OrderDTO {
 	private String orderstatus;
 	private String payuname;
 	private String postno;
+	private String cashreceipts;
 	
+	
+	public String getCashreceipts() {
+		return cashreceipts;
+	}
+	public void setCashreceipts(String cashreceipts) {
+		this.cashreceipts = cashreceipts;
+	}
 	public String getPostno() {
 		return postno;
 	}

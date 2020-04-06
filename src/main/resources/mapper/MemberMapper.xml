@@ -41,8 +41,8 @@
     </select>
   
   	<insert id="insertData" parameterType="com.bitcamp.security.Login__MemberVO">
-  		INSERT INTO UserTable(userid, password, username, joindate)
-  		VALUES (#{userid},#{password},#{username},now())
+  		INSERT INTO UserTable(userid, password, username, joindate, userimg)
+  		VALUES (#{userid},#{password},#{username},now(),#{userimg})
   	</insert>
   	
     <insert id="insertAuth" parameterType="com.bitcamp.security.Login__MemberVO">

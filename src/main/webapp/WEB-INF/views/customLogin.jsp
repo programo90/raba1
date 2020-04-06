@@ -124,17 +124,17 @@ textarea {
 	</style>
 <!--  END로딩중css -->
 </head>
-<body>
+<body class="h-screen">
 
 	<script>
 		window.onload = function(){
 			document.getElementById('loginSubmit').submit();
 		}
-	</script>
+	</script> 
 	
 	<!-- 로딩중html -->
-		<div class="flex justify-center">
-			<div class="loader loader-9"></div>
+		<div class="flex justify-center items-center h-full">
+			<div class="loader loader-10"></div>
 		</div>
 	<!-- END 로딩중html -->
 	

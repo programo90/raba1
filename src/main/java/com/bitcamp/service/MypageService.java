@@ -18,4 +18,5 @@ public interface MypageService {
 //	List<GoodsDTO> goods_info(int pno); mapper는 그대로 사용하고 orderlist 메소드에서 둘다 사용합니다.
 	List<order__listDTO> detail_orderlist(int orderno);
 	OrderDTO orderdetail(int orderno);
+	void updateCashReceipts(order__listDTO dto);
 }

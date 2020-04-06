@@ -82,6 +82,19 @@ public class Mypage_Controller {
 		return 1;
 	}
 	
+	@RequestMapping(value= "/updateCashReceipts")
+	@ResponseBody
+	public int updateCashReceipts(@RequestParam("cashreceipts") String cashreceipts, @RequestParam("oderno") int oderno) {
+		System.out.println("나오나요 " + cashreceipts);
+		order__listDTO dto = new order__listDTO();
+		dto.setCashreceipts(cashreceipts);
+		dto.setOderno(oderno);
+		service.updateCashReceipts(dto);
+		
+		
+		return 1;
+	}
+	
 //	---------------------------------------------------------------------
 	@RequestMapping(value = "/gallery", method = RequestMethod.GET)
 	public String doGallery() {

@@ -139,5 +139,12 @@ public class MypageServiceImple implements MypageService {
 	}
 
 
+
+	@Override
+	public void updateCashReceipts(order__listDTO dto) {
+		mapper.updateCashReceipts(dto);
+	}
+
+
 	
 }

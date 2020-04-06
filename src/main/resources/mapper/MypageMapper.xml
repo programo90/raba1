@@ -75,7 +75,7 @@
 
 
 <select id="order_list" resultType="com.bitcamp.dto.OrderDTO">
-  	select oderno, DATE_FORMAT(salesdate, '%Y-%m-%d') AS salesdate, ordermg, totalprice, userid, deltype,ordercprice,ordercamount, orderuname, orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail, orderstatus, payuname, ordercpno
+  	select oderno, DATE_FORMAT(salesdate, '%Y-%m-%d') AS salesdate, ordermg, totalprice, userid, deltype,ordercprice,ordercamount, orderuname, orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail, orderstatus, payuname, ordercpno, cashreceipts
   	from orderTable
   	where userid = #{userid} 
 </select>
@@ -101,6 +101,15 @@
   	where oderno= #{orderno}
 </select>
 
+<update id="updateCashReceipts" parameterType="com.bitcamp.dto.order__listDTO">
+	UPDATE
+		orderTable
+	SET
+		cashreceipts = #{cashreceipts}
+	WHERE
+		oderno = #{oderno}
+	
+  	</update>
 
 
 <update id="updateInfo" parameterType="com.bitcamp.security.Login__MemberVO">

@@ -69,13 +69,14 @@ public class HomeController {
            if(service.idCheck(vo) == 0) {
         	   vo.setPassword("host");
         	   vo.setUsername((String) userInfo.get("nickname"));
+        	   vo.setUserimg((String) userInfo.get("profile_image"));
         	   list.add(new Login__AuthVO((String)userInfo.get("id"), "ROLE_MEMBER"));
         	   vo.setAuthList(list);
         	   service.signup(vo);
         	   //약관 동의창으로 넘겨서 transaction을 적용해줍니다. 
            }
         }
-		return "intro/customLogin";
+		return "customLogin";
         
     }
 	

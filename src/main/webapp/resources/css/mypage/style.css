@@ -46,6 +46,94 @@
 	}
 }
 /* (모달 css 끝)모달모달모달모달 @일진 */
+/* 모달 CSS(현금영수증 신청) */
+		.animated3 {
+			-webkit-animation-duration: 1s;
+			animation-duration: 1s;
+			-webkit-animation-fill-mode: both;
+			animation-fill-mode: both;
+		}
+
+		.animated3.faster {
+			-webkit-animation-duration: 500ms;
+			animation-duration: 500ms;
+		}
+
+		.fadeIn3 {
+			-webkit-animation-name: fadeIn3;
+			animation-name: fadeIn3;
+		}
+
+		.fadeOut3 {
+			-webkit-animation-name: fadeOut3;
+			animation-name: fadeOut3;
+		}
+
+		@keyframes fadeIn3 {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
+		}
+
+		@keyframes fadeOut3 {
+			from {
+				opacity: 1;
+			}
+
+			to {
+				opacity: 0;
+			}
+		}
+		/* END 모달 CSS(현금영수증 신청) */
+/* 모달 CSS(배송정보 수정 신청) */
+		.animated2 {
+			-webkit-animation-duration: 1s;
+			animation-duration: 1s;
+			-webkit-animation-fill-mode: both;
+			animation-fill-mode: both;
+		}
+
+		.animated2.faster {
+			-webkit-animation-duration: 500ms;
+			animation-duration: 500ms;
+		}
+
+		.fadeIn2 {
+			-webkit-animation-name: fadeIn2;
+			animation-name: fadeIn2;
+		}
+
+		.fadeOut2 {
+			-webkit-animation-name: fadeOut2;
+			animation-name: fadeOut2;
+		}
+
+		@keyframes fadeIn2 {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
+		}
+
+		@keyframes fadeOut2 {
+			from {
+				opacity: 1;
+			}
+
+			to {
+				opacity: 0;
+			}
+		}
+		/* END 모달 CSS(배송정보 수정 신청) */
+
+
 	
 	
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */

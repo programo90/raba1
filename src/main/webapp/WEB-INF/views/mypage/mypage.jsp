@@ -6,12 +6,15 @@
     <head>
 	    <meta charset="UTF-8">
 	    <link rel="stylesheet" href="/resources/css/mypage/style.css">
+	    
 	    <!-- 도로명 script -->
 	 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	    <!-- END 도로명 script -->
+	    
 	   	<!-- ajax script -->
 	    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	    <!-- END ajax script -->
+	    
 	    <!-- mypage script -->
 	    <!-- <script src="/resources/js/mypage/mypage.js"></script> -->
      	<!-- END mypage script -->
@@ -68,6 +71,7 @@
                     <li class="inline-block mr-10 ">
                         <a href="#" class="block p-4 text-gray-800 font-normal hover:text-purple-600 hover:font-bold">주행 거리</a>
                     </li>
+                    
                     <li class="inline-block mr-10 ">
                         <a href="#" onclick="openModal()" class="block p-4 text-gray-800 font-normal hover:text-purple-600 hover:font-bold">정보 수정</a>
                     </li>
@@ -119,11 +123,11 @@
 			                     		<tr class=" border-b border-gray-200 ">	
 			                          		<td class=" flex items-center px-5 py-5 bg-white text-sm">
 			                               		<img src="/resources/img/mypage/product.png" alt="product" class="m-3 my-auto h-12 w-12 flex-shrink-0">
-				                               	<div class="px-3 py-2 h-auto w-full flex items-center justify-between leading-none">
-				                                   <div class="truncate m-0 h-12">
-				                                       <a href="#"> ${orderlist.p_name }</a> <br>
-				                                     <div class="text-gray-400 text-sm">${orderlist.p_price }원 / 1ea</div>
-				                                     <div class="mt-1">
+				                               	<div class="px-3 pt-5 py-2 h-auto w-full flex items-center justify-between leading-none">
+				                                   <div class="truncate m-0 h-16">
+				                                       <a href="#" class="text-gray-800"> ${orderlist.p_name }</a>
+				                                     <div class="text-gray-400 text-sm"><span class="format-money">${orderlist.p_price }</span>원 / 1ea</div>
+				                                     <div class="mt-2">
 				                                       <a href="/orderdetail/${userid}/${orderlist.oderno}"
 				                                           class="mt-1 h-16 bg-gray-400 hover:bg-gray-500 text-white px-1 rounded-lg text-xs focus:outline-none focus:shadow-outline">
 				                                           주문서 보기
@@ -134,7 +138,7 @@
 			                                </td>
 			                                <td
 			                                    class="hidden md:table-cell px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
-			                                    <span class="text-gray-900 text-sm">${orderlist.p_price}원</span>
+			                                    <span class="text-gray-900 text-sm"><span class="format-money">${orderlist.p_price}</span>원</span>
 			                                </td>
 			                                <td class="hidden md:table-cell  px-5 py-5 border-b border-gray-200 bg-white text-sm">
 			                                    <p class="text-gray-900 whitespace-no-wrap">
@@ -216,7 +220,7 @@
 									</div>
 								</div>
 								<div class="mt-3 flex">
-								  <button class="px-2 py-1 mx-auto text-white font-normal tracking-wider bg-gray-700 hover:bg-gray-800 rounded text-sm" onclick="updateData()">수정 완료3</button> 
+								  <button class="px-2 py-1 mx-auto text-white font-normal tracking-wider bg-gray-700 hover:bg-gray-800 rounded text-sm" onclick="updateData()">수정 완료</button> 
 								</div>
 								
                             </form>
@@ -342,6 +346,32 @@ function updateData(){
 		});
 	};
 			/* <!-- END ajax script --> */
+		/* 콤마를찍어줍니다  */
+			            Number.prototype.format = function(){
+                if(this==0) return 0;
+
+                var reg = /(^[+-]?\d+)(\d{3})/;
+                var n = (this + '');
+
+                while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+
+                return n;
+            };
+            
+            String.prototype.format = function(){
+                var num = parseFloat(this);
+                if( isNaN(num) ) return "0";
+
+                return num.format();
+            };
+            
+            jQuery('.format-money').text(function() {
+                jQuery(this).text(
+                    jQuery(this).text().format()
+                );
+            });
+    		/* END 콤마를찍어줍니다  */
+			
 	</script>
         
 </body>

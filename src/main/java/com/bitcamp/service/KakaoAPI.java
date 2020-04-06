@@ -110,10 +110,12 @@ public class KakaoAPI {
 
 	        String nickname = properties.getAsJsonObject().get("nickname").getAsString();
 	        String id = element.getAsJsonObject().get("id").getAsString();
-	        String profile_image = properties.getAsJsonObject().get("profile_image").getAsString(); 
+	        if( properties.getAsJsonObject().get("profile_image") != null) {
+	        	String profile_image = properties.getAsJsonObject().get("profile_image").getAsString();
+	        	userInfo.put("profile_image", profile_image);
+	        }
 	        userInfo.put("nickname", nickname);
 	        userInfo.put("id", id);
-	        userInfo.put("profile_image", profile_image);
 	    } catch (IOException e) {
 	        // TODO Auto-generated catch block
 	        e.printStackTrace();

@@ -222,7 +222,9 @@ public class GoodsController {
 		model.addAttribute("img_list", img_list);
 		
 		model.addAttribute("list", list);
-		
+		model.addAttribute("page", page);
+		model.addAttribute("search", search);
+		model.addAttribute("searchtxt", searchtxt);
 		return "admin/admin_goods_list";
 	}
 	

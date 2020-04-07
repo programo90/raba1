@@ -1,5 +1,6 @@
 package com.bitcamp.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -299,6 +300,24 @@ public class GoodsServiceImple implements GoodsService {
 		hm.put("search", search);
 		hm.put("searchtxt", searchtxt);
 		return mapper.goodscount(hm);
+	}
+
+	@Override
+	public List<GoodsDTO> checkstate(List<GoodsDTO> list) {
+		// TODO Auto-generated method stub
+		
+		List<GoodsDTO> list_state = new ArrayList<GoodsDTO>();
+		
+		for(int i = 0 ; i < list.size(); i++) {
+			
+			if(list.get(i).getP_state() == 0) {
+				
+				list_state.add(list.get(i));
+			}
+			
+		}
+		
+		return list_state;
 	}
 
 	

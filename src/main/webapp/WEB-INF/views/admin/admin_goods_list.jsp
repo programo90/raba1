@@ -7,13 +7,11 @@
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <title>Insert title here</title>
  <link rel="stylesheet" href="/resources/css/admin/admingoods.css">
- <style>
- 	
- 
- </style>
  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 
+		document.getElementsByClassName('adminnav')[4].style.backgroundColor="#e8e8e8";
+		
 		document.addEventListener("DOMContentLoaded", function(){
 			// Handler when the DOM is fully loaded
 			

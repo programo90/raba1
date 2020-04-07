@@ -30,6 +30,7 @@ public interface GoodsService {
 
 	int goodstotalCount(String search, String searchtxt);
 
-	
+	List<GoodsDTO> checkstate(List<GoodsDTO> list);
 
+	
 }

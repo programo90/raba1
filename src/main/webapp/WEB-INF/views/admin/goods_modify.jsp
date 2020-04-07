@@ -15,6 +15,8 @@
 <script>
 	$(document).ready(function(){
 		
+		document.getElementsByClassName('adminnav')[4].style.backgroundColor="#e8e8e8";
+		
 		(function(){
 			
 			var pno = '<c:out value="${dto.p_no}"/>';

@@ -84,21 +84,16 @@ public class GoodsController {
 		
 		/* 상품 상태 확인후 리스트 출력 */
 		
+		List<GoodsDTO> list_state = goodsservice.checkstate(list);
 		
-		
-		for(int i = 0; i < list.size(); i++) {
+		for(int j = 0; j < list_state.size(); j++) {
 			
-			BoardAttachVO vo = goodsservice.getimg(list.get(i).getP_no());
-			
+			BoardAttachVO vo = goodsservice.getimg(list_state.get(j).getP_no());
 			
 				img_list.add(vo);
-				
-				
 			}
 		
-		
-		
-		model.addAttribute("list", list);
+		model.addAttribute("list_state", list_state);
 		model.addAttribute("img_list",img_list);
 		
 		return "goods/goods_list";

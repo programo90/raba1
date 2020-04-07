@@ -85,7 +85,7 @@
 		
         <div class="goods_list">
         
-        	<c:forEach var="Goodslist" items="${list }">
+        	<c:forEach var="Goodslist" items="${list_state }">
 	            <a href="/goods_detail/${Goodslist.p_name}">
 	                <div class="goods_img_wrap">
 	                    <div class="goods_img">

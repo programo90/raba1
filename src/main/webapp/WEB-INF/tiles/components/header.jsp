@@ -21,25 +21,34 @@
         <div class="header_inner">
             <div class="topmenu">
                 <ul>
-                    <li class="topmenuli">
-                        <a href="/mypage/${userid}"><i class="fa fa-user"></i></a>
-                    </li>
-                    <li class="topmenuli">
-                        <a href="#"><i class="fa fa-shopping-basket"></i></a>
-                    </li>
                     <sec:authorize access="isAnonymous()">
-						<a href="/login" onclick="openModal()" class="headeloginbtn">Login</a>	
+                    	<li class="topmenuli">
+            	            <a href="https://kauth.kakao.com/oauth/authorize?client_id=bffed4bc4d4a39e24324342a77147ade&redirect_uri=http://localhost:8080/login&response_type=code" ><i class="fa fa-user"></i></a>
+        	            </li>
+    	                <li class="topmenuli">
+	                        <a href="https://kauth.kakao.com/oauth/authorize?client_id=bffed4bc4d4a39e24324342a77147ade&redirect_uri=http://localhost:8080/login&response_type=code"><i class="fa fa-shopping-basket"></i></a>
+                    	</li>
+						<a href="https://kauth.kakao.com/oauth/authorize?client_id=bffed4bc4d4a39e24324342a77147ade&redirect_uri=http://localhost:8080/login&response_type=code" class="headeloginbtn">Login</a>	
 					</sec:authorize>
 					
 					<sec:authorize access="isAuthenticated()">
+						<sec:authentication property='principal.username' var="loginid"/>
+						<li class="topmenuli">
+        	                <a href="/mypage"><i class="fa fa-user"></i></a>
+    	                </li>
+	                    <li class="topmenuli">
+                        	<a href="/cartlist/${loginid}"><i class="fa fa-shopping-basket"></i></a>
+                    	</li>
 					<a href="#" onclick="document.getElementById('logout-form').submit();" class="headeloginbtn">Logout</a>
 					<form id="logout-form" action=/customLogout method="post">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					</form>
 					</sec:authorize>
+					
+					
                 </ul>
             </div>
-            <div class="logo"><a href="#"><img src="/resources/img/ba_logo.png" alt="BALOGO" class="logo_img"></a></div>
+            <div class="logo"><a href="/"><img src="/resources/img/ba_logo.png" alt="BALOGO" class="logo_img"></a></div>
             <nav class="navbox">
                 <ul class="navul">
                     <li class="navli"><a href="/story">Story</a></li>
@@ -77,5 +86,6 @@
 		  </div>
 		</div>
     </header>
+    
 </body>
 </html>

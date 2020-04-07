@@ -185,7 +185,19 @@ public class GoodsController {
 	
 		List<GoodsDTO> list = goodsservice.goodslist(); 
 		
+		List<BoardAttachVO> img_list = new ArrayList<>();
 		
+		for(int i =0; i < list.size(); i++) {
+			
+			String p_name = list.get(i).getP_name(); //pname으로 pno를 추출해서
+			
+			BoardAttachVO img = goodsservice.getImgpno(p_name);
+			
+			img_list.add(img);
+			
+		}
+		
+		model.addAttribute("img_list", img_list);
 		
 		model.addAttribute("list", list);
 		

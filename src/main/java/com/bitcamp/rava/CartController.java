@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bitcamp.dto.BoardAttachVO;
 import com.bitcamp.dto.CartDTO;
 import com.bitcamp.dto.CartListDTO;
+import com.bitcamp.dto.GoodsDTO;
 import com.bitcamp.service.CartService;
 
 import lombok.extern.log4j.Log4j;
@@ -45,13 +47,17 @@ public class CartController {
 		/*log.info("usercode 2 : " + usercode );*/
 		
 		/* cno list를 받아온 상태 */
-		List<CartDTO> list = service.list(usercode);
+		List<GoodsDTO> list = service.list(usercode);
 		
 		List<CartDTO> cnolist = service.cnolist(usercode);
+		
+		List<BoardAttachVO> img_list = service.getImage(usercode);
 		
 		model.addAttribute("list", list);
 		
 		model.addAttribute("cnolist", cnolist);
+		
+		model.addAttribute("img_list", img_list);
 		
 		return "cart/cart_list";
 	}

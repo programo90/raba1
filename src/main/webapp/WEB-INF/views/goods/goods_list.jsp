@@ -35,7 +35,7 @@
 			var fileCallPath = encodeURIComponent(uploadPath+"/"+uuid+"_"+fileName);
 			
 			str += "<div data-path='"+uploadPath+"' data-uuid='"+uuid+"' data-filename='"+fileName+"' data-type='"+fileType+"' >";
-			str += "<img src='display?fileName="+fileCallPath+"' alt='"+fileName+"'>";
+			str += "<img src='/display?fileName="+fileCallPath+"' alt='"+fileName+"'>";
 			str += "</div>";
 			
 			goods_img[i].innerHTML=str;

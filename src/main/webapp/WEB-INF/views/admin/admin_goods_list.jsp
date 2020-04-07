@@ -7,41 +7,44 @@
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <title>Insert title here</title>
  <link rel="stylesheet" href="/resources/css/admin/admingoods.css">
+ <style>
+ 	
+ 
+ </style>
  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
-	$(document).ready(function(){
-		
-		(function(){
+		document.addEventListener("DOMContentLoaded", function(){
+			// Handler when the DOM is fully loaded
 			
-			var pno = document.getElementsByClassName("img_select");
-			var admingoodsimg2 = document.getElementsByClassName("admingoodsimg2");
+				var img_uuid = document.getElementsByClassName("img_uuid");
+				var img_fileName = document.getElementsByClassName("img_fileName");
+				var img_uploadPath = document.getElementsByClassName("img_uploadPath");
+				var img_fileType = document.getElementsByClassName("img_fileType");
+				
+				var goods_img = document.getElementsByClassName("goods_img");
+				
+				
+				
+				for(var i =0 ; i < goods_img.length; i++){
+					
+					var str = "";
+					
+					var uuid = img_uuid[i].value;
+					var fileName = img_fileName[i].value;
+					var uploadPath = img_uploadPath[i].value;
+					var fileType = img_fileType[i].value;
+					
+					var fileCallPath = encodeURIComponent(uploadPath+"/s_"+uuid+"_"+fileName);
+					
+					str += "<div data-path='"+uploadPath+"' data-uuid='"+uuid+"' data-filename='"+fileName+"' data-type='"+fileType+"' >";
+					str += "<img src='/display?fileName="+fileCallPath+"' alt='"+fileName+"'>";
+					str += "</div>";
+					
+					goods_img[i].innerHTML=str;
+					
+				}
 			
-				for(var i =0 ; i < pno.length; i++){
-					
-					$.getJSON("/getAttachList", {pno : pno[i].val()*1}, function(arr){
-						
-						console.log(arr);
-						
-						var str ="";
-						
-						var attach = $(arr).get(0);
-							
-							var fileCallPath = encodeURIComponent(attach.uploadPath +"/s_"+attach.uuid+"_"+attach.fileName);
-							
-							str += "<div data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' >";
-							str += "<img src='/display?fileName="+fileCallPath+"' alt='"+attach.fileName+"'>";
-							str += "</div>";
-							
-						admingoodsimg2[i].html(str);
-						
-					});// end getjson	
-					
-				} // end for
-		})(); //end function
-	
-		
-		
-	});
+			}); 
 </script>
  <script src="/resources/js/goods/list_goods.js"></script>
  </head>
@@ -75,7 +78,7 @@
 	                    <c:forEach var="Goodslist" items="${list}">
 	                    <div class="admingoodscolumn2">
 	                        <div class="admingoodsnum2"><span><c:out value="${Goodslist.p_no }"/></span></div>
-	                        <div class="admingoodsimg2"><div class="list_img"><input class="img_select" type="hidden" value="<c:out value="${Goodslist.p_no }"/>"></div></div>
+	                        <div class="admingoodsimg2"><div class="goods_img"></div></div>
 	                        <div class="admingoodsname2"><input type="text" value="<c:out value="${Goodslist.p_name }"/>" size="45"></div>
 	                        <div class="admingoodssize2"><input type="text" value="<c:out value="${Goodslist.p_size }"/>" size="3"></div>
 	                        <div class="admingoodsstock2"><input type="text" value="<c:out value="${Goodslist.p_amount }"/>" size="3"></div>
@@ -94,6 +97,13 @@
 	                        <div class="admingoodsbtn1"><a href="/deletegoods/${Goodslist.p_no}">삭제</a></div>
 	                    </div>
 	                  </c:forEach>
+	                  <!-- 이미지 출력을 위한 hidden value  -->
+	                  <c:forEach var="Imagelist" items="${img_list }">
+						<input type="hidden" class="img_uuid" value="${Imagelist.uuid }">
+						<input type="hidden" class="img_uploadPath" value="${Imagelist.uploadPath }">
+						<input type="hidden" class="img_fileName" value="${Imagelist.fileName }">
+						<input type="hidden" class="img_fileType" value="${Imagelist.fileType }">
+					</c:forEach>
                 </div>
                 <div class="admingoodsbtnline">
                 <a href="/goods_insert" class="admingoodsbtn3">등록</a>

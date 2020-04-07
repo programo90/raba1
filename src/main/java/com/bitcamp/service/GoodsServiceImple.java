@@ -271,5 +271,16 @@ public class GoodsServiceImple implements GoodsService {
 		return attach_mapper.pno_image(p_no);
 	}
 
+	@Override
+	public BoardAttachVO getImgpno(String p_name) {
+		// TODO Auto-generated method stub
+		
+		List<GoodsDTO> list =  mapper.select_pno(p_name);
+		
+		int p_no = list.get(0).getP_no();
+		
+		return attach_mapper.pno_image(p_no);
+	}
+
 	
 }

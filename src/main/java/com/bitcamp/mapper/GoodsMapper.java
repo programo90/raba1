@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.bitcamp.dto.BoardAttachVO;
 import com.bitcamp.dto.GoodsDTO;
 
 @Mapper
@@ -28,5 +29,6 @@ public interface GoodsMapper {
 	String find_pname(int p_no);
 	
 	int count_pno(String pname);
+
 
 }

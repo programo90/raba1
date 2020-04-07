@@ -26,6 +26,8 @@ public interface GoodsService {
 
 	BoardAttachVO getimg(int p_no);
 
+	BoardAttachVO getImgpno(String p_name);
+
 	
 
 }

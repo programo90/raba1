@@ -8,14 +8,61 @@
 <head>
 <meta charset=UTF-8>
 <title>Insert title here</title>
-<sec:csrfMetaTags />
+<%-- <sec:csrfMetaTags /> --%>
 	<link rel="stylesheet" href="/resources/css/cart/cart_list.css">
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script type="text/javascript" src="/resources/js/cart/cart_list.js"></script>
-	<script>
-		
+	<style>
+		.goods_img div {
+			width :120px;
+			height : 120px;
+			margin : 3px 0;
+			position : relative;
+			left : 50px;
+		}
 	
-	</script>
+		.goods_img div img{
+			
+			width : 100%;
+			background-color: yellow;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="/resources/js/cart/cart_list.js"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function(){
+		// Handler when the DOM is fully loaded
+		
+			var img_uuid = document.getElementsByClassName("img_uuid");
+			var img_fileName = document.getElementsByClassName("img_fileName");
+			var img_uploadPath = document.getElementsByClassName("img_uploadPath");
+			var img_fileType = document.getElementsByClassName("img_fileType");
+			
+			var goods_img = document.getElementsByClassName("goods_img");
+			
+			
+			
+			for(var i =0 ; i < goods_img.length; i++){
+				
+				var str = "";
+				
+				var uuid = img_uuid[i].value;
+				var fileName = img_fileName[i].value;
+				var uploadPath = img_uploadPath[i].value;
+				var fileType = img_fileType[i].value;
+				
+				var fileCallPath = encodeURIComponent(uploadPath+"/s_"+uuid+"_"+fileName);
+				
+				console.log("fileCallPath" +fileCallPath);
+				
+				str += "<div data-path='"+uploadPath+"' data-uuid='"+uuid+"' data-filename='"+fileName+"' data-type='"+fileType+"' >";
+				str += "<img src='/display?fileName="+fileCallPath+"' alt='"+fileName+"'>";
+				str += "</div>";
+				
+				goods_img[i].innerHTML=str;
+				
+			}
+		
+		}); 
+</script>
 </head>
 <body>
 	<div class="contents">
@@ -64,9 +111,8 @@
 				<div class="cartch2">
 					<input type="checkbox" class="list_checkbox" onclick="plusPrice()" >
 				</div>
-				
-				<div class="cartimg">
-					<span>이미지</span>
+				<div class="goods_img cartimg">
+					
 				</div>
 				<div class="cartgoods">
 					<span><c:out value="${Cartlist.p_name }"/></span>
@@ -139,16 +185,14 @@
 			</div>
 		</div>
 		
-		<!-- 넘겨 주어야할 값  -->
+		<!-- 숨겨놓은 이미지 값  -->
+		 <c:forEach var="Imagelist" items="${img_list }">
+				<input type="hidden" class="img_uuid" value="${Imagelist.uuid }">
+				<input type="hidden" class="img_uploadPath" value="${Imagelist.uploadPath }">
+				<input type="hidden" class="img_fileName" value="${Imagelist.fileName }">
+				<input type="hidden" class="img_fileType" value="${Imagelist.fileType }">
+		</c:forEach>
 		
-		<!-- hidden으로 숨겨 놓은 배열로 이루어진 cno값들   -->
-		
-		
-		
-
-
-
-
 		<!--상품 결제페이지 이동 버튼-->
 		<div class="chartpay" >
 			<form action="/pay" method="post">

@@ -5,7 +5,9 @@ package com.bitcamp.service;
 
 import java.util.List;
 
+import com.bitcamp.dto.BoardAttachVO;
 import com.bitcamp.dto.CartDTO;
+import com.bitcamp.dto.GoodsDTO;
 
 /**
  * @author fkavm
@@ -15,7 +17,7 @@ public interface CartService {
 
 	int insert(CartDTO dto);
 
-	List<CartDTO> list(String usercode);
+	List<GoodsDTO> list(String usercode);
 
 	List<CartDTO> cnolist(String usercode);
 
@@ -24,5 +26,7 @@ public interface CartService {
 	void deleteAll(String userid);
 
 	void deleteCno(String[] arr);
+
+	List<BoardAttachVO> getImage(String usercode);
 
 }

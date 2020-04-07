@@ -1,11 +1,15 @@
 package com.bitcamp.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bitcamp.dto.BoardAttachVO;
 import com.bitcamp.dto.CartDTO;
+import com.bitcamp.dto.GoodsDTO;
+import com.bitcamp.mapper.BoardAttachMapper;
 import com.bitcamp.mapper.CartMapper;
 import com.bitcamp.mapper.GoodsMapper;
 
@@ -17,6 +21,10 @@ public class CartServiceImple implements CartService {
 	
 	@Autowired
 	private GoodsMapper goods_mapper;
+	
+	@Autowired
+	private BoardAttachMapper img_mapper;
+	
 
 	@Override
 	public int insert(CartDTO dto) {
@@ -28,10 +36,10 @@ public class CartServiceImple implements CartService {
 	}
 
 	@Override
-	public List<CartDTO> list(String usercode) {
+	public List<GoodsDTO> list(String usercode) {
 		// TODO Auto-generated method stub
 		
-		List<CartDTO> list = mapper.list(usercode);
+		List<GoodsDTO> list = mapper.list(usercode);
 		
 		return list;
 	}
@@ -40,7 +48,7 @@ public class CartServiceImple implements CartService {
 	public List<CartDTO> cnolist(String usercode) {
 		// TODO Auto-generated method stub
 		
-		List<CartDTO> cnolist = mapper.cnolist(usercode);		
+		List<CartDTO> cnolist = mapper.cnolist(usercode);
 		
 		return cnolist;
 	}
@@ -71,5 +79,45 @@ public class CartServiceImple implements CartService {
 			mapper.deleteCno(cno);
 		}
 		
+	}
+
+	@Override
+	public List<BoardAttachVO> getImage(String usercode) {
+		// TODO Auto-generated method stub
+		
+		List<GoodsDTO> list =  mapper.list(usercode);
+		
+		System.out.println("cnolist!!!!!!!!!!!!!!!!!!!!!!!" +list);
+		
+		System.out.println(list.size());
+		
+		List<BoardAttachVO> imglist = new ArrayList<BoardAttachVO>();
+		
+		for(int i = 0; i < list.size(); i++) {
+			
+			int getpno = list.get(i).getP_no();
+			
+			System.out.println("getpno" + getpno);
+			
+			String pname = goods_mapper.find_pname(getpno);
+			
+			System.out.println("pname" +pname);
+			
+			List<GoodsDTO> goodsdto = goods_mapper.select_pno(pname);
+			
+			int p_no = goodsdto.get(0).getP_no();
+			
+			System.out.println("PNO"+p_no);
+			
+			// 단일 이미지 출력 
+			BoardAttachVO img = img_mapper.pno_image(p_no);
+			
+			System.out.println(img.getFileName());
+			
+			imglist.add(img);
+			
+		}
+		
+		return imglist;
 	}
 }

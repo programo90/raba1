@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	document.getElementsByClassName('adminnav')[3].style.backgroundColor="#e8e8e8";
+	
 	var calday = null;
 	$('#calendar').fullCalendar({
 		editable:true,
@@ -71,8 +73,8 @@ $(document).ready(function(){
 function addSchedule(){
 	var addpop ="";
 	addpop+="<div class='addpop_box'><div class='addpop_tit_box'>스케줄 명</div><div class='addpop_input_box'><input type='text' id='calendar_title' class='calendar_input' value=''></div></div>";
-	addpop+="<div class='addpop_box'><div class='addpop_tit_box'>시작 날짜</div><div class='addpop_input_box'><input type='text' id='calendar_start_date' value='' class='addpop_input calendar_input'></div></div>";
-	addpop+="<div class='addpop_box'><div class='addpop_tit_box'>마침 날짜</div><div class='addpop_input_box'><input type='text' id='calendar_end_date' value='' class='addpop_input calendar_input'></div></div>";
+	addpop+="<div class='addpop_box'><div class='addpop_tit_box'>시작 날짜</div><div class='addpop_input_box'><input type='date' id='calendar_start_date' value='' class='addpop_input calendar_input'></div></div>";
+	addpop+="<div class='addpop_box'><div class='addpop_tit_box'>마침 날짜</div><div class='addpop_input_box'><input type='date' id='calendar_end_date' value='' class='addpop_input calendar_input'></div></div>";
 	addpop+="<div class='addpop_btn'><button onclick='javascript:saveSchedule();' class='admin_btn subminbtn'>저장</button></div>";
 	openPopup('정비 스케줄 등록', addpop, 400);
 }
@@ -120,11 +122,14 @@ function adminreply(obj){
 }
 //예약 저장 버튼 클릭시
 function reservsend(reservorder){
-	//var userid=document.getElementById('userid').value; 이거 어떻ㄱ???
+	var userid=document.getElementById('userid').value;
+	console.log('id' + userid);
 	var textbox = document.getElementById('reservationText'+reservorder);
+	console.log(reservorder);
+	
 	var txt = document.getElementById('reservationText'+reservorder).value;
 	console.log("caldate"+caldate);
-	var reservedata = {/*"userid":userid,*/"reservtxt":txt,"reservorder":reservorder};
+	var reservedata = {"userid":userid,"reservtxt":txt,"reservorder":reservorder};
 	
 	$.ajax({
 		url:'/reservationinsert'
@@ -132,32 +137,47 @@ function reservsend(reservorder){
 		, dataType : 'json'
 		, contentType: "application/json;charset=utf-8"
 		, success : function(data) {
-				let result ='<div class="repair_inquirylist">';
+				let result ='';
 				$.each(data,function(index,item){
 					if(item.reservlevel==0) {
 						console.log("relevel--0일때");
+						result +='<div class="repair_inquirylist">';
 						result +='<div class="repair_inquirylist_txt">';
-						result +='<p class="repair_inquiry_user">문의자</p>';
+						result +='<p class="repair_inquiry_user">'+item.username+'</p>';
 						result +='<p class="repair_inquiry_date">작성일 :'+item.reservwritedate+'</p>';
-						result +='<p class="repair_inquiry_txt"><span class="repair_inquiry_cal">예약일자 '+item.caldate+'</span>|'+item.reservtxt+'</p>';
+						result +='<p class="repair_inquiry_txt"><span class="repair_inquiry_cal">예약일자 '+item.caldate+'</span> | '+item.reservtxt+'</p>';
 						result +='</div>';
-						result +='<div class="repair_inquirylist_btn">';
-						result +='<input type="button" value="삭제" class="admin_btn">';
+						result +='<div class="repair_inquirylist_btn" data-temp="ppsc1"  style="display:block;">';
+						result +='<input type="button" value="답변" class="admin_btn" onclick="adminreply(this)">';
 						result +='</div>';
 						result +='</div>';
+						result +='<form style="display:none; height: 70px; margin-left: 24px;">';
+						result +='<ul>';
+						result +='<li class="repair_li">';
+						result +='<label for="reservationText" class="reservation_label">정비 문의</label>';
+						result +='<input type="hidden" name="userid" value="'+userid+'">';
+						result +='<textarea rows="3" cols="117" name="reservtxt" id="reservationText'+item.reservorder+'"  class="repair_text reservationText" placeholder="문의한 글의 답변 내용을 작성해주시기 바랍니다."></textarea>';
+						result +='</li>';
+						result +='<li class="repair_li">';
+						result +='<input type="hidden" name="caldate" id="caldate">';
+						result +='<input type="button" value="저장" class="admin_btn subminbtn" onclick="reservsend('+item.reservorder+')">';
+						result +='</li>';
+						result +='</ul>';
+						result +='</form>';
 					}else if(item.reservlevel==1) {
 					    result +='<div class="reply_box">';
 						result +='<div class="reply">';
-						result +='<p>관리자 답변 | '+item.reservtxt+'</p>';
+						result +='<p class="rereply_admin">관리자 답변 | <span class="rereply_admintxt"> '+item.reservtxt+'</span></p>';
 						result +='</div>';
 						result +='</div>';
 					}
 				});
-				$('#replyBox').html(result);
+				$('#reply_container').html(result);
 				//$('#reservationText').text('');
 				textbox.value = '';
 				textbox.parentNode.parentNode.parentNode.remove();
 				alert("답변이 저장 되었습니다.");
+				amdinrereplybtn();
 		}
 		, error : function(data){
 			console.log("저장버튼 클릭시 error");
@@ -167,13 +187,18 @@ function reservsend(reservorder){
 
  function rereplybtn() {
 	 var rereplyarr = document.getElementsByClassName('rereply_admin');
-	 //console.log(rereplyarr[0].innerText);
 	 for(var i=0; i< rereplyarr.length; i++) {
 		 console.log("여기");
 		 rereplyarr[i].parentNode.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.children[1].remove();
 	}
   }
-
+ function amdinrereplybtn() {
+	 var rereplyarr = document.getElementsByClassName('rereply_admin');
+	 for(var i=0; i< rereplyarr.length; i++) {
+		 console.log("여기");
+		 rereplyarr[i].parentNode.parentNode.previousSibling.previousSibling.children[1].remove();
+	}
+  }
 //팝업창
 function openMessage(IDS, widths){
 	$('#'+IDS).css('width', widths+'px');	//특정아디값을 지정하면 

@@ -25,9 +25,13 @@
     	</insert> -->
     	<!-- 예약댓글 리스트 -->
     	<select id="replyselectData" resultType="com.bitcamp.dto.RepairDTO">
-    		select reservno, userid, reservtxt, reservlevel, reservorder, reservwritedate, caldate 
+    		select reservno, ReserveTable.userid, username, reservtxt, reservlevel, reservorder, reservwritedate, caldate
+			from ReserveTable join UserTable
+			on ReserveTable.userid = UserTable.userid
+			order by reservorder, reservno
+    		<!-- select reservno, userid, reservtxt, reservlevel, reservorder, reservwritedate, caldate 
     		from ReserveTable 
-    		order by reservwritedate desc, reservorder desc
+    		order by reservwritedate desc, reservorder desc -->
     	</select>
     	
     	<insert id="reinsertData" parameterType="com.bitcamp.dto.RepairDTO">
@@ -35,8 +39,8 @@
     			select max(reservorder)+1 as reservorder
     			from ReserveTable
     		</selectKey>
-    		insert into ReserveTable(reservno, userid, reservtxt, reservlevel, reservorder, reservwritedate, caldate)
-    		values(0,#{userid}, #{reservtxt}, #{reservlevel}, #{reservorder}, now(), #{caldate})
+    		insert into ReserveTable(userid, reservtxt, reservlevel, reservorder, reservwritedate, caldate)
+    		values(#{userid}, #{reservtxt}, #{reservlevel}, #{reservorder}, now(), #{caldate})
     	</insert>
     	<insert id="rereinsertData" parameterType="com.bitcamp.dto.RepairDTO">
     		<selectKey keyProperty="reservlevel" order="BEFORE" resultType="int">
@@ -44,7 +48,7 @@
     			from ReserveTable
     			where reservorder =#{reservorder}
     		</selectKey>
-    		insert into ReserveTable(reservno, userid, reservtxt, reservlevel, reservorder, reservwritedate, caldate)
-    		values(0,#{userid}, #{reservtxt}, #{reservlevel}, #{reservorder}, now(), #{caldate})
+    		insert into ReserveTable(userid, reservtxt, reservlevel, reservorder, reservwritedate, caldate)
+    		values(#{userid}, #{reservtxt}, #{reservlevel}, #{reservorder}, now(), #{caldate})
     	</insert>
     </mapper>

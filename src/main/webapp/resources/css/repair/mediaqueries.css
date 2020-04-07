@@ -1,0 +1,50 @@
+@charset "UTF-8";
+@media screen and (max-width: 414px) { 
+	
+.banner {
+    height: 250px !important;
+}
+.banner_inner {
+    height: 250px;
+    background-position: center center;
+}	
+	
+.repair{
+	padding: 10px;
+}	
+.repair_subtit{
+	margin-top: 20px;
+}
+.reservation_info {
+    margin: 20px 0 4px 0px;
+}
+.repair_text {
+    width: 276px;
+}
+.repair_inquirylist {
+    padding: 10px 0px;
+}
+.repair_inquirylist_txt {
+    width: 75.8%;
+}
+.repair_inquirylist_btn {
+    width: 24.2%;
+}
+.repair_inquiry_txt {
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.repair_inquiry_cal {
+    font-size: 12px;
+    font-weight: bold;
+}
+.reply_box {
+    padding: 0px 20px 20px 10px;
+}
+
+
+
+}
+

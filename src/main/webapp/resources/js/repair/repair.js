@@ -52,12 +52,13 @@ rereplybtn();
 
 //예약 저장 버튼 클릭시
 function reservsend(reservorder){
-	//var userid=document.getElementById('userid').value; 이거 어떻ㄱ???
+	var userid=document.getElementById('userid').value; 
+	console.log("userid"+userid);
 	var textbox = document.getElementById('reservationText');
 	var txt = document.getElementById('reservationText').value;
 	var caldate = document.getElementById('caldate').value;
 	console.log("caldate"+caldate);
-	var reservedata = {/*"userid":userid,*/"reservtxt":txt,"caldate":caldate,"reservorder":reservorder};
+	var reservedata = {"userid":userid,"reservtxt":txt,"caldate":caldate,"reservorder":reservorder};
 	if(caldate==""){
 		alert("정비 예약 문의하고 싶은 날짜를 선택해주세요!");
 	}else{
@@ -74,33 +75,33 @@ function reservsend(reservorder){
 							
 								result +='<div class="repair_inquirylist">';
 								result +='<div class="repair_inquirylist_txt">';
-								result +='<p class="repair_inquiry_user">문의자</p>';
+								result +='<p class="repair_inquiry_user">'+item.username+'</p>';
 								result +='<p class="repair_inquiry_date">작성일 :'+item.reservwritedate+'</p>';
 								result +='<p class="repair_inquiry_txt"><span class="repair_inquiry_cal">예약일자 '+item.caldate+' </span>| '+item.reservtxt+'</p>';
 								result +='</div>';
 								result +='<div class="repair_inquirylist_btn">';
-								result +='<input type="button" value="답변" class="admin_btn">';
+								result +='<input type="button" value="답변" class="admin_btn" onclick="adminreply(this)">';
 								result +='</div>';
 								result +='</div>';
-							
 						}
-//						else if(item.reservlevel==1) {
-//						    result +='<div class="reply_box">';
-//							result +='<div class="reply">';
-//							result +='<p class="rereply_admin">관리자 답변 | <span class="rereply_admintxt"'+item.reservtxt+'</span></p>';
-//							result +='</div>';
-//							result +='</div>';
-//						}
+						else if(item.reservlevel==1) {
+						    result +='<div class="reply_box" style="display:none;">';
+							result +='<div class="reply">';
+							result +='<p class="rereply_admin">관리자 답변 | <span class="rereply_admintxt">'+item.reservtxt+'</span></p>';
+							result +='</div>';
+							result +='</div>';
+						}
 					});
 					$('#replyBox').html(result);
 					textbox.value = '';
-					alert("문의글이 저장 되었습니다.");
-					adminreply();
+					alert("문의글이 저장 되었습니다.");	
+					ajaxrereplybtn();
 			}
 			, error : function(data){
 				console.log("저장버튼 클릭시 error");
 			}
 		});
+		
 	}
 	
 	
@@ -111,13 +112,24 @@ function adminreply(obj){
 }
 function rereplybtn() {
 	 var rereplyarr = document.getElementsByClassName('rereply_admin');
-	 console.log(rereplyarr[0].innerText);
+	 //console.log(rereplyarr[0].innerText);
 	 for(var i=0; i< rereplyarr.length; i++) {
 		 console.log("여기");
+		 console.log(rereplyarr[i].parentNode.parentNode.previousSibling);
 		 rereplyarr[i].parentNode.parentNode.previousSibling.previousSibling.children[1].style.display = 'block';
 		 //rereplyarr[i].parentNode.parentNode.previousSibling.previousSibling.children[1].innerText();
 	}
  }
+function ajaxrereplybtn() {
+	 var rereplyarr = document.getElementsByClassName('rereply_admin');
+	 //console.log(rereplyarr[0].innerText);
+	 for(var i=0; i< rereplyarr.length; i++) {
+		 console.log("여기");
+		 console.log(rereplyarr[i].parentNode.parentNode.previousSibling);
+		 rereplyarr[i].parentNode.parentNode.previousSibling.children[1].style.display = 'block';
+		 //rereplyarr[i].parentNode.parentNode.previousSibling.previousSibling.children[1].innerText();
+	}
+}
 function loginpage(){
 	location.href="/intro";
 }

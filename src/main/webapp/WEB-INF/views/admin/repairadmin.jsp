@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +20,10 @@
 </head>
 <body>
 	<div class="admincontents">
+		<sec:authorize access="isAuthenticated()">
+	      	<sec:authentication property='principal.username' var="userid"/>
+	      	<input type="hidden" id="userid" value="${userid}">      
+	   	</sec:authorize>
 		<div class="admin_userbox">
 			관리자님 환영합니다! <span class="admin_logout"><a href="#">로그아웃</a></span>
 		</div>
@@ -37,32 +42,19 @@
 					</div>
 					<div class="box-body calpopdetail" id="alert_contents"></div>
 				</div>
-				<div class="repair_inquirylist_box">
+				<div class="repair_inquirylist_box" id="reply_container">
                 	<c:forEach var="list" items="${relist}">
                 		<c:choose>
                           		<c:when test="${list.reservlevel ==0}">
                           			<div class="repair_inquirylist" data-temp="pps">
 				                      <div class="repair_inquirylist_txt">
-				                        <p class="repair_inquiry_user">문의자</p>
+				                        <p class="repair_inquiry_user">${list.username}</p>
 				                        <p class="repair_inquiry_date">작성일 : ${list.reservwritedate}</p>
 				                        <p class="repair_inquiry_txt"><span class="repair_inquiry_cal">예약일자 ${list.caldate} </span>| ${list.reservtxt}</p>
 				                      </div>
-				                      <div class="repair_inquirylist_btn" data-temp="ppsc1">
+				                      <div class="repair_inquirylist_btn" data-temp="ppsc1" style="display:block;">
 				                           <input type="button" value="답변" class="admin_btn" onclick="adminreply(this)">
 				                       </div>
-				                       <%-- <form style="display:none; height: 70px; margin-left: 40px;">
-						                   <ul>
-						                       <li class="repair_li">
-						                          <label for="reservationText" class="reservation_label">정비 문의</label>
-						                          <input type="hidden" name="userid" value="${userid}">
-						                          <textarea rows="3" cols="117" name="reservtxt" id="reservationText${list.reservorder}"  class="repair_text reservationText" placeholder="문의한 글의 답변 내용을 작성해주시기 바랍니다."></textarea>
-						                       </li>
-						                       <li class="repair_li">
-						                       	<input type="hidden" name="caldate" id="caldate">
-						                       	<input type="button" value="저장" class="admin_btn subminbtn" onclick="reservsend(${list.reservorder})">
-						                       </li>
-						                   </ul> 
-					                   </form> --%>
 				                   </div>
 				                   <form style="display:none; height: 70px; margin-left: 24px;">
 					                   <ul>

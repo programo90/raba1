@@ -8,6 +8,14 @@ public class RepairDTO {
 	private int reservorder;
 	private String reservwritedate;
 	private String caldate;
+	private String username;
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public int getReservno() {
 		return reservno;
 	}
@@ -54,7 +62,7 @@ public class RepairDTO {
 	public String toString() {
 		return "RepairDTO [reservno=" + reservno + ", userid=" + userid + ", reservtxt=" + reservtxt + ", reservlevel="
 				+ reservlevel + ", reservorder=" + reservorder + ", reservwritedate=" + reservwritedate + ", caldate="
-				+ caldate + "]";
+				+ caldate + ", username=" + username + "]";
 	}
 	
 	

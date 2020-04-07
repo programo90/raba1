@@ -9,7 +9,7 @@
  <title>Insert title here</title>
  <link rel="stylesheet" href="/resources/css/admin/adminorder.css">
  <script>
- document.getElementsByClassName('adminnav')[7].style.backgroundColor="#e8e8e8";
+ document.getElementsByClassName('adminnav')[5].style.backgroundColor="#e8e8e8";
  
 	$(document).ready(
 			function() {

@@ -19,8 +19,7 @@
 	<context:component-scan
 		base-package="com.bitcamp.security" />
 	
-	<!-- ajax get방식이라  security 일부분 해제 -->
-	<security:http pattern="/asdf" security="none"/>
+	
 	
 	<security:http auto-config="true" use-expressions="true">
 		<security:intercept-url pattern="/login/all" access="permitAll" />
@@ -28,8 +27,9 @@
 		<security:intercept-url pattern="/login/host*" access="hasRole('ROLE_HOST')" />
 		<!-- <security:intercept-url pattern="/login/member2" access="hasRole('ROLE_MEMBER')" 
 			/> -->
-		<security:intercept-url pattern="/login/admin*" access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/mypage/**" access="hasRole('ROLE_MEMBER')" />
+		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/tour/**" access="hasRole('ROLE_MEMBER')" />
 		
 
 	
@@ -38,8 +38,8 @@
 		
 		<!-- <security:form-login /> 권한이 없는 페이지에 접근시 이동하는 페이지 경로를 설정해줍니다. -->
 		<!-- customLoginSuccess - 로그인성공시에 권한별로 이동하는 페이지를 설정할 수 있습니다. -->
-		<security:form-login login-page="/intro" authentication-success-handler-ref="customLoginSuccess" />
-		<security:logout logout-url="/customLogout" invalidate-session="true" logout-success-url="/intro" />
+		<security:form-login login-page="/" authentication-success-handler-ref="customLoginSuccess" />
+		<security:logout logout-url="/customLogout" invalidate-session="true" logout-success-url="/" />
 	</security:http>
 
 

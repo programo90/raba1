@@ -2,14 +2,11 @@ package com.bitcamp.service;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
-
 import com.bitcamp.dto.GoodsDTO;
 import com.bitcamp.dto.OrderDTO;
 import com.bitcamp.dto.order__listDTO;
 import com.bitcamp.security.Login__MemberVO;
 
-@Mapper
 public interface MypageService {
 	List<GoodsDTO> wishlist(String userid);
 	Login__MemberVO userinfo(String userid);
@@ -19,4 +16,5 @@ public interface MypageService {
 	List<order__listDTO> detail_orderlist(int orderno);
 	OrderDTO orderdetail(int orderno);
 	void updateCashReceipts(order__listDTO dto);
+	void updateShipInfo(order__listDTO dto);
 }

@@ -146,5 +146,12 @@ public class MypageServiceImple implements MypageService {
 	}
 
 
+
+	@Override
+	public void updateShipInfo(order__listDTO dto) {
+		mapper.updateShipInfo(dto);
+	}
+
+
 	
 }

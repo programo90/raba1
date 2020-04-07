@@ -63,10 +63,10 @@
               <div class="hidden bg-white ml-5  lg:w-2/12 lg:grid ">
                 <ul class="list-reset">
                     <li class="inline-block mr-10 ">
-                        <a href="/mypage/${userid}" class="block p-4 text-gray-800 font-bold hover:text-purple-600 hover:font-bold ">주문 내역</a>
+                        <a href="/mypage" class="block p-4 text-gray-800 font-bold hover:text-purple-600 hover:font-bold ">주문 내역</a>
                     </li>
                     <li class="inline-block mr-10  ">
-                        <a href="/wishlist/${userid}" class="block p-4 text-gray-800 font-normal hover:text-purple-600 hover:font-bold">위시 리스트</a>
+                        <a href="/wishlist" class="block p-4 text-gray-800 font-normal hover:text-purple-600 hover:font-bold">위시 리스트</a>
                     </li>
                     <li class="inline-block mr-10 ">
                         <a href="#" class="block p-4 text-gray-800 font-normal hover:text-purple-600 hover:font-bold">주행 거리</a>

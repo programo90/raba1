@@ -1,5 +1,6 @@
 package com.bitcamp.rava;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,9 @@ public class Mypage_Controller {
 	private MypageService service;
 	
 	
-	@RequestMapping(value="/mypage/{userid}")
-	public String doMypage(Model model, @PathVariable String userid) {
-		
+	@RequestMapping(value="/mypage")
+	public String doMypage(Principal principal, Model model) {
+		String userid = principal.getName();
 		Login__MemberVO vo = service.userinfo(userid);
 		model.addAttribute("userinfo", vo);
 		
@@ -49,9 +50,9 @@ public class Mypage_Controller {
 	
 	
 	
-	@RequestMapping(value = "/wishlist/{userid}")
-	public String doWishlist(Model model, @PathVariable String userid) {
-		System.out.println("aaabbb" + userid);
+	@RequestMapping(value = "/wishlist")
+	public String doWishlist(Principal principal, Model model) {
+		String userid = principal.getName();
 		List<GoodsDTO> wishlist = service.wishlist(userid);
 		int count = wishlist.size();
 		model.addAttribute("list", wishlist);
@@ -81,6 +82,31 @@ public class Mypage_Controller {
 		service.updateInfo(vo); //vo를 찾아서 넣어주세요
 		return 1;
 	}
+	
+	@RequestMapping(value= "/updateShipInfo")
+	@ResponseBody
+	public int updateShipInfo(@RequestParam("orderuname") String orderuname
+			, @RequestParam("orderuphone") String orderuphone
+			, @RequestParam("orderuaddr1") int orderuaddr1
+			, @RequestParam("orderuaddr2") String orderuaddr2
+			, @RequestParam("orderuaddr3") String orderuaddr3
+			, @RequestParam("ordermg") String ordermg
+			, @RequestParam("oderno") int oderno
+			) {
+		order__listDTO dto = new order__listDTO();
+		dto.setOrderuname(orderuname);
+		dto.setOrderuphone(orderuphone);
+		dto.setOrderuaddr1(orderuaddr1);
+		dto.setOrderuaddr2(orderuaddr2);
+		dto.setOrderuaddr3(orderuaddr3);
+		dto.setOrdermg(ordermg);
+		dto.setOderno(oderno);
+		
+		service.updateShipInfo(dto);
+		return 1;
+	}
+	
+	
 	
 	@RequestMapping(value= "/updateCashReceipts")
 	@ResponseBody

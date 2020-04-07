@@ -76,34 +76,36 @@
                 <div class="flex flex-col w-full md:w-1/2 p-4">
                     <div class="flex flex-col flex-1 justify-center m-0 mb-8">
                         <div class="w-full mt-4">
-                            <form class="form-horizontal w-3/4 mx-auto" method="POST" action="#">
+                            <form class="form-horizontal w-3/4 mx-auto"  method="POST" >
+                            <!-- form안에 아래의 csrf input을 넣어주세요 -->
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 								<p class="text-gray-800 font-4xl font-extrabold">배송정보 수정 </p>
 								<div class="">
 								  <label class="block text-sm text-gray-600" for="cus_name">받는 이 </label>
-								  <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs" id="cus_name" name="cus_name" type="text" required="" placeholder="Your Name" aria-label="Name" value="${orderinfo.orderuname }">
+								  <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs" id="orderuname" name="cus_name" type="text" required="" placeholder="Your Name" aria-label="Name" value="${orderinfo.orderuname }">
 								</div>
 								<div class="mt-2">
 									<label class="block text-sm text-gray-600" for="cus_name">전화 번호</label>
-									<input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs" id="cus_name" name="cus_name" type="text" required="" placeholder="Your phone number" aria-label="Name" value="${orderinfo.orderuphone}">
+									<input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs" id="orderuphone" name="cus_name" type="text" required="" placeholder="Your phone number" aria-label="Name" value="${orderinfo.orderuphone}">
 								</div>
 								<div class="mt-2">
 									<label class=" block text-sm text-gray-600" for="cus_email">주소</label>
-									<input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded text-xs" id="cus_email" name="cus_email" type="text" required="" placeholder="도로명 주소" aria-label="Email" value="${orderinfo.orderuaddr2}">
+									<input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded text-xs" id="orderuaddr2" name="cus_email" type="text" required="" placeholder="도로명 주소" aria-label="Email" value="${orderinfo.orderuaddr2}">
 								</div>
 								<div class="mt-2">
 									<label class="hidden text-sm block text-gray-600" for="cus_email">상세 주소</label>
-									<input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded text-xs" id="cus_email" name="cus_email" type="text" required="" placeholder="상세주소" aria-label="Email" value="${orderinfo.orderuaddr3}">
+									<input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded text-xs" id="orderuaddr3" name="cus_email" type="text" required="" placeholder="상세주소" aria-label="Email" value="${orderinfo.orderuaddr3}">
 								</div>
 								<div class="inline-block mt-2 w-1/2 pr-1">
 									<label class="hidden block text-sm text-gray-600" for="cus_email">우편번호</label>
-									<input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded text-xs" id="cus_email" name="cus_email" type="text" required="" placeholder="우편번호" aria-label="Email" value="${orderinfo.orderuaddr1}">
+									<input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded text-xs" id="orderuaddr1" name="cus_email" type="text" required="" placeholder="우편번호" aria-label="Email" value="${orderinfo.orderuaddr1}">
 								</div>
 								<div class="mt-2">
 									<label class="block text-sm text-gray-600 " for="cus_msg">배송 메모 </label>
-									<input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded text-xs" id="cus_email" name="cus_email" type="text" required="" placeholder="Your Email" aria-label="Email" value="${orderinfo.ordermg}">
+									<input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded text-xs" id="ordermg" name="cus_email" type="text" required="" placeholder="Your Email" aria-label="Email" value="${orderinfo.ordermg}">
 								</div>
 								<div class="mt-3 flex">
-								  <button class="px-2 py-1 mx-auto text-white font-normal tracking-wider bg-gray-700 hover:bg-gray-800 rounded text-sm" type="submit">수정 완료</button>
+								  <button class="px-2 py-1 mx-auto text-white font-normal tracking-wider bg-gray-700 hover:bg-gray-800 rounded text-sm" onclick="updateShipInfo()" >수정 완료</button>
 								</div>
                             </form>
                             
@@ -277,10 +279,10 @@
 						                                
 						                                <div class="bg-white  px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 						                                    <dt class="text-sm  leading-5 font-medium text-gray-500">
-						                                        현금영수증
+						                                        현금영수증 ${orderinfo.cashreceipts eq null}
 						                                    </dt>
 						                                    
-						                                    
+						                                 
 						                                    <c:choose>
 						                                    	<c:when test="${orderinfo.cashreceipts eq null}">
 								                                    <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
@@ -449,13 +451,14 @@
 		}
 		/* END 모달 스크립트 (현금영수증 신청) */
 		
-			/* <!-- ajax script --> */
+			/* ajax script */
 			function updateCashReceipts(){
-				var userid = document.getElementById('oderno').value;
+				var oderno = document.getElementById('oderno').value;
 				var cashreceipts = document.getElementById('cashreceipts').value;
-				var tempdata = {"cashreceipts":cashreceipts, "oderno":oderno}; 
+				
+				var tempdata = {"cashreceipts" : cashreceipts, "oderno" : oderno}; 
 				$.ajax({
-						url : 'updateCashReceipts'
+						url : '/updateCashReceipts'
 						, data : tempdata
 						, dataType: 'json'
 						, contentType: 'application/json;charset=utf-8'
@@ -468,15 +471,41 @@
 				
 					});
 				};
-			/* <!-- END ajax script --> */
+			/*  END ajax script */
+			
+			/* ajax script */
+			function updateShipInfo(){
+				console.log("ddd나와!!!" + oderno)
+				var orderuname = document.getElementById('orderuname').value;
+				var orderuphone = document.getElementById('orderuphone').value;
+				var orderuaddr1 = document.getElementById('orderuaddr1').value;
+				var orderuaddr2 = document.getElementById('orderuaddr2').value;
+				var orderuaddr3 = document.getElementById('orderuaddr3').value;
+				var ordermg = document.getElementById('ordermg').value;
+				var oderno = document.getElementById('oderno').value;
+				
+				var tempdata = {"orderuname" : orderuname, "orderuphone" : orderuphone, "orderuaddr1" : orderuaddr1, "orderuaddr2" : orderuaddr2, "orderuaddr3" : orderuaddr3, "ordermg" : ordermg,  "oderno" : oderno }; 
+				$.ajax({
+						url : '/updateShipInfo'
+						, data : tempdata
+						, dataType: 'json'
+						, contentType: 'application/json;charset=utf-8'
+						, success : function(data){
+							alert("현금영수증 신청을 완료했습니다"); 
+						}
+						, error : function(data){
+							alert("에러 : 관리자에게 문의하세요");
+						}
+				
+					});
+				};
+			/*  END ajax script */
 			
 			/* 콤마를찍어줍니다  */
-			            Number.prototype.format = function(){
+            Number.prototype.format = function(){
                 if(this==0) return 0;
-
                 var reg = /(^[+-]?\d+)(\d{3})/;
                 var n = (this + '');
-
                 while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
 
                 return n;
@@ -494,7 +523,7 @@
                     jQuery(this).text().format()
                 );
             });
-    		/* END 콤마를찍어줍니다  */
+    		/* END 콤마를찍어줍니다  class에 format-money를 작성해주세요 */
 			
 	</script>
     

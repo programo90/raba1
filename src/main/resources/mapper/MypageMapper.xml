@@ -2,127 +2,154 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.bitcamp.mapper.MypageMapper">
-  
-  <resultMap type="com.bitcamp.dto.GoodsDTO" id="goods_table">
-  	<result property="p_no" column="pno"/>
-  	<result property="p_name" column="pname"/>
-  	<result property="p_price" column="price"/>
-  	<result property="p_size" column="psize"/>
-  	<result property="p_amount" column="pamount"/>
-  	<result property="p_state" column="pstate"/>
-  	<result property="wno" column="wno"/>
-  </resultMap>
+<mapper namespace="com.bitcamp.mapper.MypageMapper">
 
-  
-  <resultMap type="com.bitcamp.security.Login__MemberVO" id="MemberVO">
-  	<result property="username" column="username"/>
-  	<result property="useremail" column="useremail"/>
-  	<result property="phone" column="phone"/>
-  	<result property="address" column="address"/>
-  	<result property="address2" column="address2"/>
-  	<result property="address3" column="address3"/>
-  	<result property="userimg" column="userimg"/>
-  	<result property="distance" column="distance"/>
-  </resultMap>
-  
-  <resultMap type="com.bitcamp.dto.GoodsDTO" id="goodsDTO">
-  	<result property="p_no" column="pno"/>
-  	<result property="p_name" column="pname"/>
-  	<result property="p_price" column="price"/>
-  	<result property="p_img" column="uploadPath"/>
-  </resultMap>
-  
-  <resultMap type="com.bitcamp.dto.GoodsDTO" id="detail_goodsDTO">
-  	<result property="p_no" column="pno"/>
-  	<result property="p_name" column="pname"/>
-  	<result property="p_price" column="price"/>
-  	<result property="p_img" column="uploadPath"/>
-  </resultMap>
-  
-  
-  <select id="userinfo" resultMap="MemberVO">
-  	select username, useremail, phone, address, address2, address3, userimg, distance
-	from UserTable
-	where userid = #{userid}
-  </select>
-  
-  
-  <select id="orderlist" resultMap="goods_table">
-  	select g.pno, pname, price, psize, pamount, pstate, wno 
-  	from GoodsTable g left join WishTable w
-  	on g.pno = w.pno 
-  	where userid = #{userid}
-</select>
-  
-<select id="detailorderlist" resultType="com.bitcamp.dto.OrderDTO">
-  	SELECT
+	<resultMap type="com.bitcamp.dto.GoodsDTO" id="goods_table">
+		<result property="p_no" column="pno" />
+		<result property="p_name" column="pname" />
+		<result property="p_price" column="price" />
+		<result property="p_size" column="psize" />
+		<result property="p_amount" column="pamount" />
+		<result property="p_state" column="pstate" />
+		<result property="wno" column="wno" />
+	</resultMap>
+
+
+	<resultMap type="com.bitcamp.security.Login__MemberVO"
+		id="MemberVO">
+		<result property="username" column="username" />
+		<result property="useremail" column="useremail" />
+		<result property="phone" column="phone" />
+		<result property="address" column="address" />
+		<result property="address2" column="address2" />
+		<result property="address3" column="address3" />
+		<result property="userimg" column="userimg" />
+		<result property="distance" column="distance" />
+	</resultMap>
+
+	<resultMap type="com.bitcamp.dto.GoodsDTO" id="goodsDTO">
+		<result property="p_no" column="pno" />
+		<result property="p_name" column="pname" />
+		<result property="p_price" column="price" />
+		<result property="p_img" column="uploadPath" />
+	</resultMap>
+
+	<resultMap type="com.bitcamp.dto.GoodsDTO"
+		id="detail_goodsDTO">
+		<result property="p_no" column="pno" />
+		<result property="p_name" column="pname" />
+		<result property="p_price" column="price" />
+		<result property="p_img" column="uploadPath" />
+	</resultMap>
+
+
+	<select id="userinfo" resultMap="MemberVO">
+		select username, useremail, phone, address, address2, address3, userimg,
+		distance
+		from UserTable
+		where userid = #{userid}
+	</select>
+
+
+	<select id="orderlist" resultMap="goods_table">
+		select g.pno, pname, price, psize, pamount, pstate, wno
+		from GoodsTable g left join WishTable w
+		on g.pno = w.pno
+		where userid = #{userid}
+	</select>
+
+	<select id="detailorderlist"
+		resultType="com.bitcamp.dto.OrderDTO">
+		SELECT
 		orderstatus, ordercpno, ordercprice
-	FROM
+		FROM
 		orderTable
-	WHERE
+		WHERE
 		oderno = #{oderno}
-</select>  
+	</select>
 
 
 
-  <select id="wishlist" resultMap="goods_table">
-  	select g.pno, pname, price, psize, pamount, pstate, wno 
-  	from GoodsTable g left join WishTable w
-  	on g.pno = w.pno 
-  	where userid = #{userid}
-</select>
+	<select id="wishlist" resultMap="goods_table">
+		select g.pno, pname, price, psize, pamount, pstate, wno
+		from GoodsTable g left join WishTable w
+		on g.pno = w.pno
+		where userid = #{userid}
+	</select>
 
 
-<select id="order_list" resultType="com.bitcamp.dto.OrderDTO">
-  	select oderno, DATE_FORMAT(salesdate, '%Y-%m-%d') AS salesdate, ordermg, totalprice, userid, deltype,ordercprice,ordercamount, orderuname, orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail, orderstatus, payuname, ordercpno, cashreceipts
-  	from orderTable
-  	where userid = #{userid} 
-</select>
+	<select id="order_list" resultType="com.bitcamp.dto.OrderDTO">
+		select oderno, DATE_FORMAT(salesdate, '%Y-%m-%d') AS salesdate, ordermg,
+		totalprice, userid, deltype,ordercprice,ordercamount, orderuname,
+		orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail,
+		orderstatus, payuname, ordercpno, cashreceipts
+		from orderTable
+		where userid = #{userid}
+	</select>
 
 
-<select id="goods_info" resultMap="goodsDTO">
-  	SELECT pname, price, uploadPath, gt.pno
-	FROM GoodsTable gt LEFT JOIN GoodsImageTable git ON gt.pno = git.pno
-	WHERE gt.pno = #{pno}
-</select>
+	<select id="goods_info" resultMap="goodsDTO">
+		SELECT pname, price, uploadPath, gt.pno
+		FROM GoodsTable gt LEFT JOIN GoodsImageTable git ON gt.pno = git.pno
+		WHERE gt.pno = #{pno}
+	</select>
 
 
-<select id="goods_info2" resultMap="detail_goodsDTO">
-  	SELECT pname, price, uploadPath, gt.pno
-	FROM GoodsTable gt LEFT JOIN GoodsImageTable git ON gt.pno = git.pno
-	WHERE gt.pno = #{pno}
-</select>
+	<select id="goods_info2" resultMap="detail_goodsDTO">
+		SELECT pname, price, uploadPath, gt.pno
+		FROM GoodsTable gt LEFT JOIN GoodsImageTable git ON gt.pno = git.pno
+		WHERE gt.pno = #{pno}
+	</select>
 
 
-<select id="order__detail" resultType="com.bitcamp.dto.OrderDTO">
-  	select oderno, DATE_FORMAT(salesdate, '%Y-%m-%d') AS salesdate, ordermg, totalprice, userid, deltype,ordercprice,ordercamount, orderuname, orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail, orderstatus, payuname, ordercpno
-  	from orderTable 
-  	where oderno= #{orderno}
-</select>
+	<select id="order__detail" resultType="com.bitcamp.dto.OrderDTO">
+		select oderno, DATE_FORMAT(salesdate, '%Y-%m-%d') AS salesdate, ordermg,
+		totalprice, userid, deltype,ordercprice,ordercamount, orderuname,
+		orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail,
+		orderstatus, payuname, ordercpno, cashreceipts
+		from orderTable
+		where oderno= #{orderno}
+	</select>
 
-<update id="updateCashReceipts" parameterType="com.bitcamp.dto.order__listDTO">
-	UPDATE
+	<update id="updateCashReceipts"
+		parameterType="com.bitcamp.dto.order__listDTO">
+		UPDATE
 		orderTable
-	SET
+		SET
 		cashreceipts = #{cashreceipts}
-	WHERE
+		WHERE
 		oderno = #{oderno}
-	
-  	</update>
+
+	</update>
 
 
-<update id="updateInfo" parameterType="com.bitcamp.security.Login__MemberVO">
-  		update UserTable
-  		set
-  			username = #{username}
-  			,useremail = #{useremail}
-  			,phone = #{phone}
-  			,address = #{address}
-  			,address2 = #{address2}
-  			,address3 = #{address3}
-  		where userid = #{userid}
-  	</update>
+	<update id="updateInfo"
+		parameterType="com.bitcamp.security.Login__MemberVO">
+		update UserTable
+		set
+		username = #{username}
+		,useremail = #{useremail}
+		,phone = #{phone}
+		,address = #{address}
+		,address2 = #{address2}
+		,address3 = #{address3}
+		where userid = #{userid}
+	</update>
 
-  
-  </mapper>
+	<update id="updateShipInfo"
+		parameterType="com.bitcamp.dto.order__listDTO">
+		update orderTable
+		set
+		orderuname = #{orderuname}
+		,orderuphone = #{orderuphone}
+		,orderuaddr1 = #{orderuaddr1}
+		,orderuaddr2 = #{orderuaddr2}
+		,orderuaddr3 = #{orderuaddr3}
+		,ordermg = #{ordermg}
+		where oderno = #{oderno}
+	</update>
+
+
+
+
+</mapper>

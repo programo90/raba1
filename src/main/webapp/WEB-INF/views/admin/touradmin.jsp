@@ -37,7 +37,7 @@
     	            			<div class="tourlistbox">
     	            				<a href="/tourdetail/${seldto.tourno}">
     	            					<p class="tourlistno">${seldto.tourno}</p>
-	                					<p class="tourlisthostid">${seldto.userid}</p>
+	                					<p class="tourlisthostid">${seldto.username}</p>
 	            	    				<p class="tourlisttitle">${seldto.tourtitle}</p>
 	        	        				<p class="tourliststart">${seldto.startspot}</p>
 	    	            				<p class="tourlistend">${seldto.endspot}</p>

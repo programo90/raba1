@@ -50,8 +50,7 @@ public class TourServiceImple implements TourService{
 		dto.setTourlng(tourlng.toString());
 		
 		//즐겨차기 루트 수정, 루트 수정할땐 mode = 1로
-		int mode = 0;
-		if(mode == 0) {
+		if(dto.getSelectmode() == 0) {
 			
 		dto.setTourday(dto.getTourdate().substring(0, 10));
 		dto.setTourtime(dto.getTourdate().substring(11));
@@ -96,7 +95,10 @@ public class TourServiceImple implements TourService{
 		//투어 타입에 따라 tourlist.jsp에서 표현해줄 마우스오버 효과 지정
 				
 		} else {
-			tourMapper.insertFavTour(dto);
+			int temptourno = dto.getPopulartour();
+			dto.setTourno(temptourno);
+			/*tourMapper.insertFavTour(dto);*/
+			tourMapper.updateFavTour(dto);
 		}
 	}
 

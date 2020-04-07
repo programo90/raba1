@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"	%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,12 +60,16 @@
                                 </div>
                                 <div class="tourinsert_insertcontent">
                                   <select name="populartour" id="favorit_tour" onchange="selectFavoritTour()">
-                                     <option value="0" selected>선택안함</option>
+                                      <option value="0" selected>선택안함</option>
                                       <option value="1">첫번째 경로</option>
                                       <option value="2">두번째 경로</option>
                                       <option value="3">세번째 경로</option>
                                       <option value="4">네번째 경로</option>
                                   </select>
+                                  <c:if test="${true }">
+                                  	<button type="button" onclick="selecteTourUpdate()">수정모드</button>
+                                  </c:if>
+                                  <input type="hidden" id="selectmode" name="selectmode" value="0">
                                </div>
                                <div class="tourinsert_inserttitle">
                                    <label for="tourdate">출발시각</label>
@@ -190,7 +195,12 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     } else {
         // 지도 클릭이벤트가 발생했는데 선을 그리고있는 상태가 아니면
         if (!drawingFlag) {
-
+        	var tempmode = document.getElementById('selectmode');
+        	if(tempmode==0) {
+        		var selefav = document.getElementById('favorit_tour');
+        		selefav.children[0].selected = true;	
+        	}
+		
         // 상태를 true로, 선이 그리고있는 상태로 변경합니다
         drawingFlag = true;
         
@@ -208,7 +218,7 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
             map: map, // 선을 표시할 지도입니다 
             path: [clickPosition], // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
             strokeWeight: 3, // 선의 두께입니다 
-            strokeColor: '#111111', // 선의 색깔입니다
+            strokeColor: '#f33800', // 선의 색깔입니다
             strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
             strokeStyle: 'solid' // 선의 스타일입니다
         });
@@ -216,7 +226,7 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
         // 선이 그려지고 있을 때 마우스 움직임에 따라 선이 그려질 위치를 표시할 선을 생성합니다
         moveLine = new kakao.maps.Polyline({
             strokeWeight: 3, // 선의 두께입니다 
-            strokeColor: '#111111', // 선의 색깔입니다
+            strokeColor: '#f33800', // 선의 색깔입니다
             strokeOpacity: 0.5, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
             strokeStyle: 'solid' // 선의 스타일입니다    
         });
@@ -641,7 +651,7 @@ function drawSelectedRoute() {
             	map: map, 
             	path: [spotPosition],
             	strokeWeight: 3, 
-            	strokeColor: '#111111',
+            	strokeColor: '#f33800',
             	strokeOpacity: 1, 
         	    strokeStyle: 'solid' 
     	    });
@@ -824,6 +834,16 @@ function checkmaxmin(inputtotalcount) {
         alert('최소 참여 인원은 1명까지 설정 할 수 있습니다.');
         document.getElementById('totalcount').value = 1;
     }
+}
+
+function selecteTourUpdate() {
+	var tempmode = document.getElementById('selectmode');
+	console.log(tempmode.value);
+	if(tempmode.value == 0) {
+		tempmode.value = 1;
+	} else {
+		tempmode.value = 0;
+	}
 }
 </script>
 </body>

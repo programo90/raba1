@@ -109,31 +109,32 @@ function reinsert(order) {
  function deleteReply(obj,tourreno) {
 	 //obj를 기준으로 해당 댓글을 삭제한다.
 	 //ajax로 list를 다시 불러온다.
-	 var tourno = document.getElementById('tourno').value;
-	 var loginid = document.getElementById('userid').value;
-	 
-	 var tempdata = {
-			 "tourreno":tourreno
-			 ,"tourno":tourno
-	 }
-	 
-	 console.log(tempdata);
-	 
-	 $.ajax({
-		 url: '/tourredelete'
-		,data : tempdata
-		,dataType : 'json'
-		,contentType: "application/json;charset=utf-8"
-		,success : function(data) {
-			
-			replaceReply(data);
-		}
-		,error : function(data) {
-			 console.log('reply delete error');
-		}
+	 if(confirm("삭제하시겠습니까?")) {
+		 var tourno = document.getElementById('tourno').value;
+		 var loginid = document.getElementById('userid').value;
 		 
-	 });
-	 
+		 var tempdata = {
+				 "tourreno":tourreno
+				 ,"tourno":tourno
+		 }
+		 
+		 console.log(tempdata);
+		 
+		 $.ajax({
+			 url: '/tourredelete'
+			,data : tempdata
+			,dataType : 'json'
+			,contentType: "application/json;charset=utf-8"
+			,success : function(data) {
+				
+				replaceReply(data);
+			}
+			,error : function(data) {
+				 console.log('reply delete error');
+			}
+			 
+		 }); 
+	 }
  }
  
 function updateReplyCancel() {
@@ -175,32 +176,34 @@ function updateReply(obj,tourreno) {
 }
 
  function updateReplyResult(obj, tourreno) {
-	 var tourno = document.getElementById('tourno').value;
-	 var loginid = document.getElementById('userid').value;
-	 var recontent = document.getElementById('updatetext').value;
-	 
-	 var tempdata = {
-			 "tourreno":tourreno
-			 ,"tourno":tourno
-			 ,"recontent":recontent
-	 }
-	 console.log(tempdata);
-	 
-	 $.ajax({
-		 url: '/tourreupdate'
-		,data : tempdata
-		,dataType : 'json'
-		,contentType: "application/json;charset=utf-8"
-		,success : function(data) {
-			
-			replaceReply(data);
-			
-		}
-		,error : function(data) {
-			 console.log('reply delete error');
-		}
+	 if(confirm("수정하시겠습니까?")) {
+		 var tourno = document.getElementById('tourno').value;
+		 var loginid = document.getElementById('userid').value;
+		 var recontent = document.getElementById('updatetext').value;
 		 
-	 });
+		 var tempdata = {
+				 "tourreno":tourreno
+				 ,"tourno":tourno
+				 ,"recontent":recontent
+		 }
+		 console.log(tempdata);
+		 
+		 $.ajax({
+			 url: '/tourreupdate'
+			,data : tempdata
+			,dataType : 'json'
+			,contentType: "application/json;charset=utf-8"
+			,success : function(data) {
+				
+				replaceReply(data);
+				
+			}
+			,error : function(data) {
+				 console.log('reply delete error');
+			}
+			 
+		 }); 
+	 }
  }
  
  function replaceReply(data) {
@@ -212,25 +215,27 @@ function updateReply(obj,tourreno) {
 	$.each(data,function(index,item){
 		if(item.relevel==0) {
 			result += '<li class="tourreple_list">';
-			result += '<div onclick="rereinsert(this,' + item.reorder + ')">';
-			result += (index+1) + ' ' + item.userid + ' ' +item.recontent+'</div>';
-			/*if(item.userid == loginid) {
-				result += '<div style="float:right;" onclick="deleteReply(this,' + item.tourreno + ')">수정</div>';
-				result += '<div style="float:right;" onclick="updateReply(this,' + item.tourreno + ')">삭제</div>';
-			}*/
-			result += '<div onclick="updateReply(this,' + item.tourreno + ')">수정</div>';
-			result += '<div onclick="deleteReply(this,' + item.tourreno + ')">삭제</div>';
+			result += '<div class="user_relist" onclick="rereinsert(this,' + item.reorder + ')">';
+			result += '<div>' + item.username + '님 문의 | </div><div>' +item.recontent +'</div>' ;
+			result += '</div>';
+			if(item.userid == loginid) {
+				result += '<div class="relist_update_btn" onclick="updateReply(this,' + item.tourreno + ')">수정</div>';
+				result += '<div class="relist_delete_btn" onclick="deleteReply(this,' + item.tourreno + ')">삭제</div>';
+			}
+			/*result += '<div class="relist_update_btn" onclick="updateReply(this,' + item.tourreno + ')">수정</div>';
+			result += '<div class="relist_delete_btn" onclick="deleteReply(this,' + item.tourreno + ')">삭제</div>';*/
 			result += '</li>';
 		} else if(item.relevel==1) {
 			result += '<li class="tourreple_relist">';
-			result += '<div>';
-			result +=  (index+1) + ' ' + item.userid + ' ' +item.recontent+'</div>';
-			result += '<div onclick="updateReply(this,' + item.tourreno + ')">수정</div>';
-			result += '<div onclick="deleteReply(this,' + item.tourreno + ')">삭제</div>';
-			/*if(item.userid == loginid) {
-			result += '<div style="float:right;" onclick="deleteReply(this,' + item.tourreno + ')">수정</div>';
-			result += '<div style="float:right;" onclick="updateReply(this,' + item.tourreno + ')">삭제</div>';
-			}*/
+			result += '<div class="host_relist">';
+			result +=  '<div>' + item.username + '님 답변 | </div><div>' +item.recontent +'</div>';
+			result += '</div>';
+			/*result += '<div class="relist_update_btn" onclick="updateReply(this,' + item.tourreno + ')">수정</div>';
+			result += '<div class="relist_delete_btn" onclick="deleteReply(this,' + item.tourreno + ')">삭제</div>';*/
+			if(item.userid == loginid) {
+				result += '<div class="relist_update_btn" onclick="updateReply(this,' + item.tourreno + ')">수정</div>';
+				result += '<div class="relist_delete_btn" onclick="deleteReply(this,' + item.tourreno + ')">삭제</div>';
+			}
 			result += '</li>';
 		}
 	});

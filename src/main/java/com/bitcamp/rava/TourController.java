@@ -1,6 +1,7 @@
 package com.bitcamp.rava;
 
 import java.io.InputStream;
+import java.security.Principal;
 import java.util.List;
 import java.util.Locale;
 
@@ -176,7 +177,9 @@ public class TourController {
 	
 	@RequestMapping("/tourmypage")
 	public String tourmypage(Model model) {
+		
 		String userid = "host";
+		/*String userid = principal.getName();*/
 		
 		List<TourDTO> list = tourService.tourUserList(userid);
 		model.addAttribute("list", list);
@@ -185,6 +188,7 @@ public class TourController {
 		for(TourDTO dto : list) {
 			totaldistance += dto.getDistance();
 		}
+		
 		model.addAttribute("totaldistance", totaldistance);
 		
 		return "tour/tourmypage";
@@ -192,7 +196,7 @@ public class TourController {
 	
 	@RequestMapping("/tourhostpage")
 	public String tourhostpage(Model model) {
-		String userid = "host";
+		String userid = "1328250269";
 		HostDTO hostdto = tourService.hostDetailById(userid);
 		List<TourDTO> list = tourService.tourHostList(hostdto.getHostno());
 		

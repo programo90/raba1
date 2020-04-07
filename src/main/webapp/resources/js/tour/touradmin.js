@@ -1,4 +1,6 @@
 window.onload = function() {
+	document.getElementsByClassName('adminnav')[6].style.backgroundColor="#e8e8e8";
+	
 	var touradminsel = document.getElementsByClassName('tourstatesel');
 	for(var i = 0; i<touradminsel.length;i++) {		
 		var selval = touradminsel[i].nextElementSibling.value;

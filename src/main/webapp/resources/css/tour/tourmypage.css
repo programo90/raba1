@@ -1,0 +1,17 @@
+@charset "utf-8";
+.tourmypage_spot{
+	font-size:17px;
+	
+}
+.tourmypage_state {
+	color:black;
+}
+.tourmypage_update_btn{
+	padding :5px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.tourmypage_imgbox{
+	width:100%;
+	hieght:100%;
+}

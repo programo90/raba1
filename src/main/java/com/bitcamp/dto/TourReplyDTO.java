@@ -7,8 +7,16 @@ public class TourReplyDTO {
 	private String recontent;
 	private int reorder;
 	private int relevel;
+	private String username;
 	
 	
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public int getRelevel() {
 		return relevel;
 	}

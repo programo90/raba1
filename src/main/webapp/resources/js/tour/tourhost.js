@@ -4,6 +4,25 @@ window.onload = function() {
 		var selval = touradminsel[i].nextElementSibling.value;
 		touradminsel[i].children[selval].selected = true;
 	}
+	
+	var tempimgbox = document.getElementsByClassName('tourhostpage_imgbox');
+	
+	for(var i=0; i<tempimgbox.length; i++) {
+		var temppop = tempimgbox[i].data-set.pop;
+		
+		if(temppop==0) {
+			tempimgbox[i].innerHTML = '<img style="width:100%" alt="img" src="/resources/img/tour/custom-1.png">';
+		} else if(temppop == 1) {
+			tempimgbox[i].innerHTML = '<img style="width:100%" alt="img" src="/resources/img/tour/custom-1-1.png">';
+		} else if(temppop == 2) {
+			tempimgbox[i].innerHTML = '<img style="width:100%" alt="img" src="/resources/img/tour/custom-2-1.png">';
+		} else if(temppop == 3) {
+			tempimgbox[i].innerHTML = '<img style="width:100%" alt="img" src="/resources/img/tour/custom-3-1.png">';
+		} else if(temppop == 4) {
+			tempimgbox[i].innerHTML = '<img style="width:100%" alt="img" src="/resources/img/tour/custom-4-1.png">';
+		} 
+	}
+	
 }
 
 function detailinfo(obj) {

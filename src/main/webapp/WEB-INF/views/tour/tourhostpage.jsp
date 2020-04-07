@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/css/common.css">
 <link rel="stylesheet" href="./resources/css/mypage/style.css">
+<link rel="stylesheet" href="./resources/css/tour/tourhostpage.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="/resources/js/tour/tourhost.js"></script>
 </head>
@@ -77,7 +78,7 @@
 										class="hidden md:table-cell w-2/12 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
 										Tour date</th>
 									<th
-										class="hidden md:table-cell w-3/12 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+										class="hidden md:table-cell w-2/12 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
 										Application State
 									<th
 										class="w-2/12 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -91,8 +92,10 @@
 							 	<c:forEach items="${list}" var="dto">
 							 		<tr class=" border-b border-gray-200 ">
 									<td class=" flex items-center px-5 py-5 bg-white text-sm">
-										<img src="./resources/img/mypage/product.png" alt="product"
+										<div class="tourhostpage_imgbox" data-pop="${dto.populartour}">
+											<img src="./resources/img/mypage/product.png" alt="product"
 										class="m-3 my-auto h-12 w-12 flex-shrink-0">
+										</div>
 										<a href="/tourdetail/${dto.tourno }">
 										<div class="px-3 py-2 w-full flex items-center justify-between leading-none">
 											<div class="truncate">
@@ -111,7 +114,7 @@
 										class="hidden md:table-cell px-5 py-5 border-b border-gray-200 bg-white text-sm text-center"
 										onclick="detailinfo(this)" data-tourno="${dto.tourno }" data-openwin="0">
 										<span class="text-gray-900 text-sm">${dto.cancount } / ${dto.totalcount }</span><br>
-										<input type="button" value="명단 보기">
+										<input class="tourhostpage_list_btn" type="button" value="명단 보기">
 									</td>
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 										<div class="text-gray-500">
@@ -121,14 +124,14 @@
 		                						<option value="2">종료</option>
 	                						</select>
 	                						<input type="hidden" value="${dto.tourstate}">
-											<input type="button" value="상태변경" onclick="changeState(${dto.tourno})">											
+											<input type="button" class="tourhostpage_state_btn" value="상태변경" onclick="changeState(${dto.tourno})">											
 										</div>
 									</td>
 									<td>
 										<form action="tourcancel">
 										<c:choose>
 												<c:when test="${(dto.tourstate==0) || (dto.tourstate == 1)}">
-													<a href="/tourupdate/${dto.tourno }">편집</a>
+													<a href="/tourupdate/${dto.tourno }" class="tourhostpage_update_btn">편집</a>
 													<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 												</c:when>
 												<c:when test="${dto.tourstate == 2 }">
@@ -141,7 +144,7 @@
 							 	</c:forEach>
 							</tbody>
 						</table>
-						<div
+						<!-- <div
 							class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
 							<span class="text-xs xs:text-sm text-gray-900"> Showing 1
 								to 4 of 50 Entries </span>
@@ -153,7 +156,7 @@
 									class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-r">
 									Next</button>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

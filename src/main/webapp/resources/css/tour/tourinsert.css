@@ -1,11 +1,10 @@
 @charset "utf-8";
-div {
+#tourinsert_wrap div {
     box-sizing: border-box;
 }
 #tourinsert_wrap{
     margin: 0 auto;
     width: 1200px;
-    height: 1500px;
 }
 #tourinsert_wrap div{
     position: relative;
@@ -14,7 +13,7 @@ div {
 }
 #tourinsert_contentblock{
     width: 100%;
-    height: 1700px;
+/*     height: 1700px; */
 }
 #tourinsert_mapblock{
     width: 100%;
@@ -23,9 +22,19 @@ div {
 #tourinsert_mapblock>div{
     float: left;
 }
+#tourinsert_mapblock>div:first-child {
+	position:absolute;
+}
 #tourinsert_spotlistbox{
     width: 20%;
-    height: 100%;
+    height: 780px;
+    top: 10px;
+    left: 10px;
+    position: absolute;
+/*     opacity: 0.9; */
+    z-index: 2;
+/*     background-color: white; */
+    border-radius: 5px;
 }
 #tourinsert_spotlistbox>div{
     position: relative;
@@ -34,11 +43,13 @@ div {
     width: 100%;
     height: 25%;
     padding: 8px;
+        opacity: 0.9;
+    background-color:white;
 }
 #map_wrap{
     float: left;
     position: relative;
-    width: 80%;
+    width: 100%;
     height: 100%;
 }
 #map{
@@ -49,23 +60,23 @@ div {
 }
 
 #tourinsert_detailblock{
-    height: 500px;
+    /* height: 800px; */
     width: 100%;
 }
 #tourinsert_detaillbox1{
-    height: 280px;
+    /* height: 500px; */
     width: 100%;
     padding: 40px 100px 20px 100px;
 }
 #tourinsert_detaillbox1>div{
     float: left;
-    height: 20px;
+/*     height: 20px; */
     margin: 10px auto;
 }
 #tourinsert_detailbox2{
-    height: 220px;
+    /* height: 220px; */
     width: 100%;
-    padding: 20px 0;
+    margin-top: 20px;
 }
 /*#tourinsert_detailbox2>div{
     width: 45%;
@@ -85,8 +96,16 @@ div {
     padding: 80px 0;
 }
 #tourinsert_detailbox2>div:nth-child(2)>input{
-    width: 80px;
+    float: right;
+    width: 100px;
     height: 80px;
+    border-radius: 5px;
+    border: 1px solid #3e5f40;
+    background-color: #3e5f40;
+    font-size: 15px;
+    font-weight: 400;
+    color: white;
+    cursor: pointer;
 }
 .tourinsert_insertbox{
     width: 60%;
@@ -114,18 +133,19 @@ div {
     width: 75%;
 }*/
 .tourinsert_inserttitle{
-    width: 15%;
-    height: 10%;
+    width: 20%;
+    height: 30px;
     line-height: 10%;
-    border-bottom: 1px solid silver;
+    border-bottom: 1px solid #e8e8e8;
     padding: 5px 0;
     
 }
 .tourinsert_insertcontent{
     width: 80%;
-    height: 10%;
+    height: 30px;
     line-height: 10%;
-    border-bottom: 1px solid silver;
+    border-bottom: 1px solid #e8e8e8;
+    
 }
 .tourinsert_insertcontent input{
     position: relative;
@@ -144,7 +164,7 @@ div {
     float: left;
     width: 100%;
     height: 20%;
-    font-size: 1.4em;
+    font-size: 1.2em;
     padding: 5px 20px;
 }
 .tourdetail_spotdetail{
@@ -158,7 +178,7 @@ div {
     width: 17px;
     margin-left: 5px;
 }
-.dot {overflow:hidden;float:left;width:24px;height:24px;background: url('../../img/tour/iconmonstr-bicycle-1-24.png');}    
+.dot {overflow:hidden;float:left;width:12px;height:12px;border-radius:6px; background-color :#f33800 ;}    
 .dotOverlay {position:relative;top:33px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#fff;}
 .dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
 .number {font-weight:bold;color:#111111;}

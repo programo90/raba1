@@ -1,11 +1,11 @@
 @charset "utf-8";
-div {
+.contents div {
     box-sizing: border-box;
 /*    display: inline-block;
     position: relative;*/
 }
 #tourdetail_wrap{
-    width: 1200px;
+    width: 100%;
     /* height: 2000px; */
     /*border: 1px solid silver;*/
 }
@@ -87,9 +87,9 @@ div {
     top: 1%;
     left: 1%;
     position: absolute;
-    opacity: 0.9;
+/*     opacity: 0.9; */
     z-index: 2;
-    background-color: white;
+/*     background-color: white; */
     border-radius: 5px;
 }
 #tourdetail_spotlistbox>div{
@@ -99,6 +99,8 @@ div {
     width: 100%;
     height: 25%;
     padding: 8px;
+    opacity: 0.9;
+    background-color:white;
 }
 #map_wrap{
     float: left;
@@ -182,6 +184,13 @@ div {
 	float:right;
 	width:100px;
 	height:60px;
+	border-radius: 5px;
+    border: 1px solid #3e5f40;
+    background-color: #3e5f40;
+    font-size: 15px;
+    font-weight: 400;
+    color: white;
+    cursor: pointer;
 }
 #tourdetail_paging_num{
     padding: 20px 0;
@@ -206,20 +215,43 @@ div {
 }
 .tourreple_list{
     /*background-color: lightgrey;*/
-    border-top: 1px solid silver;
+    border-top: 1px solid #e8e8e8;
     /*border-bottom: 1px solid silver;*/
     width: 80%;
 }
 .tourreple_relist{
     /*background-color: darkgrey;*/
-    background-color: lightgrey;
+    background-color: #e8e8e8;
     width: 80%;
 }
-.tourreple_relist>div{
-    padding-left: 20px;
-}
-.tourreple_list>div{
+.host_relist{
 	padding-left: 20px;
+	width:90%;
+}
+.host_relist:before{
+	content: '\21B3';
+	padding-right: 10px;
+    color: #888;
+}
+.user_relist {
+	padding-left: 20px;
+	width : 90%;
+}
+.relist_update_btn{
+	width:40px;
+	cursor: pointer;
+	border: 1px solid #c1c1c1;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.relist_delete_btn{
+	width:40px;
+	cursor: pointer;
+	border: 1px solid #c1c1c1;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 14px;
 }
 .tourreple_list button {
 	float:right;
@@ -242,9 +274,6 @@ div {
     /*border:  10px solid lightgrey;*/
     background-color: lightgrey;
 }
-.tourdetail_spotlistbox>div{
-    position: relative;
-}
 .tourdetail_spotno{
 	float: left;
     width: 100%;
@@ -261,8 +290,8 @@ div {
     padding: 5px 20px;
     font-size: 15px;
 }
-
-.dot {overflow:hidden;float:left;width:24px;height:24px;background: url('../../img/tour/iconmonstr-bicycle-1-24.png');}    
+/* url('../../img/tour/iconmonstr-circle-1-12.png') */
+.dot {overflow:hidden;float:left;width:12px;height:12px;border-radius:6px; background-color :#f33800 ;}    
 .dotOverlay {position:relative;top:33px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#fff;}
 .dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
 .number {font-weight:bold;color:#111111;}

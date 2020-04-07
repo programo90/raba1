@@ -258,7 +258,9 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     } else {
         // 지도 클릭이벤트가 발생했는데 선을 그리고있는 상태가 아니면
         if (!drawingFlag) {
-
+        	var selefav = document.getElementById('favorit_tour');
+    		selefav.children[0].selected = true;
+    		
         // 상태를 true로, 선이 그리고있는 상태로 변경합니다
         drawingFlag = true;
         
@@ -276,7 +278,7 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
             map: map, // 선을 표시할 지도입니다 
             path: [clickPosition], // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
             strokeWeight: 3, // 선의 두께입니다 
-            strokeColor: '#111111', // 선의 색깔입니다
+            strokeColor: '#f33800', // 선의 색깔입니다
             strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
             strokeStyle: 'solid' // 선의 스타일입니다
         });
@@ -284,7 +286,7 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
         // 선이 그려지고 있을 때 마우스 움직임에 따라 선이 그려질 위치를 표시할 선을 생성합니다
         moveLine = new kakao.maps.Polyline({
             strokeWeight: 3, // 선의 두께입니다 
-            strokeColor: '#111111', // 선의 색깔입니다
+            strokeColor: '#f33800', // 선의 색깔입니다
             strokeOpacity: 0.5, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
             strokeStyle: 'solid' // 선의 스타일입니다    
         });
@@ -709,7 +711,7 @@ function drawSelectedRoute() {
             	map: map, 
             	path: [spotPosition],
             	strokeWeight: 3, 
-            	strokeColor: '#111111',
+            	strokeColor: '#f33800',
             	strokeOpacity: 1, 
         	    strokeStyle: 'solid' 
     	    });

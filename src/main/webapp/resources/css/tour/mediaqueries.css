@@ -1,0 +1,136 @@
+@charset "utf-8";
+@media screen and (max-width:414px) {
+	body {
+		/* background-color:lightgreen; */
+	}
+	#tourdetail_hostblock{
+		width:90%;
+		height:auto;
+		
+	}
+	#tourdetail_hostimgblock{
+		width:30%;
+		height:110px;
+	}
+	#tourdetail_detailbox1>div {
+		margin: 0;
+	}
+	#tourdetail_hostinfoblock{
+		width:70%;
+	}
+	#tourdetail_hostinfobox2{
+		height: 50px;
+    	overflow: hidden;
+	}
+	#tourdetail_spotlistbox:first-child {
+		display: none;
+	}
+	#tourdetail_applyblock{
+		width:100%;
+	}
+/* 	#tourdetail_detailbox1>h3:first-child {
+		font-size:50px;
+	}
+	#tourdetail_replyblock>div:first-child{
+		font-size : 50px;
+	} */
+	
+	.contents{
+		max-width :100%;
+	}
+	
+	
+	#tourdetail_mapblock {
+		height:500px;
+	}
+	#tourdetail_wrap{
+		width:414px;
+	}
+	.tourdetail_detailtitle{
+    width: 100%;
+    height: auto;
+    line-height: normal;
+    border-bottom: 1px solid #fff;
+    padding: 5px 0;
+    font-size:15px;
+    
+	}
+	.tourdetail_detailcon {
+    width: 90%;
+    height: auto;
+    line-height: normal;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 10px 0 10px 20px;
+    font-size:20px;
+}
+	#tourdetail_tourdetailblock{
+		height:auto;
+		width:100%;
+	}
+	#tourdetail_detailbox1 {
+		height:auto;
+		padding: 40px 20px 20px 20px;
+	}
+	
+	#tourdetail_detailbox2{
+		padding:10px 0 0 20px;
+	}
+	
+	.tourreple_list{
+		width:100%;
+	}
+	.tourreple_relist{
+		width:100%;
+	}
+	.relist_update_btn{
+		margin-left:20px;
+	}
+	#recontent{
+		width:90%;
+		height:100px;
+	}
+	#tourdetail_repleinsertbox button {
+		margin: 10px 30px;
+	}
+	
+	
+	/* 이하 tourlist.jsp */
+	
+	#contents_title{
+		margin-left:30px;
+		font-size: 25px;
+	}
+	#tourlist_content_wrap{
+		height: auto;
+	}
+	.tourlist_content_box{
+	    width: 100%;
+    	height: 370px;
+	}
+	.tourlist_content_tag {
+		left:-5px;
+	}
+	.tourlist_content_conbox {
+		height:80%;
+	}
+	/* .tourlist_content_conbox{
+		width:100%;
+		height:80%;
+		
+	}
+	.tourlist_content_tag {
+		left:-5px;
+	}
+	.tourlist_content_imgbox {
+    	width: 35%;
+	    height: 60%;
+    	float: left;
+	}
+	.tourlist_content_textbox {
+    	margin-top: 0px;
+	    width: 65%;
+    	height: 60%;
+    	float: left;
+	} */
+	
+}

@@ -24,8 +24,18 @@ public class TourDTO {
 	private Integer tourstate;
 	private Integer cancount;
 	private Integer tourmaplevel;
+	private Integer selectmode;
+	private String username;
 	
 	
+	
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	private Integer[] spotListNo;
 	private String[] spotListTitle;
 	private String[] spotListCon;
@@ -35,6 +45,12 @@ public class TourDTO {
 	
 	
 	
+	public Integer getSelectmode() {
+		return selectmode;
+	}
+	public void setSelectmode(Integer selectmode) {
+		this.selectmode = selectmode;
+	}
 	public Integer getTourmaplevel() {
 		return tourmaplevel;
 	}

@@ -12,12 +12,16 @@
  	</select>
  
  	<select id="tourList" parameterType="hashmap" resultType="com.bitcamp.dto.TourDTO">
- 		select tourno, tourtitle, populartour, tourdate, startspot,endspot
+ 		select b.*, username
+		from (
+			select tourno, tourtitle, populartour, tourdate, startspot, endspot
  				,tourstyle,tourtype,totalcount, tourstate, tourday, tourtime, cancount, userid
- 		from TourTable inner join HostTable
-        on TourTable.hostno = HostTable.hostno
- 		order by tourstate, tourno desc
- 		limit #{startRow}, #{pageSize}
+ 			from TourTable inner join HostTable
+        	on TourTable.hostno = HostTable.hostno
+ 			order by tourstate, tourno desc
+ 			limit #{startRow}, #{pageSize} ) as b 
+		inner join UserTable
+		on UserTable.userid = b.userid;
  	</select>
  	
  	<!-- tour입력 -->
@@ -36,6 +40,15 @@
   		insert into TourFavTable(tourlat, tourlng)
   		values(#{tourlat}, #{tourlng})
   	</insert>
+  	<update id="updateFavTour" parameterType="com.bitcamp.dto.TourDTO">
+  		update TourFavTable
+  		set
+  			tourlat = #{tourlat}
+  			,tourlng = #{tourlng}
+  		where tourno = #{tourno}
+  	</update>
+  	
+  	
   	<!-- spot 추가 -->
   	<insert id="insertMarker" parameterType="com.bitcamp.dto.TourMarkerDTO">
   		insert into SpotTable(tourno, spottitle, spotcontent, spotlat, spotlng)
@@ -147,10 +160,11 @@
   	
   	<!-- 투어 리플 리스트 -->
   	<select id="replyList" parameterType="int" resultType="com.bitcamp.dto.TourReplyDTO">
-  		select tourreno, tourno, userid, recontent ,reorder, relevel
-  		from TourReplyTable
-  		where tourno = #{tourno} 
-  		order by reorder
+  		select tourreno, tourno, UserTable.userid, recontent ,reorder, relevel, username
+  		from TourReplyTable inner join UserTable
+        on TourReplyTable.userid = UserTable.userid
+  		where tourno = #{tourno}
+  		order by reorder;
   	</select>
   	
   	<!-- 투어 리플 insert -->

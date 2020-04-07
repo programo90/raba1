@@ -21,7 +21,7 @@
 	width: 40px;
 }
 .tourlisthostid{
-	width: 70px;
+	width: 71px;
 }
 .tourlisttitle{
 	width:150px;
@@ -41,6 +41,21 @@
 }
 .tourliststate{
 	width : 100px;
+}
+.tourlistbtn>button {
+	padding: 4px 4px;
+    margin: 0px;
+    font-size: 12px;
+    background-color: #ffffff;
+    border: 1px solid #3e5f40;
+    border-radius: 5px;
+}
+.tourstatesel {
+	width: 80%;
+    height: 24px;
+    font-size: 11px;
+    padding: 0 5px;
+    border: 1px solid #e8e8e8;
 }
 
 #touradmin_paging_block{

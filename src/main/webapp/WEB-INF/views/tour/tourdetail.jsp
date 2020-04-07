@@ -6,18 +6,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0">
 <title>라이딩 상세정보</title>
     <link rel="stylesheet" href="/resources/css/common.css">
     <link rel="stylesheet" href="/resources/css/tour/tourdetail.css">
+    <link rel="stylesheet" href="/resources/css/tour/mediaqueries.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="/resources/js/tour/tourdetail.js"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c228a6aa0b58c3275c3454e6b1a73c09"></script>
 </head>
 <body>
-
-	<sec:authorize access="hasRole('ROLE_ADMIN')">
-		<!-- <div> 조건부 실행문 넣기 </div> -->
-	</sec:authorize>
 	<!--  이하 페이지 로딩 초기값  -->
 	<sec:authorize access="isAuthenticated()">
 		<sec:authentication property='principal.username' var="loginid"/>
@@ -65,13 +63,13 @@
                 	</form>
                 	<c:choose>
                 		<c:when test="${dto.tourstate==0}">
-                			<button class="apply_btn" onclick="applyTour(${dto.tourstate})">투어참여</button>
+                			<button class="apply_btn" onclick="applyTour(${dto.tourstate})">참여 신청</button>
                 		</c:when>
                 		<c:when test="${dto.tourstate==1 }">
-                			<button style="background-color: #111111;" class="apply_btn" onclick="applyTour(${dto.tourstate})">모집 마감</button>
+                			<button style="background-color: #a92b2b;" class="apply_btn" onclick="applyTour(${dto.tourstate})">모집 마감</button>
                 		</c:when>
                 		<c:when test="${dto.tourstate==2 }">
-                			<button style="background-color: #ffffff;" class="apply_btn" onclick="applyTour(${dto.tourstate})">종료</button>
+                			<button style="background-color: #c1c1c1;" class="apply_btn" onclick="applyTour(${dto.tourstate})">종료</button>
                 		</c:when>
                 	</c:choose>
                 </div>
@@ -154,38 +152,36 @@
                 <div id="tourdetail_replelistbox">
                    <div>
                        <ul id="replylist">
+                       	<li style="padding-left:20px" class="tourreple_list">
+                       		<h4>Q & A</h4>
+                       	</li>
 							<!--  이하에 for문으로 리플 리스트 출력 -->
-                          <li class="tourreple_list">
-                              	글번호 작성자 내용
-                          </li>
                           <c:forEach items="${redtolist}" var="redto" varStatus="stat">
                           	<c:choose>
                           		<c:when test="${redto.relevel ==0}">
                           			<li class="tourreple_list">
-                               			<div onclick="rereinsert(this,${redto.reorder})"> 
-                               				<div>${stat.count}</div>
-                               				<div>${redto.userid}</div>
+                               			<div class="user_relist" onclick="rereinsert(this,${redto.reorder})"> 
+                               				<%-- <div>${stat.count}</div> --%>
+                               				<div>${redto.username}님 문의 | </div>
                                				<div> ${redto.recontent}</div>
                                			</div>
-                               			<%-- <c:if test="${redto.userid == loginid}">
-                               				<div style="float:right;">수정</div>
-                               			</c:if> --%>
-                               			<div onclick="updateReply(this,${redto.tourreno})">수정</div>
-                               			<div onclick="deleteReply(this,${redto.tourreno})">삭제</div>
+                               			<c:if test="${redto.userid == loginid}">
+                               				<div class="relist_update_btn" onclick="updateReply(this,${redto.tourreno})">수정</div>
+                               				<div class="relist_delete_btn" onclick="deleteReply(this,${redto.tourreno})">삭제</div>
+                               			</c:if>
                             		</li>
                           		</c:when>
                           		<c:when test="${redto.relevel !=0}">
                           			<li class="tourreple_relist">
-	                               		<div>
-	                               			<div>${stat.count}</div>
-                               				<div>${redto.userid}</div>
+	                               		<div class="host_relist">
+	                               			<%-- <div>${stat.count}</div> --%>
+                               				<div>${redto.username}님 답변 | </div>
                                				<div> ${redto.recontent}</div>
 	                               		</div>
-	                               		<%-- <c:if test="${redto.userid == loginid }">
-	                               			
-	                               		</c:if> --%>
-	                               		<div onclick="updateReply(this,${redto.tourreno})">수정</div>
-	                               		<div onclick="deleteReply(this,${redto.tourreno})">삭제</div>
+	                               		<c:if test="${redto.userid == loginid }">
+	                               			<div class="relist_update_btn" onclick="updateReply(this,${redto.tourreno})">수정</div>
+	                               			<div class="relist_delete_btn" onclick="deleteReply(this,${redto.tourreno})">삭제</div>
+	                               		</c:if>
                            			</li>
                           		</c:when>
                           	</c:choose>
@@ -196,7 +192,7 @@
    	           	<div id="tourdetail_repleinsertbox">
    	            	<div>
                	    	<form>
-       	    	           <textarea id="recontent" cols="110" rows="4" placeholder="내용을 입력하세요."></textarea>
+       	    	           <textarea id="recontent" cols="115" rows="4" placeholder="모임장에게 문의할 내용을 입력하세요."></textarea>
 	   	                   <button type="button" onclick="reinsert(-1)">저장</button>
            	        	</form>
                    	</div>
@@ -253,7 +249,7 @@ function selectFavoritTour(){
             map: map, 
             path: [spotPosition],
             strokeWeight: 3, 
-            strokeColor: '#111111',
+            strokeColor: '#f33800',
             strokeOpacity: 1, 
             strokeStyle: 'solid' 
         });

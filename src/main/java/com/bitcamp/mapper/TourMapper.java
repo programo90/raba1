@@ -51,6 +51,7 @@ public interface TourMapper {
 	public TourDTO tourFavDetail(int tourno);
 	public int deleteTourRe(int tourreno);
 	public int updateTourRe(HashMap<String, Object> map);
+	public int updateFavTour(TourDTO dto);
 	
 	
 	

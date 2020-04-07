@@ -1,0 +1,28 @@
+@charset "utf-8";
+.tourhostpage_list_btn{
+	padding :5px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.tourhostpage_state_btn{
+	padding :5px;
+	border-radius: 5px;
+	cursor: pointer;
+	color:black;
+}
+.tourstatesel{
+	border:1px solid #e2e8f0;
+	color:black;
+	padding:5px 0;
+	border-radius: 5px;
+}
+.tourhostpage_update_btn{
+	background-color: #f0f0f0;
+	padding :5px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.tourhostpage_imgbox{
+	width:100%;
+	hieght:100%;
+}

@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/css/common.css">
 <link rel="stylesheet" href="./resources/css/mypage/style.css">
+<link rel="stylesheet" href="./resources/css/tour/tourmypage.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="/resources/js/tour/tourmypage.js"></script>
 </head>
@@ -104,13 +105,16 @@
 							 	<c:forEach items="${list}" var="dto">
 							 		<tr class=" border-b border-gray-200 ">
 									<td class=" flex items-center px-5 py-5 bg-white text-sm">
-										<img src="./resources/img/mypage/product.png" alt="product"
+										<div class="tourmypage_imgbox" data-pop="${dto.populartour}">
+											
+											<img src="./resources/img/mypage/product.png" alt="product"
 										class="m-3 my-auto h-12 w-12 flex-shrink-0">
+										</div>
 										<div
 											class="px-3 py-2 w-full flex items-center justify-between leading-none">
 											<div class="truncate">
 												<a href="/tourdetail/${dto.tourno}">
-													<div>
+													<div class="tourmypage_spot">
 														출발지 : ${dto.startspot}<br>도착지 : ${dto.endspot}
 													</div>
 												</a>
@@ -136,7 +140,7 @@
 										<p class="text-gray-900 whitespace-no-wrap">${dto.tourday } ${dto.tourtime }</p>
 									</td>
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<div class="text-gray-500">
+										<div class="tourmypage_state">
 											<c:choose>
 												<c:when test="${dto.tourstate == 0 }">모집중</c:when>
 												<c:when test="${dto.tourstate == 1 }">마감</c:when>
@@ -148,7 +152,7 @@
 										<form action="tourcancel" style="position:relative; right:50%;">
 										<c:choose>
 												<c:when test="${(dto.tourstate==0) || (dto.tourstate == 1)}">
-													<input type="button" onclick="cancelApplyTour(${dto.tourno})" value="지원취소">
+													<input class="tourmypage_update_btn" type="button" onclick="cancelApplyTour(${dto.tourno})" value="지원취소">
 													<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 												</c:when>
 												<c:when test="${dto.tourstate == 2 }">
@@ -163,7 +167,7 @@
 
 							</tbody>
 						</table>
-						<div
+						<!-- <div
 							class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
 							<span class="text-xs xs:text-sm text-gray-900"> Showing 1
 								to 4 of 50 Entries </span>
@@ -175,7 +179,7 @@
 									class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-r">
 									Next</button>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

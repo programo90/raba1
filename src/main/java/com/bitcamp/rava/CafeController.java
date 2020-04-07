@@ -354,4 +354,9 @@ public class CafeController {
 		model.addAttribute("nutridto", nutridto);
 		return "cafe/cafedetail";
 	}
+	@RequestMapping("/story")
+	public String story(Locale locale, Model model) {
+		
+		return "story/story";
+	}
 }

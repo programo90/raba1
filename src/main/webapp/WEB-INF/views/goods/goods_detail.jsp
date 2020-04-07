@@ -38,6 +38,33 @@
 			
 		})(); //end function
 	
+		
+		 /* 숫자 ,  */
+		 
+        Number.prototype.format = function(){
+            if(this==0) return 0;
+
+            var reg = /(^[+-]?\d+)(\d{3})/;
+            var n = (this + '');
+
+            while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+
+            return n;
+        };
+        
+        String.prototype.format = function(){
+            var num = parseFloat(this);
+            if( isNaN(num) ) return "0";
+
+            return num.format();
+        };
+        
+        jQuery('.format-money').text(function() {
+            jQuery(this).text(
+                jQuery(this).text().format()
+            );
+        });
+		
 	});
 </script>
 <script type="text/javascript" src="/resources/js/goods/goodsdetail.js"></script>
@@ -61,7 +88,7 @@
                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                        <ul>
                             <li><c:out value="${list[0].p_name }"></c:out></li>
-                            <li><c:out value="${list[0].p_price }"></c:out>원</li>
+                            <li><span class="format-money">${list[0].p_price }</span>원</li>
                             <li>
                             <label for="p_size" id="sizename">Size</label>
                             <select name="p_size" id="p_size" >

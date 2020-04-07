@@ -61,6 +61,33 @@
 				
 			}
 		
+			
+			/* 숫자 ,  */
+			
+            Number.prototype.format = function(){
+                if(this==0) return 0;
+
+                var reg = /(^[+-]?\d+)(\d{3})/;
+                var n = (this + '');
+
+                while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+
+                return n;
+            };
+            
+            String.prototype.format = function(){
+                var num = parseFloat(this);
+                if( isNaN(num) ) return "0";
+
+                return num.format();
+            };
+            
+            jQuery('.format-money').text(function() {
+                jQuery(this).text(
+                    jQuery(this).text().format()
+                );
+            });
+			
 		}); 
 </script>
 </head>
@@ -118,7 +145,7 @@
 					<span><c:out value="${Cartlist.p_name }"/></span>
 				</div>
 				<div class="cartpri">
-					<span><c:out value="${Cartlist.p_price }"/>원</span>
+					<span><span class="format-money">${Cartlist.p_price }</span>원</span>
 				</div>
 				
 				<div class="cartamount">
@@ -128,7 +155,7 @@
 					<span>0</span>
 				</div>
 				<div class="cartpritotal">
-					<span><c:out value="${Cartlist.p_price * Cartlist.p_amount }"/>원</span>
+					<span><span class="format-money">${Cartlist.p_price * Cartlist.p_amount }</span>원</span>
 					<input type="hidden" value="<c:out value="${Cartlist.p_price * Cartlist.p_amount }"/>" class="price">
 				</div>
 			</div>
@@ -136,17 +163,17 @@
 			</c:forEach>
 			
 			<!--장바구니 상품정보 가격 합계-->
-			<div class="cartsal">
+<!-- 			<div class="cartsal">
 				<div class="cartsalprice">
 					<span>상품구매금액 150,000 + 배송비 0 (무료) = 합계 : 150,000원</span>
 				</div>
 			</div>
 		</div>
 
-		<!--할인 적용 코멘트-->
+		할인 적용 코멘트
 		<div class="goodscartco">
 			<span>할인 적용 금액은 주문서작성의 결제예정금액에서 확인 가능합니다.</span>
-		</div>
+		</div> -->
 
 		<!--장바구니 상품 삭제 장바구니 비우기 버튼 -->
 		<div class="goodscartbtn">

@@ -91,13 +91,23 @@
 		
 		
 		/* 페이지에 보여지는 가격들을 위한 코드 */
+		
+		/*var span = document.createElement('span');
+		
+		span.innerText = plusprice;
+		
+		span.classList.add("format-money");
+		
+		document.getElementById("price_text").appendChild(span);
+		*/
+		
 		document.getElementById("price_text").innerText = plusprice + "원";
 		
-		document.getElementById("delivery_price_text").innerText = deliveryprice + "원";
+		document.getElementById("delivery_price_text").innerText = deliveryprice+ "원";
 		
-		document.getElementById("total_price_text").innerText =plusprice + deliveryprice + "원" ;
+		document.getElementById("total_price_text").innerText =plusprice + deliveryprice + "원";
 	
-		document.getElementById("total_price").value =  plusprice + deliveryprice;
+		document.getElementById("total_price").value =  plusprice + deliveryprice + "원";
 	}
 	
 	

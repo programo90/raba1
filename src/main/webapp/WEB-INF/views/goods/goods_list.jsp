@@ -41,6 +41,34 @@
 			goods_img[i].innerHTML=str;
 			
 		}
+		
+		
+		
+		/* 숫자 , */
+		
+        Number.prototype.format = function(){
+            if(this==0) return 0;
+
+            var reg = /(^[+-]?\d+)(\d{3})/;
+            var n = (this + '');
+
+            while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+
+            return n;
+        };
+        
+        String.prototype.format = function(){
+            var num = parseFloat(this);
+            if( isNaN(num) ) return "0";
+
+            return num.format();
+        };
+        
+        jQuery('.format-money').text(function() {
+            jQuery(this).text(
+                jQuery(this).text().format()
+            );
+        });
 	
 	}); 
 </script>
@@ -64,7 +92,7 @@
 	                    	
 	                    </div>
 	                    <div class="goods_title"><c:out value="${Goodslist.p_name }"/></div>
-	                    <div class="goods_price"><c:out value="${Goodslist.p_price }"/>원</div>
+	                    <div class="goods_price"><span class="format-money">${Goodslist.p_price }"</span>원</div>
 	                </div>
 	            </a>
             </c:forEach>

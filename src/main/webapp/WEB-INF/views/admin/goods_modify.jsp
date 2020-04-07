@@ -29,13 +29,13 @@
 					
 					//imagetype
 					if(attach.fileType){
-						var fileCallPath = encodeURIComponent(attach.uploadPath + "/s_" + attach.uuid + "_" +attach.fileName);
+						var fileCallPath = encodeURIComponent(attach.uploadPath + "/" + attach.uuid + "_" +attach.fileName);
 						
-						str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+						str += "<div data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
 						
 						str += "<img src='/display?fileName="+fileCallPath+"'>";
 						str += "</div>";
-						str += "</li>";
+						
 						
 					}else{
 						
@@ -49,54 +49,11 @@
 					
 				});
 				
-				$(".uploadResult ul").html(str);
+				$(".uploadResult").html(str);
 				
 			});// end getjson
 			
 		})(); //end function
-		
-		$(".uploadResult").on("click","li",function(e){
-			
-			console.log("view image");
-			
-			var liObj = $(this);
-			
-			var path = encodeURIComponent(liObj.data("path")+"/"+liObj.data("uuid")+"_"+liObj.data("filename"));
-			
-			console.log(liObj.data("path"));
-			console.log(liObj.data("uuid"));
-			console.log(liObj.data("filename"));
-			console.log(liObj.data("type"));
-			
-			 if(liObj.data("type")){
-				
-				showImage(path.replace(new RegExp(/\\/g),"/"));
-				
-			}else{
-				//download 여기는 수정하는 곳이라 다운로드가 필요하지는 않지만 구현은 해보았다
-				self.location = "/download?fileName="+path;
-			} 
-			
-		});
-		
-		function showImage(fileCallPath){
-			
-			alert(fileCallPath);
-			
-			$(".bigPictureWrapper").css("display","flex").show();
-			
-			$(".bigPicture").html("<img src='/display?fileName="+fileCallPath+"'>").animate({width:'100%', height:'100%'},1000);
-			
-		}
-		
-		$(".bigPictureWrapper").on("click",function(e){
-			
-			$(".bigPicture").animate({width:'0%', height: '0%'},1000);
-			setTimeout(function(){
-				$('.bigPictureWrapper').hide();
-				
-			},1000);
-		});
 		
 		
 	});
@@ -119,17 +76,11 @@
 						<span>상품 사진</span>
 						<div class="upload_div">
 							<div class="uploadDiv">
-								<input type="file" name="uploadFile" multiple>
+								<!-- <input type="file" name="uploadFile" multiple> -->
 							</div>
 							<div class="upload_inner_div">
 								<div class="uploadResult">
-									<ul id="uploadResult_ul">
-
-									</ul>
-								</div>
-
-								<div class="bigPictureWrapper">
-									<div class="bigPicture"></div>
+									
 								</div>
 							</div>
 							<!-- <button id="uploadBtn">Upload</button> -->

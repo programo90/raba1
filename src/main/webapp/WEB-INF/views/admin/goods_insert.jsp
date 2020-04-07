@@ -25,7 +25,7 @@ $(document).ready(function(e){
 		
 		var str ="";
 		
-		$(".uploadResult ul li").each(function(i, obj){
+		$(".uploadResult div").each(function(i, obj){
 			
 			var jobj = $(obj);
 			
@@ -125,7 +125,7 @@ function showUploadResult(uploadResultArr){
 		
 		if(!uploadResultArr || uploadResultArr.length == 0){ return;}
 		
-		var uploadUL = $(".uploadResult ul");
+		var uploadUL = $(".uploadResult");
 		
 		var str = "";
 		
@@ -133,15 +133,13 @@ function showUploadResult(uploadResultArr){
 			
 			if(obj.image){
 				
-				var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+				var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName);
 				
-				str += "<li ";
+				str += "<div ";
 				str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'>";
-				str += "<div>";
 				str += "<img src='/display?fileName=" + fileCallPath + "'><br>";
-				str += "<span>" + obj.fileName + "</span>";
 				str += "<button type ='button' data-file=\'"+fileCallPath+"\'data-type='image' class ='btn btn-warning btn-circle'>x</button>";
-				str += "</div></li>";
+				str += "</div>";
 				
 			} else {
 				
@@ -173,7 +171,7 @@ function showUploadResult(uploadResultArr){
 		
 		var type = $(this).data("type");
 		
-		var targetLi = $(this).closest("li");
+		var targetLi = $(this).closest("div"); // li - >div
 		
 		$.ajax({
 			
@@ -219,9 +217,9 @@ function showUploadResult(uploadResultArr){
 							</div>
 							<div class="upload_inner_div">
 								<div class="uploadResult">
-									<ul id="uploadResult_ul">
+									<!-- <ul id="uploadResult_ul">
 
-									</ul>
+									</ul> -->
 								</div>
 
 								<div class="bigPictureWrapper">

@@ -99,11 +99,11 @@
 							<span>사이즈 및 재고</span>
 							<div class="p_ss">
 								<ul>
-									<li><label for="free">F</label> <input class="sizecheckbox" type="checkbox" value="f" id="free" name="free" disabled> <input type="number" name="f_no" min="0" max="100" value="0" disabled></li>
-									<li><label for="small">S</label> <input class="sizecheckbox" type="checkbox" value="s" id="small" name="small" disabled> <input type="number" name="s_no" min="0" max="100" value="0" disabled></li>
-									<li><label for="large">M</label> <input class="sizecheckbox" type="checkbox" value="m" id="medium" name="medium" disabled> <input type="number" name="m_no" min="0" max="100" value="0" disabled></li>
-									<li><label for="large">L</label> <input class="sizecheckbox" type="checkbox" value="l" id="large" name="large" disabled> <input type="number" name="l_no" min="0" max="100" value="0" disabled></li>
-									<li><label for="xlarge">XL</label> <input class="sizecheckbox" type="checkbox" value="xl" id="xlarge" name="xlarge" disabled> <input type="number" name="xl_no" min="0" max="100" value="0" disabled></li>
+									<li><label for="free">F</label> <input class="sizecheckbox" type="checkbox" value="FREE" id="free" name="free" disabled> <input type="number" name="f_no" min="0" max="100" value="0" disabled></li>
+									<li><label for="small">S</label> <input class="sizecheckbox" type="checkbox" value="SMALL" id="small" name="small" disabled> <input type="number" name="s_no" min="0" max="100" value="0" disabled></li>
+									<li><label for="large">M</label> <input class="sizecheckbox" type="checkbox" value="MEDIUM" id="medium" name="medium" disabled> <input type="number" name="m_no" min="0" max="100" value="0" disabled></li>
+									<li><label for="large">L</label> <input class="sizecheckbox" type="checkbox" value="LARGE" id="large" name="large" disabled> <input type="number" name="l_no" min="0" max="100" value="0" disabled></li>
+									<li><label for="xlarge">XL</label> <input class="sizecheckbox" type="checkbox" value="XLARGE" id="xlarge" name="xlarge" disabled> <input type="number" name="xl_no" min="0" max="100" value="0" disabled></li>
 								</ul>
 							</div>
 							<!-- el의 값을 script문 (dom 객체를 위한 언어)으로는 인식하지 못하기 때문에 값을 넘기기 위해서 hidden 처리한다.-->

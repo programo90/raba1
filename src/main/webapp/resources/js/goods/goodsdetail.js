@@ -11,46 +11,46 @@ document.addEventListener("DOMContentLoaded",function(){
 	
 	for(var i = 0 ; i < optionsize.length ; i++ ){
 		
-		if(optionsize[i].value == 'f'){
+		if(optionsize[i].value == 'FREE'){
 			
 			var str = document.createElement("option");
 			
-			str.value = 'f';
+			str.value = 'FREE';
 			
-			str.innerText = "free (" + optionamount[i].value + "개)";
+			str.innerText = "FREE (" + optionamount[i].value + "개)";
 			
 			
-		}else if(optionsize[i].value == 's'){
-			
-			var str = document.createElement("option");
-			
-			str.value = 's';
-			
-			str.innerText = "small (" + optionamount[i].value + "개)";
-			
-		}else if(optionsize[i].value == 'm'){
+		}else if(optionsize[i].value == 'SMALL'){
 			
 			var str = document.createElement("option");
 			
-			str.value = 'm';
+			str.value = 'SMALL';
 			
-			str.innerText = "medium (" + optionamount[i].value + "개)";
+			str.innerText = "SMALL (" + optionamount[i].value + "개)";
 			
-		}else if(optionsize[i].value == 'l'){
-			
-			var str = document.createElement("option");
-			
-			str.value = 'l';
-			
-			str.innerText = "large (" + optionamount[i].value + "개)";
-			
-		}else if(optionsize[i].value == 'xl'){
+		}else if(optionsize[i].value == 'MEDIUM'){
 			
 			var str = document.createElement("option");
 			
-			str.value = 'xl';
+			str.value = 'MEDIUM';
 			
-			str.innerText = "xlarge (" + optionamount[i].value + "개)";
+			str.innerText = "MEDIUM (" + optionamount[i].value + "개)";
+			
+		}else if(optionsize[i].value == 'LARGE'){
+			
+			var str = document.createElement("option");
+			
+			str.value = 'LARGE';
+			
+			str.innerText = "LARGE (" + optionamount[i].value + "개)";
+			
+		}else if(optionsize[i].value == 'XLARGE'){
+			
+			var str = document.createElement("option");
+			
+			str.value = 'XLARGE';
+			
+			str.innerText = "XLARGE (" + optionamount[i].value + "개)";
 			
 		}
 		

@@ -239,11 +239,11 @@ function showUploadResult(uploadResultArr){
 							<span>사이즈 및 재고</span>
 							<div class="p_ss">
 							<ul>
-								<li><label for="free">F</label> <input type="checkbox" value="f" id="free" name="free"> <input type="number" name="f_no" min="0" max="100" value="0"></li>
-								<li><label for="small">S</label> <input type="checkbox" value="s" id="small" name="small"> <input type="number" name="s_no" min="0" max="100" value="0"></li>
-								<li><label for="large">M</label> <input type="checkbox" value="m" id="medium" name="medium"> <input type="number" name="m_no" min="0" max="100" value="0"></li>
-								<li><label for="large">L</label> <input type="checkbox" value="l" id="large" name="large"> <input type="number" name="l_no" min="0" max="100" value="0"></li>
-								<li><label for="xlarge">XL</label> <input type="checkbox" value="xl" id="xlarge" name="xlarge"> <input type="number" name="xl_no" min="0" max="100" value="0"></li>
+								<li><label for="free">F</label> <input type="checkbox" value="FREE" id="free" name="free"> <input type="number" name="f_no" min="0" max="100" value="0"></li>
+								<li><label for="small">S</label> <input type="checkbox" value="SMALL" id="small" name="small"> <input type="number" name="s_no" min="0" max="100" value="0"></li>
+								<li><label for="large">M</label> <input type="checkbox" value="MEDIUM" id="medium" name="medium"> <input type="number" name="m_no" min="0" max="100" value="0"></li>
+								<li><label for="large">L</label> <input type="checkbox" value="LARGE" id="large" name="large"> <input type="number" name="l_no" min="0" max="100" value="0"></li>
+								<li><label for="xlarge">XL</label> <input type="checkbox" value="XLARGE" id="xlarge" name="xlarge"> <input type="number" name="xl_no" min="0" max="100" value="0"></li>
 							</ul>
 							</div>
 							<ul>

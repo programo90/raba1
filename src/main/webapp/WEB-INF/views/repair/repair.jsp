@@ -45,13 +45,14 @@
 	                       </li>
 	                       <li class="repair_li">
 	                       	<input type="hidden" name="caldate" id="caldate">
-	                       	<input type="button" value="저장" class="admin_btn subminbtn" onclick="reservsend(-1)">
-	                       	<%-- <sec:authorize access="isAuthenticated()">
-	                       		<input type="button" value="저장" class="admin_btn subminbtn" onclick="reservsend()">
+	                       	<!-- 	<input type="button" value="저장" class="admin_btn subminbtn" onclick="reservsend(-1)"> -->
+	                       	
+	                       	<sec:authorize access="isAuthenticated()">
+	                       		<input type="button" value="저장" class="admin_btn subminbtn" onclick="reservsend(-1)">
 	                       	</sec:authorize>
 	                       	<sec:authorize access="isAnonymous()">
 	                       		<input type="button" value="저장" class="admin_btn subminbtn" onclick="loginpage()">
-	                       	</sec:authorize> --%>
+	                       	</sec:authorize>
 	                       </li>
 	                   </ul> 
                    </form>

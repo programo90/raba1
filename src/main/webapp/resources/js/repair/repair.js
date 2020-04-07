@@ -131,5 +131,5 @@ function ajaxrereplybtn() {
 	}
 }
 function loginpage(){
-	location.href="/intro";
+	alert("로그인 후 작성 가능합니다.");
 }

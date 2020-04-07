@@ -5,9 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 <title>Insert title here</title>
 	<link rel="stylesheet" href="/resources/css/cafe/cafe.css">
+	<link rel="stylesheet" href="/resources/css/cafe/mediaqueries.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="/resources/js/cafe/cafe.js"></script>
     <script src="/resources/js/cafe/cafe_nutrtion.js"></script>
 </head>
@@ -21,9 +24,9 @@
         <!-- 여기 작성!!!! class =contents 는 수정하지마시고 이 안에서부터 div새로 만들어서 작업 ㄱㄱ -->
         <section class="cafe">
             <div class="cafe_tab_box">
-                <p class="cafe_tab">drink</p>
-                <p class="cafe_tab">bakery</p>
-                <p class="cafe_tab">my nutrition</p>
+                <p class="cafe_tab" id="drinkPage">Drink</p>
+                <p class="cafe_tab" id="bakeryPage">Bakery</p>
+                <p class="cafe_tab cafe_tab_select" id="nutritionPage">My Nutrition</p>
             </div>
             <div class="cafe_category" id="myInfo">
                 <h3 class="nutrtion_subtitle">나의 정보</h3>
@@ -146,23 +149,23 @@
                     </div>
                     <div class="pageing_box">
 	                     <c:if test="${page.prev}">
-							<a href="cafe_nutrtion?currpage=${page.startBlock-1}&search=${search}&searchtxt=${searchtxt}"><c:out value="이전"/></a>
+							<a href="cafe_nutrtion?currpage=${page.startBlock-1}&search=${search}&searchtxt=${searchtxt}&tempmode=1"><c:out value="이전"/></a>
 						</c:if>
 						<c:forEach var="index" begin="${page.startBlock}" end="${page.endBlock}">
 							<c:if test="${index==page.currPage}">
 								<c:out value="${index}"/>
 							</c:if>
 							<c:if test="${index!=page.currPage}">
-								<a href="cafe_nutrtion?currpage=${index}&search=${search}&searchtxt=${searchtxt}">${index}</a>
+								<a href="cafe_nutrtion?currpage=${index}&search=${search}&searchtxt=${searchtxt}&tempmode=1">${index}</a>
 							</c:if>
 						</c:forEach>
 						<c:if test="${page.next}">
-							<a href="cafe_nutrtion?currpage=${page.endBlock+1}&search=${search}&searchtxt=${searchtxt}"><c:out value="다음"/></a>
+							<a href="cafe_nutrtion?currpage=${page.endBlock+1}&search=${search}&searchtxt=${searchtxt}&tempmode=1"><c:out value="다음"/></a>
 						</c:if>
 					</div>
                 </div>
                 <h3 class="nutrtion_subtitle">메뉴 정보</h3>
-                <div class="menu_title">
+                <div class="menu_title addmenu_title">
                       <!-- <p class="menu_title_pd menu_title_pdsmall">번호</p> -->
                         <p class="menu_title_pd menu_title_pdbig">메뉴</p>
                         <p class="menu_title_pd">섭취량(g)</p>
@@ -177,12 +180,20 @@
                         <ul id="menuaddBox">
                         </ul>
                     </div>
-                    <div class="active_btn_box">
-                       <input type="submit" value="평가" class="admin_btn subminbtn">
+                     <div class="active_btn_box">
+                       <button type="button" id="modal_opne_btn">평가</button>
+                    </div>
+                    <div id="modal">
+                       <div class="modal_content">
+                          <div id="barchart_material" style="width: 900px; height: 500px;"></div>
+                          <button type="button" id="modal_close_btn">닫기</button>
+                       </div>
+                       <div class="modal_layer"></div>
                     </div>
                 </form>
             </div>
-        </section>
+            </section>
     </div>
+    
 </body>
 </html>

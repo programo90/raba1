@@ -207,7 +207,7 @@
 					<span id="delivery_price_text"></span>
 				</div>
 				<div class="goodstotalprice2_2">
-					<span id="total_price_text"></span>
+					<span id="total_price_text">원</span>
 				</div>
 			</div>
 		</div>

@@ -107,7 +107,7 @@
 		
 		document.getElementById("total_price_text").innerText =plusprice + deliveryprice + "원";
 	
-		document.getElementById("total_price").value =  plusprice + deliveryprice + "원";
+		document.getElementById("total_price").value =  plusprice + deliveryprice ;
 	}
 	
 	

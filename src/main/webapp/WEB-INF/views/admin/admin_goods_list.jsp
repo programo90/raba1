@@ -44,7 +44,7 @@
 					
 				}
 			
-			}); 
+			});  
 </script>
  <script src="/resources/js/goods/list_goods.js"></script>
  </head>
@@ -79,19 +79,45 @@
 	                    <div class="admingoodscolumn2">
 	                        <div class="admingoodsnum2"><span><c:out value="${Goodslist.p_no }"/></span></div>
 	                        <div class="admingoodsimg2"><div class="goods_img"></div></div>
-	                        <div class="admingoodsname2"><input type="text" value="<c:out value="${Goodslist.p_name }"/>" size="45"></div>
-	                        <div class="admingoodssize2"><input type="text" value="<c:out value="${Goodslist.p_size }"/>" size="3"></div>
-	                        <div class="admingoodsstock2"><input type="text" value="<c:out value="${Goodslist.p_amount }"/>" size="3"></div>
-	                        <div class="admingoodsprice2"><input type="text" value="<c:out value="${Goodslist.p_price }"/>" size="7"></div>
+	                        <div class="admingoodsname2"><span><c:out value="${Goodslist.p_name }"/></span></div>
+	                        <div class="admingoodssize2"><span><c:out value="${Goodslist.p_size }"/></span></div>
+	                        <div class="admingoodsstock2"><span><c:out value="${Goodslist.p_amount }"/>개</span></div>
+	                        <div class="admingoodsprice2"><span><c:out value="${Goodslist.p_price }"/>원</span></div>
 	                        
 	                            <div class="admingoodssituation2">
-	                            <input type="hidden" value="${Goodslist.p_state}">
-		                             <select class="optioncheck">
-		                                <option value = "0">판매중</option>
-		                                <option value = "1">일시 중지</option>
-		                                <option value = "2">품절</option>
-		                            </select>
+	                            <span class="state_span"></span>
+	                            <input class="state_value" type="hidden" value="${Goodslist.p_state}">
 	                            </div>
+	                            
+	                            <script>
+	                            	
+	                            	var state_span = document.getElementsByClassName('state_span');
+	                            
+	                            	var state = document.getElementsByClassName('state_value');
+	                            	
+	                            	for(var i = 0 ; i < state.length; i ++)
+	                            		{
+	                            		
+	                            		var str = "";
+	                            		
+	                            		var state_value = state[i].value;
+	                            		
+	                            			if(state_value == 0){
+	                            		
+	                            				str += "<span>판매 중 </span>";
+	                            				
+	                            			}else if(state_value == 1){
+	                            				
+												str += "<span>일시 중지 </span>";
+	                            				
+	                            			}else{
+	                            				
+												str += "<span>품 절</span>";
+	                            			}
+	                            			
+	                            			state_span[i].innerHTML= str;
+	                            		}
+	                            </script>
 	                            
 	                        <div class="admingoodsbtn1"><a href="/modifygoods/${Goodslist.p_no}">수정</a></div>
 	                        <div class="admingoodsbtn1"><a href="/deletegoods/${Goodslist.p_no}">삭제</a></div>

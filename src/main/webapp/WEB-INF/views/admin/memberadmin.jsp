@@ -16,36 +16,48 @@
              <section class="admin_sectionbox">
                  <!-- 여기서 div만들고 시작하세요 controller에 file등록하고 사용하세요! ~~  -->
                 <div class="membermanager">
+                <form method="get" action="adminmember?currPage=${page.startBlock}">
                        <div class="membermanagersearch">
-                       <form method="get" action="adminmember?currPage=${page.startBlock}">
+                       	<div class="membermanagersearch2">
                               <select class="membersearch" name="search">
                               <option value="userid">아이디</option>
+                              <option value="username">닉네임</option>
                               <option value="joindate">가입년도</option>
                             </select>
                             <input type="text" name="searchtxt" size="1000" class="membersearchtext">
                             <input type="submit" class="membermanagersearchbtn" value="검색">
-                            </form>
+                        </div>
                        </div>
+                       </form>
                     <div class="membermanagername">
                     <div class="managernick"><span>아이디</span></div>
+                    <div class="membermanagerbtn"><span>닉네임</span></div>
                         <div class="manageremail"><span>E-mail</span></div>
                         <div class="managerphone"><span>휴대폰번호</span></div>
                         <div class="managerhire"><span>가입일</span></div>
                         <div class="managergrant"><span>회원등급</span></div>
-                        <div class="membermanagerbtn"><span></span></div>
                     </div>
                     <c:forEach var="item" items="${list}">
                     <div class="membermanagername2">
                     	<div class="managernick2"><span>${item.userid }</span></div>
+                    	<div class="membermanagerbtn2">${item.username }</div>
                         <div class="manageremail2"><span>${item.useremail }</span></div>
                         <div class="managerphone2"><span>${item.phone }</span></div>
                         <div class="managerhire2"><span>${item.joindate }</span></div>
-                        <div class="managergrant2"><span>관리자</span></div>
-                        <div class="membermanagerbtn2"><a href="">수정</a></div>
+                        <div class="managergrant2"><select name="auth" >
+                        							<option value="" >멤버</option>
+                        							<option value="">호스트</option>
+                        							<option value="">관리자</option>
+                        							</select></div>
+                        <div class="managergrant2"><input type="submit" value="수정"></div>
                     </div>
                     </c:forEach>
                 </div>
-                   <c:if test="${page.prev}">
+                  <div class="membermanagersearch3">
+                   <div class="membermanagersearch4">
+                     </div>
+                     <div class="membermanagersearch5">
+                                        <c:if test="${page.prev}">
       <a href="adminmember?currPage=${page.startBlock-1}&search=${search}&searchtxt=${searchtxt}"><c:out value="이전"/></a>
    </c:if>
    <c:forEach var="index" begin="${page.startBlock}" end="${page.endBlock}">
@@ -59,6 +71,8 @@
    <c:if test="${page.next}">
       <a href="adminmember?currPage=${page.endBlock+1}&search=${search}&searchtxt=${searchtxt}"><c:out value="다음"/></a>
    </c:if>
+                     </div>
+                </div>
             </section>
         </div>
  </body>

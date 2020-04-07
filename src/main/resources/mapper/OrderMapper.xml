@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.bitcamp.mapper.PayMapper">
+  
+    <resultMap type="com.bitcamp.dto.GoodsDTO" id="cartlist">
+  	<result property="p_no" column="pno"/>
+  	<result property="p_name" column="pname"/>
+  	<result property="p_size" column="psize"/>
+  	<result property="p_price" column="price"/>
+  	<result property="p_amount" column="camount"/>
+  </resultMap>
+  
+    <select id="userdate" parameterType="String" resultType="com.bitcamp.dto.AdminMemberDTO">
+    	select username, address, address2, address3, phone, useremail
+		from UserTable
+		where userid=#{usercode}
+    </select>
+    
+    <select id="pno" parameterType="int" resultMap="cartlist">
+		select GoodsTable.pname, GoodsTable.price, CartTable.camount, GoodsTable.psize, CartTable.pno
+  		from GoodsTable join CartTable
+  		on GoodsTable.pno = CartTable.pno
+  		where cno = #{cno}
+    </select>
+    
+     <insert id="orderinsert" parameterType="com.bitcamp.dto.OrderDTO">
+    <selectKey keyProperty="oderno" resultType="int" order="BEFORE">
+   select max(oderno)+17 as oderno from orderTable
+   </selectKey> 
+  	insert into orderTable(oderno, salesdate, ordermg, totalprice, userid, deltype,ordercprice,ordercamount, orderuname, orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail, orderstatus, payuname,ordercpno, postno, cashreceipts)
+  	values (#{oderno},now(), #{ordermg}, #{totalprice}, #{userid}, #{deltype }, #{ordercprice}, #{ordercamount}, #{orderuname}, #{orderuaddr1}, #{orderuaddr2}, #{orderuaddr3}, #{orderuphone}, #{orderuemail}, #{orderstatus }, #{payuname }, #{ordercpno}, #{postno},null)
+  </insert>
+  
+       <insert id="orderinsert2" parameterType="com.bitcamp.dto.OrderDTO">
+    <selectKey keyProperty="oderno" resultType="int" order="BEFORE">
+   select max(oderno)+17 as oderno from orderTable
+   </selectKey> 
+  	insert into orderTable(oderno, salesdate, ordermg, totalprice, userid, deltype,ordercprice,ordercamount, orderuname, orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail, orderstatus, payuname,ordercpno, postno, cashreceipts)
+  	values (#{oderno},now(), #{ordermg}, #{totalprice}, #{userid}, #{deltype }, #{ordercprice}, #{ordercamount}, #{orderuname}, #{orderuaddr1}, #{orderuaddr2}, #{orderuaddr3}, #{orderuphone}, #{orderuemail}, #{orderstatus }, #{payuname }, #{ordercpno}, #{postno},null)
+  </insert>
+  
+  <update id="decreaamount" parameterType="com.bitcamp.dto.GoodsDTO">
+  		update GoodsTable 
+  		set pamount= (pamount-#{p_amount})
+  		where pno = #{p_no}
+  </update>
+  </mapper>

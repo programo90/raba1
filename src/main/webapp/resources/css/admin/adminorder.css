@@ -1,0 +1,75 @@
+.adminorder{width: 100%; height: auto;}
+
+.membermanagersearch{width: 100%; height: 32px; line-height: 32px; margin-bottom: 1%;}
+
+.membermanagersearch2{width: 32.1%; height: 32px; line-height: 32px; margin-bottom: 1%; float: right;}
+
+.membermanagersearch3{width: 100%; height: 32px; line-height: 32px; margin-bottom: 1%; margin-top: 10px;}
+
+.membermanagersearch4{width:6%; height: 32px; line-height: 32px; margin-bottom: 1%; float: right;}
+
+.membermanagersearch5{width:94%; height: 32px; line-height: 32px; margin-bottom: 1%; text-align: center;}
+
+.membersearch{width: 100px; height: 27px; border-radius: 4px; float: left; line-height: 27px;}
+
+.membersearchtext{width: 150px; height: 25px;float: left; margin: 0px 4px 0px 4px;}
+
+.membermanagersearchbtn{padding: 5px 15px; border: 1px solid #e8e8e8; float: left; border-radius: 5px; background-color: #3e5f40; color: white;}
+
+.membermanagersearchbtn3{padding: 5px 15px; border: 1px solid #e8e8e8; float: left; border-radius: 5px; float: right;}
+
+.adminordername{width: 100%; height: 45px;border-top: 1px solid #e8e8e8;  border-bottom: 1px solid #e8e8e8;font-weight: 600; font-size: 14px;}
+
+.adminordernum{width: 9%; height: 45px; float: left; text-align: center; line-height: 45px;}
+
+.adminorderimg{width: 12%; height: 45px; float: left; text-align: center;line-height: 45px;}
+
+.adminorderhire{width: 11.8%; height: 45px; float: left; text-align: center;line-height: 45px;}
+
+.adminorderstate{width: 10%; height: 45px; float: left; text-align: center;line-height: 45px;}
+
+.adminorderinvoice{width: 11%; height: 45px; float: left; text-align: center;line-height: 45px;}
+
+.adminorderid{width: 10%; height: 45px; float: left; text-align: center;line-height: 45px;}
+
+.adminorderphone{width: 13%; height: 45px; float: left; text-align: center;line-height: 45px;}
+
+.adminorderprice{width: 10.2%; height: 45px; float: left; text-align: center;line-height: 45px;}
+
+.adminordermethod{width: 11%; height: 45px; float: left; text-align: center;line-height: 45px;}
+
+.adminorderupdate{width: 5%; height: 45px; float: left; text-align: center;line-height: 45px;}
+
+.adminorderdelete{width: 7%; height: 45px; float: left; text-align: center;line-height: 45px;}
+
+.adminordername2{width: 100%; height: 55px;  border-bottom: 1px solid #e8e8e8; font-size: 12px;}
+
+.adminordernum2{width: 9%; height: 55px; float: left; text-align: center; line-height: 55px;}
+
+.adminorderimg2{width: 12%; height: 55px; float: left; text-align: center;line-height: 55px;}
+
+.adminorderhire2{width: 11.8%; height: 55px; float: left; text-align: center;line-height: 55px;}
+
+.adminorderstate2{width: 10%; height: 55px; float: left; text-align: center;line-height: 55px;}
+
+.adminorderstate2 select{margin-top: 15px; text-align: center;}
+
+.adminorderinvoice2{width: 11%; height: 55px; float: left; text-align: center;line-height: 55px;}
+
+.adminorderinvoice2 input{margin-top: 15px; text-align: center;}
+
+.adminorderid2{width: 10.2%; height: 55px; float: left; text-align: center;line-height: 55px;}
+
+.adminorderphone2{width: 13%; height: 55px; float: left; text-align: center;line-height: 55px;}
+
+.adminorderprice2{width: 10%; height: 55px; float: left; text-align: center;line-height: 55px;}
+
+.adminordermethod2{width: 11%; height: 55px; float: left; text-align: center;line-height: 55px;}
+
+.adminorderupdate2{width: 7%; height:55px; float: left; text-align: center;line-height: 55px;}
+
+.adminorderdelete2{width: 7%; height: 55px; float: left; text-align: center;line-height: 55px;}
+
+.adminorderdelete2 input{margin-top: 12px; border:1px solid #3e5f40; background-color: white;}
+
+.adminorderdelete2 a{padding: 9% 22%; border: 1px solid silver; border-radius: 5px; background-color: #e8e8e8;}

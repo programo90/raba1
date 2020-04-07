@@ -3,36 +3,50 @@
 
 .membermanagersearch{width: 100%; height: 32px; line-height: 32px; margin-bottom: 1%;}
 
-.membersearch{width: 100px; height: 27px; border-radius: 4px; float: right; line-height: 27px;}
+.membermanagersearch2{width: 32.1%; height: 32px; line-height: 32px; margin-bottom: 1%; float: right;}
 
-.membersearchtext{width: 150px; height: 25px;float: right; }
+.membermanagersearch3{width: 100%; height: 32px; line-height: 32px; margin-bottom: 1%; margin-top: 10px;}
 
-.membermanagersearchbtn{padding: 0px 10px; border: 1px solid silver; float: right; border-radius: 5px;}
+.membermanagersearch4{width:6%; height: 32px; line-height: 32px; margin-bottom: 1%; float: right;}
 
-.membermanagername{width: 100%; height: 45px;border-top: 1px solid silver;  border-bottom: 1px solid silver;font-weight: 600;}
+.membermanagersearch5{width:94%; height: 32px; line-height: 32px; margin-bottom: 1%; text-align: center;}
 
-.managergrant{width: 11%; height: 45px; float: left; text-align: center;line-height: 45px;}
+.membersearch{width: 100px; height: 27px; border-radius: 4px; float: left; line-height: 27px;}
+
+.membersearchtext{width: 150px; height: 25px;float: left; margin: 0px 4px 0px 4px;}
+
+.membermanagersearchbtn{padding: 5px 15px; border: 1px solid #e8e8e8; float: left; border-radius: 5px; background-color: #3e5f40; color: white;}
+
+.membermanagersearchbtn3{padding: 5px 15px; border: 1px solid #e8e8e8; float: left; border-radius: 5px; float: right;}
+
+.membermanagername{width: 100%; height: 45px;border-top: 1px solid #e8e8e8;  border-bottom: 1px solid #e8e8e8;font-weight: 600; font-size: 14px;}
+
+.managergrant{width: 10%; height: 45px; float: left; text-align: center;line-height: 45px;}
 
 .managernick{width: 20%; height: 45px; float: left; text-align: center;line-height: 45px;}
 
-.manageremail{width: 25%; height: 45px; float: left; text-align: center;line-height: 45px;}
+.manageremail{width: 20%; height: 45px; float: left; text-align: center;line-height: 45px;}
 
-.managerphone{width: 19.6%; height: 45px; float: left; text-align: center;line-height: 45px;}
+.managerphone{width: 16.6%; height: 45px; float: left; text-align: center;line-height: 45px;}
 
 .managerhire{width: 15%; height: 45px; float: left; text-align: center;line-height: 45px;}
 
-.membermanagerbtn{width: 9.4%; height: 45px; float: left; text-align: center;line-height: 45px;}
+.membermanagerbtn{width: 8.4%; height: 45px; float: left; text-align: center;line-height: 45px;}
 
-.membermanagername2{width: 100%; height: 45px;  border-bottom: 1px solid silver;}
+.membermanagername2{width: 100%; height: 45px;  border-bottom: 1px solid #e8e8e8; font-size: 12px;}
 
-.managergrant2{width: 11%; height: 45px; float: left; text-align: center;line-height: 45px;}
+.managergrant2{width: 10%; height: 45px; float: left; text-align: center;line-height: 45px;}
 
 .managernick2{width: 20%; height: 45px; float: left; text-align: center;line-height: 45px;}
 
-.manageremail2{width: 25%; height: 45px; float: left; text-align: center;line-height: 45px;}
+.manageremail2{width: 20%; height: 45px; float: left; text-align: center;line-height: 45px;}
 
-.managerphone2{width: 19.6%; height: 45px; float: left; text-align: center;line-height: 45px;}
+.managerphone2{width: 16.6%; height: 45px; float: left; text-align: center;line-height: 45px;}
 
 .managerhire2{width:15%; height: 45px; float: left; text-align: center;line-height: 45px;}
 
-.membermanagerbtn2{width: 9.4%; height: 45px; float: left; text-align: center;line-height: 45px;}
+.membermanagerbtn2{width: 8.4%; height: 45px; float: left; text-align: center;line-height: 45px;}
+
+.managergrant2 input{padding: 5px 15px; border-radius: 5px; margin-top: 8px; border:1px solid #3e5f40; background-color: white;}
+
+.managergrant2 select{margin-top: 12px;}

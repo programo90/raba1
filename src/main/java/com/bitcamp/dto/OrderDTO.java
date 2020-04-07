@@ -25,8 +25,29 @@ public class OrderDTO {
 	private String payuname;
 	private String postno;
 	private String cashreceipts;
+	private String username;
+	private String useremail;
+	private String phone;
 	
 	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getUseremail() {
+		return useremail;
+	}
+	public void setUseremail(String useremail) {
+		this.useremail = useremail;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public String getCashreceipts() {
 		return cashreceipts;
 	}

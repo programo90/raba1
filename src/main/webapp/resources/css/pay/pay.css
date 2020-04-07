@@ -68,13 +68,21 @@
 
 .pay1{width: 79%; height: 45.9px; margin:0px; padding-top: 20px;  border-bottom: 1px solid silver; font-weight: 600; padding-left: 1%}
 
-.pay2{width: 79%; height: 96.9px; padding-top: 7px; float: left; padding-left: 1%}
+.pay2{width: 79%; height: 96.9px;  float: left;}
 
-.pay2 span{font-size: 15px; color: gray; font-weight: 500;}
+.pay2 span{font-size: 15px; color: black; font-weight: 500;}
+
+.pay2_1{width: 101.3%; height: 50px; border-bottom: 1px solid silver; line-height: 50px;}
+
+.pay2_1 label{padding-left: 1%;}
+
+.pay2_2{width: 15%; height: 50px;padding-left: 1%; border-right: 1px solid silver;float: left;}
+
+.pay3_1{width: 101.3%; height: 50px; line-height: 50px;}
 
 .paybtn{width: 17.4%; height: 141.1px; border-left: 1px solid silver; float: right; padding: 15px; text-align: center; font-weight: 600;}
 
-.price{font-size: 30px; color: orangered; font-weight: 600;}
+#oprice{font-size: 30px; color: orangered; font-weight: 600;}
 
 .paystart{padding: 7% 20%;  text-align: center; background-color: black; color: white; border-radius: 5px;}
 
@@ -87,3 +95,5 @@
 .comment2{font-size: 14px; color: gray; }
 
 .paycomment2{width: 95%; height: 550px;  border: 1px solid silver; margin-top: 3%; padding:2.5% ;margin-bottom: 3%;}
+
+.pay3_1 span{margin-top: 1%; padding-left: 1%;}

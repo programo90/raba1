@@ -1,5 +1,6 @@
 package com.bitcamp.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -111,15 +112,6 @@ public class GoodsServiceImple implements GoodsService {
 	}
 
 	/* goods list */
-	@Override
-	public List<GoodsDTO> goodslist() {
-		// TODO Auto-generated method stub
-		
-		List<GoodsDTO> list = mapper.list();
-		
-		return list;
-	}
-
 	@Transactional(rollbackFor= {Exception.class}, propagation=Propagation.REQUIRED, isolation=Isolation.DEFAULT)
 	@Override
 	public boolean deletegoods(int p_no) {
@@ -280,6 +272,33 @@ public class GoodsServiceImple implements GoodsService {
 		int p_no = list.get(0).getP_no();
 		
 		return attach_mapper.pno_image(p_no);
+	}
+
+	@Override
+	public List<GoodsDTO> goodslist(String search, String searchtxt, int startRow, int endRow) {
+		HashMap<String, Object> hm =new HashMap<>();
+		hm.put("search", search);
+		hm.put("searchtxt", searchtxt);
+		hm.put("startRow", (startRow-1));
+		hm.put("endRow", endRow);
+		
+		System.out.println(search);
+		System.out.println(searchtxt);
+		System.out.println(endRow);
+		System.out.println(startRow);
+		
+		List<GoodsDTO> list = mapper.list(hm);
+		
+		return list;
+	}
+
+	@Override
+	public int goodstotalCount(String search, String searchtxt) {
+		HashMap<String, Object> hm= new HashMap<>();
+		
+		hm.put("search", search);
+		hm.put("searchtxt", searchtxt);
+		return mapper.goodscount(hm);
 	}
 
 	

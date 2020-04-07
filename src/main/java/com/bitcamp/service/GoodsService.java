@@ -10,7 +10,7 @@ public interface GoodsService {
 
 	void insertvalue(GoodsDTO dto, GoodsSizeDTO sizedto);
 
-	List<GoodsDTO> goodslist();
+	List<GoodsDTO> goodslist(String search, String searchtxt, int startRow, int endRow);
 
 	boolean deletegoods(int p_no);
 
@@ -27,6 +27,8 @@ public interface GoodsService {
 	BoardAttachVO getimg(int p_no);
 
 	BoardAttachVO getImgpno(String p_name);
+
+	int goodstotalCount(String search, String searchtxt);
 
 	
 

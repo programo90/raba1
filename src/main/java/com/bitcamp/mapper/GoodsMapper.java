@@ -1,5 +1,6 @@
 package com.bitcamp.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -12,7 +13,7 @@ public interface GoodsMapper {
 
 	void insert(GoodsDTO dto);
 
-	List<GoodsDTO> list();
+	List<GoodsDTO> list(HashMap<String, Object> hm);
 
 	boolean delete(int p_no);
 
@@ -29,6 +30,8 @@ public interface GoodsMapper {
 	String find_pname(int p_no);
 	
 	int count_pno(String pname);
+
+	int goodscount(HashMap<String, Object> hm);
 
 
 }

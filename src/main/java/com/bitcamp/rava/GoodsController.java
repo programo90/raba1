@@ -5,6 +5,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,8 +19,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bitcamp.dto.AdminMakepageDTO;
 import com.bitcamp.dto.BoardAttachVO;
 import com.bitcamp.dto.CartDTO;
 import com.bitcamp.dto.GoodsDTO;
@@ -181,9 +185,27 @@ public class GoodsController {
 	
 	/* made by taekwan */
 	@RequestMapping(value="/admin_goods_list")
-	public String goodsadmin(Model model) {
+	public String goodsadmin(@RequestParam(required=false,defaultValue="1") int currPage,@RequestParam(required=false,defaultValue="") String search,@RequestParam(required=false,defaultValue="") String searchtxt,Model model) {
 	
-		List<GoodsDTO> list = goodsservice.goodslist(); 
+		Pattern d=Pattern.compile("(^[0-9]*$)");
+		if(search=="oderno"||"oderno".equals(search)) {
+			Matcher m=d.matcher(searchtxt);
+			if(!m.find()) {
+				searchtxt="";
+				model.addAttribute("searchtxt", "");
+			}else {
+				model.addAttribute("searchtxt", searchtxt);
+			}
+		}
+		
+		int totalCount = goodsservice.goodstotalCount(search,searchtxt);
+		
+		int pageSize=10;
+		int blockSize=5;
+		
+		AdminMakepageDTO page=new AdminMakepageDTO(currPage, totalCount, pageSize, blockSize);
+		
+		List<GoodsDTO> list = goodsservice.goodslist(search,searchtxt,page.getStartRow(),page.getEndRow()); 
 		
 		List<BoardAttachVO> img_list = new ArrayList<>();
 		

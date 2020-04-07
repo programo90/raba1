@@ -2,8 +2,43 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.bitcamp.dao.AdminDAO">
+  <mapper namespace="com.bitcamp.mapper.AdminMapper">
    <parameterMap type="java.util.HashMap" id="hashMap"/>
+     <resultMap type="com.bitcamp.dto.GoodsDTO" id="goods_table">
+  	<result property="p_no" column="pno"/>
+  	<result property="p_name" column="pname"/>
+  	<result property="p_price" column="price"/>
+  	<result property="p_size" column="psize"/>
+  	<result property="p_amount" column="pamount"/>
+  	<result property="p_state" column="pstate"/>
+  	<result property="wno" column="wno"/>
+  </resultMap>
+
+  
+  <resultMap type="com.bitcamp.security.Login__MemberVO" id="MemberVO">
+  	<result property="username" column="username"/>
+  	<result property="useremail" column="useremail"/>
+  	<result property="phone" column="phone"/>
+  	<result property="address" column="address"/>
+  	<result property="address2" column="address2"/>
+  	<result property="address3" column="address3"/>
+  	<result property="userimg" column="userimg"/>
+  	<result property="distance" column="distance"/>
+  </resultMap>
+  
+  <resultMap type="com.bitcamp.dto.GoodsDTO" id="goodsDTO">
+  	<result property="p_no" column="pno"/>
+  	<result property="p_name" column="pname"/>
+  	<result property="p_price" column="price"/>
+  	<result property="p_img" column="uploadPath"/>
+  </resultMap>
+  
+  <resultMap type="com.bitcamp.dto.GoodsDTO" id="detail_goodsDTO">
+  	<result property="p_no" column="pno"/>
+  	<result property="p_name" column="pname"/>
+  	<result property="p_price" column="price"/>
+  	<result property="p_img" column="uploadPath"/>
+  </resultMap>
    <select id="adminmembergetCount" resultType="int" parameterMap="hashMap">
       select count(*)
       from UserTable
@@ -13,6 +48,9 @@
                <when test="search=='userid'">
                   and userid like concat('%',#{searchtxt},'%')
                </when>
+               <when test="search=='username'">
+                  and username like concat('%',#{searchtxt},'%')
+               </when>
                <when test="search=='joindate'">
                   and  DATE_FORMAT(joindate,'%y')=#{searchtxt}
                </when>
@@ -20,8 +58,9 @@
          </if>
       </where>
    </select>
+   
    <select id="adminmemberlist" parameterMap="hashMap" resultType="com.bitcamp.dto.AdminMemberDTO">
-          select userid, useremail, phone, DATE_FORMAT(joindate,'%y-%m-%d') as joindate
+          select userid, useremail, phone, DATE_FORMAT(joindate,'%Y-%m-%d') as joindate, username
           from UserTable
            <where>
                       <if test="searchtxt!=null and searchtxt!=''">
@@ -29,12 +68,101 @@
                             <when test="search=='userid'">
                                and userid like concat('%',#{searchtxt},'%')
                             </when>
+          				     <when test="search=='username'">
+                			  and username like concat('%',#{searchtxt},'%')
+               				</when>
               				 <when test="search=='joindate'">
                				   and  DATE_FORMAT(joindate,'%y')=#{searchtxt}
                				</when>
                          </choose>
                       </if>
           </where>
-          limit 0,10
+        limit #{startRow},#{endRow}
    </select>
+   
+      <select id="adminordergetCount" resultType="int" parameterMap="hashMap">
+      select count(*)
+      from orderTable
+       <where>
+         <if test="searchtxt!=null and searchtxt!='' ">
+            <choose>
+               <when test="search=='oderno'">
+                  and oderno like concat('%',#{searchtxt},'%')
+               </when>
+               <when test="search=='orderuname'">
+                  and orderuname like concat('%',#{searchtxt},'%')
+               </when>
+               <when test="search=='deltype'">
+                  and  deltype like concat('%',#{searchtxt},'%')
+               </when>
+               <when test="search=='orderstatus'">
+                  and  orderstatus like concat('%',#{searchtxt},'%')
+               </when>
+            </choose>
+         </if>
+      </where>
+   </select>
+   
+      <select id="adminorderlist" parameterMap="hashMap" resultType="com.bitcamp.dto.OrderDTO">
+          select oderno, orderuname, orderuphone, totalprice, deltype, orderstatus,DATE_FORMAT(salesdate,'%Y-%m-%d') as salesdate, postno
+          from orderTable
+           <where>
+                      <if test="searchtxt!=null and searchtxt!=''">
+            <choose>
+               <when test="search=='oderno'">
+                  and oderno like concat('%',#{searchtxt},'%')
+               </when>
+               <when test="search=='orderuname'">
+                  and orderuname like concat('%',#{searchtxt},'%')
+               </when>
+               <when test="search=='deltype'">
+                  and  deltype like concat('%',#{searchtxt},'%')
+               </when>
+               <when test="search=='orderstatus'">
+                  and  orderstatus like concat('%',#{searchtxt},'%')
+               </when>
+            </choose>
+                      </if>
+          </where>
+        limit #{startRow},#{endRow}
+   </select>
+   
+    <delete id="adminorderdel" parameterType="int">
+  		delete from orderTable
+  		where oderno=#{oderno}
+  	</delete>
+  	
+  	  	<update id="adminorderup" parameterType="com.bitcamp.dto.OrderDTO">
+  		update orderTable
+  		set postno=#{postno}, orderstatus=#{orderstatus}
+  		where oderno=#{oderno}
+  	</update>
+  	
+  	<select id="detailorderlist" resultType="com.bitcamp.dto.OrderDTO">
+  	SELECT
+		orderstatus, ordercpno, ordercprice
+	FROM
+		orderTable
+	WHERE
+		oderno = #{oderno}
+</select>  
+
+  <select id="userinfo" resultMap="MemberVO">
+  	select username, useremail, phone, address, address2, address3, userimg, distance
+	from UserTable
+	where userid = #{userid}
+  </select>
+  
+  <select id="order__detail" resultType="com.bitcamp.dto.OrderDTO">
+  	select oderno, DATE_FORMAT(salesdate, '%Y-%m-%d') AS salesdate, ordermg, totalprice, orderTable.userid, deltype, ordercprice, ordercamount, orderuname, orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail, orderstatus, payuname, ordercpno, username,phone,useremail  
+  	from orderTable join UserTable
+  	on orderTable.userid = UserTable.userid
+  	where oderno= #{orderno}
+</select>
+
+<select id="goods_info2" resultMap="detail_goodsDTO">
+  	SELECT pname, price, uploadPath, gt.pno
+	FROM GoodsTable gt LEFT JOIN GoodsImageTable git ON gt.pno = git.pno
+	WHERE gt.pno = #{pno}
+</select>
   </mapper>

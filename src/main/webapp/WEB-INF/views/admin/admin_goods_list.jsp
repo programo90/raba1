@@ -90,15 +90,23 @@
              <section class="admin_sectionbox">
                  <!-- 여기서 div만들고 시작하세요 controller에 file등록하고 사용하세요! ~~  -->
                 <div class="admingoods">
-	                       <div class="admingoodssearch">
-	                           <a href="" class="admingoodssearchbtn">검색</a>
-	                            <input type="text" size="1000" class="admgoodssearchtext">
-	                             <select class="admgoodssearch">
-	                                <option>제품번호</option>
-	                                <option>상품명</option>
-	                                <option>판매상태</option>
-	                            </select>
-	                       </div>
+              		  <form method="get" action="admin_goods_list?currPage=${page.startBlock}">
+              			  <input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
+                       <div class="membermanagersearch">
+                  <div class="admingoodsbtnline">
+                <a href="/goods_insert" class="admingoodsbtn3">등록</a>
+                </div>
+                       	<div class="membermanagersearch2">
+                              <select class="membersearch" name="search">
+                              <option value="pno">상품번호</option>
+                              <option value="pname">상품명</option>
+                              
+                            </select>
+                            <input type="text" name="searchtxt" size="1000" class="membersearchtext">
+                            <input type="submit" class="membermanagersearchbtn" value="검색">
+                        </div>
+                       </div>
+                       </form>
 	                    <div class="admingoodscolumn">
 	                        <div class="admingoodsnum"><span>No</span></div>
 	                        <div class="admingoodsimg"><span>이미지</span></div>
@@ -153,7 +161,7 @@
 	                            		}
 	                            </script>
 	                            
-	                        <div class="admingoodsbtn1"><a href="/modifygoods/${Goodslist.p_no}">수정</a></div>
+	                        <div class="admingoodsbtn2"><a href="/modifygoods/${Goodslist.p_no}">수정</a></div>
 	                        <div class="admingoodsbtn1"><a href="/deletegoods/${Goodslist.p_no}">삭제</a></div>
 	                    </div>
 	                  </c:forEach>
@@ -164,9 +172,26 @@
 						<input type="hidden" class="img_fileName" value="${Imagelist.fileName }">
 						<input type="hidden" class="img_fileType" value="${Imagelist.fileType }">
 					</c:forEach>
+					                       <div class="membermanagersearch3">
+                   <div class="membermanagersearch4">
+                     </div>
+                     <div class="membermanagersearch5">
+                                        <c:if test="${page.prev}">
+      <a href="admin_goods_list?currPage=${page.startBlock-1}&search=${search}&searchtxt=${searchtxt}"><c:out value="이전"/></a>
+   </c:if>
+   <c:forEach var="index" begin="${page.startBlock}" end="${page.endBlock}">
+      <c:if test="${index==page.currPage}">
+         <c:out value="${index}"/>
+      </c:if>
+      <c:if test="${index!=page.currPage}">
+         <a href="admin_goods_list?currPage=${index}&search=${search}&searchtxt=${searchtxt}">${index}</a>
+      </c:if>
+   </c:forEach>
+   <c:if test="${page.next}">
+      <a href="admin_goods_list?currPage=${page.endBlock+1}&search=${search}&searchtxt=${searchtxt}"><c:out value="다음"/></a>
+   </c:if>
+                     </div>
                 </div>
-                <div class="admingoodsbtnline">
-                <a href="/goods_insert" class="admingoodsbtn3">등록</a>
                 </div>
             </section>
         </div>

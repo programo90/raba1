@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.bitcamp.mapper.GoodsMapper">
-  
+  <parameterMap type="java.util.HashMap" id="hashMap"/>
   	<resultMap type="com.bitcamp.dto.GoodsDTO" id="goods_table">
   		<result property="p_no" column="pno"/>
   		<result property="p_name" column="pname"/>
@@ -19,11 +19,6 @@
   		values (null, #{p_name},#{p_price},#{p_size},#{p_amount},#{p_state})
   		
   	</insert>
-  	
-  	<select id="list" resultMap="goods_table">
-  		select pno, pname, price, psize, pamount, pstate
-  		from GoodsTable
-  	</select>
   
   	<delete id="delete" parameterType="int">
   		delete from GoodsTable 
@@ -77,5 +72,40 @@
   		from GoodsTable
   		where pname = #{pname}
   	</select>
+  	
+  	      <select id="goodscount" resultType="int" parameterMap="hashMap">
+      select count(*)
+      from GoodsTable
+       <where>
+         <if test="searchtxt!=null and searchtxt!='' ">
+            <choose>
+               <when test="search=='pno'">
+                  and pno like concat('%',#{searchtxt},'%')
+               </when>
+               <when test="search=='pname'">
+                  and pname like concat('%',#{searchtxt},'%')
+               </when>
+            </choose>
+         </if>
+      </where>
+   </select>
+   
+      <select id="list" parameterMap="hashMap" resultMap="goods_table">
+  		select pno, pname, price, psize, pamount, pstate
+  		from GoodsTable
+           <where>
+                      <if test="searchtxt!=null and searchtxt!=''">
+            <choose>
+               <when test="search=='pno'">
+                  and pno like concat('%',#{searchtxt},'%')
+               </when>
+               <when test="search=='pname'">
+                  and pname like concat('%',#{searchtxt},'%')
+               </when>
+            </choose>
+                      </if>
+          </where>
+        limit #{startRow},#{endRow}
+   </select>
   	
   </mapper>

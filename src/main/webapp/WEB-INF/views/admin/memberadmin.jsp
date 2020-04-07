@@ -7,6 +7,9 @@
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <title>Insert title here</title>
  <link rel="stylesheet" href="/resources/css/admin/adminmembermanager.css">
+ <script>
+ document.getElementsByClassName('adminnav')[7].style.backgroundColor="#e8e8e8";
+ </script>
  </head>
  <body>
          <div class="admincontents">

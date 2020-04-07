@@ -9,6 +9,8 @@
  <title>Insert title here</title>
  <link rel="stylesheet" href="/resources/css/admin/adminorder.css">
  <script>
+ document.getElementsByClassName('adminnav')[7].style.backgroundColor="#e8e8e8";
+ 
 	$(document).ready(
 			function() {
 	function select_tag_sel(ele) {

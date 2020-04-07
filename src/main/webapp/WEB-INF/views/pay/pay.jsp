@@ -7,8 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"> 
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/css/pay/pay.css">
+<link rel="stylesheet" href="/resources/css/pay/pay2.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript"

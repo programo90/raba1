@@ -116,4 +116,9 @@ public class Admin_Controller {
 		return "admin/adminorderdetail";
 	}
 	
+	@RequestMapping("/admin")
+	public String admin() {
+		return "admin/admin";
+	}
+	
 }

@@ -53,7 +53,7 @@
 .phoneuser{
 	font-size:25px;
 	cursor:pointer;
-	float: left;
+	float: right;
     width: 20px;
     margin-top: 12px;
 }

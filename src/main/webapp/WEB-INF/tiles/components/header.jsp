@@ -28,11 +28,11 @@
                         <a href="#"><i class="fa fa-shopping-basket"></i></a>
                     </li>
                     <sec:authorize access="isAnonymous()">
-						<a href="/login" onclick="openModal()" class="headeloginbtn">로그인</a>	
+						<a href="/login" onclick="openModal()" class="headeloginbtn">Login</a>	
 					</sec:authorize>
 					
 					<sec:authorize access="isAuthenticated()">
-					<a href="#" onclick="document.getElementById('logout-form').submit();" class="headeloginbtn">로그아웃</a>
+					<a href="#" onclick="document.getElementById('logout-form').submit();" class="headeloginbtn">Logout</a>
 					<form id="logout-form" action=/customLogout method="post">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					</form>

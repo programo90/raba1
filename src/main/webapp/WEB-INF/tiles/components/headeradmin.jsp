@@ -23,7 +23,7 @@
                         <a href="/cafeadmin">카페상품 관리</a>
                     </li>
                     <li class="adminnav">
-                        <a href="/youtubeadmin">YOUTUBE 관리</a>
+                        <a href="/youtubeadmin">컨텐츠 관리</a>
                     </li>
                     <li class="adminnav">
                         <a href="/repairadmin">정비 관리</a>
@@ -32,13 +32,16 @@
                         <a href="/admin_goods_list">상품 관리</a>
                     </li>
                     <li class="adminnav">
-                        <a href="/adminoder">주문 관리</a>
+                        <a href="/adminorder">주문 관리</a>
                     </li>
                     <li class="adminnav">
                         <a href="/touradmin">투어 관리</a>
                     </li>
                     <li class="adminnav">
                         <a href="/adminmember">회원 관리</a>
+                    </li>
+                    <li class="adminnav">
+                        <a href="/notice_list">공지 관리</a>
                     </li>
                 </ul>
             </nav>

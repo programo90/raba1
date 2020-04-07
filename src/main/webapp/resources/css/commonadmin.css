@@ -36,6 +36,9 @@ body{
     background-color: #fff;
     border-right: 1px solid #e8e8e8;
 }
+.adminheader > div{
+	box-sizing: initial;
+}
 .adminlogo{
     width: 50px;
     height: 50px;
@@ -67,7 +70,10 @@ body{
 .admincon{
     width: 1024px;
 }
-
+.adminnav > a{
+	width:100%;
+	display:block;
+}
 /* admin userbox */
 .admin_userbox{
     width: 1074px;

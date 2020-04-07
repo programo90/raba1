@@ -65,7 +65,7 @@ public class TourController {
 		model.addAttribute("page", page);
 		model.addAttribute("list",list);
 		
-		return "tour/tourlist";
+		return "tourall/tourlist";
 	}
 	
 	@RequestMapping("/tourdetail/{tourno}")

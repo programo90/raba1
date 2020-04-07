@@ -20,7 +20,7 @@
              </div>
              <section class="admin_sectionbox">
                  <!-- 여기서 div만들고 시작하세요 controller에 file등록하고 사용하세요! ~~  -->
-             <canvas id="myChart" width="10px" height="3px"></canvas>
+             <canvas id="myChart" width="10px" height="5px"></canvas>
             </section>
         </div>
         <script>

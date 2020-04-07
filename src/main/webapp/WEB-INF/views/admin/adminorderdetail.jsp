@@ -9,6 +9,7 @@
  <link rel="stylesheet" href="/resources/css/mypage/style.css">
  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
+document.getElementsByClassName('adminnav')[5].style.backgroundColor="#e8e8e8";
 	$(document).ready(function(){
 		
 		Number.prototype.format = function(){
@@ -136,21 +137,14 @@
 						                                    <dt class="text-sm  leading-5 font-medium text-gray-500">
 						                                        현금영수증
 						                                    </dt>
-						                                    <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-						                                          <p class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
-						                                            주문일로부터 5일이 지나면 신청이 불가능합니다.
-						                                        </p>
+						                            	<dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+						                                        ${orderinfo.cashreceipts }
 						                                    </dd>
 						                                </div>
 													</c:when>
 													<c:when test="${orderinfo.deltype eq '카드결제' }">
 													</c:when>
 												</c:choose>
-						                                
-						                                
-						                                
-						                                
-                               
                             </dl>
                         </div>
                     </div>

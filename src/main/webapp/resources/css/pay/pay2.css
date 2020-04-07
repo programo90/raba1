@@ -1,0 +1,97 @@
+@charset "UTF-8";
+@media screen and (max-width: 414px) { 
+	
+.paycartlist{height: 80px; line-height: 80px;}
+	
+.order{display: none;}
+
+.orderArea1{height: 20px; line-height:normal;}
+
+.orderArea1 span{padding-left: 2.5%;}
+
+.orderArea4{height: 20px; line-height:normal;}
+
+.orderArea4 span{padding-left: 2.5%;}
+
+.orderArea4_1{ border-left: none; width: 98%; height: 50px;}
+
+.orderArea1_1{ border-left: none; width: 95%; height: 50px;}
+
+.orderArea1_1 input{width: 95%; height:30px; margin: 10px 0 0 11px; border: 1px solid e8e8e8; font-size: 15px; padding-left: 5px;}
+
+.postalcode{padding: 8px 13px;}
+	
+#orderuaddr1{width: 75.6%; height:30px; margin: 10px 0 0 0px; border: 1px solid e8e8e8; font-size: 15px; padding-left: 5px;}
+
+#orderuaddr2{width: 97%; height:30px; margin: 10px 0 0 0px; border: 1px solid e8e8e8; font-size: 15px; padding-left: 5px;}
+
+#orderuaddr3{width: 97%; height:30px; margin: 10px 0 0 0px; border: 1px solid e8e8e8; font-size: 15px; padding-left: 5px;}
+
+.salprice{width: 100%;}
+
+h2{display: none;}
+
+.paycomment{display: none;}
+
+.comment2{display: none;}
+
+.paycomment2{display: none;}
+
+.paypritotal{display: none;}
+
+.paycartimg{width:20%; !important}
+
+.paypri{width: 17%; !important}
+
+.orderArea p{width: 95%;}
+
+.paypri{width: 23%}
+
+.payamount{width: 11%;}
+
+.order3{border-bottom: none;}
+
+.orderArea1{width: 95%;}
+
+.paycartlist{font-size: 13px;}
+
+.order4{border-bottom: none; height: 170px;}
+
+.order2{border-bottom: none; height: 100px;}
+
+.orderArea6{width: 95%; height: 30px; line-height: normal; padding-left: 3.5%;}
+
+.orderArea6_1{border-left: none; }
+
+.orderArea6_1 textarea{width: 110%; margin-left: 10px; height: 70px; font-size: 16px;}
+
+.orderArea4{width: 95%; height: 20px;}
+
+.pay{width: 93%; height: 350px;}
+
+.pay1{width: 95%;}
+
+.paybtn{width: 95%; border-left: none;}
+
+.orderArea4_1 p{width: 95%;}
+
+.paylast{width: 95%;}
+
+.pay1{width: 104.3%;}
+
+.pay2{width: 104.3%;}
+
+.pay2_1 input{width: 80%;
+    height: 20px;}
+
+#moneyc{margin-left: 15px;}
+
+.pay2_2{display: none;}
+
+#cardc{font-size: 11.7px;}
+
+.paystart{padding: 5% 15%;}
+}
+/* @media  screen and (min-width:415px) {
+	
+} */

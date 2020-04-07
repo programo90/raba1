@@ -14,7 +14,7 @@
 
 .paycartch{width: 8%; height:100%;   float: left;  text-align: center; }
 
-.paycartimg{width: 13%; height:100%;   float: left; text-align: center;  }
+.paycartimg{width: 13%; height:100%; float: left; text-align: center;}
 
 .paygoods{width: 31%; height:100%;   float: left; text-align: center; }
 
@@ -66,19 +66,19 @@
 
 .pay{width: 100%; height: 170px; border-bottom: 1px solid silver;  border: 1px solid silver;}
 
-.pay1{width: 79%; height: 45.9px; margin:0px; padding-top: 20px;  border-bottom: 1px solid silver; font-weight: 600; padding-left: 1%}
+.pay1{width: 99.1%; height: 45.9px; margin:0px; margin-right:0px; padding-top: 20px;  border-bottom: 1px solid silver; font-weight: 600; padding-left: 1%; float: left;}
 
-.pay2{width: 79%; height: 96.9px;  float: left;}
+.pay2{width: 99.1%; height: 96.9px;  float: left;}
 
 .pay2 span{font-size: 15px; color: black; font-weight: 500;}
 
-.pay2_1{width: 101.3%; height: 50px; border-bottom: 1px solid silver; line-height: 50px;}
+.pay2_1{width: 101%; height: 50px; border-bottom: 1px solid silver; line-height: 50px;}
 
 .pay2_1 label{padding-left: 1%;}
 
 .pay2_2{width: 15%; height: 50px;padding-left: 1%; border-right: 1px solid silver;float: left;}
 
-.pay3_1{width: 101.3%; height: 50px; line-height: 50px;}
+.pay3_1{width: 101%; height: 50px; line-height: 50px;}
 
 .paybtn{width: 17.4%; height: 141.1px; border-left: 1px solid silver; float: right; padding: 15px; text-align: center; font-weight: 600;}
 
@@ -97,3 +97,5 @@
 .paycomment2{width: 95%; height: 550px;  border: 1px solid silver; margin-top: 3%; padding:2.5% ;margin-bottom: 3%;}
 
 .pay3_1 span{margin-top: 1%; padding-left: 1%;}
+
+.paylast{width: 80%; height: 170px; float: left;}

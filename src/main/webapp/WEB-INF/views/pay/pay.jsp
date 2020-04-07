@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/css/pay/pay.css">
 <link rel="stylesheet" href="/resources/css/pay/pay2.css">
@@ -247,16 +247,7 @@
 				<h2>결제 수단</h2>
 				<br>
 				<div class="pay">
-					<div class="paybtn">
-						<span id="cardp">카드 결제 최종금액</span> <span id="moneyp">무통장 입금
-							최종금액</span><br>
-						<span id="oprice" class="format-money">${totalprice }</span> <span id="oprice">원</span><br>
-						<br>
-						<br>
-						<input type="button" class="paystart" id="check_module" value="결제하기">
-						<input type="submit" class="paystart" id="paystart2" value="결제하기">
-						<!-- 결제하기(무통) -->
-					</div>
+					<div class="paylast">
 					<div class="pay1">
 						<input type="radio" value="카드결제" id="deltype" name="deltype"
 							checked> <label>카드결제 </label><input type="radio"
@@ -266,7 +257,17 @@
                                 <div class="pay2"><div class="pay3_1" id="pay3_1"><span id="cardc">소액 결제의 경우 PG사 정책에 따라 결제 금액 제한이 있을 수 있습니다.</span></div>
                                <div class="pay2_1" id="pay2_1">
                                <div class="pay2_2"><span>결제 안내</span></div>
-                               <div class="pay2_3"></div><label for="holder">입금자</label> <input type="text" id="payuname" name="payuname" size="12" > <span id="moneyc">(입금계좌 국민은행 05100204153630 예금주 이태관)</span></div></div>
+                               <div class="pay2_3"></div><label for="holder">입금자</label> <input type="text" id="payuname" name="payuname" size="12" > <span id="moneyc">(입금계좌 국민은행 05100204153630 예금주 이태관)</span></div>
+                               </div>
+                     </div>
+                     					<div class="paybtn">
+						<span id="cardp">카드 결제 최종금액</span> <span id="moneyp">무통장 입금
+							최종금액</span><br>
+						<span id="oprice" class="format-money">${totalprice }</span> <span id="oprice">원</span><br><br>
+						<input type="button" class="paystart" id="check_module" value="결제하기">
+						<input type="submit" class="paystart" id="paystart2" value="결제하기">
+						<!-- 결제하기(무통) -->
+					</div>
 				</div>
 				<input type="hidden" name="orderstatus" id="orderstatus" />
 				<input type="hidden" name="del" id="del"/>

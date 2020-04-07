@@ -49,4 +49,8 @@
 
 .managergrant2 input{padding: 5px 15px; border-radius: 5px; margin-top: 8px; border:1px solid #3e5f40; background-color: white;}
 
-.managergrant2 select{margin-top: 12px;}
+.managergrant2 select{margin-top: 12px; width: 80%;
+    height: 25px;
+    font-size: 11px;
+    padding: 0 5px;
+    border: 1px solid #e8e8e8;}

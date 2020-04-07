@@ -116,6 +116,13 @@ public class Admin_Controller {
 		return "admin/adminorderdetail";
 	}
 	
+/*	@RequestMapping("/adminorder/{oderno}")
+	public String del2(@PathVariable int oderno)
+	{
+		Service.adminorderdelData(oderno);
+		return "redirect:/adminorder";
+	}*/
+	
 	@RequestMapping("/admin")
 	public String admin() {
 		return "admin/admin";

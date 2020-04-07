@@ -52,11 +52,17 @@
 
 .adminorderstate2{width: 10%; height: 55px; float: left; text-align: center;line-height: 55px;}
 
-.adminorderstate2 select{margin-top: 15px; text-align: center;}
+.adminorderstate2 select{margin-top: 15px; text-align: center; width: 100%;
+    height: 32px;
+    font-size: 11px;
+    padding: 0 5px;
+    border: 1px solid #e8e8e8;}
 
 .adminorderinvoice2{width: 11%; height: 55px; float: left; text-align: center;line-height: 55px;}
 
-.adminorderinvoice2 input{margin-top: 15px; text-align: center;}
+.adminorderinvoice2 input{margin-top: 15px; text-align: center;  font-size: 11px; height: 25px;
+    padding: 0 5px;
+    border: 1px solid #e8e8e8;}
 
 .adminorderid2{width: 10.2%; height: 55px; float: left; text-align: center;line-height: 55px;}
 

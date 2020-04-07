@@ -1,4 +1,5 @@
 $(document).ready(function () {
+	document.getElementsByClassName('adminnav')[1].style.backgroundColor="#e8e8e8";
     $('.cafe_tab').each(function () {
         $(this).click(function () {
             $(this).addClass('cafe_tabelected');

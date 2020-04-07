@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	document.getElementsByClassName('adminnav')[2].style.backgroundColor="#e8e8e8";
 	$('.admin_youtube_input').keyup(function(){ 
 		if ($(this).val().length > $(this).attr('maxlength')) { 
 			alert('제한 길이 초과, 총 15글자 이내로 작성해주세요'); 

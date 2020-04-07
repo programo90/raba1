@@ -15,8 +15,6 @@
 $(document).ready(function(e){
 	
 	
-	
-	
 	$("input[type='submit']").on('click',function(e){
 		
 		e.preventDefault();

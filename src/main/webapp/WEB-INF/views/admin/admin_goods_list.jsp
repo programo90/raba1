@@ -13,6 +13,7 @@
  </style>
  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
+
 		document.addEventListener("DOMContentLoaded", function(){
 			// Handler when the DOM is fully loaded
 			
@@ -44,7 +45,40 @@
 					
 				}
 			
+				
+				/* 숫자형 ,문자형에 ,찍는 기능  */
+				
+				
+				 Number.prototype.format = function(){
+		                if(this==0) return 0;
+
+		                var reg = /(^[+-]?\d+)(\d{3})/;
+		                var n = (this + '');
+
+		                while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+
+		                return n;
+		            };
+		            
+		            String.prototype.format = function(){
+		                var num = parseFloat(this);
+		                if( isNaN(num) ) return "0";
+
+		                return num.format();
+		            };
+		            
+		            jQuery('.format-money').text(function() {
+		                jQuery(this).text(
+		                    jQuery(this).text().format()
+		                );
+		            });
+				
 			});  
+		
+	
+		
+		  
+		
 </script>
  <script src="/resources/js/goods/list_goods.js"></script>
  </head>
@@ -82,7 +116,7 @@
 	                        <div class="admingoodsname2"><span><c:out value="${Goodslist.p_name }"/></span></div>
 	                        <div class="admingoodssize2"><span><c:out value="${Goodslist.p_size }"/></span></div>
 	                        <div class="admingoodsstock2"><span><c:out value="${Goodslist.p_amount }"/>개</span></div>
-	                        <div class="admingoodsprice2"><span><c:out value="${Goodslist.p_price }"/>원</span></div>
+	                        <div class="admingoodsprice2"><span class="format-money">${Goodslist.p_price }</span>원</div>
 	                        
 	                            <div class="admingoodssituation2">
 	                            <span class="state_span"></span>

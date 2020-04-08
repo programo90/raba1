@@ -133,7 +133,7 @@
 										class="hidden md:table-cell px-5 py-5 border-b border-gray-200 bg-white text-sm text-center"
 										onclick="detailinfo(this)" data-tourno="${dto.tourno }" data-openwin="0">
 										<span class="text-gray-900 text-sm">${dto.cancount } / ${dto.totalcount }</span><br>
-										<input class="tourhostpage_list_btn" type="button" value="명단 보기">
+										<input class="tourhostpage_list_btn" type="button" value="명단/문의 보기">
 									</td>
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 										<div class="text-gray-500">

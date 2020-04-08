@@ -33,3 +33,17 @@
 	padding:5px 0;
 	border-radius: 5px;
 }
+.relistbox>p{
+	line-height: 10px;
+    border-bottom: 1px solid #e8e8e8;
+    margin: 10px 0;
+    height: 20px;
+}
+.rerelist {
+	padding-left: 20px;
+}
+.rerelist:before{
+	content: '\21B3';
+	padding-right: 10px;
+    color: #888;
+}

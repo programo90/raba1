@@ -32,7 +32,6 @@ function detailinfo(obj) {
 	console.log(openstate);
 	if(openstate == '0') {
 		var tourno = obj.dataset.tourno;
-		
 		var tempdata = {
 				"tourno":tourno
 			};
@@ -43,8 +42,9 @@ function detailinfo(obj) {
 				,dataType : "json"
 				,contentType: "application/json;charset=utf-8"
 				,success:function(data) {
-					var result ='<tr><td colspan="5" style="width:100%; height:100px;">';
-						result+='<div style="padding:20px 40px; width:100%; height:100%;"><p>';
+					var result ='<tr><td colspan="5" style="width:100%;">';
+						result+='<div style="padding:20px 40px; width:100%;"><p>';
+						
 					$.each(data,function(index,item){
 						result += item.username;
 						result += '  ';
@@ -52,17 +52,56 @@ function detailinfo(obj) {
 					result += '</p></div>';
 					/*result += '<div style="width:100%; height:60%;">메시지 전송</div>';*/
 					result += '</td></tr>';
-					$(obj).parent().after(result);
+					
+					relist(obj, tempdata, result);
+					
 				}
 				,error : function(data) {
 					alert("error : 수정실패");
 				}
 			});
+						
 			obj.dataset.openwin = '1';
 	} else {
 		$(obj).parent().next().remove();
+		$(obj).parent().next().remove();
 		obj.dataset.openwin = '0';
 	}
+}
+
+function relist(obj,tempdata, tempresult) {
+	
+	$.ajax({
+		url:"/tourrelist"
+		,data : tempdata
+		,dataType : "json"
+		,contentType: "application/json;charset=utf-8"
+		,success:function(data) {
+			var result ='<tr><td colspan="5" style="width:100%; height:100px;">';
+			result +='<div class="relistbox" style="padding:20px 60px; width:100%; height:100%;">';
+			$.each(data,function(index,item){
+				if(item.relevel==0){
+					result += '<p>' + item.username + ' | ';
+					result += item.recontent +'</p>';
+				} else {
+					result += '<p class="rerelist">' + item.username + ' | ';
+					result += item.recontent +'</p>';
+				}
+			});
+			result += '</div>';
+			/*result += '<div style="width:100%; height:60%;">메시지 전송</div>';*/
+			result += '</td></tr>';
+			console.log(result);
+			tempresult += result;
+			
+			$(obj).parent().after(tempresult);
+			
+		}
+		,error : function(data) {
+			alert("error : 수정실패");
+		}
+	});
+
 }
 
 function changeState(tourno) {

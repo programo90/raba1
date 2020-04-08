@@ -6,32 +6,33 @@
 <head>
 <meta charset=UTF-8>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-<title>B.A. Information</title>
-	<link rel="stylesheet" href="/resources/css/info/info.css">
-	<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ2VrwCAwKQq9UWrXNVPlc4_64qC_a8xU&libraries=places&callback=initMap" async defer></script>
-	<script src="/resources/js/info/info.js"></script>
+<title>Insert title here</title>
+   <link rel="stylesheet" href="/resources/css/info/info.css">
+   <link rel="stylesheet" href="/resources/css/info/mediaqueries.css">
+   <script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ2VrwCAwKQq9UWrXNVPlc4_64qC_a8xU&libraries=places&callback=initMap" async defer></script>
+   <script src="/resources/js/info/info.js"></script>
 </head>
 <body>
-	<div class="contents">
-		<!-- <div id="info_map"></div> -->
+   <div class="contents">
+      <!-- <div id="info_map"></div> -->
 
-		<div id="map"></div>
+      <div id="map"></div>
         <div class="enter_start">
         
             <label for="start_p">찾아오시는 길</label>
             
             
-		    <input id="origin-input" class="controls" type="text" placeholder="   출발지를 입력하세요">
-		        <!-- 출발지를 사용자에게 값을 받음 -->
-		    <div id="mode-selector" class="controls">
-		     	<input type="radio" name="type" id="changemode-transit"  checked="checked">
-		     	<label for="changemode-transit">Transit</label>
-		    
-		<!-- Replace the value of the key parameter with your own API key. -->
-		</div>
-		
+          <input id="origin-input" class="controls" type="text" placeholder="   출발지를 입력하세요">
+              <!-- 출발지를 사용자에게 값을 받음 -->
+          <div id="mode-selector" class="controls">
+              <input type="radio" name="type" id="changemode-transit"  checked="checked">
+              <label for="changemode-transit">Transit</label>
+          
+      <!-- Replace the value of the key parameter with your own API key. -->
+      </div>
+      
         </div>
         <div class="notice">
            <label for="">공지사항</label>
@@ -45,8 +46,8 @@
                 <div class="brd_body">
                     <div class="brd_list">
                         <div class="n_no"><c:out value="${Notice.ntcno }"/></div>
-			            <div class="n_title"><c:out value="${Notice.ntctitle }"/></div>
-			            <div class="n_date"><c:out value="${Notice.ntcdate }"/></div>
+                     <div class="n_title"><c:out value="${Notice.ntctitle }"/></div>
+                     <div class="n_date"><c:out value="${Notice.ntcdate }"/></div>
                     </div>
                     <div class="n_content"><div class="c_detail"><c:out value="${Notice.ntccontent }"/></div></div>
                 </div><!-- brd_body  -->
@@ -63,6 +64,6 @@
                 93-23, Yangcheon-ro 67-gil, Gangseo-gu, Seoul, Republic of Korea
             </p>
         </div> -->
-	</div>
+   </div>
 </body>
 </html>

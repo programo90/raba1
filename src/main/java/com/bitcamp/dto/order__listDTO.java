@@ -1,5 +1,7 @@
 package com.bitcamp.dto;
 
+import java.util.List;
+
 public class order__listDTO {
 
 	private int p_no;
@@ -35,7 +37,14 @@ public class order__listDTO {
 	private String orderstatus;
 	private String payuname;
 	private String cashreceipts;
+	private BoardAttachVO imgvo;
 	
+	public BoardAttachVO getImgvo() {
+		return imgvo;
+	}
+	public void setImgvo(BoardAttachVO imgvo) {
+		this.imgvo = imgvo;
+	}
 	public String getCashreceipts() {
 		return cashreceipts;
 	}

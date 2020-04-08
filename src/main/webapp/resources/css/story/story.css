@@ -1,4 +1,29 @@
 @charset "UTF-8";
+.banner_inner{
+    height: 450px;
+    background-image:url(/resources/img/bg%20ba5.jpg);
+    /*background-position: center -55px; */
+    background-repeat: no-repeat; 
+    background-size: cover;
+} 
 .story{
+	font-size:15px;
+	color:#555;
+} 
+.storysubtitle{
+	margin-bottom:10px;
+}
+.storyimg{
+	margin: 20px auto;
+    text-align: center;
+}
+.storyimg > img{
+	width:75%;
+}
+/* mediaquerie */
+@media screen and (max-width: 414px) { 
+	.story{
+		padding: 10px;
+	}
 	
 }

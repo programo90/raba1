@@ -41,7 +41,6 @@
                         <div class="managergrant"><span>회원등급</span></div>
                     </div>
                     <c:forEach var="item" items="${list}">
-                    <form method="post" action="adminorderupresult/${item.oderno}">
                     <input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
                     <div class="membermanagername2">
                     	<div class="managernick2"><span>${item.userid }</span></div>
@@ -56,7 +55,6 @@
                         							</select></div>
                         <div class="managergrant2"><input type="submit" value="수정"></div>
                     </div>
-                    </form>
                     </c:forEach>
                 </div>
                   <div class="membermanagersearch3">

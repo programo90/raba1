@@ -20,5 +20,7 @@ public interface CartMapper {
 
 	void deleteCno(String cno);
 
+	int getpno(int cno);
+
 	
 }

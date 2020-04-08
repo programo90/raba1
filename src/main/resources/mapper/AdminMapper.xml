@@ -161,7 +161,7 @@
 </select>
 
 <select id="goods_info2" resultMap="detail_goodsDTO">
-  	SELECT pname, price, uploadPath, gt.pno
+  	SELECT pname, price, gt.pno
 	FROM GoodsTable gt LEFT JOIN GoodsImageTable git ON gt.pno = git.pno
 	WHERE gt.pno = #{pno}
 </select>

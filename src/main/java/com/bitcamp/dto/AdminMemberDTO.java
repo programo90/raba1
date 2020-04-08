@@ -11,7 +11,15 @@ public class AdminMemberDTO {
 	private String address2;
 	private String address3;
 	private String username;
+	private String auth;
 	
+	
+	public String getAuth() {
+		return auth;
+	}
+	public void setAuth(String auth) {
+		this.auth = auth;
+	}
 	public String getUsername() {
 		return username;
 	}

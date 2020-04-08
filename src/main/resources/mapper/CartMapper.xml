@@ -50,4 +50,10 @@
 		where cno = #{cno}
 	</delete>
   
+  
+  	<select id="getpno" parameterType="int" resultType="int">
+  		select pno
+  		from CartTable
+  		where cno=#{cno}
+  	</select>
   </mapper>

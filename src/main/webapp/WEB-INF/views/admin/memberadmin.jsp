@@ -5,10 +5,35 @@
  <html>
  <head>
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <title>Insert title here</title>
+ <title>B.A. Admin Member</title>
  <link rel="stylesheet" href="/resources/css/admin/adminmembermanager.css">
  <script>
  document.getElementsByClassName('adminnav')[7].style.backgroundColor="#e8e8e8";
+ 
+ document.addEventListener("DOMContentLoaded",function(){
+	   
+	   /* 판매상태  */
+	   
+	   var optioncheck = document.getElementsByClassName("optioncheck");
+	   
+	   for(var i = 0 ; i<optioncheck.length; i++ ){
+		 var tempsel = optioncheck[i]; 
+	      var pstate = tempsel.previousElementSibling.value;
+	      
+	      for(var j = 0 ; j < tempsel.options.length; j++){
+	    	  
+	    	  if(pstate == tempsel.options[j].value){
+	    		
+	    		  tempsel.options[j].selected =true;
+	    		  
+	    	  }
+	    	  
+	      }
+	      
+	   }//option check for 문
+	   
+	});
+ 
  </script>
  </head>
  <body>
@@ -41,20 +66,26 @@
                         <div class="managergrant"><span>회원등급</span></div>
                     </div>
                     <c:forEach var="item" items="${list}">
+                    <form action="/changeAuth" method="post">
                     <input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}" />
                     <div class="membermanagername2">
+                    	<input type="hidden" name="userid" value="${item.userid}"> 
                     	<div class="managernick2"><span>${item.userid }</span></div>
                     	<div class="membermanagerbtn2">${item.username }</div>
                         <div class="manageremail2"><span>${item.useremail }</span></div>
                         <div class="managerphone2"><span>${item.phone }</span></div>
                         <div class="managerhire2"><span>${item.joindate }</span></div>
-                        <div class="managergrant2"><select name="auth" >
-                        							<option value="" >멤버</option>
-                        							<option value="">호스트</option>
-                        							<option value="">관리자</option>
-                        							</select></div>
+                        <div class="managergrant2">
+                        	<input type="hidden" value="${item.auth}">
+                        	<select name="auth" class="optioncheck">
+                        			<option value="ROLE_MEMBER" class="option1">멤버</option>
+                        			<option value="ROLE_HOST"class="option1">호스트</option>
+                        			<option value="ROLE_ADMIN" class="option1">관리자</option>
+                        	</select>
+                        </div>
                         <div class="managergrant2"><input type="submit" value="수정"></div>
                     </div>
+                    </form>
                     </c:forEach>
                 </div>
                   <div class="membermanagersearch3">

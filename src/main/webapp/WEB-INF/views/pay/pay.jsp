@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-<title>Insert title here</title>
+<title>B.A. Pay</title>
 <link rel="stylesheet" href="/resources/css/pay/pay.css">
 <link rel="stylesheet" href="/resources/css/pay/pay2.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -21,8 +21,6 @@
 	$(document).ready(
 			function() {
 
-				//검색하고 나서 결과를 보여줄때 검색 조건을 그대로 노출
-				//if("${serviceType}" == "sports"){ //serviceType 이 sport 일 경우 셋팅
 				if ("카드결제" == "카드결제") {
 
 					//라디오 버튼 값으로 선택
@@ -105,6 +103,37 @@
 				        jQuery(this).text().format()
 				    );
 				});
+					// Handler when the DOM is fully loaded
+					
+						var img_uuid = document.getElementsByClassName("img_uuid");
+						var img_fileName = document.getElementsByClassName("img_fileName");
+						var img_uploadPath = document.getElementsByClassName("img_uploadPath");
+						var img_fileType = document.getElementsByClassName("img_fileType");
+						
+						var goods_img = document.getElementsByClassName("paycartimg2");
+						
+						
+						
+						for(var i =0 ; i < goods_img.length; i++){
+							
+							var str = "";
+							
+							var uuid = img_uuid[i].value;
+							var fileName = img_fileName[i].value;
+							var uploadPath = img_uploadPath[i].value;
+							var fileType = img_fileType[i].value;
+							
+							var fileCallPath = encodeURIComponent(uploadPath+"/s_"+uuid+"_"+fileName);
+							
+							console.log("fileCallPath" +fileCallPath);
+							
+							str += "<div class='goods_img' data-path='"+uploadPath+"' data-uuid='"+uuid+"' data-filename='"+fileName+"' data-type='"+fileType+"' >";
+							str += "<img src='/display?fileName="+fileCallPath+"' alt='"+fileName+"'>";
+							str += "</div>";
+							
+							goods_img[i].innerHTML=str;
+							
+						}
 			});
 </script>
 </head>
@@ -142,8 +171,8 @@
 				</div>
 				<c:forEach var="Goodslist" items="${goods}">
 					<div class="paycartlist">
-						<div class="paycartimg">
-							<span>이미지</span>
+						<div class="paycartimg2">
+							
 						</div>
 						<div class="paygoods">
 							<span>${Goodslist.p_name }</span>
@@ -323,6 +352,12 @@
 				될 수 있습니다.)</p>
 			<p class="comment2">현금영수증이나 세금계산서 중 하나만 발행 가능 합니다.</p>
 		</div>
+		<c:forEach var="Imagelist" items="${imglist }">
+				<input type="hidden" class="img_uuid" value="${Imagelist.uuid }">
+				<input type="hidden" class="img_uploadPath" value="${Imagelist.uploadPath }">
+				<input type="hidden" class="img_fileName" value="${Imagelist.fileName }">
+				<input type="hidden" class="img_fileType" value="${Imagelist.fileType }">
+		</c:forEach>
 	</div>
 	<script>
 		$("#check_module").click(function() {

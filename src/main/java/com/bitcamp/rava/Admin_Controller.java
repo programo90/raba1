@@ -128,4 +128,12 @@ public class Admin_Controller {
 		return "admin/admin";
 	}
 	
+	@RequestMapping("/changeAuth")
+	public String changeAuth(AdminMemberDTO dto)
+	{
+		System.out.println();
+		Service.changeauth(dto);
+		return "redirect:/adminmember";
+	}
+	
 }

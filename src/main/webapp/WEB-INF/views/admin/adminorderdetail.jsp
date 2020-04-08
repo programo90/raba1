@@ -5,7 +5,7 @@
  <html>
  <head>
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <title>Insert title here</title>
+ <title>B.A. Admin Order</title>
  <link rel="stylesheet" href="/resources/css/mypage/style.css">
  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
@@ -35,7 +35,7 @@ document.getElementsByClassName('adminnav')[5].style.backgroundColor="#e8e8e8";
 	            jQuery(this).text().format()
 	        );
 	    });
-		
+	   
 	});
 </script>
  <script src="/resources/js/goods/list_goods.js"></script>
@@ -169,7 +169,11 @@ document.getElementsByClassName('adminnav')[5].style.backgroundColor="#e8e8e8";
                                     
                                      <c:forEach var="goodsinfo" items="${goodslist}">
                                         <li class="flex items-center justify-between py-6 border-b border-gray-200 last:border-b-0 ">
-                                            <img src="/resources/img/mypage/product.png" alt="product" class="m-3 my-auto h-12 w-12 flex-shrink-0">
+                                         <input type="hidden" class="img_uuid" value="${goodsinfo.imgvo.uuid }">
+                                         <input type="hidden" class="img_uploadPath" value="${goodsinfo.imgvo.uploadPath }">
+                                         <input type="hidden" class="img_fileName" value="${goodsinfo.imgvo.fileName }">
+                                         <input type="hidden" class="img_fileType" value="${goodsinfo.imgvo.fileType }">
+                                            <div class="goods_img">	</div>
                                             <div class="px-3 py-2 w-full flex items-center justify-between leading-none xl:px-0">
                                                 <div class="truncate">
                                                     <p class="xl:w-32 truncate pb-2"> ${goodsinfo.p_name }</p> 
@@ -212,7 +216,40 @@ document.getElementsByClassName('adminnav')[5].style.backgroundColor="#e8e8e8";
                     </div>
                 </div>
             </div>
+
             </section>
         </div>
+        <script>
+        /* 이미지를 넣어줍니다  */
+		var img_uuid = document.getElementsByClassName("img_uuid");
+     var img_fileName = document.getElementsByClassName("img_fileName");
+     var img_uploadPath = document.getElementsByClassName("img_uploadPath");
+     var img_fileType = document.getElementsByClassName("img_fileType");
+     
+     var goods_img = document.getElementsByClassName("goods_img");
+     
+     
+     
+     for(var i =0 ; i < goods_img.length; i++){
+        
+        var str = "";
+        
+        var uuid = img_uuid[i].value;
+        var fileName = img_fileName[i].value;
+        var uploadPath = img_uploadPath[i].value;
+        var fileType = img_fileType[i].value;
+        
+        var fileCallPath = encodeURIComponent(uploadPath+"/s_"+uuid+"_"+fileName);
+        
+        console.log("fileCallPath" +fileCallPath);
+        
+        str += "<div data-path='"+uploadPath+"' data-uuid='"+uuid+"' data-filename='"+fileName+"' data-type='"+fileType+"' >";
+        str += "<img src='/display?fileName="+fileCallPath+"' alt='"+fileName+"' class='m-3 my-auto h-12 w-12 flex-shrink-0'>";
+        str += "</div>";
+        goods_img[i].innerHTML=str;
+        
+     }
+     /* END 이미지를 넣어줍니다  */
+        </script>
  </body>
  </html>

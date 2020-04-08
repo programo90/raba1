@@ -3,6 +3,7 @@ package com.bitcamp.service;
 import java.util.List;
 
 import com.bitcamp.dto.AdminMemberDTO;
+import com.bitcamp.dto.BoardAttachVO;
 import com.bitcamp.dto.CartDTO;
 import com.bitcamp.dto.CartListDTO;
 import com.bitcamp.dto.GoodsDTO;
@@ -17,5 +18,7 @@ public interface PayService {
 
 	List<GoodsDTO> goodsdate(Integer[] cno);
 
-	int insertOrder(OrderDTO Data);	
+	int insertOrder(OrderDTO Data);
+
+	List<BoardAttachVO> selectimg(Integer[] cno);	
 }

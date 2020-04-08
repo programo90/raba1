@@ -28,4 +28,6 @@ public interface AdminService {
 
 	Login__MemberVO userinfo(String userid);
 
+	void changeauth(AdminMemberDTO dto);
+
 }

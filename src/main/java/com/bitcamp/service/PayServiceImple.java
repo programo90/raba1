@@ -5,16 +5,21 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bitcamp.dto.AdminMemberDTO;
+import com.bitcamp.dto.BoardAttachVO;
 import com.bitcamp.dto.CartDTO;
 import com.bitcamp.dto.CartListDTO;
 import com.bitcamp.dto.GoodsDTO;
 import com.bitcamp.dto.OrderDTO;
+import com.bitcamp.mapper.BoardAttachMapper;
+import com.bitcamp.mapper.CartMapper;
+import com.bitcamp.mapper.GoodsMapper;
 import com.bitcamp.mapper.PayMapper;
 
 import lombok.extern.log4j.Log4j;
@@ -25,6 +30,15 @@ public class PayServiceImple implements PayService{
 
 	@Inject
 	private PayMapper paymapper;
+	
+	@Autowired
+	private CartMapper cartmapper;
+	
+	@Autowired
+	private GoodsMapper goodsmapper;
+	
+	@Autowired
+	private BoardAttachMapper attachmapper;
 
 
 	@Transactional(rollbackFor= {Exception.class}, propagation=Propagation.REQUIRED, isolation=Isolation.DEFAULT)
@@ -101,6 +115,30 @@ public class PayServiceImple implements PayService{
 	}*/
 		
 		return paymapper.orderinsert2(Data);
+	}
+
+
+	@Override
+	public List<BoardAttachVO> selectimg(Integer[] cno) {
+		
+		List<BoardAttachVO> vo= new ArrayList<>();
+		
+		for(int i=0; i<cno.length;i++)
+		{
+			
+			int  su= cartmapper.getpno(cno[i]);
+			
+			String pname =  goodsmapper.find_pname(su);
+			
+			List<GoodsDTO> dto = goodsmapper.select_pno(pname);
+			
+			int pno = dto.get(0).getP_no();
+			
+			vo.add(attachmapper.pno_image(pno));
+			
+		}
+		
+		return vo;
 	}
 
 }

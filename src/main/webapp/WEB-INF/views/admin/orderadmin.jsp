@@ -6,7 +6,7 @@
  <html>
  <head>
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <title>Insert title here</title>
+ <title>B.A. Admin Order</title>
  <link rel="stylesheet" href="/resources/css/admin/adminorder.css">
  <script>
  document.getElementsByClassName('adminnav')[5].style.backgroundColor="#e8e8e8";

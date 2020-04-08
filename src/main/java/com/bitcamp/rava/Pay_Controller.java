@@ -1,10 +1,8 @@
 package com.bitcamp.rava;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 
 import java.util.List;
 
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bitcamp.dto.AdminMemberDTO;
+import com.bitcamp.dto.BoardAttachVO;
 import com.bitcamp.dto.CartListDTO;
 import com.bitcamp.dto.GoodsDTO;
 import com.bitcamp.dto.OrderDTO;
 import com.bitcamp.service.PayService;
 
-import lombok.extern.log4j.Log4j;
 
 @Controller
 public class Pay_Controller {
@@ -42,9 +40,13 @@ public class Pay_Controller {
 		
 		List<GoodsDTO> goods = payservice.goodsdate(cno);
 		
+		List<BoardAttachVO> imglist = payservice.selectimg(cno);
+		
 		AdminMemberDTO user = payservice.user(userid);
 		
 		model.addAttribute("user",user);
+		
+		model.addAttribute("imglist", imglist);
 		
 		model.addAttribute("totalprice", totalprice);
 		

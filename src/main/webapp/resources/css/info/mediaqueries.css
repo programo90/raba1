@@ -1,19 +1,16 @@
 @charset "UTF-8";
 @media screen and (max-width: 414px) { 
 	
-.enter_start label {   
-	
-    display: none;
-}
+#map{width: 99%;}
 
-#origin-input {
-    width: 200px;
-    text-align: center;
-    margin-left: 25%;
-}
-	
-.n_no{
-	
-	display : none;
-}	
+.enter_start label{display: none;}
+
+.enter_start{width: 98%; height: 30px;}
+
+.n_no{display: none;}
+
+.n_date{display: none;}
+
+.notice{width: 96%;
+    padding-left: 2%;}
 }

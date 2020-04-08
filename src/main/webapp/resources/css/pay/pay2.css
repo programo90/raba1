@@ -39,7 +39,9 @@ h2{display: none;}
 
 .paypritotal{display: none;}
 
-.paycartimg{width:20%; !important}
+.paycartimg{width:20%;}
+
+.paycartimg2{width:20%;}
 
 .paypri{width: 17%; !important}
 

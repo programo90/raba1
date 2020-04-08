@@ -63,6 +63,70 @@
 	</div>
 <!-- END 모달html(현금영수증 신청)  -->
 
+        <!-- (모달 html 시작)모달모달모달모달 @일진 -->
+	<div class="main-modal fixed w-full h-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster" style="background: rgba(0,0,0,.7);">
+		<div class="modal-container flex w-full mx-auto justify-center px-4 sm:px-0 z-50 sm:w-3/4 xl:w-1/2 ">
+            <div class="modal-content flex rounded-lg shadow-lg w-full  bg-white sm:mx-0" style="height: 500px">
+                <div class="flex flex-col w-full md:w-1/2 p-4">
+                    <div class="flex flex-col flex-1 justify-center  m-0 mb-8">
+                        <div class="w-full mt-4">
+                            <form  class="form-horizontal w-3/4 mx-auto" id="frm" method="POST" >
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+								<p class="text-gray-800 font-4xl font-extrabold">Customer information</p>
+								<div class="">
+								  <label class="block text-sm text-gray-600" for="username">Name</label>
+								  <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs" id="username" name="username" type="text" required="" placeholder="Your Name"  value="${userinfo.username }">
+								</div>
+								<div class="mt-2">
+								  <label class="block text-sm text-gray-600 " for="useremail">Email</label>
+								  <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded text-xs" id="useremail" name="useremail" type="text" required="" placeholder="Your Email"  value="${userinfo.useremail }">
+								</div>
+								<div class="mt-2">
+									<label class="block text-sm text-gray-600" for="phone">Phone number</label>
+									<input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs" id="phone" name="phone" type="text"  placeholder="Your phone number"  value="${userinfo.phone }">
+								  </div>
+								<div class="mt-2">
+								  <label class=" block text-sm text-gray-600" for="addr2">Address</label>
+								  <input onclick="execPostCode();" class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded text-xs" id="addr2" name="addr2" type="text"  placeholder="도로명 주소"  value="${userinfo.address2 }">
+								</div>
+								<div class="mt-2">
+								  <label class="hidden text-sm block text-gray-600" for="addr3">상세 주소</label>
+								  <input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded text-xs" id="addr3" name="addr3" type="text" placeholder="상세주소"  value="${userinfo.address3 }">
+								</div>
+								<div class="inline-block mt-2 w-1/2 pr-1">
+								  <label class="hidden block text-sm text-gray-600" for="addr1">우편번호</label>
+								  <input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded text-xs" id="addr1" name="addr1" type="text"  placeholder="우편번호"  value="${userinfo.address }">
+								</div>
+								<div class="text-center mt-2">
+									<div class="no-underline hover:underline text-blue-dark text-xs text-gray-600">
+										프로필 사진은 카카오에서 변경이 가능합니다.
+									</div>
+								</div>
+								<div class="mt-3 flex">
+								  <button class="px-2 py-1 mx-auto text-white font-normal tracking-wider bg-gray-700 hover:bg-gray-800 rounded text-sm" onclick="updateData()">수정 완료</button> 
+								</div>
+								
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:block md:w-1/2 rounded-r-lg" style="background: url('https://images.unsplash.com/photo-1515965885361-f1e0095517ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3300&q=80'); background-size: cover; background-position: center center;">
+                    <div class="flex justify-end items-center pb-3">
+                        <div class="modal-close cursor-pointer z-50">
+                            <svg class="fill-white text-2xl p-2  " xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 18 18">
+                                <path
+                                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+	<!-- (모달 html 끝)모달모달모달모달 @일진 -->
+	
 
 <!-- 모달(배송정보 수정 신청)  -->
 	<div class="main-modal2 fixed w-full h-full inset-0 z-50 overflow-hidden flex justify-center items-center animated2 fadeIn2 faster"
@@ -134,47 +198,58 @@
 <!-- END 모달(배송정보 수정 신청)  -->
 
 
-    <div class="mt-2">
-        <div class="bg-gray-50">
-            <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
-              <h2 class=" text-4xl leading-9 font-extrabold text-gray-900 sm:text-5xl sm:leading-none abc">
-               회원님 안녕하세요!
-                <br />
-                <span class="text-indigo-600">BREAK AWAY</span>
-              </h2>
-              <div class="mt-8 flex lg:mr-0 inline-flex lg:flex-shrink-0 lg:mt-0">
-                <div class="inline-flex rounded-md shadow">
-                  <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-                    주행거리 확인
-                  </a>
-                </div>
-                <div class="ml-3 inline-flex rounded-md shadow">
-                  <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-white hover:text-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-                    라이딩 일정 확인
-                  </a>
+        <div class="mt-2">
+            <div class="bg-gray-50">
+                <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+                  <h2 class="text-4xl leading-9 font-extrabold text-gray-900 sm:text-5xl sm:leading-none">
+                		${userinfo.username}님 안녕하세요! 
+                    <br />
+                    <span class="text-teal-600">BREAK AWAY</span>
+                  </h2>
+                  <div class="mt-8 flex lg:mr-0 inline-flex lg:flex-shrink-0 lg:mt-0">
+                    <div class="inline-flex rounded-md shadow">
+                      <a href="/tourmypage" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                        주행거리 확인
+                      </a>
+                    </div>
+                    <div class="ml-3 inline-flex rounded-md shadow">
+                      <a href="/tourlist" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-teal-600 bg-white hover:text-teal-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                        라이딩 일정 확인
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-    </div>
-    <div class="w-full max-w-screen-xl mx-auto px-6">
-        <div class="lg:flex  -mx-6">
-            <div class="hidden bg-white ml-5  lg:w-2/12 lg:grid ">
+        </div>
+        <div class="w-full max-w-screen-xl mx-auto px-6">
+            <div class="lg:flex  -mx-6">
+              <div class="hidden bg-white ml-5  lg:w-2/12 lg:grid ">
                 <ul class="list-reset">
                     <li class="inline-block mr-10 ">
-                        <a href="#" class="block p-4 text-gray-800 font-normal hover:text-purple-600 ">주문 내역</a>
+                        <a href="/mypage" class="block p-4 text-gray-800 font-bold hover:text-gray-600 hover:font-bold ">주문 내역</a>
                     </li>
                     <li class="inline-block mr-10  ">
-                        <a href="#" class="block p-4 text-gray-800 font-normal hover:text-purple-600">위시 리스트</a>
+                        <a href="/wishlist" class="block p-4 text-gray-800 font-normal hover:text-gray-600 hover:font-bold">위시 리스트</a>
                     </li>
                     <li class="inline-block mr-10 ">
-                        <a href="#" class="block p-4 text-gray-800 font-normal hover:text-purple-600">주행 거리</a>
+                        <a href="/tourmypage" class="block p-4 text-gray-800 font-normal hover:text-gray-600 hover:font-bold">투어 일정 확인</a>
                     </li>
+                    
                     <li class="inline-block mr-10 ">
-                        <a href="#" class="block p-4 text-gray-800 font-normal hover:text-purple-600">정보 수정</a>
+                        <a href="#" onclick="openModal()" class="block p-4 text-gray-800 font-normal hover:text-gray-600 hover:font-bold">정보 수정</a>
                     </li>
+                    <sec:authorize access="hasRole('ROLE_HOST')"> 
+	                    <button type="button" class="mt-6 ml-1 bg-teal-600 text-white p-2 rounded  leading-none flex items-center">
+          					투어 관리	
+          					<span class="bg-white p-1 rounded text-teal-600 text-xs ml-2">
+          					 host
+         					</span>
+      					</button>
+					</sec:authorize>
+                    
                 </ul>
             </div>
+                
             <div class="w-full block lg:-mt-8 lg:flex lg:w-10/12 min-h-screen antialiased bg-white">
                 <div class="lg:w-1/2">
                     <div class="w-100% m-5 bg-white shadow overflow-hidden sm:rounded-lg">
@@ -339,7 +414,14 @@
                                     
                                      <c:forEach var="goodsinfo" items="${goodslist}">
                                         <li class="flex items-center justify-between py-6 border-b border-gray-200 last:border-b-0 ">
-                                            <img src="/resources/img/mypage/product.png" alt="product" class="m-3 my-auto h-12 w-12 flex-shrink-0">
+                                            	<!-- 상품의 이미지를 넣어줍니다.  -->
+			                          		<input type="hidden" class="img_uuid" value="${goodsinfo.imgvo.uuid }">
+			                          		<input type="hidden" class="img_uploadPath" value="${goodsinfo.imgvo.uploadPath }">
+			                          		<input type="hidden" class="img_fileName" value="${goodsinfo.imgvo.fileName }">
+			                          		<input type="hidden" class="img_fileType" value="${goodsinfo.imgvo.fileType }">
+			                          		<div class="goods_img " > </div> <!-- 이미지가 들어갑니다.  -->
+			                               		
+			                               		
                                             <div class="px-3 py-2 w-full flex items-center justify-between leading-none xl:px-0">
                                                 <div class="truncate">
                                                     <p class="xl:w-32 truncate pb-2"> ${goodsinfo.p_name }</p> 
@@ -416,41 +498,6 @@
 		}
 		/* END 모달 스크립트 (배송정보 수정 신청)  */ 
 		
-		/* 모달 스크립트 (현금영수증 신청)  */ 
-		const modal3 = document.querySelector('.main-modal3');
-		const closeButton3 = document.querySelectorAll('.modal-close3');
-
-		const modalClose3 = () => {
-			modal3.classList.remove('fadeIn3');
-			modal3.classList.add('fadeOut3');
-			setTimeout(() => {
-				modal3.style.display = 'none';
-			}, 500);
-		}
-
-		const openModal3 = () => {
-			modal3.classList.remove('fadeOut3');
-			modal3.classList.add('fadeIn3');
-			modal3.style.display = 'flex';
-		}
-
-		for (let i = 0; i < closeButton3.length; i++) {
-
-			var elements = closeButton3[i];
-
-			elements.onclick = (e) => modalClose3();
-
-			modal3.style.display = 'none';
-
-			window.onclick = function (event) {
-				if (event.target == modal3) { modalClose3(); modalClose2();} 
-				else if (event.target == modal2) { modalClose3(); modalClose2();}
-			}
-			/* 모달창을 닫아줄 때 사용합니다. if문을 사용해서 페이지에 있는 모든 modal창의 function을 체크해서 닫아주어야합니다.   */
-			
-		}
-		/* END 모달 스크립트 (현금영수증 신청) */
-		
 			/* ajax script */
 			function updateCashReceipts(){
 				var oderno = document.getElementById('oderno').value;
@@ -525,6 +572,174 @@
             });
     		/* END 콤마를찍어줍니다  class에 format-money를 작성해주세요 */
 			
+	/* <!-- (모달 script 시작)모달모달모달모달 @일진 --> */
+	const modal = document.querySelector('.main-modal');
+	const closeButton = document.querySelectorAll('.modal-close');
+
+	const modalClose = () => {
+		modal.classList.remove('fadeIn');
+		modal.classList.add('fadeOut');
+		setTimeout(() => {
+			modal.style.display = 'none';
+		}, 500);
+	}
+
+	const openModal = () => {
+		modal.classList.remove('fadeOut');
+		modal.classList.add('fadeIn');
+		modal.style.display = 'flex';
+	}
+
+	for (let i = 0; i < closeButton.length; i++) {
+
+		const elements = closeButton[i];
+
+		elements.onclick = (e) => modalClose();
+
+		modal.style.display = 'none';
+
+		window.onclick = function (event) {
+			if (event.target == modal) modalClose();
+		}
+	}
+	/* <!-- / (모달 script 끝)모달모달모달모달 @일진 --> */
+	
+	/* <!-- 도로명 script --> */
+		function execPostCode() {
+		    new daum.Postcode({
+		        oncomplete: function(data) {
+		           // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+		           // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+		           // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+		           var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+		           var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+		           // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+		           // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+		           if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+		               extraRoadAddr += data.bname;
+		           }
+		           // 건물명이 있고, 공동주택일 경우 추가한다.
+		           if(data.buildingName !== '' && data.apartment === 'Y'){
+		              extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+		           }
+		           // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+		           if(extraRoadAddr !== ''){
+		               extraRoadAddr = ' (' + extraRoadAddr + ')';
+		           }
+		           // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+		           if(fullRoadAddr !== ''){
+		               fullRoadAddr += extraRoadAddr;
+		           }
+
+		           // 우편번호와 주소 정보를 해당 필드에 넣는다.
+		           console.log(data.zonecode);
+		           console.log(fullRoadAddr);
+		           
+		           
+		           $("[name=addr1]").val(data.zonecode);
+		           $("[name=addr2]").val(fullRoadAddr);
+		           
+		           /* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
+		           document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
+		           document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
+		       }
+		    }).open();
+		}
+		/* <!-- END 도로명 script --> */
+		/* <!-- ajax script --> */
+function updateData(){
+  	var userid = document.getElementById('userid').value;
+  	var username = document.getElementById('username').value;
+	var useremail = document.getElementById('useremail').value;
+	var phone = document.getElementById('phone').value;
+	var address = document.getElementById('addr1').value;
+	var address2 = document.getElementById('addr2').value;
+	var address3 = document.getElementById('addr3').value;
+	var tempdata = {"userid":userid, "username":username , "useremail":useremail , "phone":phone, "address":address , "address2":address2 , "address3":address3 }; 
+	$.ajax({
+			url : '/updateInfo'
+			, data : tempdata
+			, dataType: 'json'
+			, contentType: 'application/json;charset=utf-8'
+			, success : function(data){
+				alert("정보수정을 완료했습니다"); 
+			}
+			, error : function(data){
+				alert("에러 : 관리자에게 문의하세요");
+			}
+	
+		});
+	};
+			/* <!-- END ajax script --> */
+    		/* 이미지를 넣어줍니다  */
+    		var img_uuid = document.getElementsByClassName("img_uuid");
+         var img_fileName = document.getElementsByClassName("img_fileName");
+         var img_uploadPath = document.getElementsByClassName("img_uploadPath");
+         var img_fileType = document.getElementsByClassName("img_fileType");
+         
+         var goods_img = document.getElementsByClassName("goods_img");
+         
+         
+         
+         for(var i =0 ; i < goods_img.length; i++){
+            
+            var str = "";
+            
+            var uuid = img_uuid[i].value;
+            var fileName = img_fileName[i].value;
+            var uploadPath = img_uploadPath[i].value;
+            var fileType = img_fileType[i].value;
+            
+            var fileCallPath = encodeURIComponent(uploadPath+"/s_"+uuid+"_"+fileName);
+            
+            console.log("fileCallPath" +fileCallPath);
+            
+            str += "<div data-path='"+uploadPath+"' data-uuid='"+uuid+"' data-filename='"+fileName+"' data-type='"+fileType+"' >";
+            str += "<img src='/display?fileName="+fileCallPath+"' alt='"+fileName+"' class='m-3 my-auto h-12 w-12 flex-shrink-0'>";
+            str += "</div>";
+            goods_img[i].innerHTML=str;
+            
+         }
+         /* END 이미지를 넣어줍니다  */
+    		
+		/* 모달 스크립트 (현금영수증 신청)  */ 
+		const modal3 = document.querySelector('.main-modal3');
+		const closeButton3 = document.querySelectorAll('.modal-close3');
+
+		const modalClose3 = () => {
+			modal3.classList.remove('fadeIn3');
+			modal3.classList.add('fadeOut3');
+			setTimeout(() => {
+				modal3.style.display = 'none';
+			}, 500);
+		}
+
+		const openModal3 = () => {
+			modal3.classList.remove('fadeOut3');
+			modal3.classList.add('fadeIn3');
+			modal3.style.display = 'flex';
+		}
+
+		for (let i = 0; i < closeButton3.length; i++) {
+
+			var elements = closeButton3[i];
+
+			elements.onclick = (e) => modalClose3();
+
+			modal3.style.display = 'none';
+
+			window.onclick = function (event) {
+				if (event.target == modal3) { modalClose3(); modalClose2(); modalClose();} 
+				else if (event.target == modal2) { modalClose3(); modalClose2(); modalClose();}
+				else if (event.target == modal) { modalClose3(); modalClose2(); modalClose();}
+			}
+			/* 모달창을 닫아줄 때 사용합니다. if문을 사용해서 페이지에 있는 모든 modal창의 function을 체크해서 닫아주어야합니다.   */
+			
+		}
+		/* END 모달 스크립트 (현금영수증 신청) */
+		
 	</script>
     
 </body>

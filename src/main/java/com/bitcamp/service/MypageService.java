@@ -8,7 +8,7 @@ import com.bitcamp.dto.order__listDTO;
 import com.bitcamp.security.Login__MemberVO;
 
 public interface MypageService {
-	List<GoodsDTO> wishlist(String userid);
+	List<order__listDTO> wishlist(String userid);
 	Login__MemberVO userinfo(String userid);
 	int updateInfo(Login__MemberVO vo);
 	List<order__listDTO> orderlist(String userid);

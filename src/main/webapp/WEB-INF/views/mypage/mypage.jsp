@@ -41,16 +41,16 @@
                   <h2 class="text-4xl leading-9 font-extrabold text-gray-900 sm:text-5xl sm:leading-none">
                 		${userinfo.username}님 안녕하세요! 
                     <br />
-                    <span class="text-indigo-600">BREAK AWAY</span>
+                    <span class="text-teal-600">BREAK AWAY</span>
                   </h2>
                   <div class="mt-8 flex lg:mr-0 inline-flex lg:flex-shrink-0 lg:mt-0">
                     <div class="inline-flex rounded-md shadow">
-                      <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                      <a href="/tourmypage" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
                         주행거리 확인
                       </a>
                     </div>
                     <div class="ml-3 inline-flex rounded-md shadow">
-                      <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-white hover:text-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                      <a href="/tourlist" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-teal-600 bg-white hover:text-teal-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
                         라이딩 일정 확인
                       </a>
                     </div>
@@ -63,23 +63,23 @@
               <div class="hidden bg-white ml-5  lg:w-2/12 lg:grid ">
                 <ul class="list-reset">
                     <li class="inline-block mr-10 ">
-                        <a href="/mypage" class="block p-4 text-gray-800 font-bold hover:text-purple-600 hover:font-bold ">주문 내역</a>
+                        <a href="/mypage" class="block p-4 text-gray-800 font-bold hover:text-gray-600 hover:font-bold ">주문 내역</a>
                     </li>
                     <li class="inline-block mr-10  ">
-                        <a href="/wishlist" class="block p-4 text-gray-800 font-normal hover:text-purple-600 hover:font-bold">위시 리스트</a>
+                        <a href="/wishlist" class="block p-4 text-gray-800 font-normal hover:text-gray-600 hover:font-bold">위시 리스트</a>
                     </li>
                     <li class="inline-block mr-10 ">
-                        <a href="#" class="block p-4 text-gray-800 font-normal hover:text-purple-600 hover:font-bold">주행 거리</a>
+                        <a href="/tourmypage" class="block p-4 text-gray-800 font-normal hover:text-gray-600 hover:font-bold">투어 일정 확인</a>
                     </li>
                     
                     <li class="inline-block mr-10 ">
-                        <a href="#" onclick="openModal()" class="block p-4 text-gray-800 font-normal hover:text-purple-600 hover:font-bold">정보 수정</a>
+                        <a href="#" onclick="openModal()" class="block p-4 text-gray-800 font-normal hover:text-gray-600 hover:font-bold">정보 수정</a>
                     </li>
                     <sec:authorize access="hasRole('ROLE_HOST')"> 
-	                    <button type="button" class="mt-6 ml-1 bg-blue-600 text-white p-2 rounded  leading-none flex items-center">
-          					투어 일정 관리	
-          					<span class="bg-white p-1 rounded text-blue-600 text-xs ml-2">
-          						4
+	                    <button type="button" class="mt-6 ml-1 bg-teal-600 text-white p-2 rounded  leading-none flex items-center">
+          					투어 관리	
+          					<span class="bg-white p-1 rounded text-teal-600 text-xs ml-2">
+          					 host
          					</span>
       					</button>
 					</sec:authorize>
@@ -139,7 +139,7 @@
 				                                       <a href="#" class="text-gray-800"> ${orderlist.p_name }</a>
 				                                     <div class="text-gray-400 text-sm"><span class="format-money">${orderlist.p_price }</span>원 / 1ea</div>
 				                                     <div class="mt-2">
-				                                       <a href="/orderdetail/${userid}/${orderlist.oderno}"
+				                                       <a href="/orderdetail/${orderlist.oderno}"
 				                                           class="mt-1 h-16 bg-gray-400 hover:bg-gray-500 text-white px-1 rounded-lg text-xs focus:outline-none focus:shadow-outline">
 				                                           주문서 보기
 				                                       </a>
@@ -191,6 +191,8 @@
             </div>
         </div>
         </div>
+        
+        
         <!-- (모달 html 시작)모달모달모달모달 @일진 -->
 	<div class="main-modal fixed w-full h-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster" style="background: rgba(0,0,0,.7);">
 		<div class="modal-container flex w-full mx-auto justify-center px-4 sm:px-0 z-50 sm:w-3/4 xl:w-1/2 ">

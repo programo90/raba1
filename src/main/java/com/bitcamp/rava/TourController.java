@@ -1,21 +1,16 @@
 package com.bitcamp.rava;
 
-import java.io.InputStream;
 import java.security.Principal;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.bitcamp.dto.HostDTO;
 import com.bitcamp.dto.TourApplyDTO;
@@ -23,15 +18,18 @@ import com.bitcamp.dto.TourDTO;
 import com.bitcamp.dto.TourMarkerDTO;
 import com.bitcamp.dto.TourPage;
 import com.bitcamp.dto.TourReplyDTO;
-import com.bitcamp.security.Login__AuthVO;
+import com.bitcamp.security.Login__MemberVO;
+import com.bitcamp.service.MypageService;
 import com.bitcamp.service.TourService;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 
 @Controller
 public class TourController {
 	
 	@Autowired
 	private TourService tourService;
+
+	@Autowired
+	private MypageService mypageservice;
 	
 	@RequestMapping(value = "/touradmin", method = RequestMethod.GET)
 	public String touradmin(@RequestParam(required=false, defaultValue="1") int currPage 
@@ -188,6 +186,10 @@ public class TourController {
 		List<TourDTO> list = tourService.tourUserList(userid);
 		model.addAttribute("list", list);
 		
+		Login__MemberVO vo = mypageservice.userinfo(userid); //정보수정 페이지에서 사용합니다.(1/2) 
+		model.addAttribute("userinfo", vo); //정보수정 페이지에서 사용합니다. (2/2)
+
+		
 		int totaldistance = 0;
 		for(TourDTO dto : list) {
 			if(dto.getTourstate()==2) {
@@ -213,6 +215,9 @@ public class TourController {
 	public String tourhostpage(Model model,Principal principal) {
 		String userid = principal.getName();
 
+		Login__MemberVO vo = mypageservice.userinfo(userid); //정보수정 페이지에서 사용합니다.(1/2) 
+		model.addAttribute("userinfo", vo); //정보수정 페이지에서 사용합니다. (2/2)
+		
 		HostDTO hostdto = tourService.hostDetailById(userid);
 		List<TourDTO> list = tourService.tourHostList(hostdto.getHostno());
 		

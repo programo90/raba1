@@ -36,20 +36,21 @@ public class Mypage_Controller {
 		List<order__listDTO> list = service.orderlist(userid);
 		model.addAttribute("orderinfo", list);
 		
-		String realuploadpath = request.getSession().getServletContext().getRealPath("path");
-		System.out.println(realuploadpath);
 		
 		return "mypage/mypage";
 	}
 	
 	
 	
-	@RequestMapping(value="/orderdetail/{userid}/{orderno}")
-	public String doOrderDetail(Model model, @PathVariable String userid, @PathVariable int orderno) {
+	@RequestMapping(value="/orderdetail/{orderno}")
+	public String doOrderDetail(Principal principal, Model model, @PathVariable int orderno) {
+		String userid = principal.getName();
 		Login__MemberVO vo = service.userinfo(userid);
 		model.addAttribute("userinfo", vo);
+		
 		List<order__listDTO> list =service.detail_orderlist(orderno);
 		model.addAttribute("goodslist", list);
+		
 		OrderDTO dto = service.orderdetail(orderno);
 		model.addAttribute("orderinfo", dto);
 		return "mypage/orderdetail";
@@ -60,11 +61,15 @@ public class Mypage_Controller {
 	@RequestMapping(value = "/wishlist")
 	public String doWishlist(Principal principal, Model model) {
 		String userid = principal.getName();
-		List<GoodsDTO> wishlist = service.wishlist(userid);
+		List<order__listDTO> wishlist = service.wishlist(userid);
+		
+		Login__MemberVO vo = service.userinfo(userid);
+		model.addAttribute("userinfo", vo);
+		
 		int count = wishlist.size();
 		model.addAttribute("list", wishlist);
 		model.addAttribute("count", count);
-		System.out.println(count);
+		
 		return "mypage/wishlist";
 	}
 	

@@ -22,18 +22,57 @@
 	
 	
 	<security:http auto-config="true" use-expressions="true">
-		<security:intercept-url pattern="/login/all" access="permitAll" />
-		<security:intercept-url pattern="/login/member*" access="hasRole('ROLE_MEMBER')" />
-		<security:intercept-url pattern="/login/host*" access="hasRole('ROLE_HOST')" />
-		<!-- <security:intercept-url pattern="/login/member2" access="hasRole('ROLE_MEMBER')" 
-			/> -->
 		<security:intercept-url pattern="/tourdetail/**" access="hasRole('ROLE_MEMBER')" />
-		<security:intercept-url pattern="/mypage/**" access="hasRole('ROLE_MEMBER')" />
-		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
 		
-
-	
-
+		<security:intercept-url pattern="/mypage/**" access="hasRole('ROLE_MEMBER')" />
+		<security:intercept-url pattern="/orderdetail/**" access="hasRole('ROLE_MEMBER')" />
+		<security:intercept-url pattern="/wishlist/**" access="hasRole('ROLE_MEMBER')" />
+		
+		<!-- 태관씨 확인해주세요  -->
+		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/minorder/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/minorderdetail/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/minmember/**" access="hasRole('ROLE_ADMIN')" />
+		<!-- END 태관씨 확인해주세요  -->
+		
+		<!-- 도윤씨 확인해주세요  -->
+		<security:intercept-url pattern="/admin_goods_list/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/notice_list/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/goods_insert/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/goods_modify/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/notice_insert/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/notice_modify/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/cart/**" access="hasRole('ROLE_MEMBER')" />
+		<!-- END 도윤씨 확인해주세요  -->
+		<!-- 지모씨 확인해주세요  -->
+		<security:intercept-url pattern="/touradmin/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/tourhostpage/**" access="hasRole('ROLE_HOST')" />
+		<security:intercept-url pattern="/tourinsert/**" access="hasRole('ROLE_HOST')" />
+		<security:intercept-url pattern="/tourupdate/**" access="hasRole('ROLE_HOST')" />
+		<security:intercept-url pattern="/tourdelete/**" access="hasRole('ROLE_HOST')" />
+		<security:intercept-url pattern="/atourdelete/**" access="hasRole('ROLE_HOST')" />
+		
+		<security:intercept-url pattern="/tourmypage/**" access="hasRole('ROLE_MEMBER')" />
+		<security:intercept-url pattern="/tourdetail/**" access="hasRole('ROLE_MEMBER')" />
+		<!-- END 지모씨 확인해주세요  -->
+		<!-- 경민씨 확인해주세요  -->
+		<security:intercept-url pattern="/cafeadmin/**" access="hasRole('ROLE_HOST')" />
+		<security:intercept-url pattern="/delete/**" access="hasRole('ROLE_HOST')" />
+		<security:intercept-url pattern="/cafeadmininsert" access="hasRole('ROLE_HOST')" />
+		<security:intercept-url pattern="/modify/**" access="hasRole('ROLE_HOST')" />
+		<security:intercept-url pattern="/youtubeadmin/**" access="hasRole('ROLE_HOST')" />
+		<security:intercept-url pattern="/youtubeinsert/**" access="hasRole('ROLE_HOST')" />
+		<security:intercept-url pattern="/youtubedelete/**" access="hasRole('ROLE_HOST')" />
+		<security:intercept-url pattern="/youtubemodify/**" access="hasRole('ROLE_HOST')" />
+		<security:intercept-url pattern="/repairadmin/**" access="hasRole('ROLE_HOST')" />
+		<security:intercept-url pattern="/calinsert/**" access="hasRole('ROLE_HOST')" />
+		<security:intercept-url pattern="/calmodify/**" access="hasRole('ROLE_HOST')" />
+		<security:intercept-url pattern="/caldelete/**" access="hasRole('ROLE_HOST')" />
+		<!-- END 경민씨 확인해주세요  -->
+		
+		
+		
+		
 		<security:access-denied-handler error-page="/accessError" />
 		
 		<!-- <security:form-login /> 권한이 없는 페이지에 접근시 이동하는 페이지 경로를 설정해줍니다. -->

@@ -30,11 +30,28 @@ public class MypageServiceImple implements MypageService {
 	
 
 	@Override
-	public List<GoodsDTO> wishlist(String userid) {
-		
+	public List<order__listDTO> wishlist(String userid) {
+		List<order__listDTO> list0 = new ArrayList<order__listDTO>();
 		List<GoodsDTO> wishlist = mapper.wishlist(userid);
 		
-		return wishlist;
+		for(int i =0; i<wishlist.size(); i++) {
+			String p_name = wishlist.get(i).getP_name();
+			String p_price = ""+wishlist.get(i).getP_price();
+			List<GoodsDTO> goodsdto = goodsmapper.select_pno(p_name); // pname을 넣어주고 goodsdto를 받아옵니다. 그리고 사전에 orderdto에 list를 넣어줬습니다. List<BoardAttachVO> list;
+			int pno0 = goodsdto.get(0).getP_no(); //첫 번째pno를 받아왔습니다. 
+				
+				
+			order__listDTO dto = new order__listDTO();
+			dto.setImgvo(attachmapper.findByPno(pno0).get(0));  //list에 넣어줬습니다.
+			dto.setP_name(p_name);
+			dto.setP_price(p_price);
+			
+			list0.add(dto);
+			
+			 
+		}
+		
+		return list0;
 	}
 
 	
@@ -124,8 +141,11 @@ public class MypageServiceImple implements MypageService {
 				GoodsDTO dto = mapper.goods_info2(pno);
 				String p_img = dto.getP_img();
 				String p_name = dto.getP_name();
+				List<GoodsDTO> goodsdto = goodsmapper.select_pno(p_name); // pname을 넣어주고 goodsdto를 받아옵니다. 그리고 사전에 orderdto에 list를 넣어줬습니다. List<BoardAttachVO> list;
+				int pno0 = goodsdto.get(0).getP_no(); //첫 번째pno를 받아왔습니다.
 				
 				order__listDTO dto0 = new order__listDTO();
+				dto0.setImgvo(attachmapper.findByPno(pno0).get(0));  //list에 넣어줬습니다.
 				dto0.setP_price(p_price);
 				dto0.setP_img(p_img);
 				dto0.setP_name(p_name);

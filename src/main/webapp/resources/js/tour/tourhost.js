@@ -77,11 +77,11 @@ function relist(obj,tempdata, tempresult) {
 		,dataType : "json"
 		,contentType: "application/json;charset=utf-8"
 		,success:function(data) {
-			var result ='<tr><td colspan="5" style="width:100%; height:100px;">';
+			var result ='<tr><td colspan="5" style="width:100%;">';
 			result +='<div class="relistbox" style="padding:20px 60px; width:100%; height:100%;">';
 			$.each(data,function(index,item){
 				if(item.relevel==0){
-					result += '<p>' + item.username + ' | ';
+					result += '<p onclick="rereinsert(this,' + item.reorder + ')">' + item.username + ' | ';
 					result += item.recontent +'</p>';
 				} else {
 					result += '<p class="rerelist">' + item.username + ' | ';
@@ -102,6 +102,42 @@ function relist(obj,tempdata, tempresult) {
 		}
 	});
 
+}
+
+function reinsert(obj,order) {
+	/*var temptourno = document.getElementById('tourno').value;
+    var tempuserid = document.getElementById('userid').value;
+    var recontent = document.getElementById('recontent').value;
+	 
+    var tempdata = {"tourno":temptourno,"userid":tempuserid, "recontent":recontent,"reorder":order};
+
+	 
+	 $.ajax({
+		 url: '/tourreinsert'
+		,data : tempdata
+		,dataType : 'json'
+		,contentType: "application/json;charset=utf-8"
+		,success : function(data) {
+			
+			replaceReply(data);
+		}
+		,error : function(data) {
+			 console.log('reple insert error');
+		}
+		 
+	 });*/
+}
+
+
+function rereinsert(obj,order) {
+		$('#re_rebox').remove();
+		var result ='<div id="re_rebox" class="tourreple_list" style="padding: 30px"><form>';
+		 	result += '<textarea id="recontent" cols="100" rows="4" placeholder="내용을 입력하세요."></textarea>';
+		 	result += '<button id="resave_btn" type="button" onclick="reinsert(this,' + order + ')">저장</button>';
+		 	result += '</form></div>';
+		 	console.log($(obj).parent());
+		 	$(obj).parent().after(result); 
+	 //else if() 멤버
 }
 
 function changeState(tourno) {

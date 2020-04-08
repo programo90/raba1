@@ -65,3 +65,12 @@
 .cartpaybtn{padding:10px 50px; text-align: center; background-color: white; color: currentColor;  border: 1px solid black;  font-size: 14px;}
 
 .cartpaybtn:hover{background-color: black; color: white}
+
+.goods_img div {
+			width :120px;
+			height : 120px;
+			margin : 3px 0;
+			position : relative;
+			left : 50px;
+		}
+	

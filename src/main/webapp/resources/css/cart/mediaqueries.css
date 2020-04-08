@@ -1,0 +1,43 @@
+@charset "UTF-8";
+@media screen and (max-width: 414px) { 
+   
+  
+.cartdelivery{display: none;}
+
+.cartpritotal{width: 23%;}
+
+.cartimg{width: 20%;}
+
+.goods_img div{
+	
+	
+	
+	}
+
+.goods_img div img{width: 100%;}
+
+
+}
+
+.cartch2 input {
+    margin-top: 170%;
+}
+
+.goodscartbtn{
+	
+	padding : 30px;
+}
+
+.cartalldelete{
+	
+	margin-right : 30px;
+}
+.goodstotalprice_1, .goodstotalprice2_1{
+	
+	display : none;
+}
+
+.goodstotalprice_2, .goodstotalprice2_2{
+	
+	margin-left : 100px;	
+}

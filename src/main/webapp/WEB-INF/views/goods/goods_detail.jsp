@@ -3,13 +3,15 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset=UTF-8>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 <title>Insert title here</title>
 <sec:csrfMetaTags />
 <link rel="stylesheet" href="/resources/css/goods/goodsdetail.css">
+<link rel="stylesheet" href="/resources/css/goods/mediaqueries.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 	$(document).ready(function(){
@@ -102,8 +104,15 @@
                                 <input type="hidden" id="target" name="usercode" value=${userid } >
                                 <input type="hidden" id="pname" value="${list[0].p_name }">
                             </li>
-                            <li><input type="submit" value="BUY NOW" class="buynow"></li>
-                            <li><input type="button" value="ADD CART" class="addcart" onClick="addCart()"></li>
+                            <sec:authorize access="isAuthenticated()">
+                            		<li><input type="submit" value="BUY NOW" class="buynow"></li>
+                            		<li><input type="button" value="ADD CART" class="addcart" onClick="addCart()"></li>
+                            	</sec:authorize>
+                            	<sec:authorize access="isAnonymous()">
+                            		<li><input type="button" value="BUY NOW" class="buynow" onclick="alertlogin()"></li>
+                            		<li><input type="button" value="ADD CART" class="addcart" onClick="alertlogin()"></li>
+                            </sec:authorize>
+                            
                             <!-- ajax로 값만 넘긴다.  -->
                        </ul>
                    </form>

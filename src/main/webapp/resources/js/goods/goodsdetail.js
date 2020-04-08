@@ -118,7 +118,7 @@ function addCart( ){
 		},
 		error : function(data){
 			
-			alert("에러 : 관리자에게 문의하세요");
+			alert("사이즈를 선택해주세요.");
 		}
 		
 		
@@ -127,3 +127,9 @@ function addCart( ){
 	
 	
 }// end addcart function
+
+function alertlogin(){
+	
+	alert("로그인 후 가능합니다.");
+	
+}

@@ -1,0 +1,19 @@
+@charset "UTF-8";
+@media screen and (max-width: 414px) { 
+	
+.enter_start label {   
+	
+    display: none;
+}
+
+#origin-input {
+    width: 200px;
+    text-align: center;
+    margin-left: 25%;
+}
+	
+.n_no{
+	
+	display : none;
+}	
+}

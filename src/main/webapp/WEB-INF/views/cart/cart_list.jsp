@@ -7,24 +7,11 @@
 <html>
 <head>
 <meta charset=UTF-8>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 <title>Insert title here</title>
 <%-- <sec:csrfMetaTags /> --%>
 	<link rel="stylesheet" href="/resources/css/cart/cart_list.css">
-	<style>
-		.goods_img div {
-			width :120px;
-			height : 120px;
-			margin : 3px 0;
-			position : relative;
-			left : 50px;
-		}
-	
-		.goods_img div img{
-			
-			width : 100%;
-			background-color: yellow;
-		}
-	</style>
+	<link rel="stylesheet" href="/resources/css/cart/mediaqueries.css">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script src="/resources/js/cart/cart_list.js"></script>
 	<script>
@@ -139,6 +126,7 @@
 					<input type="checkbox" class="list_checkbox" onclick="plusPrice()" >
 				</div>
 				<div class="goods_img cartimg">
+					
 					
 				</div>
 				<div class="cartgoods">

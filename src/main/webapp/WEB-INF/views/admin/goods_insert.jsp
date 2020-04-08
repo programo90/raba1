@@ -11,40 +11,66 @@
 <link rel="stylesheet" href="/resources/css/goods/ins_goods.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
-
 $(document).ready(function(e){
 	document.getElementsByClassName('adminnav')[4].style.backgroundColor="#e8e8e8";	
 	
-	$("input[type='submit']").on('click',function(e){
+	$("input[type='button']").on('click',function(e){
 		
-		e.preventDefault();
+		/* e.preventDefault(); */
 		
-		console.log("submit clicked");
+		/* check value */
+		var state = 0;
 		
-		var formObj = $("#goods_insert_form");
-		
-		var str ="";
-		
-		$(".uploadResult div").each(function(i, obj){
+		console.log($("#p_name").val());
+		if($("#p_name").val()== ""){
 			
-			var jobj = $(obj);
+			alert("상품명을 입력해주세요");
+			state =1;
+			return ;
+		}
+		if($("#p_price").val() == ""){
 			
-			console.dir(jobj);
+			alert("상품 가격을 입력해주세요")
+			state =1;
+			return ;
+		}
+		
+		if($("#free").checked == false && $("#small").checked == false && $("#medium").checked == false && $("#large").checked == false && $("#xlarge").checked == false){
 			
-			str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
-			str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
-			str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
-			str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+jobj.data("type")+"'>";
+			alert("상품 사이즈를 확인 해주세요")
+			state = 1;
+			return ;
+		}
+		
+		if(state==0){
 			
-		});
-		
-		console.log("input hidden!!!!");
-		
-		formObj.append(str).submit();
-		
-		console.log("submit!!!!");
+			console.log("submit clicked");
+			
+			var formObj = $("#goods_insert_form");
+			
+			var str ="";
+			
+			$(".uploadResult div").each(function(i, obj){
+				
+				var jobj = $(obj);
+				
+				console.dir(jobj);
+				
+				str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
+				str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
+				str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
+				str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+jobj.data("type")+"'>";
+				
+			});
+			
+			formObj.append(str).submit();
+			
+			
+		}
 		
 	});
+	
+
 	
 	/* start 파일의 확장자와 크기를 설정하고 이를 검사  */
 	var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$"); //보안상의 문제가 있음 (개발보안가이드 참조)
@@ -257,7 +283,7 @@ function showUploadResult(uploadResultArr){
 							</li>
 							<li>
 								<div class="p_submit">
-									<input type="submit" value="등록">
+									<input type="button" value="등록">
 									<!-- <button type="submit">등록</button> -->
 								</div>
 							</li>

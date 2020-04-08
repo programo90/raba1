@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>B.A. Admin Notice-List</title>
 <link rel="stylesheet" href="/resources/css/info/n_list.css">
+<script> document.getElementsByClassName('adminnav')[8].style.backgroundColor="#e8e8e8";</script>
 </head>
 <body>
 	<div class="adminwrap">

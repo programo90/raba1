@@ -1,8 +1,4 @@
 $(document).ready(function(){
-	document.getElementsByClassName('adminnav')[8].style.backgroundColor="#e8e8e8";
-	
-	
-	
 			//게시판 script
             $("div.n_content").hide();
             

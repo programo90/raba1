@@ -13,7 +13,11 @@
 <body>
 	<div class="admincontents">
 		<div class="admin_userbox">
-			관리자님 환영합니다! <span class="admin_logout"><a href="#">로그아웃</a></span>
+			   	관리자님 환영합니다!
+            <span class="admin_logout"><a href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a></span>
+			<form id="logout-form" action=/customLogout method="post">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			</form>
 		</div>
 		<section class="admin_sectionbox">
 			<!-- 여기서 div만들고 시작하세요 -->

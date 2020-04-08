@@ -30,7 +30,7 @@
             <div class="cafe_category" id="cafePage">
                 <p class="cafe_category_tit">분류 보기</p>
                 <div class="product_kind_btn">
-                    <img src="../img/cafe/list_down_btn.png" alt="분류보기 메뉴 펼치기">
+                    <img src="/resources/img/cafe/list_down_btn.png" alt="분류보기 메뉴 펼치기">
                 </div>
                 <div class="cafe_category_checkbox">
                     <form method="post">

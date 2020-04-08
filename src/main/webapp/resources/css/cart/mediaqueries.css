@@ -6,38 +6,39 @@
 
 .cartpritotal{width: 23%;}
 
-.cartimg{width: 20%;}
+.cartpri{display: none;}
 
-.goods_img div{
-	
-	
-	
-	}
+.cartimg{width: 25%;}
+
+.goods_img div{ }
 
 .goods_img div img{width: 100%;}
 
+.cartch2 input {margin-top: 170%;}
 
-}
+.cartch1{width: 9%;}
 
-.cartch2 input {
-    margin-top: 170%;
-}
+.cartimg2{width: 25%; height:100%;   float: left; text-align: center;  }
 
-.goodscartbtn{
-	
-	padding : 30px;
-}
+.cartch2{width: 9%;}
 
-.cartalldelete{
-	
-	margin-right : 30px;
-}
-.goodstotalprice_1, .goodstotalprice2_1{
-	
-	display : none;
-}
+.cartgoods{width: 30%;}
 
-.goodstotalprice_2, .goodstotalprice2_2{
-	
-	margin-left : 100px;	
+.cartamount{width: 13%;}
+
+.goodscartbtn2{display: none;}
+
+.goodscartbtn1{display: initial;}
+
+.goodscartbtn1 span{display: none;}
+
+.cart{margin-top: 3%;}
+
+.goodscartbtn1 button{margin-left: 82%; padding: 4px 10px; background-color: white; border: 1px solid #3e5f40; border-radius: 5px;}
+
+.cartalldelete{margin-right : 30px;display: none;}
+
+.goodstotalprice_1, .goodstotalprice2_1{display : none;}
+
+.goodstotalprice_2, .goodstotalprice2_2{margin-left : 100px;}
 }

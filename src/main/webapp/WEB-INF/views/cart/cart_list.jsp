@@ -23,7 +23,7 @@
 			var img_uploadPath = document.getElementsByClassName("img_uploadPath");
 			var img_fileType = document.getElementsByClassName("img_fileType");
 			
-			var goods_img = document.getElementsByClassName("goods_img");
+			var goods_img = document.getElementsByClassName("cartimg");
 			
 			
 			
@@ -40,7 +40,7 @@
 				
 				console.log("fileCallPath" +fileCallPath);
 				
-				str += "<div data-path='"+uploadPath+"' data-uuid='"+uuid+"' data-filename='"+fileName+"' data-type='"+fileType+"' >";
+				str += "<div class='goods_img' data-path='"+uploadPath+"' data-uuid='"+uuid+"' data-filename='"+fileName+"' data-type='"+fileType+"' >";
 				str += "<img src='/display?fileName="+fileCallPath+"' alt='"+fileName+"'>";
 				str += "</div>";
 				
@@ -88,6 +88,11 @@
 		</sec:authorize>
 		
 		<!--장바구니 상품 정보-->
+		<div class="goodscartbtn1">
+			<span>선택상품</span>
+			<button type="button" onClick="delete_cno()">삭제</button>
+			<button type="button" class="cartalldelete" onClick="delete_ALL()">장바구니 비우기</button>
+		</div>
 		<div class="cart">
 
 			<!--장바구니 상품 정보 윗부분-->
@@ -95,7 +100,7 @@
 				<div class="cartch1">
 					<input type="checkbox" id="main_checkbox" onClick="checkAll(), plusPrice()" >
 				</div>
-				<div class="cartimg">
+				<div class="cartimg2">
 					<span>이미지</span>
 				</div>
 				<div class="cartgoods">
@@ -125,7 +130,7 @@
 				<div class="cartch2">
 					<input type="checkbox" class="list_checkbox" onclick="plusPrice()" >
 				</div>
-				<div class="goods_img cartimg">
+				<div class="cartimg">
 					
 					
 				</div>
@@ -164,7 +169,7 @@
 		</div> -->
 
 		<!--장바구니 상품 삭제 장바구니 비우기 버튼 -->
-		<div class="goodscartbtn">
+		<div class="goodscartbtn2">
 			<span>선택상품</span>
 			<button type="button" onClick="delete_cno()">삭제</button>
 			<button type="button" class="cartalldelete" onClick="delete_ALL()">장바구니 비우기</button>

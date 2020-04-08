@@ -90,6 +90,7 @@ function reinsert(order) {
 		}
 		 
 	 });
+	 document.getElementById('recontent').value = '';
  }
  function rereinsert(obj,order) {
 	 //if() 호스트
@@ -162,15 +163,14 @@ function updateReply(obj,tourreno) {
 	 //obj를 기준으로 해당 댓글 내용을 box를 textarea로 변경시켜주고 입력되어 있던 내용을 넣어준다.
 	 //수정버튼을 수정완료 버튼으로 변경한다.
 	 //수정완료 버튼을 클릭시 ajax로 내용을 변경 저장하고 list를 다시 불러온다.
-	 var tempno = obj.previousSibling.previousSibling.children[0].innerText; 
-	 var tempid = obj.previousSibling.previousSibling.children[1].innerText;
-	 var tempcon = obj.previousSibling.previousSibling.children[2].innerText;
+
+	 var tempid = obj.parentNode.children[0].children[0].innerText;
+	 var tempcon = obj.parentNode.children[0].children[1].innerText;
 	 
-	 var result = '<div>' + tempno + '</div>'; 
-	 	 result += '<div>' + tempid + '</div>';
-		 result += '<textarea cols="80" rows="5" id="updatetext">' + tempcon + '</textarea>';
-	 	 result += '<div onclick="updateReplyResult(this,' + tourreno + ')"> 수정완료 </div>';
-	 	 result += '<div onclick="updateReplyCancel()">취소</div>';
+	 var result = '<div class="relist_update_idbox">' + tempid + '</div>';
+		 result += '<textarea cols="95" rows="6" class="updatetext">' + tempcon + '</textarea>';
+	 	 result += '<div class="relist_updatere_btn" onclick="updateReplyResult(this,' + tourreno + ')"> 저장 </div>';
+	 	 result += '<div class="relist_updatecan_btn" onclick="updateReplyCancel()">취소</div>';
 	 obj.parentNode.innerHTML = result;
 	 
 }
@@ -179,7 +179,7 @@ function updateReply(obj,tourreno) {
 	 if(confirm("수정하시겠습니까?")) {
 		 var tourno = document.getElementById('tourno').value;
 		 var loginid = document.getElementById('userid').value;
-		 var recontent = document.getElementById('updatetext').value;
+		 var recontent = obj.parentNode.children[1].value;
 		 
 		 var tempdata = {
 				 "tourreno":tourreno
@@ -209,15 +209,15 @@ function updateReply(obj,tourreno) {
  function replaceReply(data) {
 	 
 	 var loginid = document.getElementById('userid').value;
-	 let result ='<li class="tourreple_list">';
-		result += '글번호 작성자 내용 </li>';
+	 let result ='<li style="padding-left:20px" class="tourreple_list">';
+		result += '<h4>Q & A</h4> </li>';
 		result += '';
 		
 	$.each(data,function(index,item){
 		if(item.relevel==0) {
 			result += '<li class="tourreple_list">';
 			result += '<div class="user_relist" onclick="rereinsert(this,' + item.reorder + ')">';
-			result += '<div>' + item.username + '님 문의 | </div><div>' +item.recontent +'</div>' ;
+			result += '<div>' + item.username + '님 문의 | </div><div>&nbsp;' +item.recontent +'</div>' ;
 			result += '</div>';
 			if(item.userid == loginid) {
 				result += '<div class="relist_update_btn" onclick="updateReply(this,' + item.tourreno + ')">수정</div>';
@@ -226,10 +226,10 @@ function updateReply(obj,tourreno) {
 			/*result += '<div class="relist_update_btn" onclick="updateReply(this,' + item.tourreno + ')">수정</div>';
 			result += '<div class="relist_delete_btn" onclick="deleteReply(this,' + item.tourreno + ')">삭제</div>';*/
 			result += '</li>';
-		} else if(item.relevel==1) {
+		} else if(item.relevel!=0) {
 			result += '<li class="tourreple_relist">';
 			result += '<div class="host_relist">';
-			result +=  '<div>' + item.username + '님 답변 | </div><div>' +item.recontent +'</div>';
+			result +=  '<div>' + item.username + '님 답변 | </div><div>&nbsp;' +item.recontent +'</div>';
 			result += '</div>';
 			/*result += '<div class="relist_update_btn" onclick="updateReply(this,' + item.tourreno + ')">수정</div>';
 			result += '<div class="relist_delete_btn" onclick="deleteReply(this,' + item.tourreno + ')">삭제</div>';*/

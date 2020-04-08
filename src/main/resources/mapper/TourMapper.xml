@@ -164,7 +164,7 @@
   		from TourReplyTable inner join UserTable
         on TourReplyTable.userid = UserTable.userid
   		where tourno = #{tourno}
-  		order by reorder;
+  		order by reorder, relevel;
   	</select>
   	
   	<!-- 투어 리플 insert -->

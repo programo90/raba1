@@ -46,7 +46,7 @@
 				<sec:authentication property='principal.username' var="loginid"/>
 				<input type="hidden" name="userid" id="userid" value="${loginid }">
 			</sec:authorize>
-			
+			<p id="fav_update_alr">즐겨찾기 경로 수정 모드입니다.</p>
             <div id="tourinsert_detailblock">
                     <div id="tourinsert_detaillbox1">
                     			<div class="tourinsert_inserttitle">
@@ -66,10 +66,10 @@
                                       <option value="3">세번째 경로</option>
                                       <option value="4">네번째 경로</option>
                                   </select>
-                                  <c:if test="${true }">
-                                  	<button type="button" onclick="selecteTourUpdate()">수정모드</button>
-                                  </c:if>
-                                  <input type="hidden" id="selectmode" name="selectmode" value="0">
+                                  <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                  	<button id="fav_update_btn" type="button" onclick="selecteTourUpdate(this)">수정모드</button>
+                                  	<input type="hidden" id="selectmode" name="selectmode" value="0">
+                                  </sec:authorize>
                                </div>
                                <div class="tourinsert_inserttitle">
                                    <label for="tourdate">출발시각</label>
@@ -99,7 +99,7 @@
                                     <label for="distance">총 거리</label>
                                 </div>
                                 <div class="tourinsert_insertcontent">
-                                    <input type="text" name="distance" id="distance" readonly placeholder="자동입력" size="50">
+                                    <input type="text" name="distance" id="distance" readonly placeholder="자동입력" size="50">m
                                 </div>
                                <div class="tourinsert_inserttitle">
                                     <label for="">투어컨셉</label><br>
@@ -487,7 +487,7 @@ function displayCircleDot(position, distance) {
     } else {
         // 클릭한 지점까지의 그려진 선의 총 거리를 표시할 커스텀 오버레이를 생성합니다
         var distanceOverlay = new kakao.maps.CustomOverlay({
-            content: '<div class="dotOverlay">거리 <span class="number">' + distance + '</span>m</div>',
+            content: '<div class="dotOverlay">거리 <span class="number">' + (distance/1000) + '</span>km</div>',
             position: position,
             yAnchor: 1,
             zIndex: 2
@@ -548,7 +548,7 @@ function getTimeHTML(distance) {
     var content = '<ul class="dotOverlay distanceInfo">';
     content += '<li style="font-size:18px;"> 도착점 </li>';
     content += '    <li>';
-    content += '        <span class="label">총거리</span><span class="number">' + distance + '</span>m';
+    content += '        <span class="label">총거리</span><span class="number">' + (distance/1000) + '</span>km';
     content += '    </li>';
     content += '    <li>';
     content += '        <span class="label">자전거</span>' + bycicleHour + bycicleMin;
@@ -836,12 +836,17 @@ function checkmaxmin(inputtotalcount) {
     }
 }
 
-function selecteTourUpdate() {
+function selecteTourUpdate(obj) {
 	var tempmode = document.getElementById('selectmode');
+	var alert_msg = document.getElementById('fav_update_alr');
 	console.log(tempmode.value);
 	if(tempmode.value == 0) {
+		alert_msg.style.display = 'block';
+		obj.style.cssText = "border : 3px solid #f33800;";
 		tempmode.value = 1;
 	} else {
+		alert_msg.style.display = 'none';
+		obj.style.cssText = "border : 3px solid #e8e8e8;";
 		tempmode.value = 0;
 	}
 }

@@ -102,7 +102,7 @@ function reinsert(order) {
 		 		result += '<textarea id="recontent" cols="110" rows="4" placeholder="내용을 입력하세요."></textarea>';
 		 		result += '<button type="button" onclick="reinsert(' + order + ')">저장</button>';
 		 		result += '</form></li>';
-		 	$(obj).parentNode.after(result); 
+		 	$(obj).parent().after(result); 
 	 }
 	 //else if() 멤버
  }
@@ -208,6 +208,7 @@ function updateReply(obj,tourreno) {
  
  function replaceReply(data) {
 	 
+	 var loginid = document.getElementById('userid').value;
 	 let result ='<li class="tourreple_list">';
 		result += '글번호 작성자 내용 </li>';
 		result += '';

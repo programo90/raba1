@@ -115,6 +115,13 @@ public class TourController {
 		return "redirect:/tourlist";
 	}
 	
+	@RequestMapping("/atourdelete")
+	@ResponseBody
+	public int atourdelete(@RequestParam int tourno) {
+		int result = tourService.deleteTour(tourno);
+		return result;
+	}
+	
 	@RequestMapping("/tourupdate/{tourno}")
 	public String tourupdate(@PathVariable int tourno, Model model) {
 		TourDTO dto = tourService.tourDetail(tourno);
@@ -171,22 +178,21 @@ public class TourController {
 	public int tourupdatestate(@RequestParam int tourno, @RequestParam int tourstate) {
 		
 		int result = tourService.updateState(tourno, tourstate);
-		System.out.println(result);
 		return result;
 	}
 	
 	@RequestMapping("/tourmypage")
-	public String tourmypage(Model model) {
-		
-		String userid = "host";
-		/*String userid = principal.getName();*/
+	public String tourmypage(Model model,Principal principal) {
+		String userid = principal.getName();
 		
 		List<TourDTO> list = tourService.tourUserList(userid);
 		model.addAttribute("list", list);
 		
 		int totaldistance = 0;
 		for(TourDTO dto : list) {
-			totaldistance += dto.getDistance();
+			if(dto.getTourstate()==2) {
+				totaldistance += dto.getDistance();
+			}
 		}
 		
 		model.addAttribute("totaldistance", totaldistance);
@@ -194,9 +200,19 @@ public class TourController {
 		return "tour/tourmypage";
 	}
 	
+	
+	@RequestMapping("/tourmypagelistre")
+	@ResponseBody
+	public List<TourDTO> tourmypagelistre(@RequestParam String userid, @RequestParam String searchtxt, @RequestParam int tourstate) {
+		
+		return tourService.tourUserSearchList(userid,searchtxt,tourstate);
+	}
+	
+	
 	@RequestMapping("/tourhostpage")
-	public String tourhostpage(Model model) {
-		String userid = "1328250269";
+	public String tourhostpage(Model model,Principal principal) {
+		String userid = principal.getName();
+
 		HostDTO hostdto = tourService.hostDetailById(userid);
 		List<TourDTO> list = tourService.tourHostList(hostdto.getHostno());
 		
@@ -205,6 +221,16 @@ public class TourController {
 		
 		return "tour/tourhostpage";
 	}
+	
+	@RequestMapping("/tourhostlistre")
+	@ResponseBody
+	public List<TourDTO> tourhostlistre(@RequestParam int hostno, @RequestParam int tourstate) {
+		System.out.println(tourstate);
+		
+		return tourService.tourHostListSelected(hostno,tourstate);
+	}
+	
+	
 	
 	@RequestMapping(value="/tourcancel")
 	@ResponseBody

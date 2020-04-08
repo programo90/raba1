@@ -53,4 +53,8 @@ public interface TourService {
 	public List<TourReplyDTO> updateTourRe(int tourno, int tourreno, String recontent);
 
 	public List<TourReplyDTO> listTourRe(int tourno);
+
+	public List<TourDTO> tourHostListSelected(int hostno, int tourstate);
+
+	public List<TourDTO> tourUserSearchList(String userid, String searchtxt, int tourstate);
 }

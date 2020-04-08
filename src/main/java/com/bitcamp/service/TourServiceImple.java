@@ -94,6 +94,15 @@ public class TourServiceImple implements TourService{
 				
 		//투어 타입에 따라 tourlist.jsp에서 표현해줄 마우스오버 효과 지정
 				
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("tourno", dto.getTourno());
+		map.put("userid", dto.getUserid());
+		map.put("distance", dto.getDistance());
+		
+		tourMapper.insertApplyTour(map);
+		tourMapper.increApplyCount(tourno);
+		tourMapper.increUserDistance(map);
+		
 		} else {
 			int temptourno = dto.getPopulartour();
 			dto.setTourno(temptourno);
@@ -387,6 +396,32 @@ public class TourServiceImple implements TourService{
 	public List<TourReplyDTO> listTourRe(int tourno) {
 		// TODO Auto-generated method stub
 		return tourMapper.replyList(tourno);
+	}
+
+	@Override
+	public List<TourDTO> tourHostListSelected(int hostno, int tourstate) {
+		// TODO Auto-generated method stub
+		List<TourDTO> list;
+		if(tourstate == -1) {
+			list = tourMapper.tourHostList(hostno);
+		} else {
+			HashMap<String, Object> map = new HashMap<>();
+			map.put("hostno", hostno);
+			map.put("tourstate", tourstate);
+			list = tourMapper.tourHostListSelected(map);
+		}
+		return list;
+	}
+
+	@Override
+	public List<TourDTO> tourUserSearchList(String userid, String searchtxt, int tourstate) {
+		// TODO Auto-generated method stub
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("userid", userid);
+		map.put("searchtxt", searchtxt);
+		map.put("tourstate", tourstate);
+		
+		return tourMapper.tourUserSearchList(map);
 	}
 	
 }

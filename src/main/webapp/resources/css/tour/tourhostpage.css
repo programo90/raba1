@@ -23,6 +23,13 @@
 	cursor: pointer;
 }
 .tourhostpage_imgbox{
-	width:100%;
-	hieght:100%;
+	max-width:150px;
+	margin-left: 10px;
+}
+.tourhostpage_selstate{
+	margin:10px 0;
+	border:1px solid #e2e8f0;
+	color:black;
+	padding:5px 0;
+	border-radius: 5px;
 }

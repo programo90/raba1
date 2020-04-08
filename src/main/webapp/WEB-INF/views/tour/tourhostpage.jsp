@@ -7,10 +7,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/css/common.css">
 <link rel="stylesheet" href="./resources/css/mypage/style.css">
 <link rel="stylesheet" href="./resources/css/tour/tourhostpage.css">
+<link rel="stylesheet" href="/resources/css/tour/mediaqueries.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="/resources/js/tour/tourhost.js"></script>
 </head>
@@ -21,19 +23,19 @@
 				class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
 				<h2
 					class="text-4xl leading-9 font-extrabold text-gray-900 sm:text-5xl sm:leading-none">
-					회원님 안녕하세요! <br /> <span class="text-indigo-600">BREAK AWAY</span>
+					회원님 안녕하세요! <br /> <span class="text-teal-600">BREAK AWAY</span>
 				</h2>
 				<div class="mt-8 flex lg:mr-0 inline-flex lg:flex-shrink-0 lg:mt-0">
 					<div class="inline-flex rounded-md shadow">
-						<a href="#"
-							class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-							주행거리 확인 </a>
+						<a href="/tourinsert"
+							class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+						 투어 일정 만들기 </a>
 					</div>
-					<div class="ml-3 inline-flex rounded-md shadow">
-						<a href="#"
-							class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-white hover:text-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-							라이딩 일정 확인 </a>
-					</div>
+					<!-- <div class="ml-3 inline-flex rounded-md shadow">
+						<a href="/tourinsert"
+							class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-teal-600 bg-white hover:text-teal-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+							모임 만들기 </a>
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -43,17 +45,27 @@
 			<div class="hidden bg-white ml-5  lg:w-2/12 lg:grid ">
 				<ul class="list-reset">
 					<li class="inline-block mr-10 "><a href="/mypage"
-						class="block p-4 text-gray-800 font-bold hover:text-purple-600 hover:font-bold ">주문
+						class="block p-4 text-gray-800 font-bold hover:text-teal-600 hover:font-bold ">주문
 							내역</a></li>
 					<li class="inline-block mr-10  "><a href="/wishlist"
-						class="block p-4 text-gray-800 font-normal hover:text-purple-600 hover:font-bold">위시
+						class="block p-4 text-gray-800 font-normal hover:text-teal-600 hover:font-bold">위시
 							리스트</a></li>
+					<li class="inline-block mr-10 "><a href="/tourmypage"
+						class="block p-4 text-gray-800 font-normal hover:text-teal-600 hover:font-bold">모임 참여 내역
+							</a></li>
 					<li class="inline-block mr-10 "><a href="#"
-						class="block p-4 text-gray-800 font-normal hover:text-purple-600 hover:font-bold">주행
-							거리</a></li>
-					<li class="inline-block mr-10 "><a href="#"
-						class="block p-4 text-gray-800 font-normal hover:text-purple-600 hover:font-bold">정보
+						class="block p-4 text-gray-800 font-normal hover:text-teal-600 hover:font-bold">정보
 							수정</a></li>
+                    <sec:authorize access="hasRole('ROLE_HOST')"> 
+          					<a href="/tourhostpage"> 
+          						<button type="button"  class="mt-6 ml-1 bg-teal-600 text-white p-2 rounded  leading-none flex items-center">
+          							투어 관리
+		          					<span class="bg-white p-1 rounded text-teal-600 text-xs ml-2">
+        	  							host
+         							</span>
+      							</button>          						
+          					</a>	
+					</sec:authorize>
 				</ul>
 			</div>
 
@@ -62,7 +74,16 @@
 					<h2 class="text-gray-800 text-2xl font-semibold leading-tight">
 						투어 모집 내역<span style="display: inline-block; float: right;">모집 횟수 : ${hostdto.leadcount}회</span>
 					</h2>
-
+					<div>
+						<form>
+							<select class="tourhostpage_selstate" onchange="selectState(this)">
+								<option value="-1">전체보기</option>
+								<option value="0">모집중</option>
+								<option value="1">마감</option>
+								<option value="2">종료</option>
+							</select>
+						</form>
+					</div>
 				</div>
 
 				<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
@@ -88,13 +109,11 @@
 										</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="tbodylist">
 							 	<c:forEach items="${list}" var="dto">
 							 		<tr class=" border-b border-gray-200 ">
 									<td class=" flex items-center px-5 py-5 bg-white text-sm">
 										<div class="tourhostpage_imgbox" data-pop="${dto.populartour}">
-											<img src="./resources/img/mypage/product.png" alt="product"
-										class="m-3 my-auto h-12 w-12 flex-shrink-0">
 										</div>
 										<a href="/tourdetail/${dto.tourno }">
 										<div class="px-3 py-2 w-full flex items-center justify-between leading-none">
@@ -135,7 +154,7 @@
 													<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 												</c:when>
 												<c:when test="${dto.tourstate == 2 }">
-													<input type="button" onclick="cancelApplyTour(${dto.tourno},${loginid})" value="종료">
+													<input type="button" value="종료">
 												</c:when>
 										</c:choose>
 										</form>
@@ -144,6 +163,7 @@
 							 	</c:forEach>
 							</tbody>
 						</table>
+						<input type="hidden" id="hostno" value="${hostdto.hostno}">
 						<!-- <div
 							class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
 							<span class="text-xs xs:text-sm text-gray-900"> Showing 1

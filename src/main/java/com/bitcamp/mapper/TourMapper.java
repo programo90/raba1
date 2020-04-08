@@ -52,6 +52,9 @@ public interface TourMapper {
 	public int deleteTourRe(int tourreno);
 	public int updateTourRe(HashMap<String, Object> map);
 	public int updateFavTour(TourDTO dto);
+	public List<TourDTO> tourHostListSelected(int hostno, int tourstate);
+	public List<TourDTO> tourHostListSelected(HashMap<String, Object> map);
+	public List<TourDTO> tourUserSearchList(HashMap<String, Object> map);
 	
 	
 	

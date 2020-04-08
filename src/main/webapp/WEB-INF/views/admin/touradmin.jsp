@@ -25,8 +25,8 @@
                 				<p class="tourlistno">번호</p>
 	                			<p class="tourlisthostid">등록인</p>
 	            	    		<p class="tourlisttitle">제목</p>
-	        	      			<p class="tourliststart">출발지</p>
-	    	         			<p class="tourlistend">도착,반환지</p>
+	        	      			<p class="tourliststart">출발지-도착지</p>
+	    	         			<!-- <p class="tourlistend">도착,반환지</p> -->
 		                		<p class="tourlisttourday">일시</p>
 		                		<p class="tourlistcount">지원현황</p>
 		                		<p class="tourliststate">게시상태</p>
@@ -39,8 +39,8 @@
     	            					<p class="tourlistno">${seldto.tourno}</p>
 	                					<p class="tourlisthostid">${seldto.username}</p>
 	            	    				<p class="tourlisttitle">${seldto.tourtitle}</p>
-	        	        				<p class="tourliststart">${seldto.startspot}</p>
-	    	            				<p class="tourlistend">${seldto.endspot}</p>
+	        	        				<p class="tourliststart">${seldto.startspot}<br>${seldto.endspot}</p>
+	    	            				<%-- <p class="tourlistend">${seldto.endspot}</p> --%>
 		                				<p class="tourlisttourday">${seldto.tourday} ${seldto.tourtime}</p>
 		                				<p class="tourlistcount">${seldto.cancount}/${seldto.totalcount}</p>
 	                				</a>
@@ -53,9 +53,9 @@
 	                					<input type="hidden" value="${seldto.tourstate}">
 	                				</p>
 	                				<p class="tourlistbtn"><button onclick="updatestate(${seldto.tourno})">변경</button> </p>
+	                				<p class="tourlistbtn"><button onclick="deletetour(${seldto.tourno})">삭제</button> </p>
                 				</div>
                 			</li>
-                			
                 		</c:forEach>
                 	</ul>
                 	<div id="touradmin_paging_block">

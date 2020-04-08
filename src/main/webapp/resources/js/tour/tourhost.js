@@ -1,4 +1,7 @@
 window.onload = function() {
+	selectImg();
+}
+function selectImg() {
 	var touradminsel = document.getElementsByClassName('tourstatesel');
 	for(var i = 0; i<touradminsel.length;i++) {		
 		var selval = touradminsel[i].nextElementSibling.value;
@@ -8,27 +11,26 @@ window.onload = function() {
 	var tempimgbox = document.getElementsByClassName('tourhostpage_imgbox');
 	
 	for(var i=0; i<tempimgbox.length; i++) {
-		var temppop = tempimgbox[i].data-set.pop;
+		var temppop = tempimgbox[i].dataset.pop;
 		
 		if(temppop==0) {
 			tempimgbox[i].innerHTML = '<img style="width:100%" alt="img" src="/resources/img/tour/custom-1.png">';
 		} else if(temppop == 1) {
-			tempimgbox[i].innerHTML = '<img style="width:100%" alt="img" src="/resources/img/tour/custom-1-1.png">';
+			tempimgbox[i].innerHTML = '<img style="width:100%" alt="img" src="/resources/img/tour/course-1-1.png">';
 		} else if(temppop == 2) {
-			tempimgbox[i].innerHTML = '<img style="width:100%" alt="img" src="/resources/img/tour/custom-2-1.png">';
+			tempimgbox[i].innerHTML = '<img style="width:100%" alt="img" src="/resources/img/tour/course-2-1.png">';
 		} else if(temppop == 3) {
-			tempimgbox[i].innerHTML = '<img style="width:100%" alt="img" src="/resources/img/tour/custom-3-1.png">';
+			tempimgbox[i].innerHTML = '<img style="width:100%" alt="img" src="/resources/img/tour/course-3-1.png">';
 		} else if(temppop == 4) {
-			tempimgbox[i].innerHTML = '<img style="width:100%" alt="img" src="/resources/img/tour/custom-4-1.png">';
+			tempimgbox[i].innerHTML = '<img style="width:100%" alt="img" src="/resources/img/tour/course-4-1.png">';
 		} 
 	}
-	
 }
 
 function detailinfo(obj) {
 	var openstate = obj.dataset.openwin;
-	
-	if(openstate == 0) {
+	console.log(openstate);
+	if(openstate == '0') {
 		var tourno = obj.dataset.tourno;
 		
 		var tempdata = {
@@ -56,10 +58,10 @@ function detailinfo(obj) {
 					alert("error : 수정실패");
 				}
 			});
-			obj.dataset.openwin = 1;
+			obj.dataset.openwin = '1';
 	} else {
 		$(obj).parent().next().remove();
-		obj.dataset.openwin = 0;
+		obj.dataset.openwin = '0';
 	}
 }
 
@@ -83,4 +85,72 @@ function changeState(tourno) {
 			alert("error : 수정실패");
 		}
 	});
+}
+
+function selectState(obj) {
+	var tempstate = obj.options[obj.selectedIndex].value;
+	var hostno = document.getElementById('hostno').value;
+	var tempdata = { "tourstate":tempstate
+						,"hostno":hostno
+					};
+	
+	
+	console.log(hostno);
+	
+	$.ajax({
+		url:"/tourhostlistre"
+		,data : tempdata
+		,dataType : "json"
+		,contentType: "application/json;charset=utf-8"
+		,success:function(data) {
+			replaceTourList(data);
+			selectImg();
+		}
+		,error : function(data) {
+			alert("error : 수정실패");
+		}
+	});
+	
+}
+function replaceTourList(data) {
+	let result ="";
+	$.each(data,function(index,item){
+		result += '<tr class=" border-b border-gray-200 ">';
+		result += '<td class=" flex items-center px-5 py-5 bg-white text-sm">';
+		result += '<div class="tourhostpage_imgbox" data-pop="' + item.populartour +'">';
+		result += '</div>';
+		result += '<a href="/tourdetail/' + item.tourno + '">';
+		result += '<div class="px-3 py-2 w-full flex items-center justify-between leading-none">';
+		result += '<div class="truncate">';
+		result += '<div style="text-align: center;">';
+		result += '<h2 style="margin-bottom:10px; font-size:20px;">' + item.tourtitle + '</h2> <p>From' + item.startspot + ' <br>To ' + item.endspot + '</p>';
+		result += '</div></div></div>';
+		result += '</a></td>';
+		result += '	<td class="hidden md:table-cell  px-5 py-5 border-b border-gray-200 bg-white text-sm">';
+		result += '<p class="text-gray-900 whitespace-no-wrap">' + item.tourday + ' ' + item.tourtime + '</p>';
+		result += '</td>';
+		result += '<td class="hidden md:table-cell px-5 py-5 border-b border-gray-200 bg-white text-sm text-center" onclick="detailinfo(this)" data-tourno="' + item.tourno + '" data-openwin="0">';
+		result += '<span class="text-gray-900 text-sm">' + item.cancount + ' / ' + item.totalcount + '</span><br>';
+		result += '<input class="tourhostpage_list_btn" type="button" value="명단 보기">';
+		result += '</td>';
+		result += '<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">';
+		result += '<div class="text-gray-500">';
+		result += '<select class="tourstatesel" id="tourstatesel'+ item.tourno + '">';
+		result += '<option value="0">모집중</option><option value="1">마감</option><option value="2">종료</option>';
+		result += '</select>';
+		result += '<input type="hidden" value="' + item.tourstate + '">';
+		result += '<input type="button" class="tourhostpage_state_btn" value="상태변경" onclick="changeState(' + item.tourno + ')">';
+		result += '</div></td>';
+		result += '<td>';
+		result += '<form action="tourcancel">';
+		if(item.tourstate==0 || item.tourstate==1) {
+			result += '<a href="/tourupdate/' + item.tourno + '" class="tourhostpage_update_btn">편집</a>';
+			result += '<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>';
+		} else {
+			result += '<input type="button" value="종료">';
+		}
+		result += '</form></td></tr>';
+	});
+	
+	$('#tbodylist').html(result);
 }

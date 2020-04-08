@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,8 +32,9 @@
 				<c:forEach items="${list}" var="seltour">
 					<div class="tourlist_content_box">
 						<div class="tourlist_content_conbox">
-							<a class="tourlist_content_box_link"
-								href="tourdetail/${seltour.tourno}">
+							<sec:authorize access="isAuthenticated()">
+								<a class="tourlist_content_box_link"
+								href="tourdetail/${seltour.tourno}"">
 								<div class="tourlist_content_imgbox">
 									<div class="tourlist_content_tag">
 										<input type="hidden" value="${seltour.tourstate}"></input>
@@ -57,6 +59,35 @@
 									<p style="font-size: 13px">${seltour.tourday}</p>
 								</div>
 							</a>
+							</sec:authorize>
+							<sec:authorize access="isAnonymous()">
+								<a class="tourlist_content_box_link"
+								href="#" onclick="needlogin()">
+								<div class="tourlist_content_imgbox">
+									<div class="tourlist_content_tag">
+										<input type="hidden" value="${seltour.tourstate}"></input>
+										<p></p>
+									</div>
+									<input type="hidden" value="${seltour.populartour}"></input>
+									<div style="width: 100%; height: 100%;">
+									</div>
+								</div>
+								<div class="tourlist_content_textbox">
+									<%-- <h4>${seltour.tourtitle}</h4> --%>
+									<p>
+										<span style="font-size: 14px; font-weight: 200;">FROM</span><span
+											style="font-size: 15px; font-weight: 400;">
+											${seltour.startspot}</span>
+									</p>
+									<p>
+										<span style="font-size: 14px; font-weight: 200;">TO</span> <span
+											style="font-size: 15px; font-weight: 400;">
+											${seltour.endspot}</span>
+									</p>
+									<p style="font-size: 13px">${seltour.tourday}</p>
+								</div>
+							</a>
+							</sec:authorize>
 						</div>
 					</div>
 				</c:forEach>

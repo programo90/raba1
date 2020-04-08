@@ -12,6 +12,25 @@
 	cursor: pointer;
 }
 .tourmypage_imgbox{
-	width:100%;
-	hieght:100%;
+	width:150px;
+}
+.tourmypage_sel{
+	margin: 10px 0;
+    border: 1px solid #e2e8f0;
+    color: black;
+    padding: 5px 0;
+    border-radius: 5px;
+}
+.search_btn{
+	padding: 4px 4px;
+    margin: 0px;
+    background-color: #ffffff;
+    border: 1px solid #3e5f40;
+    border-radius: 5px;
+}
+.search_txtbox{
+	padding: 4px 4px;
+	background-color: #ffffff;
+    border: 1px solid #3e5f40;
+    border-radius: 5px;
 }

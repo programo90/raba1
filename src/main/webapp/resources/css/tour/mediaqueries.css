@@ -132,5 +132,7 @@
     	height: 60%;
     	float: left;
 	} */
-	
+	.tourhostpage_imgbox {
+		display: none;
+	}
 }

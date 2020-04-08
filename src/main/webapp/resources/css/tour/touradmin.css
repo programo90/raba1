@@ -27,7 +27,7 @@
 	width:150px;
 }
 .tourliststart{
-	width:150px;
+	width:200px;
 }
 .tourlistend{
 	width:150px;
@@ -40,7 +40,7 @@
 	width:70px;
 }
 .tourliststate{
-	width : 100px;
+	width : 150px;
 }
 .tourlistbtn>button {
 	padding: 4px 4px;
@@ -51,7 +51,7 @@
     border-radius: 5px;
 }
 .tourstatesel {
-	width: 80%;
+	width: 60%;
     height: 24px;
     font-size: 11px;
     padding: 0 5px;

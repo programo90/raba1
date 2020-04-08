@@ -210,7 +210,17 @@
   		on TourTable.tourno = ApplyTourTable.tourno
   		where userid = #{userid}
   	</select>
-  	
+  	<select id="tourUserSearchList" parameterType="hashmap" resultType="com.bitcamp.dto.TourDTO">
+  		select TourTable.tourno, tourtitle, populartour, tourdate, startspot,endspot
+ 				,tourstate, tourday, tourtime, userid, distance
+  		from TourTable inner join ApplyTourTable
+  		on TourTable.tourno = ApplyTourTable.tourno
+  		where userid = #{userid} 
+  			<if test="tourstate>=0">
+				and tourstate = #{tourstate}
+  			</if>
+  				 and upper(tourtitle) like CONCAT('%',upper(#{searchtxt}),'%')
+  	</select>
   	
   	<!-- tour 지원 취소 -->
   	<update id="decreaCancount" parameterType="int">
@@ -229,6 +239,13 @@
  				,tourstate, tourday, tourtime, cancount, totalcount
   		from TourTable
   		where hostno = #{hostno}
+  		order by tourstate, tourno desc
+  	</select>
+  	<select id="tourHostListSelected" parameterType="hashmap" resultType="com.bitcamp.dto.TourDTO">
+  		select tourno, tourtitle, populartour, tourdate, startspot, endspot
+ 				,tourstate, tourday, tourtime, cancount, totalcount
+  		from TourTable
+  		where hostno = #{hostno} and tourstate = #{tourstate}
   		order by tourstate, tourno desc
   	</select>
   	

@@ -29,3 +29,24 @@ function updatestate(tourno) {
 		}
 	});
 }
+function deletetour(tourno) {
+	var tempdata = {
+		"tourno":tourno	
+	};
+	
+	$.ajax({
+		url:"/atourdelete"
+		,data : tempdata
+		,dataType : "json"
+		,contentType: "application/json;charset=utf-8"
+		,success:function(data) {
+			if(data==1) {
+				location.href = '/touradmin';
+			}
+		}
+		,error : function(data) {
+			alert("error : 수정실패");
+		}
+	});
+	
+}

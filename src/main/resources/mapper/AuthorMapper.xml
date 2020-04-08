@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.bitcamp.mapper.AuthoritiesMapper">
+  	<delete id="delete" parameterType="com.bitcamp.dto.AdminMemberDTO">
+  		delete from AuthoritiesTable
+  		where userid=#{userid}
+  	</delete>
+  <insert id="insert1" parameterType="com.bitcamp.dto.AdminMemberDTO">
+  	insert into AuthoritiesTable(userid,auth)
+  	values(#{userid},"ROLE_MEMBER")
+  </insert>
+  
+    <insert id="insert2" parameterType="com.bitcamp.dto.AdminMemberDTO">
+  	insert into AuthoritiesTable(userid,auth)
+  	values(#{userid},"ROLE_HOST")
+  </insert>
+  
+    <insert id="insert3" parameterType="com.bitcamp.dto.AdminMemberDTO">
+  	insert into AuthoritiesTable(userid,auth)
+  	values(#{userid},"ROLE_ADMIN")
+  </insert>
+  
+  <select id="getauth" parameterType="String" resultType="String">
+  	select auth
+  	from AuthoritiesTable
+  	where userid=#{userid}
+  </select>
+  
+  </mapper>

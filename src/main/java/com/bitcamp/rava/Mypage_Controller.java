@@ -3,6 +3,8 @@ package com.bitcamp.rava;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +28,7 @@ public class Mypage_Controller {
 	
 	
 	@RequestMapping(value="/mypage")
-	public String doMypage(Principal principal, Model model) {
+	public String doMypage(Principal principal, Model model, HttpServletRequest request) {
 		String userid = principal.getName();
 		Login__MemberVO vo = service.userinfo(userid);
 		model.addAttribute("userinfo", vo);
@@ -34,8 +36,13 @@ public class Mypage_Controller {
 		List<order__listDTO> list = service.orderlist(userid);
 		model.addAttribute("orderinfo", list);
 		
+		String realuploadpath = request.getSession().getServletContext().getRealPath("path");
+		System.out.println(realuploadpath);
+		
 		return "mypage/mypage";
 	}
+	
+	
 	
 	@RequestMapping(value="/orderdetail/{userid}/{orderno}")
 	public String doOrderDetail(Model model, @PathVariable String userid, @PathVariable int orderno) {

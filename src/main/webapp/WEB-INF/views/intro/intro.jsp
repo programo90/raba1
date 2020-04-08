@@ -15,12 +15,10 @@
 	<a href="#" onclick="openModal()">로그인</a>	
 </sec:authorize>
 
-<sec:authorize access="isAuthenticated()">
-<a href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a>
+<span class="admin_logout"><a href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a></span>
 <form id="logout-form" action=/customLogout method="post">
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
-</sec:authorize>
 
 	<!-- (모달 html 시작)모달모달모달모달 @일진 -->
 	<div class="main-modal fixed w-full h-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster"

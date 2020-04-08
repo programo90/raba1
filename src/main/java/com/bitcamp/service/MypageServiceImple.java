@@ -7,9 +7,12 @@ import java.util.StringTokenizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bitcamp.dto.BoardAttachVO;
 import com.bitcamp.dto.GoodsDTO;
 import com.bitcamp.dto.OrderDTO;
 import com.bitcamp.dto.order__listDTO;
+import com.bitcamp.mapper.BoardAttachMapper;
+import com.bitcamp.mapper.GoodsMapper;
 import com.bitcamp.mapper.MypageMapper;
 import com.bitcamp.security.Login__MemberVO;
 
@@ -18,6 +21,12 @@ public class MypageServiceImple implements MypageService {
 
 	@Autowired
 	private MypageMapper mapper;
+	
+	@Autowired
+	private GoodsMapper goodsmapper;
+	
+	@Autowired
+	private BoardAttachMapper attachmapper;
 	
 
 	@Override
@@ -47,14 +56,13 @@ public class MypageServiceImple implements MypageService {
 		List<order__listDTO> list0 = new ArrayList<>();
 		List<OrderDTO> list = mapper.order_list(userid);
 		
-		
 		for(int i = 0; i<list.size(); i++) {
 			int orderno = list.get(i).getOderno();
 			String salesdate = list.get(i).getSalesdate();
 			String orderstatus = list.get(i).getOrderstatus();
 			String cpno = list.get(i).getOrdercpno();
 			String ordercprice = list.get(i).getOrdercprice();
-
+			
 			StringTokenizer stPrice = new StringTokenizer(ordercprice, ",");
 			StringTokenizer stLng = new StringTokenizer(cpno, ",");
 			String[] lngList = new String[stLng.countTokens()];
@@ -69,8 +77,12 @@ public class MypageServiceImple implements MypageService {
 					int p_no = list2.get(t).getP_no();
 					String p_img = list2.get(t).getP_img();  //path정보를담아오는지 확인이 필요합니다. 
 					String p_name = list2.get(t).getP_name();
+					List<GoodsDTO> goodsdto = goodsmapper.select_pno(p_name); // pname을 넣어주고 goodsdto를 받아옵니다. 그리고 사전에 orderdto에 list를 넣어줬습니다. List<BoardAttachVO> list;
+					int pno0 = goodsdto.get(0).getP_no(); //첫 번째pno를 받아왔습니다. 
+					
 					
 					order__listDTO dto = new order__listDTO();
+					dto.setImgvo(attachmapper.findByPno(pno0).get(0));  //list에 넣어줬습니다. 
 					dto.setP_no(p_no);
 					dto.setP_img(p_img);
 					dto.setP_name(p_name);
@@ -78,7 +90,6 @@ public class MypageServiceImple implements MypageService {
 					dto.setSalesdate(salesdate);
 					dto.setOrderstatus(orderstatus);
 					dto.setOderno(orderno);
-					
 					
 					list0.add(dto);
 				}

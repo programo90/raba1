@@ -122,7 +122,18 @@
 										
 			                     		<tr class=" border-b border-gray-200 ">	
 			                          		<td class=" flex items-center px-5 py-5 bg-white text-sm">
-			                               		<img src="/resources/img/mypage/product.png" alt="product" class="m-3 my-auto h-12 w-12 flex-shrink-0">
+			                          		
+			                          		
+			                          		<!-- 상품의 이미지를 넣어줍니다.  -->
+			                          		<input type="hidden" class="img_uuid" value="${orderlist.imgvo.uuid }">
+			                          		<input type="hidden" class="img_uploadPath" value="${orderlist.imgvo.uploadPath }">
+			                          		<input type="hidden" class="img_fileName" value="${orderlist.imgvo.fileName }">
+			                          		<input type="hidden" class="img_fileType" value="${orderlist.imgvo.fileType }">
+			                          		<div class="goods_img " > </div> <!-- 이미지가 들어갑니다.  -->
+			                               		
+			                               		
+			                               		
+			                               		
 				                               	<div class="px-3 pt-5 py-2 h-auto w-full flex items-center justify-between leading-none">
 				                                   <div class="truncate m-0 h-16">
 				                                       <a href="#" class="text-gray-800"> ${orderlist.p_name }</a>
@@ -372,6 +383,38 @@ function updateData(){
             });
     		/* END 콤마를찍어줍니다  */
 			
+    		/* 이미지를 넣어줍니다  */
+    		var img_uuid = document.getElementsByClassName("img_uuid");
+         var img_fileName = document.getElementsByClassName("img_fileName");
+         var img_uploadPath = document.getElementsByClassName("img_uploadPath");
+         var img_fileType = document.getElementsByClassName("img_fileType");
+         
+         var goods_img = document.getElementsByClassName("goods_img");
+         
+         
+         
+         for(var i =0 ; i < goods_img.length; i++){
+            
+            var str = "";
+            
+            var uuid = img_uuid[i].value;
+            var fileName = img_fileName[i].value;
+            var uploadPath = img_uploadPath[i].value;
+            var fileType = img_fileType[i].value;
+            
+            var fileCallPath = encodeURIComponent(uploadPath+"/s_"+uuid+"_"+fileName);
+            
+            console.log("fileCallPath" +fileCallPath);
+            
+            str += "<div data-path='"+uploadPath+"' data-uuid='"+uuid+"' data-filename='"+fileName+"' data-type='"+fileType+"' >";
+            str += "<img src='/display?fileName="+fileCallPath+"' alt='"+fileName+"' class='m-3 my-auto h-12 w-12 flex-shrink-0'>";
+            str += "</div>";
+            
+            goods_img[i].innerHTML=str;
+            
+         }
+         /* END 이미지를 넣어줍니다  */
+    		
 	</script>
         
 </body>

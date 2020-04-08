@@ -8,7 +8,7 @@
 <head>
 <meta charset=UTF-8>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-<title>Insert title here</title>
+<title>Goods-Detail</title>
 <sec:csrfMetaTags />
 <link rel="stylesheet" href="/resources/css/goods/goodsdetail.css">
 <link rel="stylesheet" href="/resources/css/goods/mediaqueries.css">

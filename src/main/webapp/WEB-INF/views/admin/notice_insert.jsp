@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>B.A. Admin Notice-Insert</title>
 <link rel="stylesheet" href="/resources/css/info/n_insert.css">
 <script >
 document.getElementsByClassName('adminnav')[4].style.backgroundColor="#e8e8e8";

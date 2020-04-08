@@ -6,7 +6,7 @@
 <head>
 <meta charset=UTF-8>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-<title>Insert title here</title>
+<title>B.A. Information</title>
 	<link rel="stylesheet" href="/resources/css/info/info.css">
 	<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

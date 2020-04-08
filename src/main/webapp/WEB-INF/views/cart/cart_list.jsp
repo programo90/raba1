@@ -8,7 +8,7 @@
 <head>
 <meta charset=UTF-8>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-<title>Insert title here</title>
+<title>Cart-List</title>
 <%-- <sec:csrfMetaTags /> --%>
 	<link rel="stylesheet" href="/resources/css/cart/cart_list.css">
 	<link rel="stylesheet" href="/resources/css/cart/mediaqueries.css">

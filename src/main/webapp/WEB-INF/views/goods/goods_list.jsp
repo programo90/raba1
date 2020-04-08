@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset=UTF-8>
-<title>Insert title here</title>
+<title>B.A. Goods</title>
 <link rel="stylesheet" href="/resources/css/goods/goods_list.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>

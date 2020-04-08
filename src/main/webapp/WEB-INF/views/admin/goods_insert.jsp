@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset=UTF-8>
-<title>Insert title here</title>
+<title>B.A. Goods-Insert</title>
 <sec:csrfMetaTags />
 <link rel="stylesheet" href="/resources/css/goods/ins_goods.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

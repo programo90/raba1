@@ -5,7 +5,7 @@
  <html>
  <head>
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <title>Insert title here</title>
+ <title>B.A. Admin Goods-List</title>
  <link rel="stylesheet" href="/resources/css/admin/admingoods.css">
  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>

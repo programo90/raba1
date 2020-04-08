@@ -76,12 +76,14 @@
                         <a href="#" onclick="openModal()" class="block p-4 text-gray-800 font-normal hover:text-gray-600 hover:font-bold">정보 수정</a>
                     </li>
                     <sec:authorize access="hasRole('ROLE_HOST')"> 
-	                    <button type="button" class="mt-6 ml-1 bg-teal-600 text-white p-2 rounded  leading-none flex items-center">
-          					투어 관리	
-          					<span class="bg-white p-1 rounded text-teal-600 text-xs ml-2">
-          					 host
-         					</span>
-      					</button>
+	                    <a href="/tourhostpage"> 
+          						<button type="button"  class="mt-6 ml-1 bg-teal-600 text-white p-2 rounded  leading-none flex items-center">
+          							투어 관리
+		          					<span class="bg-white p-1 rounded text-teal-600 text-xs ml-2">
+        	  							host
+         							</span>
+      							</button>          						
+          					</a>	
 					</sec:authorize>
                     
                 </ul>

@@ -12,8 +12,8 @@
 </head>
 <body>
 	<footer id="footer" class="footer">
-        <address>150-866 서울시 영등포구 양평동 4가 32-17 2층 (주)안스포츠 / Tel. 02-3667-5121</address>
-        <p class="footerp">Business Registration No 380-86-00593 / E-commerce Permit 제 2016-서울영등포-1194호</p>
+        <address>07535 서울 강서구 양천로67길 93-23 1층, 지하 1층 . BA / Tel. 010-9143-0879</address>
+        <p class="footerp">Cafe B.A | Coffee and Cycle | 매일 09:00 ~ 22:00</p>
         <p class="footerp">© Copyright RABA All rights reserved.</p>
 	</footer>
 </body>

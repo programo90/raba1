@@ -13,7 +13,7 @@
 </head>
 <body>
 	<header class="adminheader">
-            <div class="adminlogo"><a href="#"><img src="/resources/img/ba_logo.png" alt="BALOGO" class="logo_img"></a></div>
+            <div class="adminlogo"><a href="/"><img src="/resources/img/ba_logo.png" alt="BALOGO" class="logo_img"></a></div>
             <nav>
                 <ul>
                     <li class="adminnav">

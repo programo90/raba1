@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<link rel="shortcut icon" type="image⁄x-icon" href="/resources/img/logo.png">
+<title>B.A. Cycle Stop</title>
 </head>
 <body>
 	<div>

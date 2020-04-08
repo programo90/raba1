@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>BA</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet" href="/resources/css/commMedia.css">
 <link rel="stylesheet" href="/resources/css/common.css">
@@ -37,7 +37,7 @@
         	                <a href="/mypage"><i class="fa fa-user"></i></a>
     	                </li>
 	                    <li class="topmenuli">
-                        	<a href="/cartlist/${loginid}"><i class="fa fa-shopping-basket"></i></a>
+                        	<a href="/cart_list/${loginid}"><i class="fa fa-shopping-basket"></i></a>
                     	</li>
 					<a href="#" onclick="document.getElementById('logout-form').submit();" class="headeloginbtn">Logout</a>
 					<form id="logout-form" action=/customLogout method="post">

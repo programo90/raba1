@@ -30,9 +30,9 @@
 		
 		<!-- 태관씨 확인해주세요  -->
 		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
-		<security:intercept-url pattern="/minorder/**" access="hasRole('ROLE_ADMIN')" />
-		<security:intercept-url pattern="/minorderdetail/**" access="hasRole('ROLE_ADMIN')" />
-		<security:intercept-url pattern="/minmember/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/adminorder/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/adminorderdetail/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/adminmember/**" access="hasRole('ROLE_ADMIN')" />
 		<!-- END 태관씨 확인해주세요  -->
 		
 		<!-- 도윤씨 확인해주세요  -->
@@ -73,11 +73,12 @@
 		
 		
 		
+		<!-- 권한이 없는 페이지에 접근시 이동하는 페이지 경로를 설정해줍니다. -->
 		<security:access-denied-handler error-page="/accessError" />
 		
-		<!-- <security:form-login /> 권한이 없는 페이지에 접근시 이동하는 페이지 경로를 설정해줍니다. -->
 		<!-- customLoginSuccess - 로그인성공시에 권한별로 이동하는 페이지를 설정할 수 있습니다. -->
 		<security:form-login login-page="/" authentication-success-handler-ref="customLoginSuccess" />
+		
 		<security:logout logout-url="/customLogout" invalidate-session="true" logout-success-url="/" />
 	</security:http>
 

@@ -13,6 +13,10 @@
 	    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	    <!-- END ajax script -->
 	    
+	    <!-- 도로명 script -->
+	 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	    <!-- END 도로명 script -->
+	    
 	    <!-- mypage script -->
 	    <!-- <script src="/resources/js/mypage/mypage.js"></script> -->
      	<!-- END mypage script -->
@@ -61,9 +65,9 @@
                     <li class="inline-block mr-10 ">
                         <a href="/mypage" class="block p-4 text-gray-800 font-nomal hover:text-gray-600 hover:font-bold ">주문 내역</a>
                     </li>
-                    <li class="inline-block mr-10  ">
+                    <!-- <li class="inline-block mr-10  ">
                         <a href="/wishlist" class="block p-4 text-gray-800 font-bold hover:text-gray-600 hover:font-bold">위시 리스트</a>
-                    </li>
+                    </li> -->
                     <li class="inline-block mr-10 ">
                         <a href="/tourmypage" class="block p-4 text-gray-800 font-normal hover:text-gray-600 hover:font-bold">투어 일정 확인</a>
                     </li>
@@ -172,7 +176,7 @@
 								</div>
 								<div class="mt-2">
 								  <label class="block text-sm text-gray-600 " for="useremail">Email</label>
-								  <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded text-xs" id="useremail" name="useremail" type="text" required="" placeholder="Your Email"  value="${userinfo.useremail }">
+								  <input class="w-full px-5  py-1 text-gray-700 bg-gray-200 rounded text-xs" id="useremail" name="useremail" type="text" required="" placeholder="Your Email"  value="${userinfo.useremail }">
 								</div>
 								<div class="mt-2">
 									<label class="block text-sm text-gray-600" for="phone">Phone number</label>
@@ -180,16 +184,23 @@
 								  </div>
 								<div class="mt-2">
 								  <label class=" block text-sm text-gray-600" for="addr2">Address</label>
-								  <input onclick="execPostCode();" class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded text-xs" id="addr2" name="addr2" type="text"  placeholder="도로명 주소"  value="${userinfo.address2 }">
+								  <input onclick="execPostCode();" class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs" id="addr2" name="addr2" type="text"  placeholder="도로명 주소"  value="${userinfo.address2 }">
 								</div>
 								<div class="mt-2">
 								  <label class="hidden text-sm block text-gray-600" for="addr3">상세 주소</label>
-								  <input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded text-xs" id="addr3" name="addr3" type="text" placeholder="상세주소"  value="${userinfo.address3 }">
+								  <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs" id="addr3" name="addr3" type="text" placeholder="상세주소"  value="${userinfo.address3 }">
 								</div>
 								<div class="inline-block mt-2 w-1/2 pr-1">
 								  <label class="hidden block text-sm text-gray-600" for="addr1">우편번호</label>
-								  <input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded text-xs" id="addr1" name="addr1" type="text"  placeholder="우편번호"  value="${userinfo.address }">
+								  <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs" id="addr1" name="addr1" type="text"  placeholder="우편번호"  value="(${userinfo.address })">
 								</div>
+								<sec:authorize access="hasRole('ROLE_HOST')"> 
+									<div class="mt-2">
+									  <label class="text-sm block text-gray-600" for="hostmsg">host 상태메세지 </label>
+									  <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded text-xs" id="hostmsg" name="hostmsg" type="text" placeholder="host message(필수)"  value="">
+									</div>
+								</sec:authorize>
+								
 								<div class="text-center mt-2">
 									<div class="no-underline hover:underline text-blue-dark text-xs text-gray-600">
 										프로필 사진은 카카오에서 변경이 가능합니다.
@@ -252,8 +263,7 @@
 		}
 	}
 	/* <!-- / (모달 script 끝)모달모달모달모달 @일진 --> */
-	
-		/* <!-- ajax script --> */
+	/* <!-- ajax script --> */
 function updateData(){
   	var userid = document.getElementById('userid').value;
   	var username = document.getElementById('username').value;
@@ -262,7 +272,8 @@ function updateData(){
 	var address = document.getElementById('addr1').value;
 	var address2 = document.getElementById('addr2').value;
 	var address3 = document.getElementById('addr3').value;
-	var tempdata = {"userid":userid, "username":username , "useremail":useremail , "phone":phone, "address":address , "address2":address2 , "address3":address3 }; 
+	var hostmsg = document.getElementById('hostmsg').value;
+	var tempdata = {"userid":userid, "username":username , "useremail":useremail , "phone":phone, "address":address , "address2":address2 , "address3":address3, "hostmsg":hostmsg }; 
 	$.ajax({
 			url : '/updateInfo'
 			, data : tempdata
@@ -278,6 +289,52 @@ function updateData(){
 		});
 	};
 			/* <!-- END ajax script --> */
+			
+	/* <!-- 도로명 script --> */
+		function execPostCode() {
+		    new daum.Postcode({
+		        oncomplete: function(data) {
+		           // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+		           // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+		           // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+		           var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+		           var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+		           // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+		           // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+		           if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+		               extraRoadAddr += data.bname;
+		           }
+		           // 건물명이 있고, 공동주택일 경우 추가한다.
+		           if(data.buildingName !== '' && data.apartment === 'Y'){
+		              extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+		           }
+		           // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+		           if(extraRoadAddr !== ''){
+		               extraRoadAddr = ' (' + extraRoadAddr + ')';
+		           }
+		           // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+		           if(fullRoadAddr !== ''){
+		               fullRoadAddr += extraRoadAddr;
+		           }
+
+		           // 우편번호와 주소 정보를 해당 필드에 넣는다.
+		           console.log(data.zonecode);
+		           console.log(fullRoadAddr);
+		           
+		           
+		           $("[name=addr1]").val(data.zonecode);
+		           $("[name=addr2]").val(fullRoadAddr);
+		           
+		           /* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
+		           document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
+		           document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
+		       }
+		    }).open();
+		}
+		/* <!-- END 도로명 script --> */
+			
 		/* 콤마를찍어줍니다  */
 			            Number.prototype.format = function(){
                 if(this==0) return 0;
@@ -304,6 +361,8 @@ function updateData(){
             });
     		/* END 콤마를찍어줍니다  */
 			
+    		
+    		
     		/* 이미지를 넣어줍니다  */
     		var img_uuid = document.getElementsByClassName("img_uuid");
          var img_fileName = document.getElementsByClassName("img_fileName");

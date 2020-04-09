@@ -82,6 +82,7 @@ public class Mypage_Controller {
 			, @RequestParam("address") String address
 			, @RequestParam("address2") String address2
 			, @RequestParam("address3") String address3
+			, @RequestParam("hostmsg") String hostmsg
 			) {
 		Login__MemberVO vo = new Login__MemberVO();
 		vo.setUserid(userid);

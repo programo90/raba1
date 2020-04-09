@@ -66,7 +66,7 @@
         <div class="phonenavbox">
         	<p class="phone_menuIcon" onclick="openNav()">&#9776;</p>
         	<p class="phonelogo">
-        		<a href="#"><img src="/resources/img/ba_logo.png" alt="BALOGO" class="logo_img"></a>
+        		<a href="/"><img src="/resources/img/ba_logo.png" alt="BALOGO" class="logo_img"></a>
         	</p>
         	<p class="phoneuser">
         		<a href="/mypage/${userid}" class="phoneusericon"><i class="fa fa-user"></i>

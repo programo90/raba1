@@ -11,42 +11,52 @@ document.addEventListener("DOMContentLoaded",function(){
 	
 	for(var i = 0 ; i < optionsize.length ; i++ ){
 		
-		if(optionsize[i].value == 'FREE'){
+		if(optionsize[i].value == 'FREE' && optionamount[i].value > 0){
 			
 			var str = document.createElement("option");
+			
+			str.classList.add("check_option")
 			
 			str.value = 'FREE';
 			
 			str.innerText = "FREE (" + optionamount[i].value + "개)";
 			
 			
-		}else if(optionsize[i].value == 'SMALL'){
+		}else if(optionsize[i].value == 'SMALL' && optionamount[i].value > 0){
 			
 			var str = document.createElement("option");
+			
+			str.classList.add("check_option")
 			
 			str.value = 'SMALL';
 			
 			str.innerText = "SMALL (" + optionamount[i].value + "개)";
 			
-		}else if(optionsize[i].value == 'MEDIUM'){
+		}else if(optionsize[i].value == 'MEDIUM'  && optionamount[i].value > 0){
 			
 			var str = document.createElement("option");
+			
+			str.classList.add("check_option")
 			
 			str.value = 'MEDIUM';
 			
 			str.innerText = "MEDIUM (" + optionamount[i].value + "개)";
 			
-		}else if(optionsize[i].value == 'LARGE'){
+		}else if(optionsize[i].value == 'LARGE' && optionamount[i].value > 0){
 			
 			var str = document.createElement("option");
+			
+			str.classList.add("check_option")
 			
 			str.value = 'LARGE';
 			
 			str.innerText = "LARGE (" + optionamount[i].value + "개)";
 			
-		}else if(optionsize[i].value == 'XLARGE'){
+		}else if(optionsize[i].value == 'XLARGE' && optionamount[i].value > 0){
 			
 			var str = document.createElement("option");
+			
+			str.classList.add("check_option")
 			
 			str.value = 'XLARGE';
 			
@@ -104,7 +114,10 @@ function addCart( ){
 	
 	var tempData = {"userid":userid.value, "pno":pno.value,	 "pamount":pamount.value,"pname":pname.value};
 	
-	console.log(userid.value+pno.value+pamount.value+pname.value);
+	console.log("userid : " +userid.value+"상품번호  : "+ pno.value+"수량  : "+pamount.value+"상품명 : "+pname.value);
+	
+	
+	
 	$.ajax({
 		url: '/addcart',
 		data : tempData,
@@ -128,8 +141,13 @@ function addCart( ){
 	
 }// end addcart function
 
+/* login check */
 function alertlogin(){
 	
 	alert("로그인 후 가능합니다.");
 	
 }
+
+
+
+

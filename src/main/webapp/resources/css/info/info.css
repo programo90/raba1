@@ -96,8 +96,9 @@
     margin-top: 10px;
 }
 .brd_head{
-    background-color: lightgrey;
-    border-bottom: 1px solid darkgrey;
+    background-color: ;
+    border-bottom: 2px solid darkgrey;
+    border-top : 1px solid #e8e8e8;
     font-weight: bold;
     height: 30px;
     padding-top: 10px;
@@ -108,11 +109,30 @@
     padding-top: 10px;
 
 }
-.n_no,.n_title,.n_date{
-    display: inline-block;
-    width: 33%;
-    margin: 0 auto;
+
+.n_no{
+	
+	width: 33%;
+	display: inline-block;
+	margin: 0 auto;
 }
+
+.n_title{
+	
+	width: 33%;
+	display: inline-block;
+	margin: 0 auto;
+}
+
+.n_date{
+	
+	width: 33%;
+	display: inline-block;
+	margin: 0 auto;
+}
+
+
+
 
 .n_content{
     width: 100%;

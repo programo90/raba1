@@ -6,14 +6,18 @@
     text-align : center;
 }
 .detail_img{
-    width: 50%;
-    height: 50%;
+    width: 40%;
+    height: 100%;
     /* border: 1px solid black; */
     display: inline-block;
-}
-.detail_img img{
     
-    margin-top : ;
+    
+}
+.detail_img div img{
+    
+    margin-top : 15%;
+    /* border: 1px solid red; */
+   
 }
 .detail_info{
     border: 1px solid black;

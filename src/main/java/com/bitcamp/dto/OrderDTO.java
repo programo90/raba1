@@ -23,7 +23,7 @@ public class OrderDTO {
 	private String orderuemail;
 	private String orderstatus;
 	private String payuname;
-	private String postno;
+	private String postno; 
 	private String cashreceipts;
 	private String username;
 	private String useremail;

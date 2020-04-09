@@ -91,10 +91,11 @@
 		where userid = #{userid}
 	</select>
 
-	<select id="getordernolist" resultType="int">
-		select oderno
+	<select id="getordernolist"  resultType="com.bitcamp.dto.OrderDTO">
+		select oderno, salesdate
 		from orderTable
 		where userid = #{userid}
+		order by salesdate desc
 	</select>
 
 

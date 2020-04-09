@@ -190,8 +190,8 @@ public class MypageServiceImple implements MypageService {
 
 
 	@Override
-	public List<Integer> getordernolist(String userid) {
-		List<Integer> ordernolist =mapper.getordernolist(userid);
+	public List<OrderDTO> getordernolist(String userid) {
+		List<OrderDTO> ordernolist =mapper.getordernolist(userid);
 		return ordernolist;
 	}
 

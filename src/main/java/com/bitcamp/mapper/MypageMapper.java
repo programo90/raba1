@@ -35,7 +35,7 @@ public interface MypageMapper {
 
 	void updateShipInfo(order__listDTO dto);
 
-	List<Integer> getordernolist(String userid);
+	List<OrderDTO> getordernolist(String userid);
 
 	void updateHostMsg(HashMap<String, Object> map);
 	

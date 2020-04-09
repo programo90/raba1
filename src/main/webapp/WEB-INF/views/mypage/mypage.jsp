@@ -10,7 +10,7 @@
 	    <!-- 도로명 script -->
 	 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	    <!-- END 도로명 script -->
-	    
+	    <script src="https://kit.fontawesome.com/0e36648cc8.js" crossorigin="anonymous"></script>
 	   	<!-- ajax script -->
 	    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	    <!-- END ajax script -->
@@ -94,10 +94,10 @@
                     <div class="container mx-auto px-4 sm:px-8">
                         <div >
                             <div>
-                                <h2 class="text-gray-500 text-lg font-semibold pl-4 leading-tight">주문 내역</h2>
+                                <h2 class="text-gray-600 text-2xl font-semibold pl-4 leading-tight"> <i class="fas fa-box-open"></i></h2>
                             </div>
 
-                            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-8 pt-2 overflow-x-auto">
                                 <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
                                 
 		                    	<table class="table-fixed min-w-full leading-normal">

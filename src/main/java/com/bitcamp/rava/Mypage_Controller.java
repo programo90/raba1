@@ -34,13 +34,13 @@ public class Mypage_Controller {
 		Login__MemberVO vo = service.userinfo(userid);
 		model.addAttribute("userinfo", vo);
 		
-		List<Integer> getordernolist = service.getordernolist(userid); 
+		List<OrderDTO> getordernolist = service.getordernolist(userid); 
 		List<List<order__listDTO>> list0 = new ArrayList<>();
 		
 		List<order__listDTO> list = service.orderlist(userid);
 		
 		for(int i=0; i<getordernolist.size(); i++) {
-			int orderno = getordernolist.get(i);
+			int orderno = getordernolist.get(i).getOderno();
 			List<order__listDTO> list2 =service.detail_orderlist(orderno);
 			
 			list0.add(list2);

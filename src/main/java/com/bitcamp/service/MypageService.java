@@ -17,6 +17,6 @@ public interface MypageService {
 	OrderDTO orderdetail(int orderno);
 	void updateCashReceipts(order__listDTO dto);
 	void updateShipInfo(order__listDTO dto);
-	List<Integer> getordernolist(String userid);
+	List<OrderDTO> getordernolist(String userid);
 	void updateHostMsg(String userid, String hostmsg);
 }

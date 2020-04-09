@@ -134,6 +134,26 @@
 							goods_img[i].innerHTML=str;
 							
 						}
+/* 						$(function(){ //memberForm form태그에 대한 validation 시작 
+							$("#userinput").validate({ rules: 
+							{ 
+								// id , name 은 폼태그내에 존재하는 name명이다. 
+								orderuname :{required : true}, 
+								orderuaddr1 : { required : true },
+								orderuaddr2 : { required : true },
+								orderuaddr3 : { required : true },
+								orderuphone : { required : true }
+									}, 
+									messages: { // id , name 은 폼태그내에 존재하는 name명이다. // alert에 들어가는 문자내용 // 하지만 text로만 화면에 보여진다는 것! 
+										orderuname: { required: "이름을 입력하세요" }, 
+										orderuaddr1: { required: "주소를 입력하세요" }, 
+										orderuaddr2: { required: "주소를 입력하세요" },
+										orderuaddr3: { required: "주소를 입력하세요" },
+										orderuphone: { required: "핸드폰번호를 입력하세요" }
+										}, //검증이 끝난후에 작업할 부분 (submit??) 
+								}) 
+									}) */
+
 			});
 </script>
 </head>
@@ -145,7 +165,7 @@
 
 	<div class="contents">
 		<!-- 여기 작성!!!! class =contents 는 수정하지마시고 이 안에서부터 div새로 만들어서 작업 ㄱㄱ -->
-		<form action="pay_resert" method="post" name="userinput">
+		<form action="pay_resert/" method="post" name="userinput">
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
 			<div class="paycart">
@@ -221,7 +241,7 @@
 					</div>
 					<div class="orderArea1_1">
 						<input type="text" name="orderuname" id="orderuname" size="10"
-							value="${user.username }">
+							value="${user.username }" required="required">
 					</div>
 				</div>
 				<div class="order4">
@@ -231,17 +251,17 @@
 					<div class="orderArea4_1">
 						<p>
 							<input type="text" name="orderuaddr1" id="orderuaddr1" size="5"
-								value="${user.address }">
+								value="${user.address }" required="required">
 							<button type="button" onclick="execPostCode();"
 								class="postalcode">우편번호</button>
 						</p>
 						<p>
 							<input type="text" name="orderuaddr2" id="orderuaddr2"
-								value="${user.address2 }" size="100">
+								value="${user.address2 }" size="100" required="required">
 						</p>
 						<p>
 							<input type="text" name="orderuaddr3" id="orderuaddr3"
-								value="${user.address3 }" size="100">
+								value="${user.address3 }" size="100" required="required">
 						</p>
 					</div>
 				</div>
@@ -251,7 +271,7 @@
 					</div>
 					<div class="orderArea1_1">
 						<input type="text" name="orderuphone" id="orderuphone" size="12"
-							value="${user.phone }">
+							value="${user.phone }" required="required">
 					</div>
 				</div>
 				<div class="order3">
@@ -260,7 +280,7 @@
 					</div>
 					<div class="orderArea1_1">
 						<input type="text" name="orderuemail" id="orderuemail" size="30"
-							value="${user.useremail }">
+							value="${user.useremail }" >
 					</div>
 				</div>
 				<div class="order2">
@@ -367,8 +387,8 @@
 				pg : 'inicis',
 				pay_method : 'card',
 				merchant_uid : "12" + new Date().getTime(),
-				name : pname[0].value,
-				amount : "100",
+				name : "B.A. GOODS",
+				amount : totalprice.value,
 				buyer_email : orderuemail.value,
 				buyer_name : orderuname.value,
 				buyer_tel : orderuphone.value,
@@ -403,7 +423,7 @@
 				if ( rsp.success ) {
 			    	var Data={
 			    			"ordermg" : ordermg.value,
-			    			"totalprice" : "100",
+			    			"totalprice" : totalprice.value,
 			    			"userid" :  tempid,
 			    			"deltype" : del.value,
 			    			"ordercprice" : ordercprice,
@@ -439,7 +459,7 @@
 			        msg += '상점 거래ID : ' + rsp.merchant_uid;
 			        msg += '결제 금액 : ' + rsp.paid_amount;
 			        msg += '카드 승인번호 : ' + rsp.apply_num; 
- 			        location.href="/adminorder"; 
+ 			        location.href="/mypage"; 
 			        
 			     } else {
 

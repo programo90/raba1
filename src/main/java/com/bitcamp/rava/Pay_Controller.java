@@ -61,7 +61,7 @@ public class Pay_Controller {
 		payservice.orderinsert(orderdto);
 		
 		System.out.println("fdfd"+orderdto.getPostno());
-		return "redirect:/goods_list";
+		return "redirect:/mypage/";
 	}
 	
 	   @ResponseBody

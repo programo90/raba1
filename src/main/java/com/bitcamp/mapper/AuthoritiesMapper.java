@@ -17,5 +17,9 @@ public interface AuthoritiesMapper {
 
 	String[] getauth(String userid);
 
+	void hostinsert1(AdminMemberDTO dto);
+
+	void delete2(AdminMemberDTO dto);
+
 	
 }

@@ -177,6 +177,7 @@ public class AdminServiceImple implements AdminService{
 	public void changeauth(AdminMemberDTO dto) {
 		
 		authmapper.delete(dto);
+		authmapper.delete2(dto);
 		
 		if(dto.getAuth().equals("ROLE_MEMBER"))
 		{
@@ -186,12 +187,14 @@ public class AdminServiceImple implements AdminService{
 		{
 			authmapper.insert1(dto);
 			authmapper.insert2(dto);
+			authmapper.hostinsert1(dto);
 		}
 		else if(dto.getAuth().equals("ROLE_ADMIN"))
 		{
 			authmapper.insert1(dto);
 			authmapper.insert2(dto);
 			authmapper.insert3(dto);
+			authmapper.hostinsert1(dto);
 		}
 		
 	}

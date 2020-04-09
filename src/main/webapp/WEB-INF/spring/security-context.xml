@@ -56,18 +56,18 @@
 		<security:intercept-url pattern="/tourdetail/**" access="hasRole('ROLE_MEMBER')" />
 		<!-- END 지모씨 확인해주세요  -->
 		<!-- 경민씨 확인해주세요  -->
-		<security:intercept-url pattern="/cafeadmin/**" access="hasRole('ROLE_HOST')" />
-		<security:intercept-url pattern="/delete/**" access="hasRole('ROLE_HOST')" />
-		<security:intercept-url pattern="/cafeadmininsert" access="hasRole('ROLE_HOST')" />
-		<security:intercept-url pattern="/modify/**" access="hasRole('ROLE_HOST')" />
-		<security:intercept-url pattern="/youtubeadmin/**" access="hasRole('ROLE_HOST')" />
-		<security:intercept-url pattern="/youtubeinsert/**" access="hasRole('ROLE_HOST')" />
-		<security:intercept-url pattern="/youtubedelete/**" access="hasRole('ROLE_HOST')" />
-		<security:intercept-url pattern="/youtubemodify/**" access="hasRole('ROLE_HOST')" />
-		<security:intercept-url pattern="/repairadmin/**" access="hasRole('ROLE_HOST')" />
-		<security:intercept-url pattern="/calinsert/**" access="hasRole('ROLE_HOST')" />
-		<security:intercept-url pattern="/calmodify/**" access="hasRole('ROLE_HOST')" />
-		<security:intercept-url pattern="/caldelete/**" access="hasRole('ROLE_HOST')" />
+		<security:intercept-url pattern="/cafeadmin/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/delete/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/cafeadmininsert" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/modify/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/youtubeadmin/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/youtubeinsert/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/youtubedelete/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/youtubemodify/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/repairadmin/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/calinsert/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/calmodify/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/caldelete/**" access="hasRole('ROLE_ADMIN')" />
 		<!-- END 경민씨 확인해주세요  -->
 		
 		

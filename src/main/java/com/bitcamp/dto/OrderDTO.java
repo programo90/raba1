@@ -30,7 +30,7 @@ public class OrderDTO {
 	private String phone;
 	private String deposit;   
 	
-	
+
 	
 	
 	

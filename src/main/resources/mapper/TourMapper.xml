@@ -115,7 +115,7 @@
    		where userid = #{userid}
    	</update>
    	<select id="tourApplyList" parameterType="int" resultType="com.bitcamp.dto.TourApplyDTO">
-   		select username
+   		select username, phone
 		from UserTable inner join ApplyTourTable
 		on UserTable.userid = ApplyTourTable.userid
 		where tourno = #{tourno};
@@ -171,9 +171,12 @@
   	<!-- 투어 리플 insert -->
   	<insert id="replyInsert" parameterType="com.bitcamp.dto.TourReplyDTO">
   		<selectKey keyProperty="reorder" order="BEFORE" resultType="int">
-  			select max(reorder)+1 as reorder
+  			select ifnull(max(TourReplyTable.reorder)+1, 0) as reorder
+			from TourReplyTable
+			where tourno = #{tourno}  			
+<!--   			select max(reorder)+1 as reorder
   			from TourReplyTable
-  			where tourno = #{tourno}
+  			where tourno = #{tourno} -->
   		</selectKey>
   		insert into TourReplyTable(tourno, reorder, userid, recontent, relevel)
   		values(#{tourno}, #{reorder}, #{userid}, #{recontent}, #{relevel})

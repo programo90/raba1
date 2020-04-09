@@ -5,8 +5,16 @@ public class TourApplyDTO {
 	private Integer tourno;
 	private String applydate;
 	private String username;
+	private String phone;
 	
 	
+	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public String getUsername() {
 		return username;
 	}

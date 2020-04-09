@@ -73,7 +73,7 @@ public class TourController {
 		List<TourMarkerDTO> markerlist = tourService.markerList(tourno);
 		HostDTO hostdto = tourService.hostDetail(dto.getHostno());
 		List<TourReplyDTO> redtolist = tourService.replyList(tourno);
-		
+
 		model.addAttribute("hostdto", hostdto);
 		model.addAttribute("dto", dto);
 		model.addAttribute("markerlist", markerlist);

@@ -46,8 +46,11 @@ function detailinfo(obj) {
 						result+='<div style="padding:20px 40px; width:100%;"><p>';
 						
 					$.each(data,function(index,item){
-						result += item.username;
-						result += '  ';
+						result += '<p><span style="width: 50px;display: inline-block;">' +item.username + '</span>|&nbsp;';
+						if(item.phone!=null) {
+							result +=item.phone;
+						}
+						result += '</p>';
 					});
 					result += '</p></div>';
 					/*result += '<div style="width:100%; height:60%;">메시지 전송</div>';*/

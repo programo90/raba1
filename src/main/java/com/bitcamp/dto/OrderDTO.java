@@ -31,6 +31,9 @@ public class OrderDTO {
 	private String deposit;
 	
 	
+	
+	
+	
 	public String getDeposit() {
 		return deposit;
 	}

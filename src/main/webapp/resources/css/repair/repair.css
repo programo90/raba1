@@ -2,7 +2,7 @@
 .banner_inner{
     height: 450px;
     background-image:url(/resources/img/bg%20ba7.jpg);
-    background-position: center -103px 
+    background-position: center -103px ;
     background-repeat: no-repeat; 
     background-size: cover;
 }
@@ -97,6 +97,10 @@
 }
 .rereply_admintxt{
 	color:#888;
+}
+.replybtn{
+	font-size:12px;
+	padding: 17px 20px;
 }
 /*calendar*/
 .fc-sun{

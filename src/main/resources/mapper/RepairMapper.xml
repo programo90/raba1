@@ -28,7 +28,7 @@
     		select reservno, ReserveTable.userid, username, reservtxt, reservlevel, reservorder, reservwritedate, caldate
 			from ReserveTable join UserTable
 			on ReserveTable.userid = UserTable.userid
-			order by reservorder, reservno
+			order by reservorder desc, reservlevel asc
     		<!-- select reservno, userid, reservtxt, reservlevel, reservorder, reservwritedate, caldate 
     		from ReserveTable 
     		order by reservwritedate desc, reservorder desc -->

@@ -27,17 +27,31 @@ $(document).ready(function(){
 		    
 		    console.log('temp' + tempdata);
 			calday = $(this);
-			if(confirm('예약날짜 : ' + tempdata +' 에 문의글을 작성하시겠습니까?')){
-				if(calday) {
-					calday.css('background-color', 'white');
-					$(this).css('background-color', '#3e5f40');
-				} else {
-					$(this).css('background-color', '#3e5f40');
+			
+			/* 날짜클릭시 로그인체크 */
+			var userid=document.getElementById('userid'); 
+			if(userid==null){
+				console.log("로그인정보없으면 alert창띄어줘야하는곳");
+				alert("로그인 후 작성 가능합니다.");
+			}else{
+				if(confirm('예약날짜 : ' + tempdata +' 에 문의글을 작성하시겠습니까?')){
+					
+					if(tempbox==null) {
+						$(this).css('background-color', '#3e5f40');
+						tempbox = calday;
+					} else {
+						tempbox.css('background-color', '#ffffff');
+						$(this).css('background-color', '#3e5f40');
+						tempbox = calday;
+					}
 				}
 			}
 			
+			
 		}
 	});
+	
+var tempbox;
 	
 //날짜이전버튼 클릭시
 $("button.fc-prev-button").click(function() {
@@ -80,7 +94,7 @@ function reservsend(reservorder){
 								result +='<p class="repair_inquiry_txt"><span class="repair_inquiry_cal">예약일자 '+item.caldate+' </span>| '+item.reservtxt+'</p>';
 								result +='</div>';
 								result +='<div class="repair_inquirylist_btn">';
-								result +='<input type="button" value="답변" class="admin_btn" onclick="adminreply(this)">';
+								result +='<input type="button" value="답변보기" class="admin_btn replybtn" onclick="adminreply(this)">';
 								result +='</div>';
 								result +='</div>';
 						}

@@ -1,8 +1,8 @@
 @charset "UTF-8";
 .banner_inner{
     height: 450px;
-    background-image:url(/resources/img/bg%20ba7.jpg);
-    background-position: center -103px ;
+    background-image:url(/resources/img/bg%20img04.png);
+    background-position: center -1px;
     background-repeat: no-repeat; 
     background-size: cover;
 }

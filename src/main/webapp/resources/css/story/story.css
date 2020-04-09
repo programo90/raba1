@@ -2,7 +2,7 @@
 .banner_inner{
     height: 450px;
     background-image:url(/resources/img/bg%20ba5.jpg);
-    /*background-position: center -55px; */
+    background-position: center -55px;
     background-repeat: no-repeat; 
     background-size: cover;
 } 

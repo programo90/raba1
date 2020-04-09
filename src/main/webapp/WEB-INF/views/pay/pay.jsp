@@ -220,7 +220,7 @@
 						<input type="hidden" name="userid" id="userid" value="${userid}">
 				<div class="paysal">
 					<div class="salprice">
-						<span>상품구매금액 <span class="format-money">${totalprice }</span> + 배송비 0 = 합계 : <span class="format-money"> ${totalprice }</span> 원</span>
+						<%-- <span>상품구매금액 <span class="format-money">${totalprice }</span> + 배송비  = 합계 : <span class="format-money"> ${totalprice }</span> 원</span> --%>
 					</div>
 				</div>
 			</div>

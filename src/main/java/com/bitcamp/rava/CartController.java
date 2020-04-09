@@ -104,4 +104,14 @@ public class CartController {
 		
 	}
 	
+	
+	@RequestMapping(value="/checkAmount")
+	@ResponseBody
+	public Integer[] checkamount(@RequestParam String[] arr) {
+		
+		Integer[] result = service.checkAmount(arr);
+		
+		return result;
+	}
+	
 }

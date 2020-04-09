@@ -1,11 +1,89 @@
 window.onload = function(){
 	
-	
 	plusPrice();
+	
+	/* 재고를 확인하는 function을 생성  */
+	
+	
+}
+
+function check_amount(){
+	
+	var cnolist = document.getElementsByClassName("cnolist");
+	
+	var list_checkbox = document.getElementsByClassName("list_checkbox");
+	
+	var arrCno = [];
+	
+	
+	for(var i = 0 ; i < cnolist.length; i++){
+		
+			arrCno.push(cnolist[i].value);
+			
+		}
+	
+	var tempdata = {"arr":arrCno};
+	console.log(tempdata);
+	jQuery.ajaxSettings.traditional = true;
+	
+	$.ajax({
+		
+		url : "/checkAmount" ,
+		data : tempdata,
+		dataType : 'json',
+		contentType: "application/json;charset=utf-8",
+		success : function(result){
+			
+			alert("재고 확인중~~~!!");
+			
+			for(var j = 0 ; j < result.length; j++){
+				
+				var pamount = result[j].value;
+				
+				if(pamount <= 0){
+					
+					list_checkbox[j].disabled = false;
+					
+				}
+			}
+			
+			
+		},error : function(error){
+			
+			alert("재고 확인중 문제 발생!!");
+		}
+		
+	}); // end ajax
 	
 	
 	
 }
+
+
+
+
+
+/* 주문 상품을 선택하지 않고 상품 주문을 선택할 시 오류를 막는 코드 */
+function check_submit(){
+	
+	var orderdata = document.getElementById("orderdata");
+	
+	var first_cno =  orderdata.firstChild;
+	
+	if(first_cno == null)
+		{
+			
+			alert("결제할 상품이 없습니다.")
+			
+			return ;
+		
+		}
+	
+	var paysubmit = document.getElementById("paysubmit");	
+	
+	paysubmit.submit();
+}
+
 
 
 /* 전체 checkbox on , off 기능 구현 코드 */
@@ -113,6 +191,8 @@ window.onload = function(){
 		
 		document.getElementById("price_text").innerText = plusprice + "원";
 		
+		/*document.getElementById("price_text").classList.add(".format-money");*/
+		
 		if(plusprice*1 >= 50000){
 			
 			deliveryprice = 0;
@@ -125,12 +205,6 @@ window.onload = function(){
 			deliveryprice = 3000;
 		}
 		
-		var cartdelivery =  document.getElementsByClassName("del_price");
-		
-		for(var i = 0; i < cartdelivery.length; i++){
-			
-			cartdelivery[i].innerText = deliveryprice+"원";
-		}
 		
 		document.getElementById("delivery_price_text").innerText = deliveryprice+ "원";
 		
@@ -177,7 +251,7 @@ window.onload = function(){
 				
 			},error : function(error){
 				
-				alert("error");
+				alert("삭제할 상품을 선택해주세요.");
 			}
 			
 		}); // end ajax

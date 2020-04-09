@@ -38,7 +38,9 @@ import net.coobird.thumbnailator.Thumbnailator;
 /*@Log4j*/
 public class UploadController {
 
-	private String path="\\resources\\img\\uploadimg";
+	/*private String path="\\resources\\img\\uploadimg";*/
+	
+	String realuploadpath = "/usr/local/apache-tomcat-9.0.33/webapps/raba1/resources/img/goods";
 	
 	//첨부파일이 이미지 타입인지 확인하는 메서드
 	private boolean checkImageType(File file) {
@@ -83,7 +85,10 @@ public class UploadController {
 		
 		List<AttachFileDTO> list = new ArrayList<>();
 		
-		String realuploadpath = request.getSession().getServletContext().getRealPath(path); //상대 경로 알려주는것
+		/*String realuploadpath = request.getSession().getServletContext().getRealPath(path); //상대 경로 알려주는것
+*/		
+		/*String realuploadpath = "/usr/local/apache-tomcat-9.0.33/webapps/raba1/resources/img";*/
+		
 		String uploadFolder = realuploadpath; 
 		
 		String uploadFolderPath = getFolder(); //업로드되는 폴더의 경로??
@@ -164,7 +169,10 @@ public class UploadController {
 		
 		/*log.info("fileName : " + fileName);*/
 		
-		String realuploadpath = request.getSession().getServletContext().getRealPath(path); //상대 경로 알려주는것
+		/*String realuploadpath = request.getSession().getServletContext().getRealPath(path); //상대 경로 알려주는것
+*/		
+		
+		/*String realuploadpath = "/usr/local/apache-tomcat-9.0.33/webapps/raba1/resources/img";*/
 		
 		File file = new File( realuploadpath + "\\" + fileName);
 		
@@ -196,8 +204,8 @@ public class UploadController {
 	@ResponseBody
 	public ResponseEntity<Resource> downloadFile(@RequestHeader("User-Agent") String userAgent, String fileName, HttpServletRequest request){
 		//유저의 디바이스 정보와 브라우저의 정보를 알려주는 "user-agent"
-		String realuploadpath = request.getSession().getServletContext().getRealPath(path); //상대 경로 알려주는것
-		
+		/*String realuploadpath = request.getSession().getServletContext().getRealPath(path); //상대 경로 알려주는것
+*/		
 		/*log.info("download file :" + fileName);*/
 		
 		Resource resource = new FileSystemResource(realuploadpath + "\\" + fileName);
@@ -262,7 +270,7 @@ public class UploadController {
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(String fileName, String type, HttpServletRequest request){
 		
-		String realuploadpath = request.getSession().getServletContext().getRealPath(path);
+		/*String realuploadpath = request.getSession().getServletContext().getRealPath(path);*/
 		
 		/*log.info("deleteFile : " + fileName );*/
 		

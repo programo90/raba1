@@ -33,5 +33,7 @@ public interface GoodsMapper {
 
 	int goodscount(HashMap<String, Object> hm);
 
+	int checkAmount(String string);
+
 
 }

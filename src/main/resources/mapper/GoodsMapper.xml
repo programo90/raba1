@@ -108,4 +108,12 @@
         limit #{startRow},#{endRow}
    </select>
   	
+   <select id="checkAmount" parameterType="int" resultType="int">
+   		select pamount
+   		from GoodsTable
+   		where pno = (	select pno
+   						from CartTable
+   						where cno = #{cno} )
+   		
+   </select>
   </mapper>

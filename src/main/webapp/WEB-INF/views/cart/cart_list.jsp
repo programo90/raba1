@@ -38,7 +38,7 @@
 				
 				var fileCallPath = encodeURIComponent(uploadPath+"/s_"+uuid+"_"+fileName);
 				
-				console.log("fileCallPath" +fileCallPath);
+				/* console.log("fileCallPath" +fileCallPath); */
 				
 				str += "<div class='goods_img' data-path='"+uploadPath+"' data-uuid='"+uuid+"' data-filename='"+fileName+"' data-type='"+fileType+"' >";
 				str += "<img src='/display?fileName="+fileCallPath+"' alt='"+fileName+"'>";
@@ -144,9 +144,7 @@
 				<div class="cartamount">
 					<span><c:out value="${Cartlist.p_amount }"/>개</span>
 				</div>
-				<!-- <div class="cartdelivery">
-					<span class="del_price"></span>
-				</div> -->
+				
 				<div class="cartpritotal">
 					<span><span class="format-money">${Cartlist.p_price * Cartlist.p_amount }</span>원</span>
 					<input type="hidden" value="<c:out value="${Cartlist.p_price * Cartlist.p_amount }"/>" class="price">
@@ -155,18 +153,6 @@
 			
 			</c:forEach>
 			
-			<!--장바구니 상품정보 가격 합계-->
-<!-- 			<div class="cartsal">
-				<div class="cartsalprice">
-					<span>상품구매금액 150,000 + 배송비 0 (무료) = 합계 : 150,000원</span>
-				</div>
-			</div>
-		</div>
-
-		할인 적용 코멘트
-		<div class="goodscartco">
-			<span>할인 적용 금액은 주문서작성의 결제예정금액에서 확인 가능합니다.</span>
-		</div> -->
 
 		<!--장바구니 상품 삭제 장바구니 비우기 버튼 -->
 		<div class="goodscartbtn2">
@@ -220,13 +206,13 @@
 		
 		<!--상품 결제페이지 이동 버튼-->
 		<div class="chartpay" >
-			<form action="/pay" method="post">
+			<form action="/pay" method="post" id="paysubmit">
 				
 				<div id="orderdata"></div>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<input type="hidden" name="totalprice" id="total_price">
 				<input type="hidden" name="usercode" value="${userid }">
-				<input type=submit value="상품 주문 " class="cartpaybtn">
+				<input type="button" value="상품 주문 " class="cartpaybtn" onclick="check_submit()">
 				
 			</form>
 			

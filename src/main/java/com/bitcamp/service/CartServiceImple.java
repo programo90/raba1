@@ -120,4 +120,20 @@ public class CartServiceImple implements CartService {
 		
 		return imglist;
 	}
+
+	@Override
+	public Integer[] checkAmount(String[] arr) {
+		// TODO Auto-generated method stub
+		
+		Integer[] result = new Integer[arr.length];
+		
+		for(int i = 0 ; i < arr.length; i++) {
+			
+			int amount = goods_mapper.checkAmount(arr[i]);
+			
+			result[i] = amount;
+		}
+		
+		return result;
+	}
 }

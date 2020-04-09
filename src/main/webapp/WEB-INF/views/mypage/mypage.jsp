@@ -90,10 +90,11 @@
             </div>
                 
                 <div class="w-full lg:w-10/12 min-h-screen antialiased bg-white">
+                <c:forEach var="olist" items="${orderinfo}">
                     <div class="container mx-auto px-4 sm:px-8">
                         <div >
                             <div>
-                                <h2 class="text-gray-800 text-2xl font-semibold leading-tight">주문 내역</h2>
+                                <h2 class="text-gray-500 text-lg font-semibold pl-4 leading-tight">주문 내역</h2>
                             </div>
 
                             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
@@ -120,7 +121,7 @@
 		                        	 
 			                         <tbody>
 			                         
-			                         <c:forEach var="orderlist" items="${orderinfo}">
+			                         <c:forEach var="orderlist"  items="${olist}">
 										
 			                     		<tr class=" border-b border-gray-200 ">	
 			                          		<td class=" flex items-center px-5 py-5 bg-white text-sm">
@@ -151,7 +152,7 @@
 			                                </td>
 			                                <td
 			                                    class="hidden md:table-cell px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
-			                                    <span class="text-gray-900 text-sm"><span class="format-money">${orderlist.p_price}</span>원</span>
+			                                    <span class="text-gray-900 text-sm"><span class="format-money" >${orderlist.p_price}</span>원</span>
 			                                </td>
 			                                <td class="hidden md:table-cell  px-5 py-5 border-b border-gray-200 bg-white text-sm">
 			                                    <p class="text-gray-900 whitespace-no-wrap">
@@ -174,6 +175,7 @@
                         </div>
                     </div>
                 </div>
+                </c:forEach>
             </div>
         </div>
         </div>
@@ -211,12 +213,12 @@
 								</div>
 								<div class="inline-block mt-2 w-1/2 pr-1">
 								  <label class="hidden block text-sm text-gray-600" for="addr1">우편번호</label>
-								  <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs" id="addr1" name="addr1" type="text"  placeholder="우편번호"  value="(${userinfo.address })">
+								  <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs" id="addr1" name="addr1" type="text"  placeholder="우편번호"  value="${userinfo.address }">
 								</div>
 								<sec:authorize access="hasRole('ROLE_HOST')"> 
 									<div class="mt-2">
 									  <label class="text-sm block text-gray-600" for="hostmsg">host 상태메세지 </label>
-									  <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded text-xs" id="hostmsg" name="hostmsg" type="text" placeholder="host message(필수)"  value="">
+									  <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded text-xs" id="hostmsg" name="hostmsg" type="text" placeholder="host message(필수)"  value="${userinfo.hostcomment }">
 									</div>
 								</sec:authorize>
 								

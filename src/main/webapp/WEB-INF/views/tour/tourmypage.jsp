@@ -11,25 +11,26 @@
 <link rel="stylesheet" href="/resources/css/common.css">
 <link rel="stylesheet" href="./resources/css/mypage/style.css">
 <link rel="stylesheet" href="./resources/css/tour/tourmypage.css">
-   <!-- 도로명 script -->
-	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-   <!-- END 도로명 script -->
+<!-- 도로명 script -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<!-- END 도로명 script -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="/resources/js/tour/tourmypage.js"></script>
 </head>
 <body class="block">
 	<sec:authorize access="isAuthenticated()">
-		<sec:authentication property='principal.username' var="loginid"/>
+		<sec:authentication property='principal.username' var="loginid" />
 		<input type="hidden" id="userid" value="${loginid }">
 	</sec:authorize>
-	
+
 	<div class="mt-2">
 		<div class="bg-gray-50">
 			<div
 				class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
 				<h2
 					class="text-4xl leading-9 font-extrabold text-gray-900 sm:text-5xl sm:leading-none">
-					${userinfo.username}님 안녕하세요!  <br /> <span class="text-teal-600">BREAK AWAY</span>
+					${userinfo.username}님 안녕하세요! <br /> <span class="text-teal-600">BREAK
+						AWAY</span>
 				</h2>
 				<div class="mt-8 flex lg:mr-0 inline-flex lg:flex-shrink-0 lg:mt-0">
 					<div class="inline-flex rounded-md shadow">
@@ -53,25 +54,24 @@
 					<li class="inline-block mr-10 "><a href="/mypage"
 						class="block p-4 text-gray-800 font-nomal hover:text-teal-600 hover:font-bold ">주문
 							내역</a></li>
-					<li class="inline-block mr-10  "><a href="/wishlist"
-						class="block p-4 text-gray-800 font-normal hover:text-teal-600 hover:font-bold">위시
-							리스트</a></li>
+
 					<li class="inline-block mr-10 "><a href="/tourmypage"
-						class="block p-4 text-gray-800 font-bold hover:text-teal-600 hover:font-bold">투어 참여 내역
-							</a></li>
-					<li class="inline-block mr-10 ">
-                        <a href="#" onclick="openModal()" class="block p-4 text-gray-800 font-normal hover:text-gray-600 hover:font-bold">정보 수정</a>
-                    </li>
-                    <sec:authorize access="hasRole('ROLE_HOST')"> 
-          					<a href="/tourhostpage"> 
-          						<button type="button"  class="mt-6 ml-1 bg-teal-600 text-white p-2 rounded  leading-none flex items-center">
-          							투어 관리
-		          					<span class="bg-white p-1 rounded text-teal-600 text-xs ml-2">
-        	  							host
-         							</span>
-      							</button>          						
-          					</a>	
-					</sec:authorize>					
+						class="block p-4 text-gray-800 font-bold hover:text-teal-600 hover:font-bold">투어
+							참여 내역 </a></li>
+					<li class="inline-block mr-10 "><a href="#"
+						onclick="openModal()"
+						class="block p-4 text-gray-800 font-normal hover:text-gray-600 hover:font-bold">정보
+							수정</a></li>
+					<sec:authorize access="hasRole('ROLE_HOST')">
+						<a href="/tourhostpage">
+							<button type="button"
+								class="mt-6 ml-1 bg-teal-600 text-white p-2 rounded  leading-none flex items-center">
+								투어 관리 <span
+									class="bg-white p-1 rounded text-teal-600 text-xs ml-2">
+									host </span>
+							</button>
+						</a>
+					</sec:authorize>
 				</ul>
 			</div>
 
@@ -79,15 +79,14 @@
 				<div>
 					<h2 class="text-gray-800 text-2xl font-semibold leading-tight">
 						투어 참여 내역<span style="display: inline-block; float: right;">
-						총 거리 : 
-						<c:choose>
-							<c:when test="${totaldistance lt 1000 }">
+							총 거리 : <c:choose>
+								<c:when test="${totaldistance lt 1000 }">
 								${totaldistance} m
 							</c:when>
-							<c:when test="${totaldistance ge 1000 }">
+								<c:when test="${totaldistance ge 1000 }">
 								${totaldistance/1000} km
 							</c:when>
-						</c:choose>
+							</c:choose>
 						</span>
 					</h2>
 					<div>
@@ -97,9 +96,9 @@
 								<option value="0">모집중</option>
 								<option value="1">마감</option>
 								<option value="2">종료</option>
-							</select>
-							<input type="text" class="search_txtbox" id="searchtxt">
-							<input type="button" class="search_btn" value="검색" placeholder="검색할 제목" onclick="searchTourlist()">
+							</select> <input type="text" class="search_txtbox" id="searchtxt">
+							<input type="button" class="search_btn" value="검색"
+								placeholder="검색할 제목" onclick="searchTourlist()">
 						</form>
 					</div>
 				</div>
@@ -123,71 +122,76 @@
 										Status</th>
 									<th
 										class="w-2/12 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-										</th>
+									</th>
 								</tr>
 							</thead>
 							<tbody id="listbody">
-							 	<c:forEach items="${list}" var="dto">
-							 		<tr class=" border-b border-gray-200 ">
-									<td class=" flex items-center px-5 py-5 bg-white text-sm">
-										<div class="tourmypage_imgbox" data-pop="${dto.populartour}">
-										</div>
-										<div
-											class="px-3 py-2 w-full flex items-center justify-between leading-none">
-											<div class="truncate">
-												<a href="/tourdetail/${dto.tourno}">
-													<div class="tourmypage_spot">
-														<h4 style="font-size:1.2em;text-align:center;">${dto.tourtitle}</h4>
-														<p>출발지 : ${dto.startspot}</p>
-														<p>도착지 : ${dto.endspot}</p>
-													</div>
-												</a>
+								<c:forEach items="${list}" var="dto">
+									<tr class=" border-b border-gray-200 ">
+										<td class=" flex items-center px-5 py-5 bg-white text-sm">
+											<div class="tourmypage_imgbox" data-pop="${dto.populartour}">
 											</div>
-										</div>
-									</td>
-									<td
-										class="hidden md:table-cell px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
-										<span class="text-gray-900 text-sm">
-											<c:choose>
-												<c:when test="${dto.distance lt 1000 }">
+											<div
+												class="px-3 py-2 w-full flex items-center justify-between leading-none">
+												<div class="truncate">
+													<a href="/tourdetail/${dto.tourno}">
+														<div class="tourmypage_spot">
+															<h4 style="font-size: 1.2em; text-align: center;">${dto.tourtitle}</h4>
+															<p>출발지 : ${dto.startspot}</p>
+															<p>도착지 : ${dto.endspot}</p>
+														</div>
+													</a>
+												</div>
+											</div>
+										</td>
+										<td
+											class="hidden md:table-cell px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
+											<span class="text-gray-900 text-sm"> <c:choose>
+													<c:when test="${dto.distance lt 1000 }">
 													${dto.distance} m 
 												</c:when>
-												<c:when test="${dto.distance ge 1000 }">
+													<c:when test="${dto.distance ge 1000 }">
 													${dto.distance/1000 } km
 												</c:when>
-											</c:choose>
-										
+												</c:choose>
+
 										</span>
-									</td>
-									<td
-										class="hidden md:table-cell  px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">${dto.tourday } ${dto.tourtime }</p>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<div class="tourmypage_state">
-											<c:choose>
-												<c:when test="${dto.tourstate == 0 }">모집중</c:when>
-												<c:when test="${dto.tourstate == 1 }">마감</c:when>
-												<c:when test="${dto.tourstate == 2 }">종료</c:when>
-											</c:choose>
-										</div>
-									</td>
-									<td>
-										<form action="tourcancel" style="position:relative; right:50%;">
-										<c:choose>
-												<c:when test="${(dto.tourstate==0) || (dto.tourstate == 1)}">
-													<input class="tourmypage_update_btn" type="button" onclick="cancelApplyTour(${dto.tourno})" value="지원취소">
-													<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-												</c:when>
-												<c:when test="${dto.tourstate == 2 }">
-													<input type="button" value="모집종료">
-												</c:when>
-										</c:choose>
-										</form>
-									</td>
-								</tr>
-							 	</c:forEach>
-								
+										</td>
+										<td
+											class="hidden md:table-cell  px-5 py-5 border-b border-gray-200 bg-white text-sm">
+											<p class="text-gray-900 whitespace-no-wrap">${dto.tourday }
+												${dto.tourtime }</p>
+										</td>
+										<td
+											class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+											<div class="tourmypage_state">
+												<c:choose>
+													<c:when test="${dto.tourstate == 0 }">모집중</c:when>
+													<c:when test="${dto.tourstate == 1 }">마감</c:when>
+													<c:when test="${dto.tourstate == 2 }">종료</c:when>
+												</c:choose>
+											</div>
+										</td>
+										<td>
+											<form action="tourcancel"
+												style="position: relative; right: 50%;">
+												<c:choose>
+													<c:when
+														test="${(dto.tourstate==0) || (dto.tourstate == 1)}">
+														<input class="tourmypage_update_btn" type="button"
+															onclick="cancelApplyTour(${dto.tourno})" value="지원취소">
+														<input type="hidden" name="${_csrf.parameterName}"
+															value="${_csrf.token}" />
+													</c:when>
+													<c:when test="${dto.tourstate == 2 }">
+														<input type="button" value="모집종료">
+													</c:when>
+												</c:choose>
+											</form>
+										</td>
+									</tr>
+								</c:forEach>
+
 
 							</tbody>
 						</table>
@@ -209,71 +213,108 @@
 			</div>
 		</div>
 	</div>
-	
-        <!-- (모달 html 시작)모달모달모달모달 @일진 -->
-	<div class="main-modal fixed w-full h-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster" style="background: rgba(0,0,0,.7);">
-		<div class="modal-container flex w-full mx-auto justify-center px-4 sm:px-0 z-50 sm:w-3/4 xl:w-1/2 ">
-            <div class="modal-content flex rounded-lg shadow-lg w-full  bg-white sm:mx-0" style="height: 500px">
-                <div class="flex flex-col w-full md:w-1/2 p-4">
-                    <div class="flex flex-col flex-1 justify-center  m-0 mb-8">
-                        <div class="w-full mt-4">
-                            <form  class="form-horizontal w-3/4 mx-auto" id="frm" method="POST" >
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-								<p class="text-gray-800 font-4xl font-extrabold">Customer information</p>
+
+	<!-- (모달 html 시작)모달모달모달모달 @일진 -->
+	<div
+		class="main-modal fixed w-full h-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster"
+		style="background: rgba(0, 0, 0, .7);">
+		<div
+			class="modal-container flex w-full mx-auto justify-center px-4 sm:px-0 z-50 sm:w-3/4 xl:w-1/2 ">
+			<div
+				class="modal-content flex rounded-lg shadow-lg w-full  bg-white sm:mx-0"
+				style="height: 500px">
+				<div class="flex flex-col w-full md:w-1/2 p-4">
+					<div class="flex flex-col flex-1 justify-center  m-0 mb-8">
+						<div class="w-full mt-4">
+							<form class="form-horizontal w-3/4 mx-auto" id="frm"
+								method="POST">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" />
+								<p class="text-gray-800 font-4xl font-extrabold">Customer
+									information</p>
 								<div class="">
-								  <label class="block text-sm text-gray-600" for="username">Name</label>
-								  <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs" id="username" name="username" type="text" required="" placeholder="Your Name"  value="${userinfo.username }">
+									<label class="block text-sm text-gray-600" for="username">Name</label>
+									<input
+										class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs"
+										id="username" name="username" type="text" required=""
+										placeholder="Your Name" value="${userinfo.username }">
 								</div>
 								<div class="mt-2">
-								  <label class="block text-sm text-gray-600 " for="useremail">Email</label>
-								  <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded text-xs" id="useremail" name="useremail" type="text" required="" placeholder="Your Email"  value="${userinfo.useremail }">
+									<label class="block text-sm text-gray-600 " for="useremail">Email</label>
+									<input
+										class="w-full px-5  py-1 text-gray-700 bg-gray-200 rounded text-xs"
+										id="useremail" name="useremail" type="text" required=""
+										placeholder="Your Email" value="${userinfo.useremail }">
 								</div>
 								<div class="mt-2">
-									<label class="block text-sm text-gray-600" for="phone">Phone number</label>
-									<input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs" id="phone" name="phone" type="text"  placeholder="Your phone number"  value="${userinfo.phone }">
-								  </div>
-								<div class="mt-2">
-								  <label class=" block text-sm text-gray-600" for="addr2">Address</label>
-								  <input onclick="execPostCode();" class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded text-xs" id="addr2" name="addr2" type="text"  placeholder="도로명 주소"  value="${userinfo.address2 }">
+									<label class="block text-sm text-gray-600" for="phone">Phone
+										number</label> <input
+										class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs"
+										id="phone" name="phone" type="text"
+										placeholder="Your phone number" value="${userinfo.phone }">
 								</div>
 								<div class="mt-2">
-								  <label class="hidden text-sm block text-gray-600" for="addr3">상세 주소</label>
-								  <input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded text-xs" id="addr3" name="addr3" type="text" placeholder="상세주소"  value="${userinfo.address3 }">
+									<label class=" block text-sm text-gray-600" for="addr2">Address</label>
+									<input onclick="execPostCode();"
+										class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs"
+										id="addr2" name="addr2" type="text" placeholder="도로명 주소"
+										value="${userinfo.address2 }">
+								</div>
+								<div class="mt-2">
+									<label class="hidden text-sm block text-gray-600" for="addr3">상세
+										주소</label> <input
+										class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs"
+										id="addr3" name="addr3" type="text" placeholder="상세주소"
+										value="${userinfo.address3 }">
 								</div>
 								<div class="inline-block mt-2 w-1/2 pr-1">
-								  <label class="hidden block text-sm text-gray-600" for="addr1">우편번호</label>
-								  <input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded text-xs" id="addr1" name="addr1" type="text"  placeholder="우편번호"  value="${userinfo.address }">
+									<label class="hidden block text-sm text-gray-600" for="addr1">우편번호</label>
+									<input
+										class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs"
+										id="addr1" name="addr1" type="text" placeholder="우편번호"
+										value="${userinfo.address }">
 								</div>
-								<div class="text-center mt-2">
-									<div class="no-underline hover:underline text-blue-dark text-xs text-gray-600">
-										프로필 사진은 카카오에서 변경이 가능합니다.
+								<sec:authorize access="hasRole('ROLE_HOST')">
+									<div class="mt-2">
+										<label class="text-sm block text-gray-600" for="hostmsg">host
+											상태메세지 </label> <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded text-xs" id="hostmsg" name="hostmsg" type="text" placeholder="host message(필수)"  value="${userinfo.hostcomment }">
 									</div>
+								</sec:authorize>
+
+								<div class="text-center mt-2">
+									<div
+										class="no-underline hover:underline text-blue-dark text-xs text-gray-600">
+										프로필 사진은 카카오에서 변경이 가능합니다.</div>
 								</div>
 								<div class="mt-3 flex">
-								  <button class="px-2 py-1 mx-auto text-white font-normal tracking-wider bg-gray-700 hover:bg-gray-800 rounded text-sm" onclick="updateData()">수정 완료</button> 
+									<button
+										class="px-2 py-1 mx-auto text-white font-normal tracking-wider bg-gray-700 hover:bg-gray-800 rounded text-sm"
+										onclick="updateData()">수정 완료</button>
 								</div>
-								
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="hidden md:block md:w-1/2 rounded-r-lg" style="background: url('https://images.unsplash.com/photo-1515965885361-f1e0095517ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3300&q=80'); background-size: cover; background-position: center center;">
-                    <div class="flex justify-end items-center pb-3">
-                        <div class="modal-close cursor-pointer z-50">
-                            <svg class="fill-white text-2xl p-2  " xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                viewBox="0 0 18 18">
+
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="hidden md:block md:w-1/2 rounded-r-lg"
+					style="background: url('https://images.unsplash.com/photo-1515965885361-f1e0095517ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3300&q=80'); background-size: cover; background-position: center center;">
+					<div class="flex justify-end items-center pb-3">
+						<div class="modal-close cursor-pointer z-50">
+							<svg class="fill-white text-2xl p-2  "
+								xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+								viewBox="0 0 18 18">
                                 <path
-                                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+									d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
                                 </path>
                             </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- (모달 html 끝)모달모달모달모달 @일진 -->
-	
+
 	<script>
 	/* <!-- (모달 script 시작)모달모달모달모달 @일진 --> */
 	const modal = document.querySelector('.main-modal');
@@ -360,7 +401,8 @@ function updateData(){
 	var address = document.getElementById('addr1').value;
 	var address2 = document.getElementById('addr2').value;
 	var address3 = document.getElementById('addr3').value;
-	var tempdata = {"userid":userid, "username":username , "useremail":useremail , "phone":phone, "address":address , "address2":address2 , "address3":address3 }; 
+	var hostmsg = document.getElementById('hostmsg').value;
+	var tempdata = {"userid":userid, "username":username , "useremail":useremail , "phone":phone, "address":address , "address2":address2 , "address3":address3, "hostmsg":hostmsg }; 
 	$.ajax({
 			url : '/updateInfo'
 			, data : tempdata
@@ -376,8 +418,10 @@ function updateData(){
 		});
 	};
 			/* <!-- END ajax script --> */
+		
+			
 	</script>
-	
+
 </body>
 
 </html>

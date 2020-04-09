@@ -13,7 +13,7 @@ public class Login__common_controller {
 		System.out.println("access Denied :" + auth);
 		
 		model.addAttribute("msg", "Access Denied");
-		return "/login/accessError";
+		return "error/400";
 	}
 	
 	@GetMapping("/customLogin")

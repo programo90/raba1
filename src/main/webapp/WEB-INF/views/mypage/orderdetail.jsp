@@ -105,7 +105,7 @@
 								<sec:authorize access="hasRole('ROLE_HOST')"> 
 									<div class="mt-2">
 									  <label class="text-sm block text-gray-600" for="hostmsg">host 상태메세지 </label>
-									  <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded text-xs" id="hostmsg" name="hostmsg" type="text" placeholder="host message(필수)"  value="">
+									  <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded text-xs" id="hostmsg" name="hostmsg" type="text" placeholder="host message(필수)"  value="${userinfo.hostcomment }">
 									</div>
 								</sec:authorize>
 								

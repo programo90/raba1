@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bitcamp.mapper.MypageMapper">
-
+<parameterMap type="java.util.HashMap" id="hashmap"></parameterMap>
 	<resultMap type="com.bitcamp.dto.GoodsDTO" id="goods_table">
 		<result property="p_no" column="pno" />
 		<result property="p_name" column="pname" />
@@ -45,9 +45,10 @@
 
 	<select id="userinfo" resultMap="MemberVO">
 		select username, useremail, phone, address, address2, address3, userimg,
-		distance
-		from UserTable
-		where userid = #{userid}
+		distance, hostcomment
+		from UserTable ut left join HostTable ht
+		on ut.userid = ht.userid
+		where ut.userid = #{userid}
 	</select>
 
 
@@ -61,7 +62,10 @@
 	<select id="detailorderlist"
 		resultType="com.bitcamp.dto.OrderDTO">
 		SELECT
-		orderstatus, ordercpno, ordercprice
+		oderno, DATE_FORMAT(salesdate, '%Y-%m-%d') AS salesdate, ordermg,
+		totalprice, userid, deltype,ordercprice,ordercamount, orderuname,
+		orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail,
+		orderstatus, payuname, ordercpno, cashreceipts
 		FROM
 		orderTable
 		WHERE
@@ -83,6 +87,12 @@
 		totalprice, userid, deltype,ordercprice,ordercamount, orderuname,
 		orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail,
 		orderstatus, payuname, ordercpno, cashreceipts
+		from orderTable
+		where userid = #{userid}
+	</select>
+
+	<select id="getordernolist" resultType="int">
+		select oderno
 		from orderTable
 		where userid = #{userid}
 	</select>
@@ -150,6 +160,10 @@
 	</update>
 
 
-
+  <update id="updateHostMsg" parameterType="hashmap">
+        update HostTable
+        set hostcomment = #{hostcomment}
+        where userid = #{userid}
+     </update>
 
 </mapper>

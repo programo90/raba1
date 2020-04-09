@@ -1,5 +1,6 @@
 package com.bitcamp.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -33,5 +34,9 @@ public interface MypageMapper {
 	void updateCashReceipts(order__listDTO dto);
 
 	void updateShipInfo(order__listDTO dto);
+
+	List<Integer> getordernolist(String userid);
+
+	void updateHostMsg(HashMap<String, Object> map);
 	
 }

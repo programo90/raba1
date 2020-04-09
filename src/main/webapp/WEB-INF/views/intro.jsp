@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="shortcut icon" type="image⁄x-icon" href="/resources/img/logo.png">
+<title>B.A. Cycle Stop</title>
 <link rel="stylesheet" href="/resources/css/mypage/style.css">
 <style>
 .bg__pattern-overlay { 

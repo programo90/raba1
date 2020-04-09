@@ -1,6 +1,7 @@
 package com.bitcamp.rava;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,9 +34,20 @@ public class Mypage_Controller {
 		Login__MemberVO vo = service.userinfo(userid);
 		model.addAttribute("userinfo", vo);
 		
-		List<order__listDTO> list = service.orderlist(userid);
-		model.addAttribute("orderinfo", list);
+		List<Integer> getordernolist = service.getordernolist(userid); 
+		List<List<order__listDTO>> list0 = new ArrayList<>();
 		
+		List<order__listDTO> list = service.orderlist(userid);
+		
+		for(int i=0; i<getordernolist.size(); i++) {
+			int orderno = getordernolist.get(i);
+			List<order__listDTO> list2 =service.detail_orderlist(orderno);
+			
+			list0.add(list2);
+		}
+		
+		model.addAttribute("orderinfo", list0);
+		System.out.println("나오세요 :"+ list0);
 		
 		return "mypage/mypage";
 	}
@@ -84,6 +96,7 @@ public class Mypage_Controller {
 			, @RequestParam("address3") String address3
 			, @RequestParam("hostmsg") String hostmsg
 			) {
+		service.updateHostMsg(userid,hostmsg);
 		Login__MemberVO vo = new Login__MemberVO();
 		vo.setUserid(userid);
 		vo.setUsername(username);

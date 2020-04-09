@@ -1,13 +1,13 @@
 package com.bitcamp.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bitcamp.dto.BoardAttachVO;
 import com.bitcamp.dto.GoodsDTO;
 import com.bitcamp.dto.OrderDTO;
 import com.bitcamp.dto.order__listDTO;
@@ -126,7 +126,8 @@ public class MypageServiceImple implements MypageService {
 		
 		for(int i =0; i<list1.size(); i++) {
 			String orderstatus = list1.get(i).getOrderstatus();
-			
+			String salesdate = list1.get(i).getSalesdate();
+			int oderno = list1.get(i).getOderno();
 			
 			String ordercprice = list1.get(i).getOrdercprice();
 			StringTokenizer stPrice = new StringTokenizer(ordercprice,",");
@@ -135,11 +136,14 @@ public class MypageServiceImple implements MypageService {
 			String cpno = list1.get(i).getOrdercpno();
 			StringTokenizer stLng = new StringTokenizer(cpno, ",");
 			String[] lngList = new String[stLng.countTokens()];
+			System.out.println("나오세요2 :"+ lngList);
+
 			for(int j = 0; j<lngList.length; j++) {
 				String pno = stLng.nextToken();
 				String p_price = stPrice.nextToken();
+				System.out.println("나오세요3 :"+ pno);
+				System.out.println("나오세요4 :"+ p_price);
 				GoodsDTO dto = mapper.goods_info2(pno);
-				String p_img = dto.getP_img();
 				String p_name = dto.getP_name();
 				List<GoodsDTO> goodsdto = goodsmapper.select_pno(p_name); // pname을 넣어주고 goodsdto를 받아옵니다. 그리고 사전에 orderdto에 list를 넣어줬습니다. List<BoardAttachVO> list;
 				int pno0 = goodsdto.get(0).getP_no(); //첫 번째pno를 받아왔습니다.
@@ -147,11 +151,11 @@ public class MypageServiceImple implements MypageService {
 				order__listDTO dto0 = new order__listDTO();
 				dto0.setImgvo(attachmapper.findByPno(pno0).get(0));  //list에 넣어줬습니다.
 				dto0.setP_price(p_price);
-				dto0.setP_img(p_img);
 				dto0.setP_name(p_name);
 				dto0.setOrderstatus(orderstatus);
+				dto0.setOderno(oderno);
+				dto0.setSalesdate(salesdate);
 				dto0.setP_num(pno); //pno를 넣어주고서 링크로 연결이 필요하다. (jsp에서 구현시 )
-				
 				
 				list0.add(dto0);
 			}
@@ -182,6 +186,25 @@ public class MypageServiceImple implements MypageService {
 	public void updateShipInfo(order__listDTO dto) {
 		mapper.updateShipInfo(dto);
 	}
+
+
+
+	@Override
+	public List<Integer> getordernolist(String userid) {
+		List<Integer> ordernolist =mapper.getordernolist(userid);
+		return ordernolist;
+	}
+
+
+
+	 @Override
+	   public void updateHostMsg(String userid, String hostmsg) {
+	      HashMap<String, Object> map = new HashMap<>();
+	      map.put("userid", userid);
+	      map.put("hostcomment", hostmsg);
+	      mapper.updateHostMsg(map);
+	   }
+
 
 
 	

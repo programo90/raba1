@@ -50,11 +50,9 @@
 					<li class="inline-block mr-10 "><a href="/mypage"
 						class="block p-4 text-gray-800 font-nomal hover:text-teal-600 hover:font-bold ">주문
 							내역</a></li>
-					<li class="inline-block mr-10  "><a href="/wishlist"
-						class="block p-4 text-gray-800 font-normal hover:text-teal-600 hover:font-bold">위시
-							리스트</a></li>
+					
 					<li class="inline-block mr-10 "><a href="/tourmypage"
-						class="block p-4 text-gray-800 font-normal hover:text-teal-600 hover:font-bold">모임 참여 내역
+						class="block p-4 text-gray-800 font-normal hover:text-teal-600 hover:font-bold">투어 참여 내역
 							</a></li>
 					<li class="inline-block mr-10 ">
                         <a href="#" onclick="openModal()" class="block p-4 text-gray-800 font-normal hover:text-gray-600 hover:font-bold">정보 수정</a>
@@ -203,7 +201,7 @@
 								</div>
 								<div class="mt-2">
 								  <label class="block text-sm text-gray-600 " for="useremail">Email</label>
-								  <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded text-xs" id="useremail" name="useremail" type="text" required="" placeholder="Your Email"  value="${userinfo.useremail }">
+								  <input class="w-full px-5  py-1 text-gray-700 bg-gray-200 rounded text-xs" id="useremail" name="useremail" type="text" required="" placeholder="Your Email"  value="${userinfo.useremail }">
 								</div>
 								<div class="mt-2">
 									<label class="block text-sm text-gray-600" for="phone">Phone number</label>
@@ -211,16 +209,23 @@
 								  </div>
 								<div class="mt-2">
 								  <label class=" block text-sm text-gray-600" for="addr2">Address</label>
-								  <input onclick="execPostCode();" class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded text-xs" id="addr2" name="addr2" type="text"  placeholder="도로명 주소"  value="${userinfo.address2 }">
+								  <input onclick="execPostCode();" class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs" id="addr2" name="addr2" type="text"  placeholder="도로명 주소"  value="${userinfo.address2 }">
 								</div>
 								<div class="mt-2">
 								  <label class="hidden text-sm block text-gray-600" for="addr3">상세 주소</label>
-								  <input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded text-xs" id="addr3" name="addr3" type="text" placeholder="상세주소"  value="${userinfo.address3 }">
+								  <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs" id="addr3" name="addr3" type="text" placeholder="상세주소"  value="${userinfo.address3 }">
 								</div>
 								<div class="inline-block mt-2 w-1/2 pr-1">
 								  <label class="hidden block text-sm text-gray-600" for="addr1">우편번호</label>
-								  <input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded text-xs" id="addr1" name="addr1" type="text"  placeholder="우편번호"  value="${userinfo.address }">
+								  <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded text-xs" id="addr1" name="addr1" type="text"  placeholder="우편번호"  value="${userinfo.address }">
 								</div>
+								<sec:authorize access="hasRole('ROLE_HOST')"> 
+									<div class="mt-2">
+									  <label class="text-sm block text-gray-600" for="hostmsg">host 상태메세지 </label>
+									  <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded text-xs" id="hostmsg" name="hostmsg" type="text" placeholder="host message(필수)"  value="${userinfo.hostcomment }">
+									</div>
+								</sec:authorize>
+								
 								<div class="text-center mt-2">
 									<div class="no-underline hover:underline text-blue-dark text-xs text-gray-600">
 										프로필 사진은 카카오에서 변경이 가능합니다.
@@ -337,7 +342,8 @@ function updateData(){
 	var address = document.getElementById('addr1').value;
 	var address2 = document.getElementById('addr2').value;
 	var address3 = document.getElementById('addr3').value;
-	var tempdata = {"userid":userid, "username":username , "useremail":useremail , "phone":phone, "address":address , "address2":address2 , "address3":address3 }; 
+	var hostmsg = document.getElementById('hostmsg').value;
+	var tempdata = {"userid":userid, "username":username , "useremail":useremail , "phone":phone, "address":address , "address2":address2 , "address3":address3, "hostmsg":hostmsg }; 
 	$.ajax({
 			url : '/updateInfo'
 			, data : tempdata
@@ -353,8 +359,10 @@ function updateData(){
 		});
 	};
 			/* <!-- END ajax script --> */
+		
+			
 	</script>
-	
+        
 	
 </body>
 

@@ -16,6 +16,15 @@ private String address;
 private String address2;
 private String address3;
 private String userimg;
+private String hostcomment;
+public String getHostcomment() {
+	return hostcomment;
+}
+
+public void setHostcomment(String hostcomment) {
+	this.hostcomment = hostcomment;
+}
+
 private List<Login__AuthVO> authList;
 
 public String getUserid() {

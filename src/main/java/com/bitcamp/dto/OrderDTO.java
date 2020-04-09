@@ -28,7 +28,7 @@ public class OrderDTO {
 	private String username;
 	private String useremail;
 	private String phone;
-	private String deposit;
+	private String deposit;   
 	
 	
 	

@@ -16,11 +16,11 @@
 		from (
 			select tourno, tourtitle, populartour, tourdate, startspot, endspot
  				,tourstyle,tourtype,totalcount, tourstate, tourday, tourtime, cancount, userid
- 			from TourTable inner join HostTable
+ 			from TourTable left outer join HostTable
         	on TourTable.hostno = HostTable.hostno
  			order by tourstate, tourno desc
  			limit #{startRow}, #{pageSize} ) as b 
-		inner join UserTable
+		left outer join UserTable
 		on UserTable.userid = b.userid;
  	</select>
  	

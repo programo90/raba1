@@ -29,16 +29,16 @@
     <selectKey keyProperty="oderno" resultType="int" order="BEFORE">
    select max(oderno)+17 as oderno from orderTable
    </selectKey> 
-  	insert into orderTable(oderno, salesdate, ordermg, totalprice, userid, deltype,ordercprice,ordercamount, orderuname, orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail, orderstatus, payuname,ordercpno, postno, cashreceipts)
-  	values (#{oderno},now(), #{ordermg}, #{totalprice}, #{userid}, #{deltype }, #{ordercprice}, #{ordercamount}, #{orderuname}, #{orderuaddr1}, #{orderuaddr2}, #{orderuaddr3}, #{orderuphone}, #{orderuemail}, #{orderstatus }, #{payuname }, #{ordercpno}, #{postno},null)
+  	insert into orderTable(oderno, salesdate, ordermg, totalprice, userid, deltype,ordercprice,ordercamount, orderuname, orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail, orderstatus, payuname,ordercpno, postno, cashreceipts, deposit)
+  	values (#{oderno},now(), #{ordermg}, #{totalprice}, #{userid}, #{deltype }, #{ordercprice}, #{ordercamount}, #{orderuname}, #{orderuaddr1}, #{orderuaddr2}, #{orderuaddr3}, #{orderuphone}, #{orderuemail}, #{orderstatus }, #{payuname }, #{ordercpno}, #{postno},null, now())
   </insert>
   
        <insert id="orderinsert2" parameterType="com.bitcamp.dto.OrderDTO">
     <selectKey keyProperty="oderno" resultType="int" order="BEFORE">
    select max(oderno)+17 as oderno from orderTable
    </selectKey> 
-  	insert into orderTable(oderno, salesdate, ordermg, totalprice, userid, deltype,ordercprice,ordercamount, orderuname, orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail, orderstatus, payuname,ordercpno, postno, cashreceipts)
-  	values (#{oderno},now(), #{ordermg}, #{totalprice}, #{userid}, #{deltype }, #{ordercprice}, #{ordercamount}, #{orderuname}, #{orderuaddr1}, #{orderuaddr2}, #{orderuaddr3}, #{orderuphone}, #{orderuemail}, #{orderstatus }, #{payuname }, #{ordercpno}, #{postno},null)
+  	insert into orderTable(oderno, salesdate, ordermg, totalprice, userid, deltype,ordercprice,ordercamount, orderuname, orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail, orderstatus, payuname,ordercpno, postno, cashreceipts, deposit)
+  	values (#{oderno},now(), #{ordermg}, #{totalprice}, #{userid}, #{deltype }, #{ordercprice}, #{ordercamount}, #{orderuname}, #{orderuaddr1}, #{orderuaddr2}, #{orderuaddr3}, #{orderuphone}, #{orderuemail}, #{orderstatus }, #{payuname }, #{ordercpno}, #{postno},null, now())
   </insert>
   
   <update id="decreaamount" parameterType="com.bitcamp.dto.GoodsDTO">

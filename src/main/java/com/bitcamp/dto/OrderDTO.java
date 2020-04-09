@@ -28,8 +28,15 @@ public class OrderDTO {
 	private String username;
 	private String useremail;
 	private String phone;
+	private String deposit;
 	
 	
+	public String getDeposit() {
+		return deposit;
+	}
+	public void setDeposit(String deposit) {
+		this.deposit = deposit;
+	}
 	public String getUsername() {
 		return username;
 	}

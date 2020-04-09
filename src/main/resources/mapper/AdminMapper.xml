@@ -154,7 +154,7 @@
   </select>
   
   <select id="order__detail" resultType="com.bitcamp.dto.OrderDTO">
-  	select oderno, DATE_FORMAT(salesdate, '%Y-%m-%d') AS salesdate, ordermg, totalprice, orderTable.userid, deltype, ordercprice, ordercamount, orderuname, orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail, orderstatus, payuname, ordercpno, username,phone,useremail,cashreceipts  
+  	select oderno, DATE_FORMAT(salesdate, '%Y-%m-%d') AS salesdate, ordermg, totalprice, orderTable.userid, deltype, ordercprice, ordercamount, orderuname, orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail, orderstatus, payuname, ordercpno, username,phone,useremail,cashreceipts, date_add(deposit, interval 3 day) as deposit  
   	from orderTable join UserTable
   	on orderTable.userid = UserTable.userid
   	where oderno= #{orderno}

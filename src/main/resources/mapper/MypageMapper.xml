@@ -116,7 +116,7 @@
 		select oderno, DATE_FORMAT(salesdate, '%Y-%m-%d') AS salesdate, ordermg,
 		totalprice, userid, deltype,ordercprice,ordercamount, orderuname,
 		orderuaddr1, orderuaddr2, orderuaddr3, orderuphone,orderuemail,
-		orderstatus, payuname, ordercpno, cashreceipts
+		orderstatus, payuname, ordercpno, cashreceipts, date_add(deposit, interval 3 day) as deposit
 		from orderTable
 		where oderno= #{orderno}
 	</select>

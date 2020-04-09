@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,7 +71,11 @@
                 <img src="/resources/img/intro/t-4.png" class="w-40 mx-auto" alt="logo">
             </a>
             <img src="/resources/img/intro/ba_font.png" class="py-16 w-24 mx-auto" alt="logo">
-
+            <sec:authorize access="hasRole('ROLE_ADMIN')"> 
+				<a href="/admin">
+	                <img src="/resources/img/intro/admin.png" class="w-40 mx-auto" alt="logo">
+	            </a>
+            </sec:authorize>
         </div>
 <!-- 
         <div class="flex justify-end px-8 md:hidden">

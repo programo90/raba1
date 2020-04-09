@@ -28,4 +28,14 @@
   	where userid=#{userid}
   </select>
   
+  <delete id="delete2" parameterType="com.bitcamp.dto.AdminMemberDTO">
+  	delete from HostTable
+  	where userid=#{userid}
+  </delete>
+  
+  <insert id="hostinsert1" parameterType="com.bitcamp.dto.AdminMemberDTO">
+  	insert into HostTable(userid)
+  	values(#{userid})
+  </insert>
+  
   </mapper>

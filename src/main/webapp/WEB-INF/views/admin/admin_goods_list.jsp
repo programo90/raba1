@@ -160,7 +160,7 @@
 	                            </script>
 	                            
 	                        <div class="admingoodsbtn2"><a href="/modifygoods/${Goodslist.p_no}">수정</a></div>
-	                        <div class="admingoodsbtn1"><a href="/deletegoods/${Goodslist.p_no}">삭제</a></div>
+	                        <div class="admingoodsbtn1" style="display :none"><a href="/deletegoods/${Goodslist.p_no}">삭제</a></div>
 	                    </div>
 	                  </c:forEach>
 	                  <!-- 이미지 출력을 위한 hidden value  -->

@@ -39,7 +39,7 @@
 }
 #tourdetail_hostimg{
     position: relative;
-    background-color: darkgray;
+    /* background-color: darkgray; */
     border-radius: 5px;
     width: 100%;
     height: 100%;
@@ -236,6 +236,10 @@
 .user_relist {
 	padding-left: 20px;
 	width : 90%;
+}
+.re_event_box:hover{
+	border : 1px solid #3e5f40;
+	cursor: pointer;
 }
 .relist_update_btn{
 	width:40px;

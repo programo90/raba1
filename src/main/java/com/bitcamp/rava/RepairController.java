@@ -30,6 +30,7 @@ public class RepairController {
 	@RequestMapping(value = "/repair", method = RequestMethod.GET)
 	public String repair(Locale locale, Model model) {
 		List<RepairDTO> relist = repairservice.replyselectList();
+		System.out.println(relist.get(0));
 		model.addAttribute("relist", relist);
 		return "repair/repair";
 	}

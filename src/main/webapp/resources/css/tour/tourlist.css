@@ -11,8 +11,8 @@ div{
 
 .banner_inner{
     height: 450px;
-    background-image:url(/resources/img/bg%20ba1.jpg);
-    /*background-position: center -55px; */
+    background-image:url(/resources/img/ba%20img02.png);
+    background-position: center -1px;
     background-repeat: no-repeat; 
     background-size: cover;
 }  

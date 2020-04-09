@@ -298,6 +298,7 @@ public class TourServiceImple implements TourService{
 	public List<TourReplyDTO> replyInsert(TourReplyDTO redto) {
 		// TODO Auto-generated method stub
 		if(redto.getReorder()<0) {
+
 			tourMapper.replyInsert(redto);
 		} else {
 			tourMapper.rereplyInsert(redto);

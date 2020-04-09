@@ -67,6 +67,26 @@
             );
         });
 		
+        
+        /* select value check */
+        $("#submitbtn").on('click',function(e){
+        	
+        	 /*e.preventDefault(); */
+        	
+        	var p_size = $("#p_size").val();
+        	var form = $("#addcartform");
+        	
+        	if(p_size == null){
+        		
+        		alert("사이즈를 선택해주세요.");
+        		
+        		return ;
+        	}
+        	
+        	 form.submit(); 
+        	
+        });
+        
 	});
 </script>
 <script type="text/javascript" src="/resources/js/goods/goodsdetail.js"></script>
@@ -94,7 +114,7 @@
                             <li>
                             <label for="p_size" id="sizename">Size</label>
                             <select name="p_size" id="p_size" >
-                            	<option selected disabled>사이즈 (잔여수량) </option>
+                            	<option selected disabled>사이즈 (잔여수량)</option>
                             </select>
                             </li>
                             <li>
@@ -105,7 +125,7 @@
                                 <input type="hidden" id="pname" value="${list[0].p_name }">
                             </li>
                             <sec:authorize access="isAuthenticated()">
-                            		<li><input type="submit" value="BUY NOW" class="buynow"></li>
+                            		<li><input type="button" value="BUY NOW" class="buynow" id="submitbtn"></li>
                             		<li><input type="button" value="ADD CART" class="addcart" onClick="addCart()"></li>
                             	</sec:authorize>
                             	<sec:authorize access="isAnonymous()">

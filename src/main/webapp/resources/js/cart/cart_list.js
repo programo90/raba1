@@ -1,3 +1,13 @@
+window.onload = function(){
+	
+	
+	plusPrice();
+	
+	
+	
+}
+
+
 /* 전체 checkbox on , off 기능 구현 코드 */
 	function checkAll() {
 		
@@ -103,9 +113,28 @@
 		
 		document.getElementById("price_text").innerText = plusprice + "원";
 		
+		if(plusprice*1 >= 50000){
+			
+			deliveryprice = 0;
+			
+		}else if(plusprice == 0 ){
+			
+			deliveryprice = 0;
+		}else{
+			
+			deliveryprice = 3000;
+		}
+		
+		var cartdelivery =  document.getElementsByClassName("del_price");
+		
+		for(var i = 0; i < cartdelivery.length; i++){
+			
+			cartdelivery[i].innerText = deliveryprice+"원";
+		}
+		
 		document.getElementById("delivery_price_text").innerText = deliveryprice+ "원";
 		
-		document.getElementById("total_price_text").innerText =plusprice + deliveryprice + "원";
+		document.getElementById("total_price_text").innerText = plusprice + deliveryprice + "원";
 	
 		document.getElementById("total_price").value =  plusprice + deliveryprice ;
 	}

@@ -18,7 +18,7 @@
         <div class="banner_inner"></div>
     </div>
     <div class="contents">
-        <h2 class="contents_title">콜드브루</h2>
+        <h2 class="contents_title">${cafedto.cafecategory}</h2>
         <!-- 여기 작성!!!! class =contents 는 수정하지마시고 이 안에서부터 div새로 만들어서 작업 ㄱㄱ -->
         <section class="cafe">
            <div class="cafe_detail">

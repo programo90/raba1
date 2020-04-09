@@ -112,9 +112,9 @@
 				<div class="cartamount">
 					<span>수량</span>
 				</div>
-				<div class="cartdelivery">
+				<!-- <div class="cartdelivery">
 					<span>배송비</span>
-				</div>
+				</div> -->
 				<div class="cartpritotal">
 					<span>합계</span>
 				</div>
@@ -144,9 +144,9 @@
 				<div class="cartamount">
 					<span><c:out value="${Cartlist.p_amount }"/>개</span>
 				</div>
-				<div class="cartdelivery">
-					<span>0</span>
-				</div>
+				<!-- <div class="cartdelivery">
+					<span class="del_price"></span>
+				</div> -->
 				<div class="cartpritotal">
 					<span><span class="format-money">${Cartlist.p_price * Cartlist.p_amount }</span>원</span>
 					<input type="hidden" value="<c:out value="${Cartlist.p_price * Cartlist.p_amount }"/>" class="price">
@@ -176,15 +176,17 @@
 		</div>
 
 		<!--결제 금액 안내-->
+		
+		
 		<div class="goodstotalprice">
-
+			
 			<!--결제 금액 안내 윗부분-->
 			<div class="goodscartname1">
 				<div class="goodstotalprice_1">
 					<span>총 상품금액</span>
 				</div>
 				<div class="goodstotalprice_1">
-					<span>총 배송비</span>
+					<span>배송비</span>
 				</div>
 				<div class="goodstotalprice_2">
 					<span>결제예정금액</span>
@@ -192,6 +194,8 @@
 			</div>
 
 			<!--결제 금액 안내 아랫부분-->
+			
+			
 			<div class="goodscartname2">
 				<div class="goodstotalprice2_1">
 					<span id="price_text"></span>
@@ -204,6 +208,7 @@
 				</div>
 			</div>
 		</div>
+		<span id="delivery_notice">※ 50,000원 이상 구매시 택배비 무료</span>
 		
 		<!-- 숨겨놓은 이미지 값  -->
 		 <c:forEach var="Imagelist" items="${img_list }">

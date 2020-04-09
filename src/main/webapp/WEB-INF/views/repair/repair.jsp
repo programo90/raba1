@@ -68,11 +68,9 @@
 				                        <p class="repair_inquiry_date">작성일 : ${list.reservwritedate}</p>
 				                        <p class="repair_inquiry_txt"><span class="repair_inquiry_cal">예약일자 ${list.caldate} </span>| ${list.reservtxt}</p>
 				                      </div>
-				                      <%-- <c:if test=""> --%>
 				                       <div class="repair_inquirylist_btn">
-				                           <input type="button" value="답변" class="admin_btn" onclick="adminreply(this)">
+				                           <input type="button" value="답변보기" class="admin_btn replybtn" onclick="adminreply(this)">
 				                       </div>
-				                      <%--  </c:if> --%>
 				                   </div>
                           		</c:when>
                           		<c:when test="${list.reservlevel !=0}">

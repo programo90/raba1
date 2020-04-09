@@ -70,6 +70,7 @@
   		from TourTable
   		where tourno = #{tourno}
   	</select>
+  	
   	<select id="tourFavDetail" parameterType="int" resultType="com.bitcamp.dto.TourDTO">
   		select tourno, tourlat, tourlng
   		from TourFavTable

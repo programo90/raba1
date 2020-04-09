@@ -1,3 +1,19 @@
+window.onload = function() {
+	relist_addEvent();
+}
+function relist_addEvent() {
+	var temphostid = document.getElementById('hostid').value;
+    var tempuserid = document.getElementById('userid').value;
+    
+    if(tempuserid == temphostid) {
+    	var relist_arr = document.getElementsByClassName('tourreple_list');
+    	console.log(relist_arr);
+    	for(var i=1; i<relist_arr.length;i++) {
+    		relist_arr[i].classList.add('re_event_box');
+    	}
+    }
+}
+
 //그린 경로의 좌표값을 lat, lng 으로 저장해서 배열로 만들고, 그 외에 입력한 값들과 함께 submit.
 function insertTour(){
     var selectedPath = clickLine.getPath();
@@ -242,4 +258,5 @@ function updateReply(obj,tourreno) {
 	});
 	$('#replylist').html(result);
 	$('#recontent').text('');
+	relist_addEvent();
  }

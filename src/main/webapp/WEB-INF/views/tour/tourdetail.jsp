@@ -21,20 +21,26 @@
 		<sec:authentication property='principal.username' var="loginid"/>
 		<input type="hidden" id="userid" value="${loginid }">
 	</sec:authorize>
-	<input type="hidden" id="userid" value="host">
+<!-- 	<input type="hidden" id="userid" value="host"> -->
 	
 	<input type="hidden" id="tourno" value="${dto.tourno}">
 	<input type="hidden" id="hostid" value="${hostdto.userid }">
 	<input type="hidden" id="distance" value="${dto.distance }">
 	<input type="hidden" id="maplevel" value="${dto.tourmaplevel }">
 	
-	
 	<div class="contents">
 	    <div id="tourdetail_wrap">
         <div id="tourdetail_hostblock">
             <div id="tourdetail_hostimgblock">
                 <div id="tourdetail_hostimgbox">
-                    <img id="tourdetail_hostimg" src="/resources/img/tour/custom-1.png" alt="hostimg">
+                	<c:choose>
+                		<c:when test="${hostdto.userimg==null}">
+                			<img id="tourdetail_hostimg" src="/resources/img/tour/default_person.png" alt="hostimg">
+                		</c:when>
+                		<c:when test="${hostdto.userimg!=null}">
+                			<img id="tourdetail_hostimg" src="${hostdto.userimg}" alt="hostimg">
+                		</c:when>
+                	</c:choose>
                 </div>
             </div>
             <div id="tourdetail_hostinfoblock">
@@ -228,6 +234,7 @@ var spotNum = 0;
 var bycicleSpeed = 334;
 
 selectFavoritTour();
+
 
 function selectFavoritTour(){
 

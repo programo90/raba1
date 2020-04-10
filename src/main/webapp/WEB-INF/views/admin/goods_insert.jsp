@@ -147,6 +147,8 @@ $(document).ready(function(e){
 		
 	}); //change
 	
+
+	
 function showUploadResult(uploadResultArr){
 		
 		if(!uploadResultArr || uploadResultArr.length == 0){ return;}
@@ -159,12 +161,13 @@ function showUploadResult(uploadResultArr){
 			
 			if(obj.image){
 				
-				var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName);
+				/* var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName); */
+				var fileCallPath = obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName;
 				
 				str += "<div ";
 				str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'>";
-				str += "<img src='/display?fileName=" + fileCallPath + "'><br>";
-				str += "<button type ='button' data-file=\'"+fileCallPath+"\'data-type='image' class ='btn btn-warning btn-circle'>x</button>";
+				str += "<img src='/resources/img/goods/" + fileCallPath + "'><br>";
+				str += "<button type ='button' data-file='/"  +fileCallPath+  "/'data-type='image' class ='btn btn-warning btn-circle'>x</button>";
 				str += "</div>";
 				
 			} else {
@@ -220,6 +223,8 @@ function showUploadResult(uploadResultArr){
 	});
 	
 });
+
+
 </script>
 
 </head>

@@ -90,6 +90,7 @@ function handleImgFileSelect(e) {
         }
         reader.readAsDataURL(f);
     });
+    
 }function handleImg2FileSelect(e) {
     var files = e.target.files;
     var filesArr = Array.prototype.slice.call(files);

@@ -40,8 +40,8 @@ public class UploadController {
 
 	/*private String path="\\resources\\img\\uploadimg";*/
 	
-	String realuploadpath = "/resources/img/goods/";
-	
+//	String realuploadpath = "/resources/img/goods/";
+	String realuploadpath = "/usr/local/apache-tomcat-9.0.33/webapps/raba1/resources/img/goods/";
 	//첨부파일이 이미지 타입인지 확인하는 메서드
 	private boolean checkImageType(File file) {
 		
@@ -174,7 +174,7 @@ public class UploadController {
 		
 		/*String realuploadpath = "/usr/local/apache-tomcat-9.0.33/webapps/raba1/resources/img";*/
 		
-		File file = new File( realuploadpath + "\\" + fileName);
+		File file = new File( realuploadpath + "/" + fileName);
 		
 		/*log.info("file : " + file);*/
 	
@@ -278,11 +278,11 @@ public class UploadController {
 		
 		try {
 			
-			file = new File(realuploadpath + "\\" +URLDecoder.decode(fileName,"UTF-8"));
+			file = new File(realuploadpath + "/" +URLDecoder.decode(fileName,"UTF-8"));
 			
 			file.delete();
 			
-			if(type.equals("image")) {
+			if("image".equals(type)) {
 				
 				String largeFileName = file.getAbsolutePath().replace("s_", "");
 				

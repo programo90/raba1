@@ -18,13 +18,13 @@ public class ErrorController {
 		return "error/400";
 	}
 	
-	@RequestMapping("/error/server-error")
+/*	@RequestMapping("/error/server-error")
 	public String servererror() {
 		return "error/500";
-	}
+	}*/
 	
-	@RequestMapping("/error/other")
+/*	@RequestMapping("/error/other")
 	public String other() {
 		return "error/other";
-	}
+	}*/
 }

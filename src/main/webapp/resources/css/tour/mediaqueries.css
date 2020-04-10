@@ -22,7 +22,7 @@
 		height: 50px;
     	overflow: hidden;
 	}
-	#tourdetail_spotlistbox:first-child {
+	.tourdetail_spotlistbox:first-child {
 		display: none;
 	}
 	#tourdetail_applyblock{

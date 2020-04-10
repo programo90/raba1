@@ -39,7 +39,7 @@
 		
 	<!-- upload image file -->	
 		<multipart-config>
-			<location>C:\\upload\\temp</location>
+			<location>/</location>
 			<max-file-size>20971520</max-file-size><!-- 1mb *20 -->
 			<max-request-size>41943040</max-request-size><!-- 40mb -->
 			<file-size-threshold>20971520</file-size-threshold><!-- 20mb -->
@@ -93,12 +93,12 @@
 		<error-code>400</error-code>
 		<location>/error/bad-request</location>
 	</error-page>
-	<error-page>
+<!-- 	<error-page>
 		<error-code>500</error-code>
 		<location>/error/server-error</location>
-	</error-page>
-	<error-page>
+	</error-page> -->
+<!-- 	<error-page>
 		<location>/error/other</location>
-	</error-page>
+	</error-page> -->
 	
 </web-app>

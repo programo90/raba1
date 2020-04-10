@@ -547,7 +547,7 @@ function displayCircleDot(position, distance) {
     } else {
         // 클릭한 지점까지의 그려진 선의 총 거리를 표시할 커스텀 오버레이를 생성합니다
         var distanceOverlay = new kakao.maps.CustomOverlay({
-            content: '<div class="dotOverlay">거리 <span class="number">' + (distance/1000) + '</span>km</div>',
+            content: '<div class="dotOverlay">거리 <span class="number">' + (distance - distance/100)/1000 + '</span>km</div>',
             position: position,
             yAnchor: 1,
             zIndex: 2

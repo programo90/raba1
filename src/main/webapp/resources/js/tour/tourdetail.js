@@ -1,6 +1,11 @@
 window.onload = function() {
 	relist_addEvent();
 }
+
+function delete_mapcover(obj) {
+	obj.style.display = 'none';
+}
+
 function relist_addEvent() {
 	var temphostid = document.getElementById('hostid').value;
     var tempuserid = document.getElementById('userid').value;

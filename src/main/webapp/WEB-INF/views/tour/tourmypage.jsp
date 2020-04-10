@@ -84,7 +84,7 @@
 								${totaldistance} m
 							</c:when>
 								<c:when test="${totaldistance ge 1000 }">
-								${totaldistance/1000} km
+								${(totaldistance-totaldistance%100)/10} km
 							</c:when>
 							</c:choose>
 						</span>

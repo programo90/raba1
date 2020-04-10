@@ -69,7 +69,7 @@
             	<!-- 카테고리 div start-->
             	<c:forEach var="categorydto" items="${catelist}">
 	         		<div class="cafe_category_txtbox" id="categotybox${categorydto}">
-	                   <p class="cafe_category_txt">${categorydto}<span class="cafe_category_txtspan">디카페인 에스프레소 샷 추가 가능 (일부 음료 제외)</span></p>
+	                   <p class="cafe_category_txt">${categorydto}<span class="cafe_category_txtspan"></span></p>
 	                </div>
 	                <!-- 카테고리 div end-->
 	              	<!-- product start-->

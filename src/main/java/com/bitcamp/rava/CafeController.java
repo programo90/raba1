@@ -210,7 +210,8 @@ public class CafeController {
 		String fileTag = "file1";
 	    	// 업로드 파일이 저장될 경로
 		//String filePath = "C:\\cafeimg\\";
-		String filePath = request.getServletContext().getRealPath(path);
+		//String filePath = request.getServletContext().getRealPath(path);
+		String filePath = path;
 		System.out.println(filePath);
 		
 		// 파일 이름	

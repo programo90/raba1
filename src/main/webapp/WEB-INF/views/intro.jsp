@@ -67,10 +67,10 @@
             <a href="/tourlist">
                 <img src="/resources/img/intro/t-2.png" class="w-40 mx-auto" alt="logo">
             </a>
-            <a href="/goods_list">
+            <a href="/gallery">
                 <img src="/resources/img/intro/t-3.png" class="w-40 mx-auto" alt="logo">
             </a>
-            <a href="/gallery">
+            <a href="/goods_list">
                 <img src="/resources/img/intro/t-4.png" class="w-40 mx-auto" alt="logo">
             </a>
             <img src="/resources/img/intro/ba_font.png" class="py-16 w-24 mx-auto" alt="logo">

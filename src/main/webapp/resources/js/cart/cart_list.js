@@ -23,7 +23,9 @@ function check_amount(){
 		}
 	
 	var tempdata = {"arr":arrCno};
+	
 	console.log(tempdata);
+	
 	jQuery.ajaxSettings.traditional = true;
 	
 	$.ajax({
@@ -38,7 +40,7 @@ function check_amount(){
 			
 			for(var j = 0 ; j < result.length; j++){
 				
-				var pamount = result[j].value;
+				var pamount = result[j];
 				
 				if(pamount <= 0){
 					
@@ -46,7 +48,6 @@ function check_amount(){
 					
 				}
 			}
-			
 			
 		},error : function(error){
 			

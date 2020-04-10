@@ -35,7 +35,9 @@ import lombok.extern.log4j.Log4j;
 /*@Log4j*/
 public class GoodsController {
 
-	private String path="\\resources\\img\\uploadimg";
+	/*private String path="\\resources\\img\\uploadimg";*/
+	
+	String realuploadpath = "/usr/local/apache-tomcat-9.0.33/webapps/raba1/resources/img/goods";
 	
 	@Autowired
 	private GoodsService goodsservice;
@@ -141,7 +143,7 @@ public class GoodsController {
 	@RequestMapping(value="/deletegoods/{p_no}")
 	public String goods_delete(@PathVariable int p_no, HttpServletRequest request) {
 		
-		String realuploadpath = request.getSession().getServletContext().getRealPath(path);
+		/*String realuploadpath = request.getSession().getServletContext().getRealPath(path);*/
 		
 		List<BoardAttachVO> attachList = goodsservice.getAttachList(p_no);
 		

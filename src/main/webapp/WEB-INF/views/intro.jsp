@@ -19,16 +19,6 @@
     z-index: -1;
 }
 
-.bg {
-   
-    /* Full height */
-    height: 100%; 
-  
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
   
   .vimeo-wrapper {
     position: fixed;
@@ -40,11 +30,24 @@
     pointer-events: none;
     overflow: hidden;
  }
+ 
+ 
  .vimeo-wrapper iframe {
     width: 100vw;
-    height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
+    height: 56.25vw;
     min-height: 100vh;
-    min-width: 240.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+    min-width: 240.77vh; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+ }
+ 
+ .vimeo-wrapper video {
+    width: 100vw;
+    height: 56.25vw;
+    min-height: 100vh;
+    min-width: 240.77vh; 
     position: absolute;
     top: 50%;
     left: 50%;
@@ -52,7 +55,7 @@
  }
 </style>
 </head>
-<body>
+<body> 
     <div class="w-screen h-screen flex justify-center  ">
 
         <div class="self-center flex-1   mb-4">
@@ -77,18 +80,21 @@
 	            </a>
             </sec:authorize>
         </div>
-<!-- 
-        <div class="flex justify-end px-8 md:hidden">
-            <img src="intro/intro__c_logo.png" alt="c_logo" class=" w-4">
-        </div> -->
        
     </div>
     
      <div class="bg__pattern-overlay"></div>
-    <div class="vimeo-wrapper w-screen h-full">
-        <iframe src="https://player.vimeo.com/video/141743895?background=1&autoplay=1&loop=1&byline=0&title=0"
+    <!-- <div class="vimeo-wrapper w-screen h-full">
+        <iframe src="https://player.vimeo.com/video/41097482?background=1&autoplay=1&loop=1&byline=0&title=0"
                 frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-     </div>
+     </div> -->
+
+     
+        <div class="vimeo-wrapper w-screen">
+            <video autoplay muted loop >
+                <source src="/resources/video/intro(raba).mp4" type="video/mp4">
+            </video>
+        </div>
 
 </body>
 </html>

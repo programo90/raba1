@@ -60,20 +60,20 @@
 
         <div class="self-center flex-1   mb-4">
             <div class="content-center mx-auto"></div>
-            <img src="/resources/img/intro/ba_logo.png" class="pt-4 w-12 mx-auto pb-8" alt="logo">
+            <img src="/resources/img/intro/ba_logo.png" class="pt-4 w-24 sm:w-12 mx-auto pb-8" alt="logo">
             <a href="/repair">
-                <img src="/resources/img/intro/t-1.png" class="w-40 mx-auto" alt="logo">
+                <img src="/resources/img/intro/t-1.png" class="w-56 sm:w-40 mx-auto" alt="logo">
             </a>
             <a href="/tourlist">
-                <img src="/resources/img/intro/t-2.png" class="w-40 mx-auto" alt="logo">
+                <img src="/resources/img/intro/t-2.png" class="w-56 sm:w-40 mx-auto" alt="logo">
             </a>
             <a href="/gallery">
-                <img src="/resources/img/intro/t-3.png" class="w-40 mx-auto" alt="logo">
+                <img src="/resources/img/intro/t-3.png" class="w-56 sm:w-40 mx-auto" alt="logo">
             </a>
             <a href="/goods_list">
-                <img src="/resources/img/intro/t-4.png" class="w-40 mx-auto" alt="logo">
+                <img src="/resources/img/intro/t-4.png" class="w-56 sm:w-40 mx-auto" alt="logo">
             </a>
-            <img src="/resources/img/intro/ba_font.png" class="py-16 w-24 mx-auto" alt="logo">
+            <img src="/resources/img/intro/ba_font.png" class="py-16 w-32 sm:w-24 mx-auto" alt="logo">
             <sec:authorize access="hasRole('ROLE_ADMIN')"> 
 				<a href="/admin">
 	                <img src="/resources/img/intro/admin.png" class="w-40 mx-auto" alt="logo">

@@ -122,14 +122,18 @@ public class CartServiceImple implements CartService {
 	}
 
 	@Override
-	public Integer[] checkAmount(String[] arr) {
+	public String[] checkAmount(String[] arr) {
 		// TODO Auto-generated method stub
 		
-		Integer[] result = new Integer[arr.length];
+		String[] result = new String[arr.length];
 		
-		for(int i = 0 ; i < arr.length; i++) {
+				System.out.println("result length : " + result.length);
+				
+				System.out.println("arr.length : " + arr.length);
+		
+		for(int i = 0 ; i < result.length; i++) {
 			
-			int amount = goods_mapper.checkAmount(arr[i]);
+			String amount = goods_mapper.checkAmount(arr[i]);
 			
 			result[i] = amount;
 		}

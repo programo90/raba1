@@ -29,6 +29,6 @@ public interface CartService {
 
 	List<BoardAttachVO> getImage(String usercode);
 
-	Integer[] checkAmount(String[] arr);
+	String[] checkAmount(String[] arr);
 
 }

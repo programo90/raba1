@@ -11,61 +11,71 @@ document.addEventListener("DOMContentLoaded",function(){
 	
 	for(var i = 0 ; i < optionsize.length ; i++ ){
 		
-		if(optionsize[i].value == 'FREE' && optionamount[i].value > 0){
+		if(optionamount[i].value > 0){
 			
-			var str = document.createElement("option");
-			
-			str.classList.add("check_option")
-			
-			str.value = 'FREE';
-			
-			str.innerText = "FREE (" + optionamount[i].value + "개)";
-			
-			
-		}else if(optionsize[i].value == 'SMALL' && optionamount[i].value > 0){
-			
-			var str = document.createElement("option");
-			
-			str.classList.add("check_option")
-			
-			str.value = 'SMALL';
-			
-			str.innerText = "SMALL (" + optionamount[i].value + "개)";
-			
-		}else if(optionsize[i].value == 'MEDIUM'  && optionamount[i].value > 0){
-			
-			var str = document.createElement("option");
-			
-			str.classList.add("check_option")
-			
-			str.value = 'MEDIUM';
-			
-			str.innerText = "MEDIUM (" + optionamount[i].value + "개)";
-			
-		}else if(optionsize[i].value == 'LARGE' && optionamount[i].value > 0){
-			
-			var str = document.createElement("option");
-			
-			str.classList.add("check_option")
-			
-			str.value = 'LARGE';
-			
-			str.innerText = "LARGE (" + optionamount[i].value + "개)";
-			
-		}else if(optionsize[i].value == 'XLARGE' && optionamount[i].value > 0){
-			
-			var str = document.createElement("option");
-			
-			str.classList.add("check_option")
-			
-			str.value = 'XLARGE';
-			
-			str.innerText = "XLARGE (" + optionamount[i].value + "개)";
+
+			if(optionsize[i].value == 'FREE'){
+				
+				var str = document.createElement("option");
+				
+				str.classList.add("check_option");
+				
+				str.value = 'FREE';
+				
+				str.innerText = "FREE (" + optionamount[i].value + "개)";
+				
+				
+			}else if(optionsize[i].value == 'SMALL'){
+				
+				var str = document.createElement("option");
+				
+				str.classList.add("check_option");
+				
+				str.value = 'SMALL';
+				
+				str.innerText = "SMALL (" + optionamount[i].value + "개)";
+				
+			}else if(optionsize[i].value == 'MEDIUM'){
+				
+				var str = document.createElement("option");
+				
+				str.classList.add("check_option");
+				
+				str.value = 'MEDIUM';
+				
+				str.innerText = "MEDIUM (" + optionamount[i].value + "개)";
+				
+			}else if(optionsize[i].value == 'LARGE'){
+				
+				var str = document.createElement("option");
+				
+				str.classList.add("check_option");
+				
+				str.value = 'LARGE';
+				
+				str.innerText = "LARGE (" + optionamount[i].value + "개)";
+				
+			}else if(optionsize[i].value == 'XLARGE'){
+				
+				var str = document.createElement("option");
+				
+				str.classList.add("check_option");
+				
+				str.value = 'XLARGE';
+				
+				str.innerText = "XLARGE (" + optionamount[i].value + "개)";
+				
+			}
+		
+			sizeselect.appendChild(str);
 			
 		}
 		
-		sizeselect.appendChild(str);
+		
+		
 	}//end for문
+	
+	
 	
 	/* 사이즈가 선택되면 그에 맞는 갯수가 max 값에 입력이 된다*/
 	

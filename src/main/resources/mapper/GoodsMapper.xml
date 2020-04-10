@@ -108,7 +108,7 @@
         limit #{startRow},#{endRow}
    </select>
   	
-   <select id="checkAmount" parameterType="int" resultType="int">
+   <select id="checkAmount" parameterType="String" resultType="String">
    		select pamount
    		from GoodsTable
    		where pno = (	select pno

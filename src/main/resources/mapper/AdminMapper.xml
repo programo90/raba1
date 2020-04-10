@@ -158,6 +158,7 @@
   	from orderTable join UserTable
   	on orderTable.userid = UserTable.userid
   	where oderno= #{orderno}
+  	order by salesdate desc
 </select>
 
 <select id="goods_info2" resultMap="detail_goodsDTO">

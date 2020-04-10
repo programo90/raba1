@@ -37,7 +37,7 @@ public class GoodsController {
 
 	/*private String path="\\resources\\img\\uploadimg";*/
 	
-	String realuploadpath = "/usr/local/apache-tomcat-9.0.33/webapps/raba1/resources/img/goods";
+	String realuploadpath = "/resources/img/goods/";
 	
 	@Autowired
 	private GoodsService goodsservice;

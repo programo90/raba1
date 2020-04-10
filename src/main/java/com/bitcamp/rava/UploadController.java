@@ -40,7 +40,7 @@ public class UploadController {
 
 	/*private String path="\\resources\\img\\uploadimg";*/
 	
-	String realuploadpath = "/usr/local/apache-tomcat-9.0.33/webapps/raba1/resources/img/goods";
+	String realuploadpath = "/resources/img/goods/";
 	
 	//첨부파일이 이미지 타입인지 확인하는 메서드
 	private boolean checkImageType(File file) {

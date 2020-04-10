@@ -48,7 +48,7 @@ public class CafeController {
 	
 	//private String path="\\resources\\img\\cafe";
 	//private String path="/usr/local/apache-tomcat-9.0.33/webapps/raba1/resources/img/cafe";
-	private String path="/resources/img/cafe";
+	private String path="/resources/img/cafe/";
 	
 	@RequestMapping(value = "/cafe")
 //	public String home(@RequestParam(defaultValue="drink") String search, Locale locale, Model model) {

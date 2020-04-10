@@ -79,7 +79,12 @@
         		<a href="/"><img src="/resources/img/ba_logo.png" alt="BALOGO" class="logo_img"></a>
         	</p>
         	<p class="phoneuser">
-        		<a href="/mypage/${userid}" class="phoneusericon"><i class="fa fa-user"></i>
+        		<sec:authorize access="isAuthenticated()">
+        			<a href="/mypage" class="phoneusericon"><i class="fa fa-user"></i></a>
+        		</sec:authorize>
+        		<sec:authorize access="isAnonymous()">
+        			<a href="https://kauth.kakao.com/oauth/authorize?client_id=bffed4bc4d4a39e24324342a77147ade&redirect_uri=http://localhost:8080/login&response_type=code"><i class="fa fa-user"></i></a>
+        		</sec:authorize>
         	</p>
         </div>
         <div id="myNav" class="overlay">

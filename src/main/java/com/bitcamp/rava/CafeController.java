@@ -257,7 +257,8 @@ public class CafeController {
 		    System.out.println("cafeno: "+cafeno);
 	        String mSysImg = cafefiledto.getFilesystemname();
 	        System.out.println("다운로드s:"+mSysImg);
-	        String uploadpath=request.getSession().getServletContext().getRealPath(path); //경로 알려주는것
+	        //String uploadpath=request.getSession().getServletContext().getRealPath(path); //경로 알려주는것
+	        String uploadpath=path;
 	        //실제 경로+파일
 	        //File file = new File("C:/cafeimg/"+mSysImg);
 	        File file = new File(uploadpath+mSysImg);

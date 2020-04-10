@@ -21,7 +21,7 @@
         <div class="header_inner">
             <div class="topmenu">
                 <ul>
-                   <%--  <sec:authorize access="isAnonymous()">
+                  	<sec:authorize access="isAnonymous()">
                     	<li class="topmenuli">
             	            <a href="https://kauth.kakao.com/oauth/authorize?client_id=bffed4bc4d4a39e24324342a77147ade&redirect_uri=http://13.125.113.225:8080/login&response_type=code" ><i class="fa fa-user"></i></a>
         	            </li>
@@ -29,9 +29,9 @@
 	                        <a href="https://kauth.kakao.com/oauth/authorize?client_id=bffed4bc4d4a39e24324342a77147ade&redirect_uri=http://13.125.113.225:8080/login&response_type=code"><i class="fa fa-shopping-basket"></i></a>
                     	</li>
 						<a href="https://kauth.kakao.com/oauth/authorize?client_id=bffed4bc4d4a39e24324342a77147ade&redirect_uri=http://13.125.113.225:8080/login&response_type=code" class="headeloginbtn">Login</a>	
-					</sec:authorize> --%>
+					</sec:authorize>
 					
-					<sec:authorize access="isAnonymous()">
+					<%-- <sec:authorize access="isAnonymous()">
                     	<li class="topmenuli">
             	            <a href="https://kauth.kakao.com/oauth/authorize?client_id=bffed4bc4d4a39e24324342a77147ade&redirect_uri=http://localhost:8080/login&response_type=code" ><i class="fa fa-user"></i></a>
         	            </li>
@@ -39,7 +39,7 @@
 	                        <a href="https://kauth.kakao.com/oauth/authorize?client_id=bffed4bc4d4a39e24324342a77147ade&redirect_uri=http://localhost:8080/login&response_type=code"><i class="fa fa-shopping-basket"></i></a>
                     	</li>
 						<a href="https://kauth.kakao.com/oauth/authorize?client_id=bffed4bc4d4a39e24324342a77147ade&redirect_uri=http://localhost:8080/login&response_type=code" class="headeloginbtn">Login</a>	
-					</sec:authorize>
+					</sec:authorize> --%>
 					
 					<sec:authorize access="isAuthenticated()">
 						<sec:authentication property='principal.username' var="loginid"/>
@@ -83,7 +83,7 @@
         			<a href="/mypage" class="phoneusericon"><i class="fa fa-user"></i></a>
         		</sec:authorize>
         		<sec:authorize access="isAnonymous()">
-        			<a href="https://kauth.kakao.com/oauth/authorize?client_id=bffed4bc4d4a39e24324342a77147ade&redirect_uri=http://localhost:8080/login&response_type=code"><i class="fa fa-user"></i></a>
+        			<a href="https://kauth.kakao.com/oauth/authorize?client_id=bffed4bc4d4a39e24324342a77147ade&redirect_uri=http://13.125.113.225:8080/login&response_type=code"><i class="fa fa-user"></i></a>
         		</sec:authorize>
         	</p>
         </div>

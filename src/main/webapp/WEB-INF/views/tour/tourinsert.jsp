@@ -15,6 +15,8 @@
         <div id="tourinsert_contentblock">
            <form action="tourinsertresult" id="tourinsertform" method="post">
             <div id="tourinsert_mapblock">
+            	<div style="position:absolute;" id="tourinsert_mapcover" onclick="delete_mapcover(this)">
+            	</div>
                 <div id="tourinsert_spotlistbox">
                    <div class="tourdetail_spotinfo1">
                        <div class="tourdetail_spotno"></div>
@@ -56,15 +58,15 @@
                                     <input type="text" name="tourtitle" id="tourtitle" size="50">
                                </div>
                                <div class="tourinsert_inserttitle">
-                                     <label for="favorit_tour">대표경로 선택</label>
+                                     <label for="favorit_tour">즐겨찾기 경로</label>
                                 </div>
                                 <div class="tourinsert_insertcontent">
                                   <select name="populartour" id="favorit_tour" onchange="selectFavoritTour()">
                                       <option value="0" selected>선택안함</option>
-                                      <option value="1">첫번째 경로</option>
-                                      <option value="2">두번째 경로</option>
-                                      <option value="3">세번째 경로</option>
-                                      <option value="4">네번째 경로</option>
+                                      <option value="1">한강</option>
+                                      <option value="2">강동 남한산성</option>
+                                      <option value="3">강북 북악팔각정</option>
+                                      <option value="4">강남 관악</option>
                                   </select>
                                   <sec:authorize access="hasRole('ROLE_ADMIN')">
                                   	<button id="fav_update_btn" type="button" onclick="selecteTourUpdate(this)">수정모드</button>
@@ -99,24 +101,25 @@
                                     <label for="distance">총 거리</label>
                                 </div>
                                 <div class="tourinsert_insertcontent">
-                                    <input type="text" name="distance" id="distance" readonly placeholder="자동입력" size="50">m
+                                    <input type="text" name="distance" id="distance" readonly placeholder="자동입력" size="50">
+                                    <span id="input_distance_meter">m</span>
                                 </div>
                                <div class="tourinsert_inserttitle">
-                                    <label for="">투어컨셉</label><br>
+                                    <label for="">모임 컨셉</label><br>
                                 </div>
                                 <div class="tourinsert_insertcontent">
                                     <label for="tourstyle_easy">샤방</label>
                                     <input type="radio" name="tourstyle" id="tourstyle_easy" value="easy" onclick="selectTourStyle()">
-                                    <label for="tourstyle_hard">전투</label>
+                                    <label for="tourstyle_hard">운동</label>
                                     <input type="radio" name="tourstyle" id="tourstyle_hard" value="hard" onclick="selectTourStyle()">
                                 </div>
                                <div class="tourinsert_inserttitle">
-                                    <label for="">투어타입</label><br>
+                                    <label for="">모임 타입</label><br>
                                 </div>
                                 <div class="tourinsert_insertcontent">
                                     <label for="tour_lightning">번개</label>
                                     <input type="radio" value="lightning" name="tourtype" id="tour_lightning">
-                                    <label for="tour_planed">투어</label>
+                                    <label for="tour_planed">계획</label>
                                     <input type="radio" value="planed" name="tourtype" id="tour_planed">
                                 </div>
                                 <div class="tourinsert_inserttitle">
@@ -282,21 +285,6 @@ function addMarker(position){
 }
 
 function addSpotList(position){
-/*    var spotboxlist = document.getElementsByClassName('tourinsert_spotbox');
-    
-    var spotCon = '<div class="tourdetail_spotno"> P';
-        spotCon += (spotNum +1);
-        spotCon += '</div>';
-        spotCon += '<div class="tourdetail_spotdetail">';
-        spotCon = ' <input type="hidden" value="' + spotNum + '">';
-        spotCon += '<input type="text" size="15" placeholder="지점 이름">';
-        spotCon += '<input type="text" size="15" placeholder="설명">';
-        spotCon += '<input type="hidden" value="'
-        spotCon += position;
-        spotCon += '">';        
-        spotCon += '</div>';
-    
-    spotboxlist[spotNum].insertAdjacentHTML('afterbegin',spotCon);*/
                         
     var spotNumList = document.getElementsByClassName('tourdetail_spotno');
     var spotCon1 = '<div>P';
@@ -316,9 +304,7 @@ function addSpotList(position){
         spotCon2 += '<input type="hidden" name="spotListLng" id="spotListLng' + spotNum + '" value="'
         spotCon2 += position.getLng();
         spotCon2 += '">';
-        
-        console.log(position.getLat());
-        console.log(position.getLng());      
+              
         
     spotDetailList[spotNum].innerHTML = spotCon2;
     
@@ -485,9 +471,10 @@ function displayCircleDot(position, distance) {
         // 지도에 표시합니다
         distanceOverlay.setMap(map);
     } else {
+    	var tempdistance = distance - distance%100;
         // 클릭한 지점까지의 그려진 선의 총 거리를 표시할 커스텀 오버레이를 생성합니다
         var distanceOverlay = new kakao.maps.CustomOverlay({
-            content: '<div class="dotOverlay">거리 <span class="number">' + (distance - distance/100)/1000 + '</span>km</div>',
+            content: '<div class="dotOverlay">거리 <span class="number">' + (tempdistance/1000) + '</span>km</div>',
             position: position,
             yAnchor: 1,
             zIndex: 2
@@ -644,8 +631,8 @@ function drawSelectedRoute() {
 
     	//경로 첫 지점 설장
      	var spotPosition = new kakao.maps.LatLng(latList[0].value, lngList[0].value);
-    	console.log(latList[0].value);
-    	console.log(lngList[0].value);
+    	/* console.log(latList[0].value);
+    	console.log(lngList[0].value); */
     	/*var spotPosition = new kakao.maps.LatLng(37.556431, 126.871739);*/
     	clickLine = new kakao.maps.Polyline({
             	map: map, 
@@ -698,7 +685,7 @@ function insertTour(){
 	    for(var j=0; j<selectedPath.length; j++){
 	        var pathLat = selectedPath[j].getLat();
 	        var pathLng = selectedPath[j].getLng();
-	        console.log(pathLat+','+pathLng);
+	        /* console.log(pathLat+','+pathLng); */
 	        
 	        content += '<input type="hidden" name="tourlatlist" value="' + pathLat + '">';
 	        content += '<input type="hidden" name="tourlnglist" value="' + pathLng + '">';
@@ -839,7 +826,7 @@ function checkmaxmin(inputtotalcount) {
 function selecteTourUpdate(obj) {
 	var tempmode = document.getElementById('selectmode');
 	var alert_msg = document.getElementById('fav_update_alr');
-	console.log(tempmode.value);
+	/* console.log(tempmode.value); */
 	if(tempmode.value == 0) {
 		alert_msg.style.display = 'block';
 		obj.style.cssText = "border : 3px solid #f33800;";
@@ -849,6 +836,11 @@ function selecteTourUpdate(obj) {
 		obj.style.cssText = "border : 3px solid #e8e8e8;";
 		tempmode.value = 0;
 	}
+}
+function delete_mapcover(obj) {
+	/* obj.style.display ='none'; */
+	$(obj).fadeOut();
+	
 }
 </script>
 </body>

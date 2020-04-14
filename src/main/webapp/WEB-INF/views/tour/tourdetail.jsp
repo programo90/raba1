@@ -83,8 +83,8 @@
         </div>
         <div id="tourdetail_contentblock">
             <div id="tourdetail_mapblock">
-            	<div style="position:absolute;" id="tourdetail_mapcover" onclick="delete_mapcover(this)">
-            	</div>
+            	<!-- <div style="position:absolute;" id="tourdetail_mapcover" onclick="delete_mapcover(this)">
+            	</div> -->
                 <div id="tourdetail_spotlistbox" class="tourdetail_spotlistbox" style="position:absolute">
                 	
                 		<!-- 이하 for문으로 marker를 추가하고 marker list를 추가 -->
@@ -213,7 +213,7 @@
 var centerlat = document.getElementsByClassName('tourlatlist')[0].value;
 var centerlng = document.getElementsByClassName('tourlnglist')[0].value;
 var maplevel = document.getElementById('maplevel').value;
-console.log(maplevel);
+/* console.log(maplevel); */
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
         center: new kakao.maps.LatLng(centerlat, centerlng), // 지도의 중심좌표
@@ -251,8 +251,8 @@ function selectFavoritTour(){
 	
     //경로 첫 지점 설장
      var spotPosition = new kakao.maps.LatLng(latList[0].value, lngList[0].value);
-    console.log(latList[0].value);
-    console.log(lngList[0].value);
+    /* console.log(latList[0].value);
+    console.log(lngList[0].value); */
     /*var spotPosition = new kakao.maps.LatLng(37.556431, 126.871739);*/
     clickLine = new kakao.maps.Polyline({
             map: map, 
@@ -355,8 +355,8 @@ function addSpotList(position){
         spotCon2 += position.getLng();
         spotCon2 += '">';
         
-        console.log(position.getLat());
-        console.log(position.getLng());      
+        /* console.log(position.getLat());
+        console.log(position.getLng()); */      
         
     spotDetailList[spotNum].innerHTML = spotCon2;
     
@@ -445,9 +445,11 @@ function displayCircleDot(position, distance) {
         // 지도에 표시합니다
         distanceOverlay.setMap(map);
     } else {
+    	var tempdistance = distance - distance%100;
+    	
         // 클릭한 지점까지의 그려진 선의 총 거리를 표시할 커스텀 오버레이를 생성합니다
         var distanceOverlay = new kakao.maps.CustomOverlay({
-            content: '<div class="dotOverlay">거리 <span class="number">' + (distance - distance/100)/1000 + '</span>km</div>',
+            content: '<div class="dotOverlay">거리 <span class="number">' + (tempdistance/1000) + '</span>km</div>',
             position: position,
             yAnchor: 1,
             zIndex: 2
@@ -505,10 +507,11 @@ function getTimeHTML(distance) {
     bycicleMin = '<span class="number">' + bycicleTime % 60 + '</span>분'
 
     // 거리와 도보 시간, 자전거 시간을 가지고 HTML Content를 만들어 리턴합니다
+    var tempdistance = distance - distance%100;
     var content = '<ul class="dotOverlay distanceInfo">';
     content += '<li style="font-size:18px;"> 도착점 </li>';
     content += '    <li>';
-    content += '        <span class="label">총거리</span><span class="number">' + (distance/1000) + '</span>km';
+    content += '        <span class="label">총거리</span><span class="number">' + (tempdistance/1000) + '</span>km';
     content += '    </li>';
     content += '    <li>';
     content += '        <span class="label">자전거</span>' + bycicleHour + bycicleMin;
@@ -533,25 +536,6 @@ function getTimeHTML(distance) {
 }
     
 
-    //그린 경로의 좌표값을 lat, lng 으로 저장해서 배열로 만들고, 그 외에 입력한 값들과 함께 submit.
-/* function insertTour(){
-    var selectedPath = clickLine.getPath();
-    var input_latlng = document.getElementById('tour_latlng');
-    var content ='';
-    
-    for(var j=0; j<selectedPath.length; j++){
-        var pathLat = selectedPath[j].getLat();
-        var pathLng = selectedPath[j].getLng();
-        console.log(pathLat+','+pathLng);
-        
-        content += '<input type="hidden" name="tourlatlist" value="' + pathLat + '">';
-        content += '<input type="hidden" name="tourlnglist" value="' + pathLng + '">';
-    }
-    
-    input_latlng.innerHTML = content;
-    
-    document.getElementById('tourinsertform').submit();
-} */
 
     //투어 스타일에 따라 자전거 평균 속도를 변경, 예상 소요시간을 다시 계산한다.
     //다시 계산한 값을 맵에도 새롭게 표시해주고, 입력창 예산 소요시간도 갱신해준다.
@@ -586,68 +570,6 @@ function getTimeHTML(distance) {
     }
     }
 
-    //spotList, marker 삭제 버튼
-    //spotList에서 제거시 마커가 자동으로 제거되고, list와 marker, marker infowindow 모두 갱신됩니다.
-   /*  function spotDeleteBtn(sno){
-        markers[sno].setMap(null);
-        var markers2 = [];
-        var infowinlist2 = [];
-        for(var j = 0; j<markers.length; j++) {
-            if(j!=sno) {
-                if(j>sno) {
-                    var tempData1 = 'spotListTitle' + j;
-                    var tempSpotTitle = document.getElementById(tempData1).value;
-                    var iwContent = '<div id="markerwin'+ j +'" style="padding:5px;">P' + j + ' ' + tempSpotTitle + '</div>';
-                    infowinlist[j].setContent(iwContent);  
-                }
-                
-                infowinlist2.push(infowinlist[j]);
-                markers2.push(markers[j]);
-            }
-        }
-        infowinlist = infowinlist2;
-        markers = markers2;
-        
-        var spotListEx = document.getElementsByName('spotListNo');
-        var spotNumList = document.getElementsByClassName('tourdetail_spotno');
-        var spotDetailList = document.getElementsByClassName('tourdetail_spotdetail');
-        
-        for(var j=sno; j<spotListEx.length; j++) {
-            
-            if(j==spotListEx.length-1) {
-               spotNumList[j].innerHTML = '';
-               spotDetailList[j].innerHTML = '';
-            } else {
-                //spotNumList[j+1] 자식 첫번째 div를 찾아서 innerHTML로 값을 빼내고, 'P' + sno를 붙를 붙여서 spotNumList[j] 에 innerHTML로 넣어준다.
-                var tempData1 = 'spotListTitle';
-                    tempData1 += (j+1);
-                var tempSpotTitle = document.getElementById(tempData1).value;
-                
-                var tempSpotCon1 = '<div>P';
-                    tempSpotCon1 += (j+1) +'</div>';
-                    tempSpotCon1 += '<div><input type="hidden" name="spotListNo" value="' + j + '">';
-                    tempSpotCon1 += '<input type="text" name="spotListTitle" id="spotListTitle' + j + '" size="15" value="' + tempSpotTitle + '" placeholder="지점 이름" onchange="updateInfoWin(' + j + ')">';
-                    tempSpotCon1 += '<button class="spotdelete_btn" onclick="spotDeleteBtn(' + j + ')" type="button">x</button></div>';
-    
-                spotNumList[j].innerHTML = tempSpotCon1;
-                
-                var tempData2 = 'spotListCon';
-                    tempData2 += (j+1);
-                
-                var tempSoptContent = document.getElementById(tempData2).value;
-                
-                var tempSpotLat = document.getElementById('spotListLat'+(j+1)).value;
-                var tempSpotLng = document.getElementById('spotListLng'+(j+1)).value;
-                var tempSoptCon2 = '<textarea name="spotListCon" id="spotListCon' + j + '" cols="23" rows="9" placeholder="내용 입력">' + tempSoptContent + '</textarea>';
-                    tempSoptCon2 += '<input type="hidden" name="spotListLat" id="spotListLat' + j + '" value="' + tempSpotLat + '">';
-                    tempSoptCon2 += '<input type="hidden" name="spotListLng" id="spotListLng' + j + '" value="' + tempSpotLng + '">';
-                    
-                spotDetailList[j].innerHTML = tempSoptCon2;
-            }
-        }
-
-        spotNum = spotNum-1;    
-    } */
 
     //spot 정보창에 제목이 변경되면, marker에 info window의 이름도 자동으로 변경시켜준다.
 function updateInfoWin(sno) {
@@ -657,109 +579,6 @@ function updateInfoWin(sno) {
     infowinlist[sno].setContent(iwContent);  
 }    
 
-/*     //참여인원 최대, 최소수 체크
-function checkmaxmin(inputtotalcount) {
-    var inputcount = inputtotalcount.value;
-    if(inputcount>20) {
-        alert('최대 참여 인원은 20명까지 설정할 수 있습니다.');
-        document.getElementById('totalcount').value = 20;
-    } else if(inputcount<1) {
-        alert('최소 참여 인원은 1명까지 설정 할 수 있습니다.');
-        document.getElementById('totalcount').value = 1;
-    }
-}
-
-
- function applyTour(applystate) {
-	 if(applystate==0){
-         var temptourno = document.getElementById('tourno').value;
-         var tempuserid = document.getElementById('userid').value;
-         var tempdata = {"tourno":temptourno,"userid":tempuserid};
-         
-		 //지원시 ajax 로 신청자 userid와 신청한 tourno 를 넘기고 해당 유저가 신청했는지, 안했다면 현재인원/최대인원 체크후 신청 성공 or 인원초과 or 중복지원 여부 리턴
-		 $.ajax({
-			url: '/tourapply'
-			,data : tempdata
-			,dataType : 'json'
-			,contentType: "application/json;charset=utf-8"
-			,success : function(data) {
-				if(data==0) {
-					alert("지원 완료.");
-					location.href="/tourdetail/"+temptourno;
-					//page 리로드
-				} else if(data==1) {
-					alert("이미 지원한 투어입니다.");
-				} else if(data==2) {
-					alert("최대 지원자 수를 초고하였습니다.");
-				} else if(data==3) {
-					alert("종료된 투어입니다.");
-				}
-			}
-		 	,error : function(data) {
-		 		alert("에러 : 관리자에게 문의하세요");
-		 	}
-		 });	 
-	 } else if(applystate==1) {
-		 alert("모집이 마감된 일정입니다.");
-	 } else {
-		 alert("종료된 일정입니다."); 
-	 }
- }
- 
-function reinsert(order) {
-	 var temptourno = document.getElementById('tourno').value;
-     var tempuserid = document.getElementById('userid').value;
-     var recontent = document.getElementById('recontent').value;
-	 
-     var tempdata = {"tourno":temptourno,"userid":tempuserid, "recontent":recontent,"reorder":order};
-
-	 
-	 $.ajax({
-		 url: '/tourreinsert'
-		,data : tempdata
-		,dataType : 'json'
-		,contentType: "application/json;charset=utf-8"
-		,success : function(data) {
-			let result ='<li class="tourreple_list">';
-				result += '글번호 작성자 내용 </li>';
-				result += '';
-				
-			$.each(data,function(index,item){
-				if(item.relevel==0) {
-					result += '<li class="tourreple_list" onclick="rereinsert(this,' + item.reorder + ')">';
-					result += '<div>';
-					result += (index+1) + ' ' + item.userid + ' ' +item.recontent+'</div>';
-					result += '</li>';
-				} else if(item.relevel==1) {
-					result += '<li class="tourreple_relist">';
-					result += '<div>';
-					result +=  (index+1) + ' ' + item.userid + ' ' +item.recontent+'</div>';
-					result += '</li>';
-				}
-			});
-			$('#replylist').html(result);
-			$('#recontent').text('');
-		}
-		,error : function(data) {
-			 console.log('reple insert error');
-		}
-		 
-	 });
- }
- function rereinsert(obj,order) {
-	 //if() 호스트
-	 var hostid = document.getElementById('userid').value
-	 var userid = document.getElementById('hostid').value
-	 if(hostid==userid) {
-		 $('#re_rebox').remove();
-		 	var result ='<li id="re_rebox" class="tourreple_list" style="padding: 30px"><form>';
-		 		result += '<textarea id="recontent" cols="110" rows="4" placeholder="내용을 입력하세요."></textarea>';
-		 		result += '<button type="button" onclick="reinsert(' + order + ')">저장</button>';
-		 		result += '</form></li>';
-		 	$(obj).after(result); 
-	 }
-	 //else if() 멤버
- } */
 </script>
 </body>
 </html>

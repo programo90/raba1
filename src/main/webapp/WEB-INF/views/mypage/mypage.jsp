@@ -69,7 +69,7 @@
                         <a href="/wishlist" class="block p-4 text-gray-800 font-normal hover:text-gray-600 hover:font-bold">위시 리스트</a>
                     </li> -->
                     <li class="inline-block mr-10 ">
-                        <a href="/tourmypage" class="block p-4 text-gray-800 font-normal hover:text-gray-600 hover:font-bold">투어 일정 확인</a>
+                        <a href="/tourmypage" class="block p-4 text-gray-800 font-normal hover:text-gray-600 hover:font-bold">모임 일정 확인</a>
                     </li>
                     
                     <li class="inline-block mr-10 ">
@@ -78,7 +78,7 @@
                     <sec:authorize access="hasRole('ROLE_HOST')"> 
 	                    <a href="/tourhostpage"> 
           						<button type="button"  class="mt-6 ml-1 bg-teal-600 text-white p-2 rounded  leading-none flex items-center">
-          							투어 관리
+          							모임 관리
 		          					<span class="bg-white p-1 rounded text-teal-600 text-xs ml-2">
         	  							host
          							</span>

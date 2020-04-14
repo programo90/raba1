@@ -70,6 +70,7 @@
 					</choose>
 	    		</if>
 	    	</where>
+	    	order by cafe.cafeno desc
 	    	limit #{startRow},#{pageSize}
 			<!-- order by cafe.cafeno asc -->
 		</select>

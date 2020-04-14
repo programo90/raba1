@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>B.A. Admin Notice-Modify</title>
 <link rel="stylesheet" href="/resources/css/info/n_modify.css">
+<script> document.getElementsByClassName('adminnav')[8].style.backgroundColor="#e8e8e8";</script>
 </head>
 <body>
 	<div class="adminwrap">
@@ -16,7 +17,7 @@
 				관리자님 환영합니다! <span class="admin_logout"><a href="#">로그아웃</a></span>
 			</div>
 			<section class="admin_sectionbox">
-			<form action="../mdf_ntc" method="post" class="brd_form">
+			<form action="/notice_modify" method="post" class="brd_form">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<input type="hidden" name="ntcno" value="${dto.ntcno}" >
 			<input type="hidden" name="ntcdate" value="${dto.ntcdate}" >

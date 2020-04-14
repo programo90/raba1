@@ -40,7 +40,6 @@ function check_amount(){
 		contentType: "application/json;charset=utf-8",
 		success : function(result){
 			
-			alert("재고가 소진된 제품은 결제가 불가합니다.");
 			
 			for(var j = 0 ; j < result.length; j++){
 				
@@ -49,6 +48,7 @@ function check_amount(){
 				if(pamount <= 0){
 					
 					//console.log("pamount :" +pamount);
+					alert("재고가 소진된 제품은 결제가 불가합니다.");
 					
 					list_checkbox[j].disabled = true;
 					
@@ -59,7 +59,7 @@ function check_amount(){
 			
 		},error : function(error){
 			
-			alert("재고 확인중 문제 발생!!");
+			alert("결제할 제품이 없습니다.");
 		}
 		
 	}); // end ajax
@@ -82,7 +82,7 @@ function check_submit(){
 	if(first_cno == null)
 		{
 			
-			alert("결제할 상품이 없습니다.")
+			alert("결제할 제품을 선택해주세요.")
 			
 			return ;
 		
@@ -104,14 +104,24 @@ function check_submit(){
 			
 			for(var j = 0 ; j < list_checkbox.length ; j++){
 				
-				list_checkbox[j].checked = true ;
+				if(list_checkbox[j].disabled==false){
+					
+					list_checkbox[j].checked = true ;
+					
+				}
+				
 			}
 			
 		}else{
 			
 			for(var j = 0 ; j < list_checkbox.length ; j++){
 				
-				list_checkbox[j].checked = false ;
+				if(list_checkbox[j].disabled==false){
+				
+					list_checkbox[j].checked = false ;
+					
+				}
+				
 			}
 			
 		}

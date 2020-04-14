@@ -18,7 +18,7 @@
  				,tourstyle,tourtype,totalcount, tourstate, tourday, tourtime, cancount, userid
  			from TourTable left outer join HostTable
         	on TourTable.hostno = HostTable.hostno
- 			order by tourstate, tourno desc
+ 			order by tourno desc
  			limit #{startRow}, #{pageSize} ) as b 
 		left outer join UserTable
 		on UserTable.userid = b.userid;
@@ -111,7 +111,7 @@
    	</update>
    	<update id="increUserDistance" parameterType="hashmap">
    		update UserTable
-   		set distance = distance+#{distance}
+   		set distance = ifnull(distance, 0) + #{distance}
    		where userid = #{userid}
    	</update>
    	<select id="tourApplyList" parameterType="int" resultType="com.bitcamp.dto.TourApplyDTO">
@@ -243,7 +243,7 @@
  				,tourstate, tourday, tourtime, cancount, totalcount
   		from TourTable
   		where hostno = #{hostno}
-  		order by tourstate, tourno desc
+  		order by tourno desc
   	</select>
   	<select id="tourHostListSelected" parameterType="hashmap" resultType="com.bitcamp.dto.TourDTO">
   		select tourno, tourtitle, populartour, tourdate, startspot, endspot

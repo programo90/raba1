@@ -17,6 +17,18 @@ private String address2;
 private String address3;
 private String userimg;
 private String hostcomment;
+private Integer distance;
+
+
+
+public Integer getDistance() {
+	return distance;
+}
+
+public void setDistance(Integer distance) {
+	this.distance = distance;
+}
+
 public String getHostcomment() {
 	return hostcomment;
 }

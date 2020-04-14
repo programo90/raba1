@@ -32,7 +32,7 @@
 					<div class="inline-flex rounded-md shadow">
 						<a href="/tourinsert"
 							class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-						 투어 일정 만들기 </a>
+						 모임 일정 만들기 </a>
 					</div>
 					<!-- <div class="ml-3 inline-flex rounded-md shadow">
 						<a href="/tourinsert"
@@ -52,7 +52,7 @@
 							내역</a></li>
 					
 					<li class="inline-block mr-10 "><a href="/tourmypage"
-						class="block p-4 text-gray-800 font-normal hover:text-teal-600 hover:font-bold">투어 참여 내역
+						class="block p-4 text-gray-800 font-normal hover:text-teal-600 hover:font-bold">모임 참여 내역
 							</a></li>
 					<li class="inline-block mr-10 ">
                         <a href="#" onclick="openModal()" class="block p-4 text-gray-800 font-normal hover:text-gray-600 hover:font-bold">정보 수정</a>
@@ -60,7 +60,7 @@
                     <sec:authorize access="hasRole('ROLE_HOST')"> 
           					<a href="/tourhostpage"> 
           						<button type="button"  class="mt-6 ml-1 bg-teal-600 text-white p-2 rounded  leading-none flex items-center">
-          							투어 관리
+          							모임 관리
 		          					<span class="bg-white p-1 rounded text-teal-600 text-xs ml-2">
         	  							host
          							</span>
@@ -73,7 +73,7 @@
 			<div class="w-full lg:w-10/12 min-h-screen antialiased bg-white">
 				<div>
 					<h2 class="text-gray-800 text-2xl font-semibold leading-tight">
-						투어 모집 내역<span style="display: inline-block; float: right;">모집 횟수 : ${hostdto.leadcount}회</span>
+						모임 모집 내역<span style="display: inline-block; float: right;">모집 횟수 : ${hostdto.leadcount}회</span>
 					</h2>
 					<div>
 						<form>
@@ -134,7 +134,7 @@
 										class="hidden md:table-cell px-5 py-5 border-b border-gray-200 bg-white text-sm text-center"
 										onclick="detailinfo(this)" data-tourno="${dto.tourno }" data-openwin="0">
 										<span class="text-gray-900 text-sm">${dto.cancount } / ${dto.totalcount }</span><br>
-										<input class="tourhostpage_list_btn" type="button" value="명단/문의 보기">
+										<input class="tourhostpage_list_btn" type="button" value="신청자/문의 보기">
 									</td>
 									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 										<div class="text-gray-500">
@@ -319,8 +319,8 @@
 		           }
 
 		           // 우편번호와 주소 정보를 해당 필드에 넣는다.
-		           console.log(data.zonecode);
-		           console.log(fullRoadAddr);
+		           /* console.log(data.zonecode);
+		           console.log(fullRoadAddr); */
 		           
 		           
 		           $("[name=addr1]").val(data.zonecode);

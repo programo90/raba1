@@ -56,7 +56,7 @@
 							내역</a></li>
 
 					<li class="inline-block mr-10 "><a href="/tourmypage"
-						class="block p-4 text-gray-800 font-bold hover:text-teal-600 hover:font-bold">투어
+						class="block p-4 text-gray-800 font-bold hover:text-teal-600 hover:font-bold">모임
 							참여 내역 </a></li>
 					<li class="inline-block mr-10 "><a href="#"
 						onclick="openModal()"
@@ -66,7 +66,7 @@
 						<a href="/tourhostpage">
 							<button type="button"
 								class="mt-6 ml-1 bg-teal-600 text-white p-2 rounded  leading-none flex items-center">
-								투어 관리 <span
+								모임 관리 <span
 									class="bg-white p-1 rounded text-teal-600 text-xs ml-2">
 									host </span>
 							</button>
@@ -84,7 +84,7 @@
 								${totaldistance} m
 							</c:when>
 								<c:when test="${totaldistance ge 1000 }">
-								${(totaldistance-totaldistance%100)/10} km
+								${((totaldistance-(totaldistance%100))/10)} km
 							</c:when>
 							</c:choose>
 						</span>
@@ -179,7 +179,7 @@
 													<c:when
 														test="${(dto.tourstate==0) || (dto.tourstate == 1)}">
 														<input class="tourmypage_update_btn" type="button"
-															onclick="cancelApplyTour(${dto.tourno})" value="지원취소">
+															onclick="cancelApplyTour(${dto.tourno})" value="신청취소">
 														<input type="hidden" name="${_csrf.parameterName}"
 															value="${_csrf.token}" />
 													</c:when>
@@ -378,8 +378,8 @@
 		           }
 
 		           // 우편번호와 주소 정보를 해당 필드에 넣는다.
-		           console.log(data.zonecode);
-		           console.log(fullRoadAddr);
+		           /* console.log(data.zonecode);
+		           console.log(fullRoadAddr); */
 		           
 		           
 		           $("[name=addr1]").val(data.zonecode);

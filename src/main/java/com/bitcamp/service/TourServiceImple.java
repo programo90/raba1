@@ -77,16 +77,18 @@ public class TourServiceImple implements TourService{
 		Integer[] spotnoList = dto.getSpotListNo();
 		
 		int totalMarkerCount = 0;
-		for(int i=0; i<spotLatList.length; i++) {
-			TourMarkerDTO mdto = new TourMarkerDTO();
-			mdto.setTourno(tourno);
-			mdto.setSpottitle(spotTitleList[i]);
-			mdto.setSpotcontent(spotConlist[i]);
-			mdto.setSpotlat(spotLatList[i]);
-			mdto.setSpotlng(spotLngList[i]);
-			
-			//mapper를 통해서 db에 마커 갯수만큼 mdto 저장 반복			
-			totalMarkerCount += tourMapper.insertMarker(mdto);
+		if(spotLatList!=null) {
+			for(int i=0; i<spotLatList.length; i++) {
+				TourMarkerDTO mdto = new TourMarkerDTO();
+				mdto.setTourno(tourno);
+				mdto.setSpottitle(spotTitleList[i]);
+				mdto.setSpotcontent(spotConlist[i]);
+				mdto.setSpotlat(spotLatList[i]);
+				mdto.setSpotlng(spotLngList[i]);
+				
+				//mapper를 통해서 db에 마커 갯수만큼 mdto 저장 반복			
+				totalMarkerCount += tourMapper.insertMarker(mdto);
+			}
 		}
 		
 		//투어 이미지 자동으로 선택

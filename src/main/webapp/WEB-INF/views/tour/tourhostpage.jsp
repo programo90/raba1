@@ -239,7 +239,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="hidden md:block md:w-1/2 rounded-r-lg" style="background: url('https://images.unsplash.com/photo-1515965885361-f1e0095517ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3300&q=80'); background-size: cover; background-position: center center;">
+                <div class="hidden md:block md:w-1/2 rounded-r-lg" style="background: url('/resources/img/mypage/ba.jpeg'); background-size: cover; background-position: center center;">
                     <div class="flex justify-end items-center pb-3">
                         <div class="modal-close cursor-pointer z-50">
                             <svg class="fill-white text-2xl p-2  " xmlns="http://www.w3.org/2000/svg" width="18" height="18"

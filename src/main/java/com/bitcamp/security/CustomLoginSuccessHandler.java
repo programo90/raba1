@@ -33,8 +33,6 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 		authentication.getAuthorities().forEach(authority -> {
 			roleNames.add(authority.getAuthority());
 		});
-		
-		System.out.println("ROLE NAMES:" + roleNames);
 
 		if(roleNames.contains("ROLE_ADMIN")) {
 			response.sendRedirect("/admin");
@@ -52,7 +50,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 //		}
 		
 		if(roleNames.contains("ROLE_MEMBER")) {
-			response.sendRedirect("/");
+			response.sendRedirect("/story");
 			return;
 		}
 //		resultRedirectStrategy(request, response, authentication);

@@ -60,7 +60,9 @@
 
         <div class="self-center flex-1   mb-4">
             <div class="content-center mx-auto"></div>
+            <a href="/story">
             <img src="/resources/img/intro/ba_logo.png" class="pt-4 w-24 sm:w-12 mx-auto pb-8" alt="logo">
+            </a>
             <a href="/repair">
                 <img src="/resources/img/intro/t-1.png" class="w-56 sm:w-40 mx-auto" alt="logo">
             </a>

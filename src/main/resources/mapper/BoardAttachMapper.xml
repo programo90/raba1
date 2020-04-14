@@ -18,6 +18,7 @@
 		select *
 		from GoodsImageTable
 		where pno = #{pno}
+		order by pno desc
 	</select>
 	
 	<delete id="deleteAll" parameterType="int">
@@ -36,6 +37,7 @@
 		select *
 		from GoodsImageTable
 		where pno = #{p_no}
+		order by pno desc
 	</select>
 	
 </mapper>

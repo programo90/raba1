@@ -7,7 +7,7 @@
 <title>B.A. Admin Notice-Insert</title>
 <link rel="stylesheet" href="/resources/css/info/n_insert.css">
 <script >
-document.getElementsByClassName('adminnav')[4].style.backgroundColor="#e8e8e8";
+document.getElementsByClassName('adminnav')[8].style.backgroundColor="#e8e8e8";
 </script>
 </head>
 <body>
